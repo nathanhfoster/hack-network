@@ -8,6 +8,9 @@
     },
     {
       "path": "./apps/vot-pwa"
+    },
+    {
+      "path": "./packages/ui"
     }
   ]
 }

@@ -48,3 +48,6 @@ out
 test-output
 
 apps/vot-pwa/analyze/
+
+vite.config.*.timestamp*
+vitest.config.*.timestamp*
