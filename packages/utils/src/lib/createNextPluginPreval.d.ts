@@ -1,4 +1,4 @@
-import nextPluginPrevalConfig from 'next-plugin-preval/config.js'
+import nextPluginPrevalConfig from 'next-plugin-preval/config.js';
 
 /**
  * The default export `nextPluginPrevalConfig` is a configuration object or function
@@ -6,12 +6,12 @@ import nextPluginPrevalConfig from 'next-plugin-preval/config.js'
  * to enable or configure specific plugin behaviors in a Next.js application.
  *
  * @remarks
- * This utility is part of the `@di-websites-modern/utils` package and is designed
+ * This utility is part of the `@hack-network/utils` package and is designed
  * to streamline the setup of Next.js plugins with predefined or customizable options.
  *
  * @example
  * ```typescript
- * import nextPluginPrevalConfig from '@di-websites-modern/utils/lib/createNextPluginPreval';
+ * import nextPluginPrevalConfig from '@hack-network/utils/lib/createNextPluginPreval';
  *
  * const config = nextPluginPrevalConfig({
  *   option1: true,
@@ -21,4 +21,4 @@ import nextPluginPrevalConfig from 'next-plugin-preval/config.js'
  *
  * @see {@link https://nextjs.org/docs/api-reference/next.config.js/introduction | Next.js Configuration Documentation}
  */
-export default nextPluginPrevalConfig
+export default nextPluginPrevalConfig;

@@ -1,0 +1,13 @@
+/**
+ * Global styles for the UI package
+ * 
+ * Imports Tailwind CSS and configures it to scan the src directory for class usage.
+ * This ensures that only the CSS classes actually used in the source code are included
+ * in the final bundle, optimizing the CSS output size.
+ * 
+ * The source('../src') configuration is particularly important for monorepo setups
+ * where build commands run from the root directory rather than individual project roots.
+ * 
+ * @see https://tailwindcss.com/docs/detecting-classes-in-source-files#setting-your-base-path
+ */
+@import 'tailwindcss' source('../src');

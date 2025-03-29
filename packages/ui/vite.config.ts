@@ -3,11 +3,19 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import dts from 'vite-plugin-dts';
 import * as path from 'path';
+import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig(() => ({
   root: __dirname,
   cacheDir: '../../node_modules/.vite/packages/ui',
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, './src'),
+      '@hack-network/utils': path.resolve(__dirname, '../utils/src/index.ts'),
+    },
+  },
   plugins: [
+    tailwindcss(),
     react(),
     dts({
       entryRoot: 'src',

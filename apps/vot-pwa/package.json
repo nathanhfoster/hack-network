@@ -5,5 +5,8 @@
   "nx": {
     "name": "vot-pwa"
   },
-  "dependencies": {}
+  "dependencies": {
+    "@hack-network/ui": "workspace:*",
+    "@hack-network/utils": "workspace:*"
+  }
 }

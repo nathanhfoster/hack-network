@@ -1,6 +1,14 @@
 {
   "files": [],
-  "include": [],
+  "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.json"],
+  "exclude": [
+    "node_modules",
+    "build",
+    "dist",
+    "coverage",
+    "storybook-static",
+    ".next"
+  ],
   "references": [
     {
       "path": "./tsconfig.lib.json"
@@ -9,5 +17,22 @@
       "path": "./tsconfig.spec.json"
     }
   ],
-  "extends": "../../tsconfig.base.json"
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "module": "esnext",
+    "target": "es5",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "jsx": "react-jsx",
+    "allowJs": false,
+    "resolveJsonModule": true,
+    "types": ["node", "jest"],
+    "baseUrl": ".",
+    "paths": {
+      "@atoms/*": ["src/lib/atoms/*"],
+      "@molecules/*": ["src/lib/molecules/*"],
+      "@organisms/*": ["src/lib/organisms/*"],
+      "@templates/*": ["src/lib/templates/*"],
+      "@hack-network/utils": ["../utils/src/index.ts"]
+    }
+  }
 }
