@@ -1,4 +1,4 @@
-import { cloneDeep } from 'lodash-es'
+import { cloneDeep } from 'lodash'
 
 /**
  * Deeply clones a given value, creating a new instance of the value

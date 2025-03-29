@@ -1,4 +1,4 @@
-import { isEqual, pickBy } from 'lodash-es'
+import { isEqual, pickBy } from 'lodash'
 
 const getObjectDiff = <
   OO extends Record<string, any>,

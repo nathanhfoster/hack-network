@@ -1,4 +1,4 @@
-import { isEqual, pickBy } from 'lodash-es'
+import { isEqual, pickBy } from 'lodash'
 
 const getObjectDiffKeys = (
   originalObject: Record<string, any>,

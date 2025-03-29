@@ -1,6 +1,6 @@
 'use client'
 
-import isFunction from 'lodash-es/isFunction'
+import isFunction from 'lodash/isFunction'
 import { useEffect, useRef } from 'react'
 
 import createHandlerSetter from '../utils/createHandlerSetter'

@@ -1,6 +1,6 @@
 'use client'
 
-import throttle from 'lodash-es/throttle'
+import throttle from 'lodash/throttle'
 import { type DependencyList, useCallback, useEffect, useRef } from 'react'
 
 import { GenericFunction } from '../types'

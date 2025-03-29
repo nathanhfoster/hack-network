@@ -6,11 +6,7 @@
     "emitDeclarationOnly": false,
     "esModuleInterop": true,
     "resolveJsonModule": true,
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
@@ -21,25 +17,13 @@
       }
     ],
     "paths": {
-      "@/*": [
-        "./src/*"
-      ],
-      "@public/*": [
-        "./public/*"
-      ],
-      "@hack-network/ui": [
-        "../../packages/ui/src/index.ts"
-      ],
-      "@hack-network/utils": [
-        "../../packages/utils/src/index.ts"
-      ]
+      "@/*": ["./src/*"],
+      "@public/*": ["./public/*"],
+      "@hack-network/ui": ["../../packages/ui/src/index.ts"],
+      "@hack-network/utils": ["../../packages/utils/src/index.ts"]
     },
-    "types": [
-      "jest",
-      "node"
-    ],
+    "types": ["jest", "node"],
     "outDir": "dist",
-    "rootDir": "src",
     "tsBuildInfoFile": "dist/tsconfig.tsbuildinfo",
     "target": "ES2017",
     "module": "esnext"

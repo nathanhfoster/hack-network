@@ -1,3 +1,3 @@
-import isEqual from 'lodash-es/isEqual'
+import isEqual from 'lodash/isEqual'
 
 export default isEqual
