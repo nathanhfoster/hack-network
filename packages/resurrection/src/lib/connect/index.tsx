@@ -44,8 +44,8 @@ import React, {
   useMemo,
 } from 'react';
 
-import { useEffectAfterChange, useEffectOnce } from '../../../hooks/index';
-import { LoosePartial } from '../../../types';
+import { useEffectAfterChange, useEffectOnce } from '@hack-network/ui';
+import { LoosePartial } from '@hack-network/ui';
 import createUseDispatchHook from '../hooks/useDispatch';
 import useMemoComponent from '../hooks/useMemoComponent';
 import createUseSelectorHook from '../hooks/useSelector';

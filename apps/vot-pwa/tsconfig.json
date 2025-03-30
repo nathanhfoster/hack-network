@@ -18,9 +18,7 @@
     ],
     "paths": {
       "@/*": ["./src/*"],
-      "@public/*": ["./public/*"],
-      "@hack-network/ui": ["../../packages/ui/src/index.ts"],
-      "@hack-network/utils": ["../../packages/utils/src/index.ts"]
+      "@public/*": ["./public/*"]
     },
     "types": ["jest", "node"],
     "outDir": "dist",

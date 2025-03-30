@@ -1,1 +1,1 @@
-export * from './lib/resurrection';
+export * from './lib';

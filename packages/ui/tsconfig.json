@@ -31,8 +31,7 @@
       "@atoms/*": ["src/lib/atoms/*"],
       "@molecules/*": ["src/lib/molecules/*"],
       "@organisms/*": ["src/lib/organisms/*"],
-      "@templates/*": ["src/lib/templates/*"],
-      "@hack-network/utils": ["../utils/src/index.ts"]
+      "@templates/*": ["src/lib/templates/*"]
     }
   }
 }
