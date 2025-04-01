@@ -1,6 +1,6 @@
 {
   "name": "resurrection",
-  "version": "1.4.0",
+  "version": "1.4.2",
   "main": "./dist/out-tsc/index.js",
   "module": "./dist/out-tsc/index.mjs",
   "types": "./dist/out-tsc/index.d.ts",
