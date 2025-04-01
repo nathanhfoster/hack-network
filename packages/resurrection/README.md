@@ -14,259 +14,215 @@ A lightweight state management library that follows Flux/Redux architecture but 
 ## Installation
 
 ```bash
-npm install @di-websites-modern/resurrection
+npm install resurrection
 # or
-yarn add @di-websites-modern/resurrection
+yarn add resurrection
 ```
 
 ## Basic Usage
 
-### 1. Create a Context
+### 1. Define Types and Create Reducer
+
+First, define your state types and create a reducer using `createReducer`:
 
 ```typescript
-import { createContextWithName } from '@di-websites-modern/resurrection'
+import { createReducer, Draft, ContextStoreInitializer } from 'resurrection';
 
 interface AppState {
-  items: Item[]
-  filters: FilterState
+  users: User[];
+  settings: Settings;
 }
 
-interface Item {
-  id: string
-  title: string
-  price: number
-  status: 'active' | 'inactive'
+interface User {
+  id: string;
+  email: string;
+  firstName: string;
+  lastName: string;
 }
 
-interface FilterState {
-  category: string
-  sortBy: 'price' | 'date'
+interface Settings {
+  theme: 'light' | 'dark';
+  language: string;
+  notifications: boolean;
 }
 
-const initialState = {
-  items: [],
-  filters: {
-    category: 'all',
-    sortBy: 'date'
+// Define initial state
+const initialState: AppState = {
+  users: [],
+  settings: {
+    theme: 'light',
+    language: 'en',
+    notifications: true,
+  },
+};
+
+// Create initializer function
+export const getInitialState: ContextStoreInitializer<any, AppState> = (initialState) => {
+  return {
+    ...appInitialState,
+    ...initialState,
+  };
+};
+
+// Define reducer actions
+const SetUsers = (state: Draft<AppState>, users: User[]) => {
+  state.users = users;
+};
+
+const UpdateUser = (state: Draft<AppState>, user: User) => {
+  const index = state.users.findIndex((u) => u.id === user.id);
+  if (index !== -1) {
+    state.users[index] = user;
   }
-}
+};
 
-const AppContext = createContextWithName<AppState, AppActions>(
-  'App',
-  initialState
-)
+const UpdateSettings = (state: Draft<AppState>, settings: Partial<Settings>) => {
+  state.settings = {
+    ...state.settings,
+    ...settings,
+  };
+};
+
+// Create the reducer
+export const appSlice = createReducer({
+  name: 'App',
+  initialState,
+  actions: {
+    SetUsers,
+    UpdateUser,
+    UpdateSettings,
+  },
+});
 ```
 
-### 2. Create a Context Provider
+### 2. Create Context and Provider
+
+Next, create your context and provider using the reducer:
 
 ```typescript
-import { Provider } from '@di-websites-modern/resurrection'
+import { FC, Reducer } from 'react';
+import {
+  createContextWithName,
+  Provider,
+  ReducerActionCreators,
+} from 'resurrection';
 
-const AppContextProvider: FC<AppContextProviderProps> = ({
-  children,
-  ...restOfProps
-}) => {
+import { getInitialState, initialState, appSlice } from './reducer';
+import { AppState } from './types';
+
+// Get action creators
+export const appContextActions = appSlice.actions;
+
+// Define actions type
+type AppActions = ReducerActionCreators<typeof appContextActions, 'App'>;
+
+// Create context
+export const AppContext = createContextWithName<AppState, AppActions>(
+  'App',
+  initialState
+);
+
+// Destructure context utilities
+export const {
+  StateContext: AppStateContext,
+  useSelector: useAppSelector,
+  DispatchContext: AppDispatchContext,
+  useDispatch: useAppDispatch,
+} = AppContext;
+
+// Create provider component
+export const AppContextProvider: FC<{
+  children: React.ReactNode;
+  initialState?: AppState;
+}> = ({ children, ...restOfProps }) => {
   return (
-    <Provider<AppState, AppActions>
+    <Provider
       {...restOfProps}
       StateContext={AppStateContext}
-      reducer={appReducer}
+      reducer={appSlice.reducer as unknown as Reducer<AppState, AppActions>}
       initializer={getInitialState}
       DispatchContext={AppDispatchContext}
     >
       {children}
     </Provider>
-  )
-}
+  );
+};
 ```
 
-### 3. Create a Simple Provider (for static data)
+### 3. Use in Your Application
+
+Finally, wrap your application with the provider and use the context:
 
 ```typescript
-const AppSimpleProvider: FC<{
-  initialState: AppState
-  children: React.ReactNode
-}> = ({ initialState, children }) => {
+// In your root layout or app component
+export default async function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  // Fetch initial state (e.g., from API)
+  const initialState = await getInitialData();
+
   return (
-    <AppStateContext.Provider value={initialState}>
-      {children}
-    </AppStateContext.Provider>
-  )
+    <AppContextProvider initialState={initialState}>
+      <html lang="en">
+        <body>{children}</body>
+      </html>
+    </AppContextProvider>
+  );
 }
-```
 
-### 4. Use the Context in Components
-
-#### Using Hooks (Recommended for Functional Components)
-
-```typescript
-import { useAppSelector, useAppDispatch } from './contexts/AppContext'
-
-const ItemList = () => {
-  const items = useAppSelector((state) => state.items)
-  const filters = useAppSelector((state) => state.filters)
-  const dispatch = useAppDispatch()
-
-  const filteredItems = items.filter(item => 
-    filters.category === 'all' || item.category === filters.category
-  )
+// In your components
+const UserList = () => {
+  const users = useAppSelector((state) => state.users);
+  const dispatch = useAppDispatch();
 
   return (
     <div>
-      {filteredItems.map(item => (
-        <ItemCard key={item.id} item={item} />
+      {users.map(user => (
+        <UserCard key={user.id} user={user} />
       ))}
     </div>
-  )
-}
-```
-
-#### Using Connect HOC (For Class Components or Legacy Code)
-
-```typescript
-import { connect, AppStateContext } from '@di-websites-modern/resurrection'
-
-interface ItemDetailProps {
-  item: Item | undefined
-}
-
-interface ItemDetailOwnProps {
-  id: string
-}
-
-const ItemDetail: React.FC<ItemDetailProps> = ({ item }) => {
-  if (!item) return null
-
-  return (
-    <div className="p-8 bg-gray-50 shadow-lg rounded-lg">
-      <h1 className="text-3xl font-bold">{item.title}</h1>
-      <div className="mt-4">
-        <span className="text-xl font-semibold">${item.price}</span>
-        <span className={`ml-2 px-2 py-1 rounded ${item.status === 'active' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}`}>
-          {item.status}
-        </span>
-      </div>
-    </div>
-  )
-}
-
-export default connect<
-  ItemDetailProps,
-  {}, // MapDispatchToProps
-  ItemDetailOwnProps
->({
-  mapStateToPropsOptions: [
-    {
-      context: AppStateContext,
-      mapStateToProps: (state: AppState, ownProps) => ({
-        item: state.items.find(item => item.id === ownProps.id)
-      })
-    }
-  ]
-})(ItemDetail)
-
-// Usage
-const App = () => (
-  <div>
-    <ItemDetail id="123" />
-  </div>
-)
-```
-
-## Example Implementation
-
-Here's a complete example of implementing a context for managing a shopping cart:
-
-```typescript
-// types.ts
-export interface CartItem {
-  id: string
-  name: string
-  price: number
-  quantity: number
-}
-
-export interface CartState {
-  items: CartItem[]
-  total: number
-  isOpen: boolean
-}
-
-export type CartActions = 
-  | { type: 'ADD_ITEM'; payload: CartItem }
-  | { type: 'REMOVE_ITEM'; payload: string }
-  | { type: 'UPDATE_QUANTITY'; payload: { id: string; quantity: number } }
-  | { type: 'TOGGLE_CART' }
-
-export type CartContextState = ContextStore<CartState>
-
-// index.tsx
-export const CartContext = createContextWithName<CartContextState, CartActions>(
-  'Cart',
-  { items: [], total: 0, isOpen: false }
-)
-
-export const CartProvider: FC<{
-  children: React.ReactNode
-}> = ({ children }) => {
-  return (
-    <Provider<CartState, CartActions>
-      StateContext={CartStateContext}
-      reducer={cartReducer}
-      initializer={getCartInitialState}
-      DispatchContext={CartDispatchContext}
-    >
-      {children}
-    </Provider>
-  )
-}
-
-// Usage in a layout
-const AppLayout = ({ children }: { children: React.ReactNode }) => {
-  return (
-    <CartProvider>
-      <Header />
-      <main>{children}</main>
-      <CartSidebar />
-    </CartProvider>
-  )
-}
+  );
+};
 ```
 
 ## API Reference
 
-### ContextProvider Props
+### createReducer
+
+Creates a reducer with typed actions:
 
 ```typescript
-interface ContextProviderProps<T> {
-  name?: string
-  context?: React.Context<T>
-  reducers?: Function | Object
-  initialState?: Object
-  props?: Object
-  initializer?: Function
-  children: React.ReactNode
-}
+createReducer({
+  name: string;
+  initialState: State;
+  actions: {
+    [key: string]: (state: Draft<State>, payload: any) => void;
+  };
+})
 ```
 
-### Hooks
+### Context Utilities
 
-- `useSelector`: Select and subscribe to state changes
-- `useDispatch`: Get the dispatch function for actions
+The context provides several utilities:
 
-### Connect HOC
+- `StateContext`: The context for accessing state
+- `DispatchContext`: The context for dispatching actions
+- `useSelector`: Hook for selecting state
+- `useDispatch`: Hook for dispatching actions
 
-The `connect` HOC provides a Redux-like API for connecting components to the context:
+### Provider Props
 
 ```typescript
-connect<MapStateToProps, MapDispatchToProps, OwnProps>({
-  mapStateToPropsOptions: [
-    {
-      context: Context,
-      mapStateToProps: (state, ownProps) => ({ /* ... */ })
-    }
-  ]
-})(Component)
+interface ProviderProps<T, A> {
+  StateContext: React.Context<T>;
+  DispatchContext: React.Context<React.Dispatch<A>>;
+  reducer: Reducer<T, A>;
+  initializer: ContextStoreInitializer<any, T>;
+  initialState?: T;
+  children: React.ReactNode;
+}
 ```
 
 ## Development

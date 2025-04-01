@@ -1,1 +1,100 @@
-if(!self.define){let e,s={};const a=(a,r)=>(a=new URL(a+".js",r).href,s[a]||new Promise((s=>{if("document"in self){const e=document.createElement("script");e.src=a,e.onload=s,document.head.appendChild(e)}else e=a,importScripts(a),s()})).then((()=>{let e=s[a];if(!e)throw new Error(`Module ${a} didn’t register its module`);return e})));self.define=(r,t)=>{const n=e||("document"in self?document.currentScript.src:"")||location.href;if(s[n])return;let i={};const c=e=>a(e,n),o={module:{uri:n},exports:i,require:c};s[n]=Promise.all(r.map((e=>o[e]||c(e)))).then((e=>(t(...e),i)))}}define(["./workbox-440d3704"],(function(e){"use strict";importScripts(),self.skipWaiting(),e.clientsClaim(),e.precacheAndRoute([{url:"/_next/app-build-manifest.json",revision:"13ed4943a85adf51c16e4cf4f032ce85"},{url:"/_next/static/chunks/36acf3af-c492d4a6b206883a.js",revision:"rajuoX2KSrVfTmOZ7OJqH"},{url:"/_next/static/chunks/969-d95d6127cb73f1dd.js",revision:"rajuoX2KSrVfTmOZ7OJqH"},{url:"/_next/static/chunks/app/_not-found/page-7d23f9e3730aee8a.js",revision:"rajuoX2KSrVfTmOZ7OJqH"},{url:"/_next/static/chunks/app/api/hello/route-461c331d383b8301.js",revision:"rajuoX2KSrVfTmOZ7OJqH"},{url:"/_next/static/chunks/app/layout-7ff044f70946c842.js",revision:"rajuoX2KSrVfTmOZ7OJqH"},{url:"/_next/static/chunks/app/page-c911517bd36d4c29.js",revision:"rajuoX2KSrVfTmOZ7OJqH"},{url:"/_next/static/chunks/framework-ffe6f9f02cf712ff.js",revision:"rajuoX2KSrVfTmOZ7OJqH"},{url:"/_next/static/chunks/main-6694958e9b78e63f.js",revision:"rajuoX2KSrVfTmOZ7OJqH"},{url:"/_next/static/chunks/main-app-ace91b75630dbdf3.js",revision:"rajuoX2KSrVfTmOZ7OJqH"},{url:"/_next/static/chunks/pages/_app-67dd3c39c6a8a61a.js",revision:"rajuoX2KSrVfTmOZ7OJqH"},{url:"/_next/static/chunks/pages/_error-cc3a26ffbd2a9a50.js",revision:"rajuoX2KSrVfTmOZ7OJqH"},{url:"/_next/static/chunks/polyfills-42372ed130431b0a.js",revision:"846118c33b2c0e922d7b3a7676f81f6f"},{url:"/_next/static/chunks/webpack-369604cab1d39676.js",revision:"rajuoX2KSrVfTmOZ7OJqH"},{url:"/_next/static/css/0ebb3ff25f0c27e7.css",revision:"0ebb3ff25f0c27e7"},{url:"/_next/static/rajuoX2KSrVfTmOZ7OJqH/_buildManifest.js",revision:"7f16be05f1ad14a56bc0a91f230b5418"},{url:"/_next/static/rajuoX2KSrVfTmOZ7OJqH/_ssgManifest.js",revision:"b6652df95db52feb4daf4eca35380933"},{url:"/favicon.ico",revision:"d4d62b2ac4cfa63ade7f1766fb098bc5"},{url:"/manifest.json",revision:"2f614970467d3f7e669aa46fbe4acd66"}],{ignoreURLParametersMatching:[]}),e.cleanupOutdatedCaches(),e.registerRoute("/",new e.NetworkFirst({cacheName:"start-url",plugins:[{cacheWillUpdate:async({request:e,response:s,event:a,state:r})=>s&&"opaqueredirect"===s.type?new Response(s.body,{status:200,statusText:"OK",headers:s.headers}):s}]}),"GET"),e.registerRoute(/^\/_next\/static\/.*/i,new e.StaleWhileRevalidate({cacheName:"static-assets",plugins:[new e.ExpirationPlugin({maxEntries:50,maxAgeSeconds:172800})]}),"GET"),e.registerRoute(/.*/i,new e.NetworkFirst({cacheName:"general-cache",networkTimeoutSeconds:10,plugins:[new e.ExpirationPlugin({maxEntries:100,maxAgeSeconds:172800})]}),"GET")}));
+/**
+ * Copyright 2018 Google Inc. All Rights Reserved.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+// If the loader is already loaded, just stop.
+if (!self.define) {
+  let registry = {};
+
+  // Used for `eval` and `importScripts` where we can't get script URL by other means.
+  // In both cases, it's safe to use a global var because those functions are synchronous.
+  let nextDefineUri;
+
+  const singleRequire = (uri, parentUri) => {
+    uri = new URL(uri + ".js", parentUri).href;
+    return registry[uri] || (
+      
+        new Promise(resolve => {
+          if ("document" in self) {
+            const script = document.createElement("script");
+            script.src = uri;
+            script.onload = resolve;
+            document.head.appendChild(script);
+          } else {
+            nextDefineUri = uri;
+            importScripts(uri);
+            resolve();
+          }
+        })
+      
+      .then(() => {
+        let promise = registry[uri];
+        if (!promise) {
+          throw new Error(`Module ${uri} didn’t register its module`);
+        }
+        return promise;
+      })
+    );
+  };
+
+  self.define = (depsNames, factory) => {
+    const uri = nextDefineUri || ("document" in self ? document.currentScript.src : "") || location.href;
+    if (registry[uri]) {
+      // Module is already loading or loaded.
+      return;
+    }
+    let exports = {};
+    const require = depUri => singleRequire(depUri, uri);
+    const specialDeps = {
+      module: { uri },
+      exports,
+      require
+    };
+    registry[uri] = Promise.all(depsNames.map(
+      depName => specialDeps[depName] || require(depName)
+    )).then(deps => {
+      factory(...deps);
+      return exports;
+    });
+  };
+}
+define(['./workbox-16a1d834'], (function (workbox) { 'use strict';
+
+  importScripts();
+  self.skipWaiting();
+  workbox.clientsClaim();
+  workbox.registerRoute("/", new workbox.NetworkFirst({
+    "cacheName": "start-url",
+    plugins: [{
+      cacheWillUpdate: async ({
+        request,
+        response,
+        event,
+        state
+      }) => {
+        if (response && response.type === 'opaqueredirect') {
+          return new Response(response.body, {
+            status: 200,
+            statusText: 'OK',
+            headers: response.headers
+          });
+        }
+        return response;
+      }
+    }]
+  }), 'GET');
+  workbox.registerRoute(/.*/i, new workbox.NetworkOnly({
+    "cacheName": "dev",
+    plugins: []
+  }), 'GET');
+
+}));
