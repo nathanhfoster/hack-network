@@ -14,12 +14,6 @@ importers:
       date-fns-tz:
         specifier: ^3.2.0
         version: 3.2.0(date-fns@4.1.0)
-      immer:
-        specifier: ^10.1.1
-        version: 10.1.1
-      lodash:
-        specifier: ^4.17.21
-        version: 4.17.21
       next:
         specifier: 15.2.4
         version: 15.2.4(@babel/core@7.26.10)(@playwright/test@1.51.1)(babel-plugin-macros@3.1.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.86.0)
@@ -33,8 +27,8 @@ importers:
         specifier: 19.0.0
         version: 19.0.0(react@19.0.0)
       resurrection:
-        specifier: 1.3.5
-        version: 1.3.5
+        specifier: 1.3.6
+        version: 1.3.6(next@15.2.4(@babel/core@7.26.10)(@playwright/test@1.51.1)(babel-plugin-macros@3.1.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.86.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
     devDependencies:
       '@babel/core':
         specifier: ^7.14.5
@@ -258,14 +252,14 @@ importers:
       '@hack-network/utils':
         specifier: workspace:*
         version: link:../../packages/utils
-      resurrection:
-        specifier: ^1.3.5
-        version: 1.3.5
 
   apps/vot-pwa-e2e: {}
 
   packages/resurrection:
     dependencies:
+      immer:
+        specifier: ^10.1.1
+        version: 10.1.1
       lodash:
         specifier: ^4.17.21
         version: 4.17.21
@@ -7470,8 +7464,12 @@ packages:
     resolution: {integrity: sha512-l+sSefzHpj5qimhFSE5a8nufZYAM3sBSVMAPtYkmC+4EH2anSGaEMXSD0izRQbu9nfyQ9y5JrVmp7E8oZrUjvA==}
     engines: {node: '>=8'}
 
-  resurrection@1.3.5:
-    resolution: {integrity: sha512-EXEe7aHF7MyPxodHn3DGujwnQsZVZzZrYFivEu9LEBgrMQ15HQVJ4T8P4k52BpJkCzePduODb/YmTXF73FTlKQ==}
+  resurrection@1.3.6:
+    resolution: {integrity: sha512-jOApfOw4KMzr7bg2lM7Gg5/Gqv0Yx+q6Dtx5qpzZhJbmnuYTBe/ISoA7Drn285wha+MilbIpwHvIUXlQL0ILIA==}
+    peerDependencies:
+      next: ^12.0.0 || ^13.0.0 || ^14.0.0
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0
+      react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
 
   retry@0.13.1:
     resolution: {integrity: sha512-XQBQ3I8W1Cge0Seh+6gjj03LbmRFWuoszgK9ooCpwYIrhhoO80pfq4cUkU5DkknwfOfFteRwlZ56PYOGYyFWdg==}
@@ -17563,7 +17561,12 @@ snapshots:
       onetime: 5.1.2
       signal-exit: 3.0.7
 
-  resurrection@1.3.5: {}
+  resurrection@1.3.6(next@15.2.4(@babel/core@7.26.10)(@playwright/test@1.51.1)(babel-plugin-macros@3.1.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.86.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0):
+    dependencies:
+      lodash: 4.17.21
+      next: 15.2.4(@babel/core@7.26.10)(@playwright/test@1.51.1)(babel-plugin-macros@3.1.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.86.0)
+      react: 19.0.0
+      react-dom: 19.0.0(react@19.0.0)
 
   retry@0.13.1: {}
 

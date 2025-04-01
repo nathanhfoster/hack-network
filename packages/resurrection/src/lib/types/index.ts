@@ -18,4 +18,4 @@ export interface NextRouterAugmented {
     emit: (type: string, ...args: any[]) => void;
   };
   isFallback: boolean;
-} 
+}

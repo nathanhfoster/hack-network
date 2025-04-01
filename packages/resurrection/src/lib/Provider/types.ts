@@ -5,17 +5,14 @@ import type {
   Reducer,
   SetStateAction
 } from 'react'
+import type { NextRouterAugmented } from '../types.js'
 
 export type ContextStoreInitializer<TState> = (
   state: TState | undefined
 ) => TState
 
 export type ProviderProps<TState = unknown, TAction = unknown> = {
-  StateContext: Context<TState>
-  reducer?: Reducer<TState, TAction>
-  initialState?: TState
-  initializer?: ContextStoreInitializer<TState>
-  derivedStateFromProps?: TState
-  DispatchContext?: Context<Dispatch<TAction | SetStateAction<TAction>>>
+  initialState: TState
+  derivedStateFromProps?: TState | ((state: TState, router: NextRouterAugmented) => TState)
   children: ReactNode | ((value: TState) => ReactNode)
 }

@@ -109,43 +109,10 @@ export type PayloadAction<
         error: E;
       });
 
-export type PayloadActionCreator<P = void, T extends string = string> = IsAny<
-  P,
-  ActionCreatorWithPayload<any, T>,
-  IsUnknownOrNonInferrable<
-    P,
-    ActionCreatorWithNonInferrablePayload<T>,
-    // else
-    IfVoid<
-      P,
-      ActionCreatorWithPayload<P, T>,
-      // else
-      IfMaybeUndefined<
-        P,
-        ActionCreatorWithOptionalPayload<P, T>,
-        // else
-        ActionCreatorWithPayload<P, T>
-      >
-    >
-  >
->;
-
-export type PayloadActionType<
-  T extends string = string,
-  M = never,
-  E = never,
-> = {
+export type PayloadActionCreator<P = void, T extends string = string> = {
+  payload: P;
   type: T;
-} & ([M] extends [never]
-  ? {}
-  : {
-      meta: M;
-    }) &
-  ([E] extends [never]
-    ? {}
-    : {
-        error: E;
-      });
+};
 
 export type PrepareAction<P> =
   | ((...args: any[]) => { payload: P })
@@ -163,23 +130,17 @@ export type ReducerStateMaybeWithAction<
   A = DispatchMaybeWithAction,
 > = R extends ReducerMaybeWithAction<infer S, A> ? S : never;
 
-type ThunkFunctionWithParam<Param = void, S = any, A = any> = (
-  param: Param,
-) => Thunk<A, S>;
-
-type ThunkFunctionWithOptionalPayload<Param = void, S = any, A = any> = (
-  param?: Param,
-) => Thunk<A, S>;
-
 export type Thunk<A, S, P = void> = (
   dispatch: Dispatch<A>,
   getState: () => MutableRefObject<S>['current'],
   getRouter: () => NextRouterAugmented,
 ) => PayloadActionCreator | Promise<P> | Promise<void> | P;
-export type ThunkAction<
-  S extends Reducer<any, any>,
-  D extends Reducer<any, any> = any,
-> = ((...args: any[]) => PayloadAction) | Thunk<any, S, D>;
+
+export type ThunkAction<S = any, A = any> = (
+  dispatch: Dispatch<A>,
+  getState: () => S,
+  router?: NextRouterAugmented,
+) => void | Promise<void>;
 
 export type ThunkFunction<P = void, S = any, A = any> = IsAny<
   P,
@@ -202,6 +163,14 @@ export type ThunkFunction<P = void, S = any, A = any> = IsAny<
   >
 >;
 
+type ThunkFunctionWithParam<Param = void, S = any, A = any> = (
+  param: Param,
+) => Thunk<A, S>;
+
+type ThunkFunctionWithOptionalPayload<Param = void, S = any, A = any> = (
+  param?: Param,
+) => Thunk<A, S>;
+
 export interface NextRouterAugmented {
   query: Record<string, string | string[] | undefined>;
   pathname: string;
@@ -223,9 +192,3 @@ export interface NextRouterAugmented {
 export type LoosePartial<T> = {
   [P in keyof T]?: T[P] | undefined;
 };
-
-export type ThunkAction<S = any, A = any> = (
-  dispatch: Dispatch<A>,
-  getState: () => S,
-  router?: NextRouterAugmented,
-) => void | Promise<void>;

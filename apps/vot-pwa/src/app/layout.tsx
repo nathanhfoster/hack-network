@@ -1,7 +1,6 @@
 import './global.css';
 import type { Metadata } from 'next';
 import MANIFEST from '@public/manifest.json';
-import { Provider } from 'resurrection';
 
 export const metadata: Metadata = {
   title: MANIFEST.name,
@@ -41,13 +40,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <Provider>
       <html lang="en" className="overflow-x-hidden">
         <head></head>
         <body className="overflow-x-hidden flex flex-col min-h-screen bg-background-light text-foreground-light dark:bg-background-dark dark:text-foreground-dark">
           {children}
         </body>
       </html>
-    </Provider>
   );
 }

@@ -9,6 +9,14 @@ import { nxCopyAssetsPlugin } from '@nx/vite/plugins/nx-copy-assets.plugin';
 export default defineConfig(() => ({
   root: __dirname,
   cacheDir: '../../node_modules/.vite/packages/resurrection',
+  resolve: {
+    alias: {
+      '@atoms': path.resolve(__dirname, './src/lib/atoms'),
+      '@molecules': path.resolve(__dirname, './src/lib/molecules'),
+      '@contexts': path.resolve(__dirname, './src/contexts'),
+      '@utils': path.resolve(__dirname, './src/utils'),
+    },
+  },
   plugins: [
     react(),
     nxViteTsPaths(),
