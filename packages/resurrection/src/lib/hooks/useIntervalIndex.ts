@@ -1,6 +1,6 @@
 'use client';
 
-import { getRandomNumber, isArray } from '@hack-network/utils';
+import { getRandomNumber, isArray } from '../utils';
 import { useEffect, useState } from 'react';
 
 export interface UseIntervalParams {
@@ -21,7 +21,7 @@ const useIntervalIndex = (params: UseIntervalParams) => {
           setIndex(index + 1);
         }
       },
-      isArray(params?.ms) ? getRandomNumber(...params.ms) : params.ms
+      isArray(params?.ms) ? getRandomNumber(...params.ms) : params.ms,
     );
 
     return () => clearInterval(intervalId);

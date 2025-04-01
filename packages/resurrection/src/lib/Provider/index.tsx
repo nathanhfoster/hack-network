@@ -1,28 +1,25 @@
-'use client';
-
-import { isFunction } from '@hack-network/utils';
-import React, { Dispatch, SetStateAction } from 'react';
-
+import { FC } from 'react';
+import { isFunction } from '../utils';
 import useReducerWithThunk from '../hooks/useReducerWithThunk';
 import setStateReducer from '../reducers/setStateReducer';
 import defaultInitializer from '../utils/defaultInitializer';
+import type { ProviderProps } from './types';
 
-import type { ProviderProps, ContextStoreInitializer } from './types';
-
-const Provider = <TState, TAction>({
+const Provider: FC<ProviderProps> = ({
   StateContext,
-  reducer = setStateReducer as React.Reducer<TState, TAction>,
+  reducer = setStateReducer,
   derivedStateFromProps,
-  initialState,
-  initializer = defaultInitializer as ContextStoreInitializer<TState>,
+  //@ts-ignore
+  initialState = derivedStateFromProps ?? StateContext?._currentValue,
+  initializer = defaultInitializer,
   DispatchContext,
   children,
-}: ProviderProps<TState, TAction>): React.ReactElement => {
+}) => {
   const [state, dispatch] = useReducerWithThunk(
     reducer,
-    (initialState ?? derivedStateFromProps ?? {}) as TState,
+    initialState,
     initializer,
-    derivedStateFromProps as TState
+    derivedStateFromProps,
   );
 
   const StateContextProvider = (
@@ -40,9 +37,7 @@ const Provider = <TState, TAction>({
   }
 
   return (
-    <DispatchContext.Provider
-      value={dispatch as Dispatch<SetStateAction<TAction>>}
-    >
+    <DispatchContext.Provider value={dispatch}>
       {StateContextProvider}
     </DispatchContext.Provider>
   );

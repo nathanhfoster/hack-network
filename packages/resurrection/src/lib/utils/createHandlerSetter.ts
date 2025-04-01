@@ -1,9 +1,8 @@
 'use client';
+import { CallbackSetter, SomeCallback } from '../types';
 /* eslint-disable react-hooks/rules-of-hooks */
-import { isFunction } from '@hack-network/utils';
+import { isFunction } from '../utils';
 import { type RefObject, useRef } from 'react';
-
-import type { CallbackSetter, SomeCallback } from '../types';
 
 /**
  * Returns an array where the first item is the [ref](https://reactjs.org/docs/hooks-reference.html#useref) to a
@@ -17,14 +16,14 @@ import type { CallbackSetter, SomeCallback } from '../types';
  * Don't use this function to abstract hooks outside this library as it changes quite often
  */
 const createHandlerSetter = <TArgs, TResult = void>(
-  callback?: SomeCallback<TArgs, TResult>
+  callback?: SomeCallback<TArgs, TResult>,
 ): [RefObject<SomeCallback<TArgs, TResult>>, CallbackSetter<TArgs>] => {
   const handlerRef = useRef(callback);
 
   const setHandler = useRef((nextCallback: SomeCallback<TArgs, TResult>) => {
     if (!isFunction(nextCallback)) {
       throw new Error(
-        "the argument supplied to the 'setHandler' function should be of type function"
+        "the argument supplied to the 'setHandler' function should be of type function",
       );
     }
 
@@ -33,7 +32,7 @@ const createHandlerSetter = <TArgs, TResult = void>(
 
   return [handlerRef, setHandler.current] as [
     RefObject<SomeCallback<TArgs, TResult>>,
-    CallbackSetter<TArgs>
+    CallbackSetter<TArgs>,
   ];
 };
 

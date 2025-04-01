@@ -1,10 +1,7 @@
-import { isFunction, isNumber } from '@hack-network/utils';
+import { isFunction, isNumber } from '../../utils';
 import { Reducer } from 'react';
 
-import {
-  ContextStoreActionCallback,
-  PayloadActionType,
-} from '../../contexts/ContextStore/types';
+import { ContextStoreActionCallback, PayloadActionType } from '../../types';
 
 export const NUMBER_REDUCER_DECREMENT = 'DECREMENT';
 export const NUMBER_REDUCER_INCREMENT = 'INCREMENT';

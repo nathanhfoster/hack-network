@@ -1,26 +1,15 @@
 'use client';
 
-import { isFunction } from '@hack-network/utils';
-import {
-  Dispatch,
-  Reducer,
-  ReducerState,
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-} from 'react';
-
-import useEffectAfterMount from './useEffectAfterMount';
-import useRouterParams from './useRouterParams';
-import { NextRouterAugmented, ThunkAction } from '../types';
-import defaultInitializer from '../utils/defaultInitializer';
-import getDerivedStateFromProps from '../utils/getDerivedStateFromProps';
+import { isFunction } from '../utils';
+import { Dispatch, Reducer, ReducerState, useCallback, useRef } from 'react';
 import getReducerDefaultState from '../utils/getReducerDefaultState';
-
-import useLazyMemo from './useLazyMemo';
+import defaultInitializer from '../utils/defaultInitializer';
 import usePropsThatChanged from './usePropsThatChanged';
+import useLazyMemo from './useLazyMemo';
+import getDerivedStateFromProps from '../utils/getDerivedStateFromProps';
 import useSetStateReducer from './useSetStateReducer';
+import useEffectAfterMount from './useEffectAfterMount';
+import { ThunkAction } from '../types';
 
 /**
  * Augments React's useReducer() hook
@@ -29,44 +18,88 @@ import useSetStateReducer from './useSetStateReducer';
 const useReducerWithThunk = <R extends Reducer<any, any>>(
   reducer: R,
   initialState: ReducerState<R> = getReducerDefaultState(reducer as any),
-  derivedStateFromProps?: (
-    nextProps: any,
-    prevState: ReducerState<R>
-  ) => Partial<ReducerState<R>> | null,
-  init?: (initial: ReducerState<R>) => ReducerState<R>
-): [ReducerState<R>, Dispatch<any>] => {
-  const [state, dispatch] = useRef<[ReducerState<R>, Dispatch<any>]>([
-    init ? init(initialState) : initialState,
-    () => {
-      throw new Error('Dispatch function not initialized');
-    },
-  ]).current;
-
-  const router = useRouterParams();
-
-  const getState = useCallback(() => state, [state]);
-
-  const thunkDispatch = useCallback(
-    (action: any) => {
-      if (isFunction(action)) {
-        return (action as ThunkAction)(dispatch, getState, router);
-      }
-
-      return dispatch(action);
-    },
-    [dispatch, getState, router]
+  initializer = defaultInitializer,
+  derivedStateFromProps?: ReducerState<R>,
+): [ReducerState<R>, Dispatch<R extends Reducer<any, infer A> ? A : never>] => {
+  // Only keep the props that changed to override the state
+  const derivedStateFromPropsThatChanged = usePropsThatChanged<ReducerState<R>>(
+    derivedStateFromProps ?? ({} as ReducerState<R>),
   );
 
-  if (derivedStateFromProps) {
-    useEffectAfterMount(() => {
-      const derivedState = derivedStateFromProps(state, state);
-      if (derivedState && Object.keys(derivedState).length > 0) {
-        thunkDispatch({ type: 'SET_STATE', payload: derivedState });
-      }
-    }, [state]);
-  }
+  // Get initial hook state once
+  const initialHookState: R = useLazyMemo(
+    useCallback(
+      () =>
+        getDerivedStateFromProps(
+          initialState,
+          derivedStateFromPropsThatChanged,
+        ),
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+      [],
+    ),
+  );
 
-  return [state, thunkDispatch];
+  const [hookState, setHookState] = useSetStateReducer(
+    initialHookState,
+    initializer,
+  );
+
+  // State management
+  const state = useRef<ReducerState<R>>(hookState as ReducerState<R>);
+
+  const getState = useCallback<() => ReducerState<R>>(
+    () => state.current,
+    [state],
+  );
+
+  const setState = useCallback(
+    (newState: ReducerState<R>, callback?: (_state?: unknown) => void) => {
+      const derivedState = getDerivedStateFromProps<ReducerState<R>>(
+        newState,
+        derivedStateFromPropsThatChanged,
+      );
+
+      state.current = derivedState;
+
+      setHookState(derivedState, callback);
+    },
+    [derivedStateFromPropsThatChanged, setHookState],
+  );
+
+  // make the state controlled from an HOC by passing derivedStateFromPropsThatChanged
+  useEffectAfterMount(() => {
+    if (Object.keys(derivedStateFromPropsThatChanged).length > 0) {
+      setState(state.current);
+    }
+  }, [derivedStateFromProps, setState]);
+
+  // Reducer
+  const reduce = useCallback(
+    (action: R extends Reducer<any, infer A> ? A : never) =>
+      reducer(getState(), action),
+    [reducer, getState],
+  );
+
+  // Augmented dispatcher
+  const dispatch = useCallback(
+    (
+      action: ThunkAction<R, R extends Reducer<any, infer A> ? A : never>,
+      callback?: (_state?: unknown) => void,
+    ) => {
+      if (isFunction(action)) {
+        return action(dispatch, getState);
+      }
+      const newState: ReducerState<R> = reduce(action);
+
+      return setState(newState, callback);
+    },
+    [reduce, getState, setState],
+  );
+
+  return [
+    hookState as ReducerState<R>,
+    dispatch as Dispatch<R extends Reducer<any, infer A> ? A : never>,
+  ];
 };
 
 export default useReducerWithThunk;

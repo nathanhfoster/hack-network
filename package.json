@@ -20,12 +20,6 @@
     "prettier:write": "pnpm prettier --write .",
     "lint:format:write": "pnpm run lint:all && pnpm run format:all && pnpm run prettier:write",
     "fix:all": "eslint \"**/*.{ts,tsx}\" --fix",
-    "resurrection:build": "pnpm nx build resurrection",
-    "resurrection:patch": "pnpm nx run resurrection:version-patch",
-    "resurrection:minor": "pnpm nx run resurrection:version-minor",
-    "resurrection:major": "pnpm nx run resurrection:version-major",
-    "resurrection:publish": "pnpm nx run resurrection:nx-release-publish",
-    "resurrection:release": "pnpm nx release resurrection",
     "app:vot-pwa": "nx dev vot-pwa"
   },
   "private": true,

@@ -11,7 +11,10 @@ export default defineConfig(() => ({
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
-      '@hack-network/utils': path.resolve(__dirname, '../utils/src/index.ts'),
+      '@atoms': path.resolve(__dirname, './src/lib/atoms'),
+      '@molecules': path.resolve(__dirname, './src/lib/molecules'),
+      '@organisms': path.resolve(__dirname, './src/lib/organisms'),
+      '@templates': path.resolve(__dirname, './src/lib/templates'),
     },
   },
   plugins: [

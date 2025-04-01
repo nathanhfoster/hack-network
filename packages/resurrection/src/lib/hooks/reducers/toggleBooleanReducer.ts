@@ -1,6 +1,6 @@
-import { isBoolean } from '@hack-network/utils';
+import { isBoolean } from '../../utils';
 
-import { ReducerMaybeWithAction } from '../../contexts/ContextStore/types';
+import type { ReducerMaybeWithAction } from '../../types';
 
 /**
  * Toggles the boolean state if there is not an action passed in
@@ -11,7 +11,7 @@ import { ReducerMaybeWithAction } from '../../contexts/ContextStore/types';
  */
 const toggleBooleanReducer: ReducerMaybeWithAction<boolean, any> = (
   state,
-  action
+  action,
 ) => {
   // If the type of the action is a boolean set the state to the action
   if (isBoolean(action)) {

@@ -1,4 +1,4 @@
-import { isClientSide } from '@hack-network/utils';
+import { isClientSide } from '../utils';
 
 /**
  * Determines if the app is in an iFrame

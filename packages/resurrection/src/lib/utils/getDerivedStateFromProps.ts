@@ -2,7 +2,7 @@
  * This function allows the state to be controlled by an HOC by overwritting it with props
  */
 
-import { isArray, isObject } from '@hack-network/utils';
+import { isArray, isObject } from '../utils';
 
 const getDerivedStateFromProps = <S extends object>(
   state: S,

@@ -1,4 +1,4 @@
-import { isString } from '@hack-network/utils';
+import { isString } from '../utils';
 
 type ErrorWithMessage = {
   message: string;

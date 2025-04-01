@@ -1,6 +1,6 @@
 'use client';
 
-import { isNotNotTrue } from '@hack-network/utils';
+import { isNotNotTrue } from '../utils';
 import { useEffect } from 'react';
 
 import useDebouncedCallback from './useDebouncedCallback';
@@ -13,14 +13,14 @@ const useEffectAfterChange = <T = any>(
   value: T,
   callback: Callback<T>,
   condition: Condition<T> = (prev, curr) => isNotNotTrue(prev) && !curr,
-  debounce = 0
+  debounce = 0,
 ) => {
   const previousValue = usePreviousValue(value);
 
   const debouncedCallback = useDebouncedCallback(
     callback,
     [previousValue, value, callback],
-    debounce
+    debounce,
   );
 
   useEffect(() => {

@@ -6,7 +6,6 @@
     "name": "vot-pwa"
   },
   "dependencies": {
-    "@hack-network/ui": "workspace:*",
-    "@hack-network/utils": "workspace:*"
+    "@hack-network/ui": "workspace:*"
   }
 }

@@ -6,12 +6,12 @@ import nextPluginPrevalConfig from 'next-plugin-preval/config.js';
  * to enable or configure specific plugin behaviors in a Next.js application.
  *
  * @remarks
- * This utility is part of the `@hack-network/utils` package and is designed
+ * This utility is part of the `resurrection` package and is designed
  * to streamline the setup of Next.js plugins with predefined or customizable options.
  *
  * @example
  * ```typescript
- * import nextPluginPrevalConfig from '@hack-network/utils/lib/createNextPluginPreval';
+ * import {nextPluginPrevalConfig} from 'resurrection';
  *
  * const config = nextPluginPrevalConfig({
  *   option1: true,

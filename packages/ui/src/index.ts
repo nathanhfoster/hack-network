@@ -1,6 +1,6 @@
-import './styles.css'
+import './styles.css';
 
-export type * from './types'
-export * from './hooks'
-export * from './lib'
-export * from './utils'
+export type * from './types';
+
+export * from './lib';
+export * from './utils';

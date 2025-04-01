@@ -14,10 +14,6 @@
       "default": "./dist/index.js"
     }
   },
-  "dependencies": {
-    "@hack-network/utils": "workspace:*"
-  },
-  "devDependencies": {
-    "@types/lodash": "^4.17.16"
-  }
+  "dependencies": {},
+  "devDependencies": {}
 }

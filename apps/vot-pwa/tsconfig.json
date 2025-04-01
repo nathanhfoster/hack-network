@@ -17,8 +17,7 @@
       }
     ],
     "paths": {
-      "@/*": ["./src/*"],
-      "@public/*": ["./public/*"]
+      "@/*": ["./src/*"]
     },
     "types": ["jest", "node"],
     "outDir": "dist",

@@ -1,9 +1,9 @@
-'use client'
+'use client';
 
-import { useReducer } from 'react'
+import { useReducer } from 'react';
 
-import { DispatchMaybeWithAction } from '../../contexts/ContextStore/types'
-import toggleBooleanReducer from '../reducers/toggleBooleanReducer'
+import toggleBooleanReducer from '../reducers/toggleBooleanReducer';
+import { DispatchMaybeWithAction } from '../../types';
 
 /**
  * Boolean reducer that toggles it's state by default or is overwritten by a passed value
@@ -15,7 +15,7 @@ import toggleBooleanReducer from '../reducers/toggleBooleanReducer'
 const useBooleanToggler = (initializerArg = false) =>
   useReducer(toggleBooleanReducer, Boolean(initializerArg)) as unknown as [
     boolean,
-    DispatchMaybeWithAction
-  ]
+    DispatchMaybeWithAction,
+  ];
 
-export default useBooleanToggler
+export default useBooleanToggler;

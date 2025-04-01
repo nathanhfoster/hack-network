@@ -38,6 +38,6 @@ export { default as useSelector } from './hooks/useSelector';
 export { default as useSetStateReducer } from './hooks/useSetStateReducer';
 
 // Utility Functions
-export { hasMatchFunction } from './utils/tsHelpers';
+export * from './utils';
 export * from './hooks';
 export * from './reducers';

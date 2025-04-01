@@ -3,7 +3,6 @@
 import { useState } from 'react';
 import type { TabsProps } from './types';
 import Tab from '@atoms/Tab';
-import { isNotNotTrue } from '@hack-network/utils';
 
 const Tabs: React.FC<TabsProps> = ({
   items,
@@ -33,7 +32,7 @@ const Tabs: React.FC<TabsProps> = ({
               id={item.id}
               label={item.label}
               isActive={activeTab === item.id}
-              isDisabled={isNotNotTrue(item.disabled)}
+              isDisabled={!!item.disabled}
               icon={item.icon}
               onClick={handleTabClick}
               variant={variant}

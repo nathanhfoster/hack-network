@@ -1,4 +1,4 @@
-import { isFunction } from '@hack-network/utils';
+import { isFunction } from '../utils';
 
 /**
  * A generic reducer that augments the useReducer hook

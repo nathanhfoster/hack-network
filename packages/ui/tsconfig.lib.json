@@ -1,6 +1,7 @@
 {
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
+    "composite": true,
     "outDir": "dist",
     "types": [
       "node",
@@ -10,7 +11,14 @@
     ],
     "rootDir": "src",
     "jsx": "react-jsx",
-    "tsBuildInfoFile": "dist/tsconfig.lib.tsbuildinfo"
+    "tsBuildInfoFile": "dist/tsconfig.lib.tsbuildinfo",
+    "baseUrl": ".",
+    "paths": {
+      "@atoms/*": ["src/lib/atoms/*"],
+      "@molecules/*": ["src/lib/molecules/*"],
+      "@organisms/*": ["src/lib/organisms/*"],
+      "@templates/*": ["src/lib/templates/*"]
+    }
   },
   "exclude": [
     "out-tsc",

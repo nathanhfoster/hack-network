@@ -33,7 +33,7 @@
  */
 'use client';
 
-import { isFunction, shallowEquals } from '@hack-network/utils';
+import { isFunction, shallowEquals } from '../utils';
 import React, {
   ComponentType,
   FC,
@@ -44,14 +44,6 @@ import React, {
   useMemo,
 } from 'react';
 
-import { useEffectAfterChange, useEffectOnce } from '@hack-network/ui';
-import { LoosePartial } from '@hack-network/ui';
-import createUseDispatchHook from '../hooks/useDispatch';
-import useMemoComponent from '../hooks/useMemoComponent';
-import createUseSelectorHook from '../hooks/useSelector';
-import bindActionCreator from '../utils/bindActionCreator';
-import defaultMergeProps from '../utils/defaultMergeProps';
-
 import {
   ComponentPropsType,
   ConnectHookProps,
@@ -60,11 +52,21 @@ import {
   MergePropsReturnType,
   MergePropsType,
 } from './types';
+import { LoosePartial } from '../types';
+import {
+  useEffectAfterChange,
+  useEffectOnce,
+  useMemoComponent,
+} from '../hooks';
+import defaultMergeProps from '../utils/defaultMergeProps';
+import createUseSelectorHook from '../hooks/useSelector';
+import createUseDispatchHook from '../hooks/useDispatch';
+import bindActionCreator from '../utils/bindActionCreator';
 
 const connect = <
   MSTP extends ComponentPropsType = ComponentPropsType,
   MDTP extends ComponentPropsType = ComponentPropsType,
-  OWNP extends ComponentPropsType = ComponentPropsType
+  OWNP extends ComponentPropsType = ComponentPropsType,
 >({
   mapStateToPropsOptions = [],
   mapDispatchToPropsOptions = [],
@@ -77,7 +79,7 @@ const connect = <
   useHookEffectAfterChange,
 }: ConnectOptions<MSTP, MDTP, OWNP>) => {
   const wrapWithConnect = <P extends ComponentPropsType>(
-    WrappedComponent: ComponentType<P>
+    WrappedComponent: ComponentType<P>,
   ): ComponentType<Omit<P, keyof MSTP | keyof MDTP>> => {
     const wrappedComponentName =
       WrappedComponent.displayName || WrappedComponent.name || 'Component';
@@ -95,9 +97,9 @@ const connect = <
           ((state: any, props?: OWNP) =>
             item.mapStateToProps(state, props ?? ({} as OWNP))) as (
             state: any,
-            props?: OWNP
+            props?: OWNP,
           ) => LoosePartial<MSTP>,
-          restOfProps as unknown as OWNP
+          restOfProps as unknown as OWNP,
         );
 
         return contextState;
@@ -118,7 +120,7 @@ const connect = <
           const dispatch = useDispatch();
 
           return dispatch;
-        }
+        },
       );
 
       const dispatchToProps = useMemo<MDTP>(() => {
@@ -128,10 +130,10 @@ const connect = <
           Object.entries(
             isFunction(item.mapDispatchToProps)
               ? item.mapDispatchToProps(ownPropsRef.current as unknown as OWNP)
-              : item.mapDispatchToProps
+              : item.mapDispatchToProps,
           ).forEach(([actionName, action]) => {
             acc[actionName as keyof MDTP] = bindActionCreator(dispatch)(
-              action as any
+              action as any,
             ) as MDTP[keyof MDTP];
           });
 
@@ -144,9 +146,9 @@ const connect = <
           mergeProps(
             stateToProps,
             dispatchToProps,
-            restOfProps as unknown as OWNP
+            restOfProps as unknown as OWNP,
           ),
-        [dispatchToProps, restOfProps, stateToProps]
+        [dispatchToProps, restOfProps, stateToProps],
       );
 
       const hookProps: ConnectHookProps<MSTP, MDTP, OWNP> = {
@@ -164,7 +166,7 @@ const connect = <
         useHookEffectAfterChange?.(hookProps) ?? [null, () => {}, () => false];
 
       useEffectAfterChange(
-        ...(useEffectAfterChangeParams as [any, any, () => boolean, any])
+        ...(useEffectAfterChangeParams as [any, any, () => boolean, any]),
       );
 
       const ConnectedComponent = useMemoComponent<P>({

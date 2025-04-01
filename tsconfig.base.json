@@ -3,7 +3,6 @@
   "display": "Default",
   "compilerOptions": {
     "composite": false,
-    "baseUrl": ".",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "inlineSources": false,
@@ -19,10 +18,10 @@
     "noFallthroughCasesInSwitch": true,
     "noImplicitAny": true,
     "useUnknownInCatchVariables": true,
+    "baseUrl": ".",
     "paths": {
       "resurrection": ["packages/resurrection/src/index.ts"],
-      "@hack-network/ui": ["packages/ui/src/index.ts"],
-      "@hack-network/utils": ["packages/utils/src/index.ts"]
+      "@hack-network/ui": ["packages/ui/src/index.ts"]
     }
   },
   "exclude": ["node_modules"]

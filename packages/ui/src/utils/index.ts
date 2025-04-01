@@ -1,2 +1,5 @@
-export { default as createHandlerSetter } from './createHandlerSetter'
-export { default as combineClassNames } from './combineClassNames'
+export const combineClassNames = (
+  ...classNames: (string | undefined | null | false)[]
+): string => {
+  return classNames.filter(Boolean).join(' ');
+};

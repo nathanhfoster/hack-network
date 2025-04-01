@@ -1,5 +1,5 @@
-import { shallowEquals } from '@hack-network/utils';
-import { RefObject, useRef } from 'react';
+import { shallowEquals } from '../utils';
+import { useRef } from 'react';
 import usePreviousValue from './usePreviousValue';
 import { ComponentPropsType } from '../connect/types';
 
@@ -9,7 +9,7 @@ import { ComponentPropsType } from '../connect/types';
  * @returns {object} - the props whose values are shallowly differnt from the previous
  */
 export default function usePropsThatChanged<P extends ComponentPropsType>(
-  nextProps: P
+  nextProps: P,
 ): Partial<P> {
   const previousProps = usePreviousValue<P>(nextProps);
   const propsThatChanged = useRef<Partial<P>>({});

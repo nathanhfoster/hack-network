@@ -1,8 +1,7 @@
-import { Reducer } from 'react'
+import { Reducer } from 'react';
 
-import { PayloadActionType } from '../types'
-
-import ActionTypes from './actionTypes'
+import ActionTypes from './actionTypes';
+import { PayloadActionType } from '../types';
 
 /**
  * Initializes a reducers state
@@ -11,6 +10,6 @@ import ActionTypes from './actionTypes'
  */
 
 const getReducerDefaultState = (reducer: Reducer<any, PayloadActionType>) =>
-  reducer(undefined, { type: ActionTypes.INIT })
+  reducer(undefined, { type: ActionTypes.INIT });
 
-export default getReducerDefaultState
+export default getReducerDefaultState;

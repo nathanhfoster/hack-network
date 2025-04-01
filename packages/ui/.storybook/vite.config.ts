@@ -11,10 +11,6 @@ export default {
           '@molecules': resolve(__dirname, '../src/lib/molecules'),
           '@organisms': resolve(__dirname, '../src/lib/organisms'),
           '@templates': resolve(__dirname, '../src/lib/templates'),
-          '@hack-network/utils': resolve(
-            __dirname,
-            '../../packages/utils/src/index.ts',
-          ),
         },
       },
     });

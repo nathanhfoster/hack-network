@@ -1,6 +1,4 @@
-import { Dispatch, MutableRefObject, Reducer } from 'react';
-
-import NextRouterAugmented from '../../hooks/useRouterParams/types.js';
+import { Dispatch, MutableRefObject } from 'react';
 
 import { ProviderProps } from './Provider/types.js';
 import {
@@ -9,6 +7,24 @@ import {
   IsAny,
   IsUnknownOrNonInferrable,
 } from './utils/tsHelpers.js';
+
+/**
+ * Represent a generic function.
+ * Used internally to improve code readability
+ */
+export type GenericFunction = (...args: any[]) => any;
+
+/**
+ * Typed generic callback function, used mostly internally
+ * to defined callback setters
+ */
+export type SomeCallback<TArgs, TResult = void> = (...args: TArgs[]) => TResult;
+
+/**
+ * A callback setter is generally used to set the value of
+ * a callback that will be used to perform updates
+ */
+export type CallbackSetter<TArgs> = (nextCallback: SomeCallback<TArgs>) => void;
 
 export type _ActionCreatorWithPreparedPayload<
   PA extends PrepareAction<any> | void,
@@ -90,6 +106,22 @@ export type ContextStoreInitializer<A = any, S = A> = (
 ) => S;
 export type DispatchMaybeWithAction<A = any> = (value?: A) => void;
 
+export type PayloadActionType<
+  T extends string = string,
+  M = never,
+  E = never,
+> = {
+  type: T;
+} & ([M] extends [never]
+  ? {}
+  : {
+      meta: M;
+    }) &
+  ([E] extends [never]
+    ? {}
+    : {
+        error: E;
+      });
 export type PayloadAction<
   T extends string = string,
   P = any,
@@ -108,7 +140,6 @@ export type PayloadAction<
     : {
         error: E;
       });
-
 export type PayloadActionCreator<P = void, T extends string = string> = {
   payload: P;
   type: T;
@@ -133,13 +164,11 @@ export type ReducerStateMaybeWithAction<
 export type Thunk<A, S, P = void> = (
   dispatch: Dispatch<A>,
   getState: () => MutableRefObject<S>['current'],
-  getRouter: () => NextRouterAugmented,
 ) => PayloadActionCreator | Promise<P> | Promise<void> | P;
 
 export type ThunkAction<S = any, A = any> = (
   dispatch: Dispatch<A>,
   getState: () => S,
-  router?: NextRouterAugmented,
 ) => void | Promise<void>;
 
 export type ThunkFunction<P = void, S = any, A = any> = IsAny<
@@ -170,24 +199,6 @@ type ThunkFunctionWithParam<Param = void, S = any, A = any> = (
 type ThunkFunctionWithOptionalPayload<Param = void, S = any, A = any> = (
   param?: Param,
 ) => Thunk<A, S>;
-
-export interface NextRouterAugmented {
-  query: Record<string, string | string[] | undefined>;
-  pathname: string;
-  asPath: string;
-  push: (url: string, as?: string, options?: any) => Promise<boolean>;
-  replace: (url: string, as?: string, options?: any) => Promise<boolean>;
-  reload: () => void;
-  back: () => void;
-  prefetch: (url: string) => Promise<void>;
-  beforePopState: (cb: (state: any) => boolean) => void;
-  events: {
-    on: (type: string, handler: (...args: any[]) => void) => void;
-    off: (type: string, handler: (...args: any[]) => void) => void;
-    emit: (type: string, ...args: any[]) => void;
-  };
-  isFallback: boolean;
-}
 
 export type LoosePartial<T> = {
   [P in keyof T]?: T[P] | undefined;

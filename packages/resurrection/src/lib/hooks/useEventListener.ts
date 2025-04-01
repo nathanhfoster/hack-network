@@ -2,7 +2,7 @@
 
 // original source - https://github.com/donavon/use-event-listener/blob/develop/src/index.js
 
-import { isClientSide } from '@hack-network/utils';
+import { isClientSide } from '../utils';
 import { useEffect, useRef } from 'react';
 
 type ElementOrWindow = HTMLElement | (Window & typeof globalThis);

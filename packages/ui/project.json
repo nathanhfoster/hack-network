@@ -1,5 +1,5 @@
 {
-  "name": "@di-websites-modern/ui",
+  "name": "@hack-network/ui",
   "projectType": "library",
   "sourceRoot": "packages/ui/src",
   "targets": {

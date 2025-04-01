@@ -1,4 +1,4 @@
-import { isFunction } from '@hack-network/utils';
+import { isFunction } from '../utils';
 
 import { ReducerActionCreators } from './createReducer.types.js';
 

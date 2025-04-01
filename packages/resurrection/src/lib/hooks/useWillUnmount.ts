@@ -1,32 +1,31 @@
-'use client'
+'use client';
 
-import isFunction from 'lodash/isFunction'
-import { useEffect, useRef } from 'react'
+import isFunction from 'lodash/isFunction';
+import { useEffect, useRef } from 'react';
 
-import createHandlerSetter from '../utils/createHandlerSetter'
-
-import type { GenericFunction } from '../types'
+import { createHandlerSetter } from '../utils';
+import type { GenericFunction } from '../types';
 
 /**
  * Returns a callback setter for a callback to be performed when the component will unmount.
  */
 const useWillUnmount = <TCallback extends GenericFunction>(
-  callback?: TCallback
+  callback?: TCallback,
 ) => {
-  const mountRef = useRef(false)
-  const [handler, setHandler] = createHandlerSetter<undefined>(callback)
+  const mountRef = useRef(false);
+  const [handler, setHandler] = createHandlerSetter<undefined>(callback);
 
   useEffect(() => {
-    mountRef.current = true
+    mountRef.current = true;
 
     return () => {
       if (isFunction(handler?.current) && mountRef.current) {
-        handler.current()
+        handler.current();
       }
-    }
-  }, [])
+    };
+  }, []);
 
-  return setHandler
-}
+  return setHandler;
+};
 
-export default useWillUnmount
+export default useWillUnmount;
