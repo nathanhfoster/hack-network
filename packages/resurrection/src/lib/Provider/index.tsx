@@ -1,4 +1,4 @@
-import { FC, ReactNode, Dispatch, Reducer } from 'react';
+import { Reducer } from 'react';
 import { isFunction } from '../utils';
 import useReducerWithThunk from '../hooks/useReducerWithThunk';
 import setStateReducer from '../reducers/setStateReducer';
