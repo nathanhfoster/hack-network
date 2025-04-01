@@ -1,20 +1,20 @@
-import { FC } from 'react';
+import { FC, ReactNode, Dispatch, Reducer } from 'react';
 import { isFunction } from '../utils';
 import useReducerWithThunk from '../hooks/useReducerWithThunk';
 import setStateReducer from '../reducers/setStateReducer';
 import defaultInitializer from '../utils/defaultInitializer';
 import type { ProviderProps } from './types';
 
-const Provider: FC<ProviderProps> = ({
+const Provider = <S extends object, A = any>({
   StateContext,
-  reducer = setStateReducer,
+  reducer = setStateReducer as Reducer<S, A>,
   derivedStateFromProps,
   //@ts-ignore
   initialState = derivedStateFromProps ?? StateContext?._currentValue,
   initializer = defaultInitializer,
   DispatchContext,
   children,
-}) => {
+}: ProviderProps<S, A>): JSX.Element => {
   const [state, dispatch] = useReducerWithThunk(
     reducer,
     initialState,
@@ -37,7 +37,7 @@ const Provider: FC<ProviderProps> = ({
   }
 
   return (
-    <DispatchContext.Provider value={dispatch}>
+    <DispatchContext.Provider value={dispatch as A}>
       {StateContextProvider}
     </DispatchContext.Provider>
   );

@@ -1,6 +1,6 @@
 'use client';
 
-import { FC } from 'react';
+import { FC, Reducer } from 'react';
 import {
   createContextWithName,
   Provider,
@@ -31,7 +31,7 @@ export const AdminContextProvider: FC<AdminContextProviderProps> = ({
   ...restOfProps
 }) => {
   return (
-    <Provider<AdminContextState, AdminActions>
+    <Provider
       {...restOfProps}
       StateContext={AdminStateContext}
       reducer={
@@ -45,16 +45,5 @@ export const AdminContextProvider: FC<AdminContextProviderProps> = ({
     >
       {children}
     </Provider>
-  );
-};
-
-export const AdminSimpleContextProvider: FC<{
-  initialState: AdminContextState;
-  children: React.ReactNode;
-}> = ({ initialState, children }) => {
-  return (
-    <AdminStateContext.Provider value={initialState}>
-      {children}
-    </AdminStateContext.Provider>
   );
 };

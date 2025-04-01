@@ -1,4 +1,4 @@
-import type { ContextProviderProps, ContextStore } from '../ContextStore/types'
+import type { ContextProviderProps, ContextStore } from 'resurrection'
 
 export interface AdminUser {
   id: string

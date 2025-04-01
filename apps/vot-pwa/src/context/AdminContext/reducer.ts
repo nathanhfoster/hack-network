@@ -1,16 +1,9 @@
-import { Draft } from 'immer';
+import { createReducer, Draft, ContextStoreInitializer } from 'resurrection';
 
-import { createReducer, ContextStoreInitializer } from 'resurrection';
-
-import {
-  AdminContextProviderProps,
-  AdminContextState,
-  AdminSettings,
-  AdminUser,
-} from './types';
+import { AdminContextState, AdminSettings, AdminUser } from './types';
 
 export const getAdminInitialState: ContextStoreInitializer<
-  AdminContextProviderProps['initialState'],
+  any,
   AdminContextState
 > = (initialState) => {
   return {
