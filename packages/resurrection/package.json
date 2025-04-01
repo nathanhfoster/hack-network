@@ -1,14 +1,14 @@
 {
   "name": "resurrection",
   "version": "1.4.2",
-  "main": "./dist/out-tsc/index.js",
-  "module": "./dist/out-tsc/index.mjs",
-  "types": "./dist/out-tsc/index.d.ts",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
   "exports": {
     ".": {
-      "types": "./dist/out-tsc/index.d.ts",
-      "import": "./dist/out-tsc/index.mjs",
-      "require": "./dist/out-tsc/index.js"
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
     }
   },
   "files": [
