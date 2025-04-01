@@ -19,7 +19,11 @@
     "format:all": "nx format:write",
     "prettier:write": "pnpm prettier --write .",
     "lint:format:write": "pnpm run lint:all && pnpm run format:all && pnpm run prettier:write",
-    "fix:all": "eslint \"**/*.{ts,tsx}\" --fix"
+    "fix:all": "eslint \"**/*.{ts,tsx}\" --fix",
+    "resurrection:patch": "pnpm nx run resurrection:patch",
+    "resurrection:minor": "pnpm nx run resurrection:minor",
+    "resurrection:major": "pnpm nx run resurrection:major",
+    "resurrection:publish": "pnpm nx run resurrection:publish"
   },
   "private": true,
   "dependencies": {

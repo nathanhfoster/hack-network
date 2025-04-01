@@ -1,6 +1,6 @@
 {
   "name": "resurrection",
-  "version": "1.3.0",
+  "version": "1.3.2",
   "main": "./index.js",
   "types": "./index.d.ts",
   "exports": {
@@ -10,9 +10,9 @@
     }
   },
   "scripts": {
-    "publish": "pnpm publish --access=public",
-    "patch": "pnpm version patch",
-    "minor": "pnpm version minor",
-    "major": "pnpm version major"
+    "publish": "npm publish --access=public",
+    "patch": "npm version patch",
+    "minor": "npm version minor",
+    "major": "npm version major"
   }
 }
