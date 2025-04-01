@@ -1,18 +1,18 @@
-import { Dispatch, MutableRefObject, Reducer } from 'react'
+import { Dispatch, MutableRefObject, Reducer } from 'react';
 
-import NextRouterAugmented from '../../hooks/useRouterParams/types.js'
+import NextRouterAugmented from '../../hooks/useRouterParams/types.js';
 
-import { ProviderProps } from './Provider/types.js'
+import { ProviderProps } from './Provider/types.js';
 import {
   IfMaybeUndefined,
   IfVoid,
   IsAny,
-  IsUnknownOrNonInferrable
-} from './utils/tsHelpers.js'
+  IsUnknownOrNonInferrable,
+} from './utils/tsHelpers.js';
 
 export type _ActionCreatorWithPreparedPayload<
   PA extends PrepareAction<any> | void,
-  T extends string = string
+  T extends string = string,
 > =
   PA extends PrepareAction<infer P>
     ? ActionCreatorWithPreparedPayload<
@@ -20,94 +20,94 @@ export type _ActionCreatorWithPreparedPayload<
         P,
         T,
         ReturnType<PA> extends {
-          error: infer E
+          error: infer E;
         }
           ? E
           : never,
         ReturnType<PA> extends {
-          meta: infer M
+          meta: infer M;
         }
           ? M
           : never
       >
-    : void
+    : void;
 export interface ActionCreatorWithNonInferrablePayload<
-  T extends string = string
+  T extends string = string,
 > extends BaseActionCreator<unknown, T> {
-  <PT>(payload: PT): PayloadAction<T, PT>
+  <PT>(payload: PT): PayloadAction<T, PT>;
 }
 export interface ActionCreatorWithOptionalPayload<P, T extends string = string>
   extends BaseActionCreator<P, T> {
-  (payload?: P): PayloadAction<T, P>
+  (payload?: P): PayloadAction<T, P>;
 }
 export interface ActionCreatorWithoutPayload<T extends string = string>
   extends BaseActionCreator<undefined, T> {
-  (): PayloadAction<T, undefined>
+  (): PayloadAction<T, undefined>;
 }
 export interface ActionCreatorWithPayload<P, T extends string = string>
   extends BaseActionCreator<P, T> {
-  (payload: P): PayloadAction<T, P>
+  (payload: P): PayloadAction<T, P>;
 }
 export interface ActionCreatorWithPreparedPayload<
   Args extends unknown[],
   P,
   T extends string = string,
   E = never,
-  M = never
+  M = never,
 > extends BaseActionCreator<P, T, M, E> {
   /**
    * Calling this {@link redux#ActionCreator} with `Args` will return
    * an Action with a payload of type `P` and (depending on the `PrepareAction`
    * method used) a `meta`- and `error` property of types `M` and `E` respectively.
    */
-  (...args: Args): PayloadAction<T, P, M, E>
+  (...args: Args): PayloadAction<T, P, M, E>;
 }
 export type ActionPayload<P = any> = {
-  payload: P
-}
+  payload: P;
+};
 
 export interface BaseActionCreator<P, T extends string, M = never, E = never> {
-  type: T
+  type: T;
   match: (
-    action: PayloadAction<string, unknown>
-  ) => action is PayloadAction<T, P, M, E>
+    action: PayloadAction<string, unknown>,
+  ) => action is PayloadAction<T, P, M, E>;
 }
 
 export type ContextProviderProps<S, A = any> = Pick<
   ProviderProps<S, A>,
   'initialState' | 'derivedStateFromProps' | 'children'
->
+>;
 
-export type ContextStore<S> = S & { error?: ContextStoreError }
+export type ContextStore<S> = S & { error?: ContextStoreError };
 
-export type ContextStoreActionCallback<S> = (state: S) => S
+export type ContextStoreActionCallback<S> = (state: S) => S;
 
-export type ContextStoreError = unknown | string
+export type ContextStoreError = unknown | string;
 
 export type ContextStoreInitializer<A = any, S = A> = (
   arg?: A,
-  edit?: boolean
-) => S
-export type DispatchMaybeWithAction<A = any> = (value?: A) => void
+  edit?: boolean,
+) => S;
+export type DispatchMaybeWithAction<A = any> = (value?: A) => void;
 
 export type PayloadAction<
   T extends string = string,
   P = any,
   M = never,
-  E = never
+  E = never,
 > = {
-  type: T
-  payload: P
+  type: T;
+  payload: P;
 } & ([M] extends [never]
   ? {}
   : {
-      meta: M
+      meta: M;
     }) &
   ([E] extends [never]
     ? {}
     : {
-        error: E
-      })
+        error: E;
+      });
 
 export type PayloadActionCreator<P = void, T extends string = string> = IsAny<
   P,
@@ -128,58 +128,58 @@ export type PayloadActionCreator<P = void, T extends string = string> = IsAny<
       >
     >
   >
->
+>;
 
 export type PayloadActionType<
   T extends string = string,
   M = never,
-  E = never
+  E = never,
 > = {
-  type: T
+  type: T;
 } & ([M] extends [never]
   ? {}
   : {
-      meta: M
+      meta: M;
     }) &
   ([E] extends [never]
     ? {}
     : {
-        error: E
-      })
+        error: E;
+      });
 
 export type PrepareAction<P> =
   | ((...args: any[]) => { payload: P })
   | ((...args: any[]) => { payload: P; meta: any })
   | ((...args: any[]) => { payload: P; error: any })
-  | ((...args: any[]) => { payload: P; meta: any; error: any })
+  | ((...args: any[]) => { payload: P; meta: any; error: any });
 
 export type ReducerMaybeWithAction<S, A = DispatchMaybeWithAction> = (
   state: S,
-  action?: A
-) => S
+  action?: A,
+) => S;
 
 export type ReducerStateMaybeWithAction<
   R extends ReducerMaybeWithAction<any>,
-  A = DispatchMaybeWithAction
-> = R extends ReducerMaybeWithAction<infer S, A> ? S : never
+  A = DispatchMaybeWithAction,
+> = R extends ReducerMaybeWithAction<infer S, A> ? S : never;
 
 type ThunkFunctionWithParam<Param = void, S = any, A = any> = (
-  param: Param
-) => Thunk<A, S>
+  param: Param,
+) => Thunk<A, S>;
 
 type ThunkFunctionWithOptionalPayload<Param = void, S = any, A = any> = (
-  param?: Param
-) => Thunk<A, S>
+  param?: Param,
+) => Thunk<A, S>;
 
 export type Thunk<A, S, P = void> = (
   dispatch: Dispatch<A>,
   getState: () => MutableRefObject<S>['current'],
-  getRouter: () => NextRouterAugmented
-) => PayloadActionCreator | Promise<P> | Promise<void> | P
+  getRouter: () => NextRouterAugmented,
+) => PayloadActionCreator | Promise<P> | Promise<void> | P;
 export type ThunkAction<
   S extends Reducer<any, any>,
-  D extends Reducer<any, any> = any
-> = ((...args: any[]) => PayloadAction) | Thunk<any, S, D>
+  D extends Reducer<any, any> = any,
+> = ((...args: any[]) => PayloadAction) | Thunk<any, S, D>;
 
 export type ThunkFunction<P = void, S = any, A = any> = IsAny<
   P,
@@ -200,4 +200,32 @@ export type ThunkFunction<P = void, S = any, A = any> = IsAny<
       >
     >
   >
->
+>;
+
+export interface NextRouterAugmented {
+  query: Record<string, string | string[] | undefined>;
+  pathname: string;
+  asPath: string;
+  push: (url: string, as?: string, options?: any) => Promise<boolean>;
+  replace: (url: string, as?: string, options?: any) => Promise<boolean>;
+  reload: () => void;
+  back: () => void;
+  prefetch: (url: string) => Promise<void>;
+  beforePopState: (cb: (state: any) => boolean) => void;
+  events: {
+    on: (type: string, handler: (...args: any[]) => void) => void;
+    off: (type: string, handler: (...args: any[]) => void) => void;
+    emit: (type: string, ...args: any[]) => void;
+  };
+  isFallback: boolean;
+}
+
+export type LoosePartial<T> = {
+  [P in keyof T]?: T[P] | undefined;
+};
+
+export type ThunkAction<S = any, A = any> = (
+  dispatch: Dispatch<A>,
+  getState: () => S,
+  router?: NextRouterAugmented,
+) => void | Promise<void>;
