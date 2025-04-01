@@ -98,6 +98,5 @@ export { default as sendPostRequest } from './sendPostRequest';
 export { default as sendPutRequest } from './sendPutRequest';
 
 export { default as createHandlerSetter } from './createHandlerSetter';
-export { default as combineClassNames } from './combineClassNames';
 
 export * from './tsHelpers';
