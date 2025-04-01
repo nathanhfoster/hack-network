@@ -19,7 +19,7 @@
     "noImplicitAny": true,
     "useUnknownInCatchVariables": true,
     "paths": {
-      "@hack-network/resurrection": ["packages/resurrection/src/index.ts"],
+      "resurrection": ["packages/resurrection/src/index.ts"],
       "@hack-network/ui": ["packages/ui/src/index.ts"],
       "@hack-network/utils": ["packages/utils/src/index.ts"]
     }
