@@ -1,6 +1,6 @@
 import { Context, useContext, useMemo } from 'react';
 
-import { ComponentPropsType } from '../connect/types';
+import type { ComponentPropsType } from '../connect/types';
 import shallowEqual from '../utils/shallowEquals';
 import usePreviousValue from './usePreviousValue';
 
@@ -25,7 +25,7 @@ const createUseSelectorHook = <State = unknown>(context: Context<State>) => {
         return selectedState;
       }
       return previousSelectedState;
-    }, [selectedState, previousSelectedState]);
+    }, [selectedState]);
   };
 
   return useSelector;
