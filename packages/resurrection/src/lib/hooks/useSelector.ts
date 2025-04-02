@@ -1,28 +1,34 @@
-import { Context, useContext } from 'react'
+import { Context, useContext, useMemo } from 'react';
 
-import { ComponentPropsType } from '../connect/types'
+import { ComponentPropsType } from '../connect/types';
+import shallowEqual from '../utils/shallowEquals';
+import usePreviousValue from './usePreviousValue';
 
 const createUseSelectorHook = <State = unknown>(context: Context<State>) => {
   /**
    * This hook simulates Redux's useSelector hook
-   * The problem is that the useContext API always causes a rerender
-   * If you want memoization, use the connect API
+   * Only updates when the selected state changes, not when the whole state changes
    */
   const useSelector = <
     SelectedState = unknown,
-    Props extends ComponentPropsType = {}
+    Props extends ComponentPropsType = {},
   >(
     mapStateToSelector: (state: State, props?: Props) => SelectedState,
-    props?: Props
+    props?: Props,
   ) => {
-    const state = useContext<State>(context)
+    const state = useContext<State>(context);
+    const selectedState = mapStateToSelector(state, props);
+    const previousSelectedState = usePreviousValue(selectedState);
 
-    const currentSelector = mapStateToSelector(state, props)
+    return useMemo(() => {
+      if (!shallowEqual(previousSelectedState, selectedState)) {
+        return selectedState;
+      }
+      return previousSelectedState;
+    }, [selectedState, previousSelectedState]);
+  };
 
-    return currentSelector
-  }
+  return useSelector;
+};
 
-  return useSelector
-}
-
-export default createUseSelectorHook
+export default createUseSelectorHook;
