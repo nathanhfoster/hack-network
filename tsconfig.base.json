@@ -20,8 +20,8 @@
     "useUnknownInCatchVariables": true,
     "baseUrl": ".",
     "paths": {
-      "resurrection": ["packages/resurrection/src/index.ts"],
-      "@hack-network/ui": ["packages/ui/src/index.ts"]
+      "@hack-network/ui": ["packages/ui/src/index.ts"],
+      "resurrection": ["packages/resurrection/src/index.ts"]
     }
   },
   "exclude": ["node_modules"]

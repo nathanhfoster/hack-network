@@ -1,21 +1,21 @@
-'use client'
+'use client';
 
-import throttle from 'lodash/throttle'
-import { type DependencyList, useCallback, useEffect, useRef } from 'react'
+import throttle from 'lodash/throttle';
+import { type DependencyList, useCallback, useEffect, useRef } from 'react';
 
-import { GenericFunction } from '../types'
+import { GenericFunction } from '../types';
 
-import useWillUnmount from './useWillUnmount'
+import useWillUnmount from './useWillUnmount';
 
 export interface ThrottleOptions {
-  leading?: boolean | undefined
-  trailing?: boolean | undefined
+  leading?: boolean | undefined;
+  trailing?: boolean | undefined;
 }
 
 const defaultOptions: ThrottleOptions = {
   leading: false,
-  trailing: true
-}
+  trailing: true,
+};
 
 /**
  * Accepts a function and returns a new throttled yet memoized version of that same function that delays
@@ -26,19 +26,19 @@ const useThrottledCallback = <TCallback extends GenericFunction>(
   fn: TCallback,
   dependencies: DependencyList = [],
   wait = 300,
-  options: ThrottleOptions = defaultOptions
+  options: ThrottleOptions = defaultOptions,
 ): TCallback => {
-  const throttled = useRef(throttle<TCallback>(fn, wait, options))
+  const throttled = useRef(throttle<TCallback>(fn, wait, options));
 
   useEffect(() => {
-    throttled.current = throttle(fn, wait, options)
-  }, [fn, wait, options])
+    throttled.current = throttle(fn, wait, options);
+  }, [fn, wait, options]);
 
   useWillUnmount(() => {
-    throttled.current?.cancel()
-  })
+    throttled.current?.cancel();
+  });
 
-  return useCallback(throttled.current as unknown as TCallback, dependencies)
-}
+  return useCallback(throttled.current as unknown as TCallback, dependencies);
+};
 
-export default useThrottledCallback
+export default useThrottledCallback;

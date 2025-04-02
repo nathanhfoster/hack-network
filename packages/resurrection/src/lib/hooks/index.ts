@@ -1,4 +1,4 @@
-export { default as useBooleanToggler } from './useBooleanToggler/index';
+export { default as useBooleanToggler } from './useBooleanToggler';
 export { default as useDebouncedCallback } from './useDebouncedCallback';
 export { default as useDerivedInitialStateFromProps } from './useDerivedInitialStateFromProps';
 export { default as useEffectAfterChange } from './useEffectAfterChange';
