@@ -1,6 +1,6 @@
 'use client'
 
-import debounce from 'lodash/debounce'
+import debounce from 'lodash-es/debounce'
 import { type DependencyList, useCallback, useEffect, useRef } from 'react'
 
 import { GenericFunction } from '../types'

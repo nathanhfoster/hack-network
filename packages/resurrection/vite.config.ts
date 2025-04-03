@@ -52,6 +52,25 @@ export default defineConfig(() => ({
     rollupOptions: {
       // External packages that should not be bundled into your library.
       external: ['react', 'react-dom', 'react/jsx-runtime'],
+      output: {
+        // Enable tree-shaking
+        exports: 'named',
+        // Minify the output
+        minifyInternalExports: true,
+        // Optimize chunk size
+        manualChunks: undefined,
+        // Enable source maps for debugging
+        sourcemap: true,
+      },
+    },
+    // Enable minification
+    minify: 'terser',
+    // Enable compression
+    terserOptions: {
+      compress: {
+        drop_console: true,
+        drop_debugger: true,
+      },
     },
   },
   test: {

@@ -1,4 +1,4 @@
-import { cloneDeep } from 'lodash'
+import cloneDeep from 'lodash-es/cloneDeep';
 
 /**
  * Deeply clones a given value, creating a new instance of the value
@@ -12,4 +12,4 @@ import { cloneDeep } from 'lodash'
  * @param value - The value to be deeply cloned. Can be an object, array, or any other data type.
  * @returns A deep clone of the provided value.
  */
-export default cloneDeep
+export default cloneDeep;

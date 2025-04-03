@@ -1,9 +1,8 @@
 'use client';
 
-import isFunction from 'lodash/isFunction';
 import { useEffect, useRef } from 'react';
 
-import { createHandlerSetter } from '../utils';
+import { createHandlerSetter, isFunction } from '../utils';
 import type { GenericFunction } from '../types';
 
 /**
