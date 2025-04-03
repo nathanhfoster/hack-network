@@ -23,7 +23,11 @@
     "prettier:write": "pnpm prettier --write .",
     "lint:format:write": "pnpm run lint:all && pnpm run format:all && pnpm run prettier:write",
     "fix:all": "eslint \"**/*.{ts,tsx}\" --fix",
-    "app:vot-pwa": "nx dev vot-pwa"
+    "app:vot-pwa": "nx dev vot-pwa",
+    "publish:resurrection": "nx run resurrection:publish",
+    "publish:resurrection:patch": "nx run resurrection:publish:patch",
+    "publish:resurrection:minor": "nx run resurrection:publish:minor",
+    "publish:resurrection:major": "nx run resurrection:publish:major"
   },
   "private": true,
   "dependencies": {

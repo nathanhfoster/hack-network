@@ -203,6 +203,99 @@ createReducer({
 })
 ```
 
+### Using the connect HOC
+
+The `connect` HOC provides a way to connect class components to your context store, similar to Redux's connect pattern. Here's an example:
+
+```typescript
+import { connect, ConnectHookProps, ConnectOptionUseEffectAfterChangeReturn } from 'resurrection';
+
+// Define your component props types
+interface AppMapStateToProps {
+  items: Item[];
+  searchQuery: string;
+}
+
+interface AppMapDispatchToProps {
+  SetSearchQuery: (query: string) => void;
+  SetItems: (items: Item[]) => void;
+}
+
+interface AppOwnProps {
+  // Any additional props your component needs
+}
+
+type AppConnectedProps = AppMapStateToProps & AppMapDispatchToProps & AppOwnProps;
+
+// Your component
+const App: React.FC<AppConnectedProps> = ({
+  items,
+  searchQuery,
+  SetSearchQuery
+}) => {
+  return (
+    <div>
+      <input
+        value={searchQuery}
+        onChange={(e) => SetSearchQuery(e.target.value)}
+      />
+      {/* Rest of your component */}
+    </div>
+  );
+};
+
+// Connect the component
+export default connect<
+  AppMapStateToProps,
+  AppMapDispatchToProps,
+  AppOwnProps
+>({
+  mapStateToPropsOptions: [
+    {
+      context: AppStateContext,
+      mapStateToProps: (state: AppState) => ({
+        items: state.items,
+        searchQuery: state.searchQuery
+      })
+    }
+  ],
+  mapDispatchToPropsOptions: [
+    {
+      context: AppDispatchContext,
+      mapDispatchToProps: {
+        SetSearchQuery: appContextActions.SetSearchQuery,
+        SetItems: appContextActions.SetItems
+      }
+    }
+  ],
+  useHookEffectAfterChange: <T = AppMapStateToProps['searchQuery'],>({
+    stateToProps,
+    dispatchToProps
+  }: ConnectHookProps<
+    AppMapStateToProps,
+    AppMapDispatchToProps,
+    AppOwnProps
+  >): ConnectOptionUseEffectAfterChangeReturn<T> => {
+    const value = stateToProps.searchQuery as T;
+    const callback = dispatchToProps.SetItems;
+    const condition = (prevValue: T, value: T) => prevValue !== value;
+    return [value, callback, condition];
+  }
+})(App);
+```
+
+The `connect` HOC accepts three type parameters:
+
+1. `TMapStateToProps`: The type of props that will be mapped from state
+2. `TMapDispatchToProps`: The type of props that will be mapped from dispatch
+3. `TOwnProps`: The type of props that the component accepts directly
+
+The configuration object accepts:
+
+- `mapStateToPropsOptions`: Array of state mapping configurations
+- `mapDispatchToPropsOptions`: Array of dispatch mapping configurations
+- `useHookEffectAfterChange`: Optional effect hook for handling state changes
+
 ### Context Utilities
 
 The context provides several utilities:
