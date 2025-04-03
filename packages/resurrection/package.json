@@ -17,9 +17,9 @@
   "scripts": {
     "build": "vite build",
     "prepublishOnly": "pnpm build",
-    "version:patch": "git add . && git commit -m \"chore: bump version\" && npm version patch",
-    "version:minor": "git add . && git commit -m \"chore: bump version\" && npm version minor",
-    "version:major": "git add . && git commit -m \"chore: bump version\" && npm version major",
+    "version:patch": "git add . && git commit -m \"chore: bump version to $(node -p \"require('./package.json').version\")\" && npm version patch",
+    "version:minor": "git add . && git commit -m \"chore: bump version to $(node -p \"require('./package.json').version\")\" && npm version minor",
+    "version:major": "git add . && git commit -m \"chore: bump version to $(node -p \"require('./package.json').version\")\" && npm version major",
     "publish": "npm publish",
     "publish:patch": "pnpm run version:patch && git push && git push --tags && npm publish",
     "publish:minor": "pnpm run version:minor && git push && git push --tags && npm publish",
