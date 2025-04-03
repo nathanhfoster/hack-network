@@ -1,14 +1,21 @@
 'use client';
 
 import { isFunction, isNull } from '../utils';
-import { ComponentType, RefObject, useMemo, useRef, JSX } from 'react';
+import {
+  ComponentType,
+  RefObject,
+  useMemo,
+  useRef,
+  JSX,
+  RefAttributes,
+} from 'react';
 import { ComponentPropsType, EqualityFunctionType } from '../connect/types';
 import usePreviousValue from './usePreviousValue';
 
 export interface useMemoComponentOptions<P extends ComponentPropsType> {
   Component: ComponentType<P>;
   props: P;
-  ref?: RefObject<P>;
+  ref?: RefObject<(P & RefAttributes<any>) | null>;
   isEqual?: EqualityFunctionType<P>;
 }
 

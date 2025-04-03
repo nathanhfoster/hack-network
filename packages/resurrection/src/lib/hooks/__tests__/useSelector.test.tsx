@@ -121,4 +121,40 @@ describe('useSelector', () => {
 
     expect(result.current).toEqual({ value: 1 });
   });
+
+  it('should not re-render when non-selected state changes', () => {
+    let renderCount = 0;
+    const { result } = renderHook(
+      () => {
+        renderCount++;
+        return useSelector((state) => state.count);
+      },
+      { wrapper: TestProvider },
+    );
+
+    expect(result.current).toBe(0);
+    const initialRenderCount = renderCount;
+
+    // Update name - should not trigger re-render
+    act(() => {
+      const button = document.querySelector(
+        'button:last-child',
+      ) as HTMLButtonElement;
+      button?.click();
+    });
+
+    expect(result.current).toBe(0);
+    expect(renderCount).toBe(initialRenderCount);
+
+    // Update count - should trigger re-render
+    act(() => {
+      const button = document.querySelector(
+        'button:first-child',
+      ) as HTMLButtonElement;
+      button?.click();
+    });
+
+    expect(result.current).toBe(1);
+    expect(renderCount).toBe(initialRenderCount + 1);
+  });
 });

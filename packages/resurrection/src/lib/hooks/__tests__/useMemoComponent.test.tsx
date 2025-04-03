@@ -1,16 +1,18 @@
 import { renderHook, act } from '@testing-library/react';
-import React, { useRef, forwardRef } from 'react';
+import React, { useRef, forwardRef, RefAttributes } from 'react';
 import useMemoComponent from '../useMemoComponent';
-import { shallowEquals } from '../../utils';
+import shallowEquals from '../../utils/shallowEquals';
+
+const TestComponent = forwardRef<HTMLDivElement, { value: number }>(
+  ({ value }, ref) => <div ref={ref}>{value}</div>,
+);
 
 describe('useMemoComponent', () => {
-  const TestComponent = forwardRef<HTMLDivElement, { value: number }>(
-    ({ value }, ref) => <div ref={ref}>{value}</div>,
-  );
-
   it('should render component with initial props', () => {
     const { result } = renderHook(() => {
-      const ref = useRef<HTMLDivElement & { value: number }>(null);
+      const ref = useRef<
+        ({ value: number } & RefAttributes<HTMLDivElement>) | null
+      >(null);
       return {
         element: useMemoComponent({
           Component: TestComponent,
@@ -30,7 +32,9 @@ describe('useMemoComponent', () => {
   it('should not re-render when props are equal', () => {
     const { result, rerender } = renderHook(
       ({ props }) => {
-        const ref = useRef<HTMLDivElement & { value: number }>(null);
+        const ref = useRef<
+          ({ value: number } & RefAttributes<HTMLDivElement>) | null
+        >(null);
         return {
           element: useMemoComponent({
             Component: TestComponent,
@@ -58,7 +62,9 @@ describe('useMemoComponent', () => {
   it('should re-render when props are not equal', () => {
     const { result, rerender } = renderHook(
       ({ props }) => {
-        const ref = useRef<HTMLDivElement & { value: number }>(null);
+        const ref = useRef<
+          ({ value: number } & RefAttributes<HTMLDivElement>) | null
+        >(null);
         return {
           element: useMemoComponent({
             Component: TestComponent,
@@ -88,7 +94,9 @@ describe('useMemoComponent', () => {
   it('should handle undefined isEqual function', () => {
     const { result, rerender } = renderHook(
       ({ props }) => {
-        const ref = useRef<HTMLDivElement & { value: number }>(null);
+        const ref = useRef<
+          ({ value: number } & RefAttributes<HTMLDivElement>) | null
+        >(null);
         return {
           element: useMemoComponent({
             Component: TestComponent,
