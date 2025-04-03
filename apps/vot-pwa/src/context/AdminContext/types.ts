@@ -26,12 +26,10 @@ export interface AdminSettings {
   sidebarCollapsed: boolean;
 }
 
-export type AdminContextProviderProps = ContextProviderProps<{
+export type AdminServerProps = {
   users: AdminUser[];
   settings: AdminSettings;
-}>;
+};
 
-export type AdminContextState = ContextStore<{
-  users: AdminUser[];
-  settings: AdminSettings;
-}>;
+export type AdminContextProviderProps = ContextProviderProps<AdminServerProps>;
+export type AdminContextState = ContextStore<AdminServerProps>;

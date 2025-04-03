@@ -1,9 +1,10 @@
 import { createReducer, Draft, ContextStoreInitializer } from 'resurrection';
 
 import { AdminContextState, AdminSettings, AdminUser } from './types';
+import { AdminActions } from './index';
 
 export const getAdminInitialState: ContextStoreInitializer<
-  AdminContextState,
+  AdminActions,
   AdminContextState
 > = (initialState) => {
   return {

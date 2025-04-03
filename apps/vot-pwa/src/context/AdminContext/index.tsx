@@ -12,7 +12,10 @@ import { AdminContextProviderProps, AdminContextState } from './types';
 
 export const adminContextActions = adminSlice.actions;
 
-type AdminActions = ReducerActionCreators<typeof adminContextActions, 'Admin'>;
+export type AdminActions = ReducerActionCreators<
+  typeof adminContextActions,
+  'Admin'
+>;
 
 export const AdminContext = createContextWithName<
   AdminContextState,
