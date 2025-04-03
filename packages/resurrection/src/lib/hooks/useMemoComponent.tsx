@@ -42,7 +42,7 @@ const useMemoComponent: useMemoComponentType = ({
   const previousProps = usePreviousValue(props);
   const componentRef = useRef<JSX.Element | null>(null);
 
-  // Memoize the equality check to avoid recalculating on every render
+  // Determine if props have changed
   const arePropsEqual = useMemo(() => {
     if (!isFunction(isEqual) || !previousProps) {
       return false;
@@ -51,12 +51,14 @@ const useMemoComponent: useMemoComponentType = ({
   }, [isEqual, previousProps, props]);
 
   // Only create a new component instance when props change or it's the first render
-  return useMemo(() => {
+  const PureComponent = useMemo(() => {
     if (!arePropsEqual || isNull(componentRef.current)) {
       componentRef.current = <Component {...props} ref={ref} />;
     }
     return componentRef.current;
-  }, [Component, props, ref, arePropsEqual]);
+  }, [Component, props, arePropsEqual, ref]);
+
+  return PureComponent;
 };
 
 export default useMemoComponent;

@@ -23,9 +23,7 @@ describe('useSelector', () => {
 
   const useSelector = createUseSelectorHook(TestContext);
 
-  const TestProvider: React.FC<{ children: React.ReactNode }> = ({
-    children,
-  }) => {
+  const TestProvider = ({ children }: { children: any }) => {
     const [state, setState] = useState<TestState>(initialState);
 
     return (
@@ -64,7 +62,9 @@ describe('useSelector', () => {
 
     // Update name - should not trigger re-render
     act(() => {
-      const button = document.querySelector('button:last-child');
+      const button = document.querySelector(
+        'button:last-child',
+      ) as HTMLButtonElement;
       button?.click();
     });
 
@@ -72,7 +72,9 @@ describe('useSelector', () => {
 
     // Update count - should trigger re-render
     act(() => {
-      const button = document.querySelector('button:first-child');
+      const button = document.querySelector(
+        'button:first-child',
+      ) as HTMLButtonElement;
       button?.click();
     });
 
@@ -93,7 +95,9 @@ describe('useSelector', () => {
     expect(result.current).toBe(0);
 
     act(() => {
-      const button = document.querySelector('button:first-child');
+      const button = document.querySelector(
+        'button:first-child',
+      ) as HTMLButtonElement;
       button?.click();
     });
 
@@ -109,7 +113,9 @@ describe('useSelector', () => {
 
     // Update count - should not trigger re-render for nested
     act(() => {
-      const button = document.querySelector('button:first-child');
+      const button = document.querySelector(
+        'button:first-child',
+      ) as HTMLButtonElement;
       button?.click();
     });
 
