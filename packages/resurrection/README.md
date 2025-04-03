@@ -9,7 +9,7 @@ A lightweight state management library that follows Flux/Redux architecture but 
 - React hooks for state access and dispatch
 - Simple and complex context providers
 - Automatic state initialization
-- Redux-like connect HOC for class components
+- Redux-like connect HOC for components
 
 ## Installation
 
@@ -205,7 +205,7 @@ createReducer({
 
 ### Using the connect HOC
 
-The `connect` HOC provides a way to connect class components to your context store, similar to Redux's connect pattern. Here's an example:
+The `connect` HOC provides a way to connect components to your context store, similar to Redux's connect pattern. Here's an example:
 
 ```typescript
 import { connect, ConnectHookProps, ConnectOptionUseEffectAfterChangeReturn } from 'resurrection';
