@@ -61,6 +61,14 @@ export default defineConfig(() => ({
         manualChunks: undefined,
         // Enable source maps for debugging
         sourcemap: true,
+        // Add chunk size warnings
+        chunkFileNames: '[name]-[hash].js',
+        // Enable tree-shaking
+        treeshake: {
+          moduleSideEffects: false,
+          propertyReadSideEffects: false,
+          tryCatchDeoptimization: false,
+        },
       },
     },
     // Enable minification
@@ -70,8 +78,29 @@ export default defineConfig(() => ({
       compress: {
         drop_console: true,
         drop_debugger: true,
+        pure_funcs: [
+          'console.log',
+          'console.info',
+          'console.debug',
+          'console.warn',
+        ],
+        passes: 2,
+        dead_code: true,
+        unused: true,
+      },
+      mangle: {
+        toplevel: true,
+      },
+      format: {
+        comments: false,
       },
     },
+    // Enable code splitting
+    chunkSizeWarningLimit: 1000,
+    // Enable compression
+    brotliSize: true,
+    // Optimize assets
+    assetsInlineLimit: 4096,
   },
   test: {
     watch: false,
