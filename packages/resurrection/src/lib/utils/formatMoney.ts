@@ -2,17 +2,17 @@ const formatMoney = (moneyValue: string, showDollarSign = true) => {
   const nextValue = `${moneyValue}`
     .replace(',', '.')
     .replace(/[^0-9.]/g, '')
-    .trimLeft()
+    .trimLeft();
 
   if (nextValue.length <= 0) {
-    return ''
+    return '';
   }
 
-  const [dollar, cent] = nextValue.split('.', 2)
+  const [dollar, cent] = nextValue.split('.', 2);
 
   return typeof cent !== 'undefined'
     ? `${showDollarSign ? '$ ' : ''}${dollar}.${cent.substring(0, 2)}`
-    : `${showDollarSign ? '$ ' : ''}${dollar}`
-}
+    : `${showDollarSign ? '$ ' : ''}${dollar}`;
+};
 
-export default formatMoney
+export default formatMoney;

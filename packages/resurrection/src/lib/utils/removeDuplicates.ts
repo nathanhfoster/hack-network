@@ -1,3 +1,3 @@
-const removeDuplicates = <T>(array: T[]): T[] => Array.from(new Set(array))
+const removeDuplicates = <T>(array: T[]): T[] => Array.from(new Set(array));
 
-export default removeDuplicates
+export default removeDuplicates;

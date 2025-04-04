@@ -5,7 +5,7 @@
  * @returns A new string with the first character converted to uppercase and the rest of the string unchanged.
  */
 const capitalize = (str: string): string => {
-  return str.charAt(0).toUpperCase() + str.slice(1)
-}
+  return str.charAt(0).toUpperCase() + str.slice(1);
+};
 
-export default capitalize
+export default capitalize;

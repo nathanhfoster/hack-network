@@ -1,22 +1,22 @@
-'use client'
+'use client';
 
-import debounce from 'lodash-es/debounce'
-import { type DependencyList, useCallback, useEffect, useRef } from 'react'
+import debounce from 'lodash-es/debounce';
+import { type DependencyList, useCallback, useEffect, useRef } from 'react';
 
-import { GenericFunction } from '../types'
+import { GenericFunction } from '../types';
 
-import useWillUnmount from './useWillUnmount'
+import useWillUnmount from './useWillUnmount';
 
 export interface DebounceOptions {
-  leading?: boolean | undefined
-  maxWait?: number | undefined
-  trailing?: boolean | undefined
+  leading?: boolean | undefined;
+  maxWait?: number | undefined;
+  trailing?: boolean | undefined;
 }
 
 const defaultOptions: DebounceOptions = {
   leading: false,
-  trailing: true
-}
+  trailing: true,
+};
 
 /**
  * Accepts a function and returns a new debounced yet memoized version of that same function that delays
@@ -27,20 +27,20 @@ const useDebouncedCallback = <TCallback extends GenericFunction>(
   fn: TCallback,
   dependencies: DependencyList = [],
   wait = 300,
-  options: DebounceOptions = defaultOptions
+  options: DebounceOptions = defaultOptions,
 ) => {
-  const debounced = useRef(debounce<TCallback>(fn, wait, options))
+  const debounced = useRef(debounce<TCallback>(fn, wait, options));
 
   useEffect(() => {
-    debounced.current = debounce(fn, wait, options)
-  }, [fn, wait, options])
+    debounced.current = debounce(fn, wait, options);
+  }, [fn, wait, options]);
 
   useWillUnmount(() => {
-    debounced.current?.cancel()
-  })
+    debounced.current?.cancel();
+  });
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  return useCallback(debounced.current, dependencies)
-}
+  return useCallback(debounced.current, dependencies);
+};
 
-export default useDebouncedCallback
+export default useDebouncedCallback;

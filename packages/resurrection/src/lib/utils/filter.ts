@@ -1,4 +1,4 @@
-type Filter = [string, string[]]
+type Filter = [string, string[]];
 
 /**
  * Filters an array of items based on a set of filters and a custom filtering function.
@@ -14,19 +14,19 @@ type Filter = [string, string[]]
 const filter = <T extends object = {}>(
   array: T[],
   filters: Filter[],
-  filterFn: (filter: Filter, item: T, index: number, array: T[]) => any
+  filterFn: (filter: Filter, item: T, index: number, array: T[]) => any,
 ) => {
-  if (array.length === 0 || filters.length === 0) return []
+  if (array.length === 0 || filters.length === 0) return [];
 
-  let filterArray = [...array]
+  let filterArray = [...array];
 
   filters.forEach((filter) => {
     filterArray = filterArray.filter((item, i) => {
-      return filterFn(filter, item, i, array)
-    })
-  })
+      return filterFn(filter, item, i, array);
+    });
+  });
 
-  return filterArray
-}
+  return filterArray;
+};
 
-export default filter
+export default filter;

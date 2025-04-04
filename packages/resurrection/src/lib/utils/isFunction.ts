@@ -1,4 +1,4 @@
 const isFunction = (value: any): value is Function =>
-  value instanceof Function || typeof value === 'function'
+  value instanceof Function || typeof value === 'function';
 
-export default isFunction
+export default isFunction;

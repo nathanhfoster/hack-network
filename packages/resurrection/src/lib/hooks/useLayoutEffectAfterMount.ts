@@ -12,7 +12,7 @@ import useIsMounted from './useIsMounted';
 
 const useLayoutEffectAfterMount = (
   callback: EffectCallback,
-  dependencies: DependencyList
+  dependencies: DependencyList,
 ) => {
   const mounted = useIsMounted();
   const useIsomorphicLayoutEffect = isClientSide()
@@ -21,7 +21,7 @@ const useLayoutEffectAfterMount = (
 
   useIsomorphicLayoutEffect(
     () => (mounted ? callback() : undefined),
-    dependencies
+    dependencies,
   );
 
   return mounted;

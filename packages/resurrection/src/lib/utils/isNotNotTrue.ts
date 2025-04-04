@@ -5,6 +5,6 @@
  * true for truthy values, false for falsy values.
  * @href https://gist.github.com/arthurvi/66cb1e2bcfc92f99f465e0db04264367
  */
-const isNotNotTrue = (value: any) => !!value
+const isNotNotTrue = (value: any) => !!value;
 
-export default isNotNotTrue
+export default isNotNotTrue;

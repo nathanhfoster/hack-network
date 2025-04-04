@@ -1,4 +1,4 @@
-import type { ContextProviderProps, ContextStore } from 'resurrection';
+import type { ProviderProps, ContextStore } from 'resurrection';
 
 export interface AdminUser {
   id: string;
@@ -31,5 +31,5 @@ export type AdminServerProps = {
   settings: AdminSettings;
 };
 
-export type AdminContextProviderProps = ContextProviderProps<AdminServerProps>;
+export type AdminContextProviderProps = ProviderProps<AdminServerProps>;
 export type AdminContextState = ContextStore<AdminServerProps>;

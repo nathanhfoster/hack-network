@@ -1,7 +1,7 @@
-'use client'
+'use client';
 
-import type { TableProps } from './types'
-import { ReactNode } from 'react'
+import type { TableProps } from './types';
+import { ReactNode } from 'react';
 
 const Table = <T extends object>({
   data,
@@ -10,37 +10,37 @@ const Table = <T extends object>({
   hoverable = false,
   bordered = false,
   className = '',
-  onRowClick
+  onRowClick,
 }: TableProps<T>) => {
   const tableClasses = [
     'w-full text-sm text-left rtl:text-right text-gray-500',
     bordered && 'border border-gray-200',
-    className
+    className,
   ]
     .filter(Boolean)
-    .join(' ')
+    .join(' ');
 
   const theadClasses = [
     'text-xs text-gray-700 uppercase bg-gray-50',
-    bordered && 'border-b border-gray-200'
+    bordered && 'border-b border-gray-200',
   ]
     .filter(Boolean)
-    .join(' ')
+    .join(' ');
 
   const tbodyClasses = [
     'divide-y divide-gray-200',
-    bordered && 'border-b border-gray-200'
+    bordered && 'border-b border-gray-200',
   ]
     .filter(Boolean)
-    .join(' ')
+    .join(' ');
 
   const trClasses = [
     'bg-white',
     striped && 'odd:bg-white even:bg-gray-50',
-    hoverable && 'hover:bg-gray-50 cursor-pointer'
+    hoverable && 'hover:bg-gray-50 cursor-pointer',
   ]
     .filter(Boolean)
-    .join(' ')
+    .join(' ');
 
   return (
     <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
@@ -73,7 +73,7 @@ const Table = <T extends object>({
         </tbody>
       </table>
     </div>
-  )
-}
+  );
+};
 
-export default Table
+export default Table;

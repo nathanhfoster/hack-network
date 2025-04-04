@@ -1,4 +1,4 @@
-import { addDays } from 'date-fns'
+import { addDays } from 'date-fns';
 
 /**
  * Adds a specified number of days to a given date.
@@ -9,9 +9,9 @@ import { addDays } from 'date-fns'
  */
 const addDaysFn = (
   dateValue: string | number | Date,
-  increment: number
+  increment: number,
 ): Date => {
-  return addDays(new Date(dateValue), increment)
-}
+  return addDays(new Date(dateValue), increment);
+};
 
-export default addDaysFn
+export default addDaysFn;

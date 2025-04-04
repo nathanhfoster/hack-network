@@ -13,19 +13,19 @@
  */
 const downloadFromUri = async (uri: string, filename = 'current.csv') => {
   try {
-    const response = await fetch(uri)
-    const blob = await response.blob()
-    const downloadUrl = window.URL.createObjectURL(blob)
-    const link = document.createElement('a')
+    const response = await fetch(uri);
+    const blob = await response.blob();
+    const downloadUrl = window.URL.createObjectURL(blob);
+    const link = document.createElement('a');
 
-    link.href = downloadUrl
-    link.setAttribute('download', filename)
-    document.body.appendChild(link)
-    link.click()
-    document.body.removeChild(link)
+    link.href = downloadUrl;
+    link.setAttribute('download', filename);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   } catch (error) {
-    console.error(error)
+    console.error(error);
   }
-}
+};
 
-export default downloadFromUri
+export default downloadFromUri;

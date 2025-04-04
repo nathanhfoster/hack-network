@@ -3,11 +3,8 @@ import { isFunction } from '../utils';
 import { ReducerActionCreators } from './createReducer.types.js';
 
 /** @public */
-export type ActionFromMatcher<M extends Matcher<any>> = M extends Matcher<
-  infer T
->
-  ? T
-  : never;
+export type ActionFromMatcher<M extends Matcher<any>> =
+  M extends Matcher<infer T> ? T : never;
 
 export type ActionsUnionType<A extends ReducerActionCreators<any, any>> = {
   type: ReturnType<A[keyof A]>['type'];
@@ -36,7 +33,7 @@ export type DispatchFn<T extends (...a: any) => any> = (
 // Appears to have a convenient side effect of ignoring `never` even if that's not what you specified
 export type ExcludeFromTuple<T, E, Acc extends unknown[] = []> = T extends [
   infer Head,
-  ...infer Tail
+  ...infer Tail,
 ]
   ? ExcludeFromTuple<Tail, E, [...Acc, ...([Head] extends [E] ? [] : [Head])]>
   : Acc;
@@ -129,7 +126,7 @@ export type UnionToIntersection<U> = (
   : never;
 
 export const hasMatchFunction = <T>(
-  v: Matcher<T>
+  v: Matcher<T>,
 ): v is HasMatchFunction<T> => {
   return v && isFunction((v as HasMatchFunction<T>).match);
 };

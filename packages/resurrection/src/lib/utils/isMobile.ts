@@ -1,9 +1,9 @@
 const isMobile = (window: Window | null) => {
   if (!window) {
-    return false
+    return false;
   }
 
-  return /Mobile/i.test(window.navigator.userAgent)
-}
+  return /Mobile/i.test(window.navigator.userAgent);
+};
 
-export default isMobile
+export default isMobile;

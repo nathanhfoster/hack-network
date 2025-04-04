@@ -1,5 +1,5 @@
-import type { Meta, StoryObj } from '@storybook/react'
-import Input from './index'
+import type { Meta, StoryObj } from '@storybook/react';
+import Input from './index';
 
 const meta: Meta<typeof Input> = {
   title: 'Atoms/Input',
@@ -8,33 +8,33 @@ const meta: Meta<typeof Input> = {
   argTypes: {
     className: {
       control: 'text',
-      description: 'Additional CSS classes to apply to the input'
-    }
-  }
-}
+      description: 'Additional CSS classes to apply to the input',
+    },
+  },
+};
 
-export default meta
-type Story = StoryObj<typeof Input>
+export default meta;
+type Story = StoryObj<typeof Input>;
 
 export const Default: Story = {
   args: {
-    placeholder: 'Enter text...'
-  }
-}
+    placeholder: 'Enter text...',
+  },
+};
 
 export const WithLabel: Story = {
   args: {
     placeholder: 'Enter email',
     type: 'email',
     className:
-      'border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 w-full'
-  }
-}
+      'border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 w-full',
+  },
+};
 
 export const Disabled: Story = {
   args: {
     placeholder: 'Disabled input',
     disabled: true,
-    className: 'border rounded px-3 py-2 bg-gray-100 cursor-not-allowed'
-  }
-}
+    className: 'border rounded px-3 py-2 bg-gray-100 cursor-not-allowed',
+  },
+};

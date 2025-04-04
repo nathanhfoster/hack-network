@@ -1,8 +1,8 @@
-'use client'
+'use client';
 
-import { useCallback, useRef } from 'react'
+import { useCallback, useRef } from 'react';
 
-const DEFAULT_VALUE = null
+const DEFAULT_VALUE = null;
 
 /**
  * A custom hook that lazily initializes and memoizes a value using the provided initializer function.
@@ -25,24 +25,24 @@ const DEFAULT_VALUE = null
  * executed once and its result is cached.
  */
 const useLazyMemo = (initializer: () => any) => {
-  const ref = useRef(DEFAULT_VALUE)
+  const ref = useRef(DEFAULT_VALUE);
 
   const getObservable = useCallback(() => {
-    const observer = ref.current
+    const observer = ref.current;
 
     if (observer !== DEFAULT_VALUE) {
-      return observer
+      return observer;
     }
 
-    const newObserver = initializer()
+    const newObserver = initializer();
 
-    ref.current = newObserver
+    ref.current = newObserver;
 
-    return newObserver
+    return newObserver;
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, []);
 
-  return getObservable()
-}
+  return getObservable();
+};
 
-export default useLazyMemo
+export default useLazyMemo;

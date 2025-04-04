@@ -1,9 +1,9 @@
-import isNull from './isNull'
+import isNull from './isNull';
 
 const isObject = (value: any): value is object => {
-  const type = typeof value
+  const type = typeof value;
 
-  return !isNull(value) && (type === 'object' || type === 'function')
-}
+  return !isNull(value) && (type === 'object' || type === 'function');
+};
 
-export default isObject
+export default isObject;

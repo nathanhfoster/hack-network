@@ -19,11 +19,11 @@ const copyToClipboard = (text: string): Promise<void> => {
   return navigator.clipboard
     .writeText(text)
     .then(() => {
-      console.info('Text copied to clipboard')
+      console.info('Text copied to clipboard');
     })
     .catch((error) => {
-      console.error('Failed to copy text to clipboard:', error)
-    })
-}
+      console.error('Failed to copy text to clipboard:', error);
+    });
+};
 
-export default copyToClipboard
+export default copyToClipboard;

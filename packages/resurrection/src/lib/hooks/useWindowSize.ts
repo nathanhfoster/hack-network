@@ -24,7 +24,7 @@ const useWindowSize = (params?: Props) => {
       setWindowSize(params);
     },
     [setWindowSize],
-    throttleMs ?? 0
+    throttleMs ?? 0,
   );
 
   useEventListener('resize', () => {

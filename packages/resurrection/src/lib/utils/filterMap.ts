@@ -1,4 +1,4 @@
-type MapFunctionCallback<T> = (item: T, index: number, array: T[]) => any
+type MapFunctionCallback<T> = (item: T, index: number, array: T[]) => any;
 
 /**
  * A utility function that combines filtering and mapping operations on an array.
@@ -23,30 +23,30 @@ type MapFunctionCallback<T> = (item: T, index: number, array: T[]) => any
 const filterMap = <
   T,
   F extends MapFunctionCallback<T>,
-  M extends boolean = false
+  M extends boolean = false,
 >(
   array: T[],
   filterFn: (
     item: M extends true ? ReturnType<F> : T,
     index: number,
-    array: T[]
+    array: T[],
   ) => any,
   mapFn: F,
-  mapFirst?: M
+  mapFirst?: M,
 ): ReturnType<F>[] => {
   return array.reduce((acc, item, i) => {
-    let newItem = mapFirst ? mapFn(item, i, array) : undefined
+    let newItem = mapFirst ? mapFn(item, i, array) : undefined;
 
     if (filterFn(mapFirst ? newItem : item, i, array)) {
       if (!newItem) {
-        newItem = mapFn(item, i, array)
+        newItem = mapFn(item, i, array);
       }
 
-      acc.push(newItem)
+      acc.push(newItem);
     }
 
-    return acc
-  }, [] as ReturnType<F>[])
-}
+    return acc;
+  }, [] as ReturnType<F>[]);
+};
 
-export default filterMap
+export default filterMap;

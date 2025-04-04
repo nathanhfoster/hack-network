@@ -1,17 +1,11 @@
 import { createReducer, Draft, ContextStoreInitializer } from 'resurrection';
 
-import { AdminContextState, AdminSettings, AdminUser } from './types';
-import { AdminActions } from './index';
-
-export const getAdminInitialState: ContextStoreInitializer<
-  AdminActions,
-  AdminContextState
-> = (initialState) => {
-  return {
-    ...adminInitialState,
-    ...initialState,
-  };
-};
+import {
+  AdminContextState,
+  AdminServerProps,
+  AdminSettings,
+  AdminUser,
+} from './types';
 
 export const adminInitialState: AdminContextState = {
   users: [],
@@ -21,6 +15,20 @@ export const adminInitialState: AdminContextState = {
     notifications: true,
     sidebarCollapsed: false,
   },
+};
+
+export const getAdminInitialState: ContextStoreInitializer<
+  AdminServerProps,
+  AdminContextState
+> = (initialState) => {
+  if (!initialState) {
+    return adminInitialState;
+  }
+
+  return {
+    ...adminInitialState,
+    ...initialState,
+  };
 };
 
 const SetUsers = (state: Draft<AdminContextState>, users: AdminUser[]) => {

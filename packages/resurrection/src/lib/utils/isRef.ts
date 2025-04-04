@@ -1,15 +1,15 @@
-import { RefObject } from 'react'
+import { RefObject } from 'react';
 
-import isObject from './isObject'
+import isObject from './isObject';
 
 export const isRef = <T = any>(value: any): value is RefObject<T> => {
-  if (!isObject(value)) return false
+  if (!isObject(value)) return false;
 
-  const objectKeys = Object.keys(value)
+  const objectKeys = Object.keys(value);
 
-  if (objectKeys.length !== 1) return false
+  if (objectKeys.length !== 1) return false;
 
-  return objectKeys[0] === 'current'
-}
+  return objectKeys[0] === 'current';
+};
 
-export default isRef
+export default isRef;

@@ -1,34 +1,34 @@
 interface RequestController {
-  abort: () => void
+  abort: () => void;
 }
 
-const hash = new Map<string, RequestController>()
+const hash = new Map<string, RequestController>();
 
 const singleRequest = <F>(
   key: string,
   fn: (signal: AbortSignal) => Promise<F>,
-  cleanup?: string[]
+  cleanup?: string[],
 ): Promise<F> => {
   if (hash.has(key)) {
-    hash.get(key)?.abort()
-    hash.delete(key)
+    hash.get(key)?.abort();
+    hash.delete(key);
   }
 
   if (cleanup?.length) {
     cleanup.forEach((key) => {
       if (hash.has(key)) {
-        hash.get(key)?.abort()
-        hash.delete(key)
+        hash.get(key)?.abort();
+        hash.delete(key);
       }
-    })
+    });
   }
 
-  const controller = new AbortController()
-  const signal = controller.signal
+  const controller = new AbortController();
+  const signal = controller.signal;
 
-  hash.set(key, controller)
+  hash.set(key, controller);
 
-  return fn(signal)
-}
+  return fn(signal);
+};
 
-export default singleRequest
+export default singleRequest;

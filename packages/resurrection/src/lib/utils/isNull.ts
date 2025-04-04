@@ -1,3 +1,3 @@
-const isNull = (value: unknown) => value === null
+const isNull = (value: unknown) => value === null;
 
-export default isNull
+export default isNull;

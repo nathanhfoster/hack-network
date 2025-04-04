@@ -2,7 +2,7 @@ import { useEffect, useRef, EffectCallback, DependencyList } from 'react';
 
 export default function useEffectAfterMount(
   effect: EffectCallback,
-  deps?: DependencyList
+  deps?: DependencyList,
 ) {
   const isFirstRender = useRef(true);
 
@@ -14,4 +14,4 @@ export default function useEffectAfterMount(
 
     return effect();
   }, deps);
-} 
+}

@@ -1,4 +1,4 @@
-import { ComponentPropsType, MergePropsReturnType } from '../connect/types.js'
+import { ComponentPropsType, MergePropsReturnType } from '../connect/types.js';
 
 /**
  * This function returns the combined props from a context store(s) state, dispatch, and HOC
@@ -10,19 +10,19 @@ import { ComponentPropsType, MergePropsReturnType } from '../connect/types.js'
 const defaultMergeProps = <
   MSTP extends ComponentPropsType,
   MDTP extends ComponentPropsType,
-  OWNP extends ComponentPropsType
+  OWNP extends ComponentPropsType,
 >(
   stateToProps: MSTP,
   dispatchToProps: MDTP,
-  ownProps: OWNP
+  ownProps: OWNP,
 ): MergePropsReturnType<MSTP, MDTP, OWNP> => {
   const mergedProps = {
     ...ownProps,
     ...stateToProps,
-    ...dispatchToProps
-  }
+    ...dispatchToProps,
+  };
 
-  return mergedProps as unknown as MergePropsReturnType<MSTP, MDTP, OWNP>
-}
+  return mergedProps as unknown as MergePropsReturnType<MSTP, MDTP, OWNP>;
+};
 
-export default defaultMergeProps
+export default defaultMergeProps;

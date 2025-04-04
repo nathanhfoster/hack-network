@@ -11,7 +11,7 @@ type ElementOption = ElementOrWindow | undefined | null;
 const useEventListener = (
   eventName: string,
   handler: (event: any) => any,
-  element: ElementOption = isClientSide() ? window : undefined
+  element: ElementOption = isClientSide() ? window : undefined,
 ) => {
   const savedHandler = useRef<Function>(handler);
 

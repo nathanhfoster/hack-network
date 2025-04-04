@@ -1,26 +1,26 @@
-'use client'
+'use client';
 
-import { useState } from 'react'
+import { useState } from 'react';
 
-import useEffectAfterMount from './useEffectAfterMount'
-import usePreviousValue from './usePreviousValue'
+import useEffectAfterMount from './useEffectAfterMount';
+import usePreviousValue from './usePreviousValue';
 
 const useDerivedInitialStateFromProps = <T, I extends (intialState: T) => any>(
   initialState: T | undefined,
-  initializer: I
+  initializer: I,
 ) => {
-  const oldState = usePreviousValue(initialState)
+  const oldState = usePreviousValue(initialState);
   const [derivedStateFromProps, setNewState] = useState(
-    initializer(initialState as any)
-  )
+    initializer(initialState as any),
+  );
 
   useEffectAfterMount(() => {
     if (oldState !== initialState) {
-      setNewState(initializer(initialState as any))
+      setNewState(initializer(initialState as any));
     }
-  }, [initialState])
+  }, [initialState]);
 
-  return derivedStateFromProps as ReturnType<I>
-}
+  return derivedStateFromProps as ReturnType<I>;
+};
 
-export default useDerivedInitialStateFromProps
+export default useDerivedInitialStateFromProps;
