@@ -1,4 +1,4 @@
-import nextPluginPrevalConfig from 'next-plugin-preval/config.js';
+import nextPluginPrevalConfig from 'next-plugin-preval/config';
 
 /**
  * The default export `nextPluginPrevalConfig` is a configuration object or function

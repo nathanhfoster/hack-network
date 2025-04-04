@@ -1,6 +1,6 @@
 import { produce, setAutoFreeze, Draft } from 'immer';
 
-import { PayloadAction } from '../types.js';
+import { PayloadAction } from '../../types';
 
 import {
   CreateReducerActions,
@@ -8,7 +8,7 @@ import {
   InitialReducerState,
   ReducerActionCreators,
   ThunkActions,
-} from './createReducer.types.js';
+} from './types';
 
 setAutoFreeze(false);
 // enableMapSet(); use this if you need to use Map and Set in immer

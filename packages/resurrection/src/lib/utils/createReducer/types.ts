@@ -6,13 +6,13 @@ import {
   PayloadActionCreator,
   Thunk,
   ThunkFunction,
-} from '../types.js';
+} from '../../types';
 
 import {
   ActionsUnionType,
   IsUnknownOrNonInferrable,
   NoInfer,
-} from './tsHelpers.js';
+} from '../tsHelpers';
 
 export type ActionTypeName<
   SliceName extends string,
@@ -24,15 +24,14 @@ type SliceReducer<S = any, P = any> = (
   payload?: P,
 ) => NoInfer<S> | void | Draft<NoInfer<S>>;
 
-export type CreateReducerActions<S extends InitialReducerState> = Record<
-  string,
-  SliceReducer<S>
->;
+export type CreateReducerActions<S extends InitialReducerState> = {
+  [K: string]: SliceReducer<S, any>;
+};
 
 export interface CreateReducerProps<
   MS extends InitialReducerState,
-  MA extends CreateReducerActions<any>,
-  MT extends ThunkActions<any, any>,
+  MA extends CreateReducerActions<MS>,
+  MT extends ThunkActions<MS, ReducerActionCreators<MA, string>>,
   N extends string,
   S extends InitialReducerState,
   A extends CreateReducerActions<S & MS>,
@@ -43,13 +42,13 @@ export interface CreateReducerProps<
   extends?: {
     module: {
       actions: MA;
-      getThunks?: (actions: ReducerActionCreators<A & MA, any>) => MT;
+      getThunks?: (actions: ReducerActionCreators<A & MA, N>) => MT;
       initialState: MS;
     };
   };
 }
 
-export type InitialReducerState = Record<string, any>;
+export type InitialReducerState = Record<string, unknown>;
 
 type ActionCreatorForReducer<
   ActionFunction,

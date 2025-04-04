@@ -8,10 +8,10 @@ import { ComponentPropsType } from '../connect/types';
  * @param {object} props - the props you want to mutate
  * @returns {object} - the props whose values are shallowly differnt from the previous
  */
-export default function usePropsThatChanged<P extends ComponentPropsType>(
-  nextProps: P,
-): Partial<P> {
-  const previousProps = usePreviousValue<P>(nextProps);
+const usePropsThatChanged = <P extends ComponentPropsType>(
+  nextProps: Partial<P> | undefined = {},
+): Partial<P> => {
+  const previousProps = usePreviousValue<Partial<P>>(nextProps);
   const propsThatChanged = useRef<Partial<P>>({});
 
   if (previousProps) {
@@ -26,4 +26,6 @@ export default function usePropsThatChanged<P extends ComponentPropsType>(
   }
 
   return propsThatChanged.current;
-}
+};
+
+export default usePropsThatChanged;

@@ -7,7 +7,7 @@ import { isFunction } from '../utils';
  * @param {ReducerAction | GetStateCallback} options
  * @returns
  */
-const setStateReducer = <T extends object>(state: T | undefined, action: any) =>
-  (isFunction(action) ? action(state) : action) as T;
+const setStateReducer = <S extends object>(state: S | undefined, action: any) =>
+  (isFunction(action) ? action(state) : action) as S;
 
 export default setStateReducer;

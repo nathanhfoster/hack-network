@@ -94,8 +94,8 @@ export type ContextStoreActionCallback<S> = (state: S) => S;
 
 export type ContextStoreError = unknown | string;
 
-export type ContextStoreInitializer<S = any, A = any> = (
-  arg?: A,
+export type ContextStoreInitializer<S = any, I = any> = (
+  initialState?: I,
   edit?: boolean,
 ) => S;
 

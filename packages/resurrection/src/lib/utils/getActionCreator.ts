@@ -1,10 +1,6 @@
-import {
-  ContextStoreError,
-  PayloadAction,
-  PayloadActionType,
-} from '../types.js';
+import { ContextStoreError, PayloadAction, PayloadActionType } from '../types';
 
-import getErrorMessage from './getErrorMessage.js';
+import getErrorMessage from './getErrorMessage';
 
 export const getActionErrorPayloadCreator =
   <A extends PayloadAction = PayloadAction>(type: A['type']) =>

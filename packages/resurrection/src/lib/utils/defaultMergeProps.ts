@@ -1,4 +1,4 @@
-import { ComponentPropsType, MergePropsReturnType } from '../connect/types.js';
+import { ComponentPropsType, MergePropsReturnType } from '../connect/types';
 
 /**
  * This function returns the combined props from a context store(s) state, dispatch, and HOC

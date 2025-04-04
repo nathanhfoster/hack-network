@@ -1,6 +1,6 @@
 // Types
 export type { RunTests, TestToRun } from './types';
-export type * from './createReducer.types';
+export type * from './createReducer/types';
 
 // Date Utilities
 export { default as addDays } from './addDays';

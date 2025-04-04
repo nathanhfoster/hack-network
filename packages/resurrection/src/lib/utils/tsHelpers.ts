@@ -1,15 +1,12 @@
 import { isFunction } from '../utils';
 
-import { ReducerActionCreators } from './createReducer.types.js';
-
 /** @public */
 export type ActionFromMatcher<M extends Matcher<any>> =
   M extends Matcher<infer T> ? T : never;
 
-export type ActionsUnionType<A extends ReducerActionCreators<any, any>> = {
-  type: ReturnType<A[keyof A]>['type'];
-  payload: any;
-};
+export type ActionsUnionType<A extends Record<string, any>> = ReturnType<
+  A[keyof A]
+>;
 
 /**
  * returns True if TS version is above 3.5, False if below.

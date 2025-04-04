@@ -1,20 +1,13 @@
 import { Dispatch, ReactNode } from 'react';
 import { Context } from 'use-context-selector';
-import { ContextStoreInitializer, PayloadAction } from '../types';
+import { ContextStoreInitializer, Thunk } from '../types';
 
-export type ProviderProps<S extends object, A extends object = S> = {
+export type ProviderProps<S extends object, I extends object = S, A = any> = {
   StateContext: Context<S>;
-  reducer?: (
-    state:
-      | (S & {
-          [x: string]: any;
-        })
-      | undefined,
-    action: PayloadAction,
-  ) => S;
+  reducer?: (state: S, action: A) => S;
   initialState?: S;
-  initializer?: ContextStoreInitializer<S, A>;
-  derivedStateFromProps?: S;
-  DispatchContext?: Context<Dispatch<A>>;
-  children: ReactNode | ((...args: any[]) => any);
+  initializer?: ContextStoreInitializer<S, I>;
+  derivedStateFromProps?: Partial<S>;
+  DispatchContext?: Context<Dispatch<Thunk<A, S>>>;
+  children: ReactNode | ((state: S) => ReactNode);
 };

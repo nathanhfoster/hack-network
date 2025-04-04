@@ -1,6 +1,6 @@
 import { Dispatch } from 'react';
 
-import { SetStateAction } from '../hooks/useSetStateReducer.js';
+import { SetState } from '../hooks/useSetStateReducer';
 
 /**
  * Turns an object whose values are action creators, into an object with the
@@ -25,7 +25,7 @@ import { SetStateAction } from '../hooks/useSetStateReducer.js';
  * function.
  */
 const bindActionCreator =
-  (dispatch: Dispatch<SetStateAction<any>>) =>
+  (dispatch: Dispatch<SetState<any>>) =>
   (actionCreator: () => any) =>
   (...args: any) => {
     // eslint-disable-next-line prefer-spread
