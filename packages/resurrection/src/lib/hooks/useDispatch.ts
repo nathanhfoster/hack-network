@@ -1,7 +1,7 @@
-import { Dispatch } from 'react'
-import { Context, useContextSelector } from 'use-context-selector'
+import { Dispatch } from 'react';
+import { Context, useContext } from 'use-context-selector';
 
-import { SetStateAction } from './useSetStateReducer'
+import { SetStateAction } from './useSetStateReducer';
 
 /**
  * Creates a custom hook for accessing the dispatch function from a given context.
@@ -37,15 +37,19 @@ import { SetStateAction } from './useSetStateReducer'
  * ```
  */
 const createUseDispatchHook = <T = any>(
-  DispatchContext: Context<Dispatch<SetStateAction<T>>>
+  DispatchContext: Context<Dispatch<SetStateAction<T>>>,
 ): (() => Dispatch<SetStateAction<T>>) => {
   const useDispatch = () => {
-    const dispatch = useContextSelector(DispatchContext, (value) => value)
+    const dispatch = useContext(DispatchContext);
 
-    return dispatch
-  }
+    if (!dispatch) {
+      throw new Error('useDispatch must be used within a DispatchContext');
+    }
 
-  return useDispatch
-}
+    return dispatch;
+  };
 
-export default createUseDispatchHook
+  return useDispatch;
+};
+
+export default createUseDispatchHook;
