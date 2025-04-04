@@ -29,7 +29,8 @@
   },
   "dependencies": {
     "lodash-es": "^4.17.21",
-    "immer": "^10.1.1"
+    "immer": "^10.1.1",
+    "use-context-selector": "^2.0.0"
   },
   "peerDependencies": {
     "react": "^19.0.0",

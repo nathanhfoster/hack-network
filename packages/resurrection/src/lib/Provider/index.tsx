@@ -9,12 +9,12 @@ const Provider = <S extends object, A = any>({
   StateContext,
   reducer = setStateReducer as Reducer<S, A>,
   derivedStateFromProps,
-  //@ts-ignore
+  //@ts-expect-error - _currentValue is an internal property of Context
   initialState = derivedStateFromProps ?? StateContext?._currentValue,
   initializer = defaultInitializer,
   DispatchContext,
   children,
-}: ProviderProps<S, A>): JSX.Element => {
+}: ProviderProps<S, A>): React.ReactElement => {
   const [state, dispatch] = useReducerWithThunk(
     reducer,
     initialState,
@@ -24,11 +24,7 @@ const Provider = <S extends object, A = any>({
 
   const StateContextProvider = (
     <StateContext.Provider value={state}>
-      {isFunction(children) ? (
-        <StateContext.Consumer>{children}</StateContext.Consumer>
-      ) : (
-        children
-      )}
+      {isFunction(children) ? children(state) : children}
     </StateContext.Provider>
   );
 

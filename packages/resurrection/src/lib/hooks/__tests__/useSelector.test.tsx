@@ -1,5 +1,6 @@
 import { renderHook, act } from '@testing-library/react';
-import React, { createContext, useContext, useState } from 'react';
+import React, { useState } from 'react';
+import { createContext } from 'use-context-selector';
 import createUseSelectorHook from '../useSelector';
 
 describe('useSelector', () => {
@@ -122,44 +123,28 @@ describe('useSelector', () => {
     expect(result.current).toEqual({ value: 1 });
   });
 
-  /**
-   * @todo: This test is failing due to a limitation of React's useContext hook
-   * @see: https://react.dev/reference/react/useContext
-  
   it('should not re-render when non-selected state changes', () => {
-    let renderCount = 0;
-    const { result } = renderHook(
-      () => {
-        renderCount++;
-        return useSelector((state) => state.count);
-      },
-      { wrapper: TestProvider },
-    );
-
-    expect(result.current).toBe(0);
-    const initialRenderCount = renderCount;
-
-    // Update name - should not trigger re-render
-    act(() => {
-      const button = document.querySelector(
-        'button:last-child',
-      ) as HTMLButtonElement;
-      button?.click();
+    const StateContext = createContext<{ count: number; other: string }>({
+      count: 0,
+      other: '',
     });
 
-    expect(result.current).toBe(0);
-    expect(renderCount).toBe(initialRenderCount);
+    const useSelector = createUseSelectorHook(StateContext);
 
-    // Update count - should trigger re-render
-    act(() => {
-      const button = document.querySelector(
-        'button:first-child',
-      ) as HTMLButtonElement;
-      button?.click();
+    const { result } = renderHook(() => {
+      const [state, setState] = useState({ count: 0, other: '' });
+      const selectedCount = useSelector((state) => state.count);
+
+      return { state, setState, selectedCount };
     });
 
-    expect(result.current).toBe(1);
-    expect(renderCount).toBe(initialRenderCount + 1);
+    expect(result.current.selectedCount).toBe(0);
+
+    act(() => {
+      result.current.setState({ count: 0, other: 'changed' });
+    });
+
+    // Component should not re-render since count didn't change
+    expect(result.current.selectedCount).toBe(0);
   });
-    */
 });

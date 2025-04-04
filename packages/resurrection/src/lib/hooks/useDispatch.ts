@@ -1,4 +1,5 @@
-import { Context, Dispatch, useContext } from 'react'
+import { Dispatch } from 'react'
+import { Context, useContextSelector } from 'use-context-selector'
 
 import { SetStateAction } from './useSetStateReducer'
 
@@ -39,7 +40,7 @@ const createUseDispatchHook = <T = any>(
   DispatchContext: Context<Dispatch<SetStateAction<T>>>
 ): (() => Dispatch<SetStateAction<T>>) => {
   const useDispatch = () => {
-    const dispatch = useContext<Dispatch<SetStateAction<T>>>(DispatchContext)
+    const dispatch = useContextSelector(DispatchContext, (value) => value)
 
     return dispatch
   }

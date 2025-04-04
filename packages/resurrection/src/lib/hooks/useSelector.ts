@@ -1,8 +1,5 @@
-import { Context, useContext, useMemo } from 'react';
-
+import { Context, useContextSelector } from 'use-context-selector';
 import type { ComponentPropsType } from '../connect/types';
-import shallowEqual from '../utils/shallowEquals';
-import usePreviousValue from './usePreviousValue';
 
 const createUseSelectorHook = <State = unknown>(context: Context<State>) => {
   /**
@@ -11,21 +8,17 @@ const createUseSelectorHook = <State = unknown>(context: Context<State>) => {
    */
   const useSelector = <
     SelectedState = unknown,
-    Props extends ComponentPropsType = {},
+    Props extends ComponentPropsType = object,
   >(
     mapStateToSelector: (state: State, props?: Props) => SelectedState,
     props?: Props,
   ) => {
-    const state = useContext<State>(context);
-    const selectedState = mapStateToSelector(state, props);
-    const previousSelectedState = usePreviousValue(selectedState);
+    const selectedState = useContextSelector(context, (state) => {
+      const result = mapStateToSelector(state, props);
+      return result;
+    });
 
-    return useMemo(() => {
-      if (!shallowEqual(previousSelectedState, selectedState)) {
-        return selectedState;
-      }
-      return previousSelectedState;
-    }, [selectedState]);
+    return selectedState;
   };
 
   return useSelector;

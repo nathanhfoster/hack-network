@@ -1,9 +1,9 @@
-import React, { createContext, useReducer } from 'react';
+import React, { useReducer } from 'react';
 import { render, screen, fireEvent, act } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { vi } from 'vitest';
 import connect from '../index';
-
+import { createContext } from 'use-context-selector';
 // Test context and reducer
 type CounterState = { count: number };
 type CounterAction = { type: 'INCREMENT' } | { type: 'DECREMENT' };

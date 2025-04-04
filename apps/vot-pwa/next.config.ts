@@ -5,7 +5,7 @@ import withPWA, { PWAConfig } from 'next-pwa';
 import withBundleAnalyzer from '@next/bundle-analyzer';
 import { composePlugins, withNx } from '@nx/next';
 
-const ENABLE_BUNDLE_ANALYZER = process.env.NODE_ENV === 'development';
+const ENABLE_BUNDLE_ANALYZER = false;
 const DISABLE_PWA_CONFIG = false;
 
 const bundleAnalyzer = withBundleAnalyzer({

@@ -1,10 +1,10 @@
 import {
-  Context,
   FC,
   ForwardRefExoticComponent,
   NamedExoticComponent,
   RefAttributes,
 } from 'react';
+import type { Context } from 'use-context-selector';
 
 import { LoosePartial } from '../types';
 
