@@ -3,7 +3,7 @@ import { Context } from 'use-context-selector';
 import { ContextStoreInitializer, Thunk } from '../types';
 
 export type ProviderProps<S extends object, I extends object = S, A = any> = {
-  StateContext: Context<S>;
+  StateContext?: Context<S>;
   reducer?: (state: S, action: A) => S;
   initialState?: S;
   initializer?: ContextStoreInitializer<S, I>;

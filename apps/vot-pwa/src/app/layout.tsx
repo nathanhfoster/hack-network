@@ -3,10 +3,10 @@ import type { Metadata } from 'next';
 import MANIFEST from '../../public/manifest.json';
 import { AdminContextProvider } from '../context/AdminContext';
 import { cache } from 'react';
-import { AdminContextState } from '../context/AdminContext/types';
+import { AdminServerProps } from '../context/AdminContext/types';
 import { AdminRole } from '../context/AdminContext/types';
 
-const getAdminData = cache(async (): Promise<AdminContextState> => {
+const getAdminData = cache(async (): Promise<AdminServerProps> => {
   // Simulate API delay with timeout
   await new Promise((resolve) => setTimeout(resolve, 1000));
 

@@ -1,4 +1,4 @@
-import { Dispatch, RefObject } from 'react';
+import { ComponentType, Dispatch, ReactNode, RefObject } from 'react';
 
 import {
   IfMaybeUndefined,
@@ -202,3 +202,48 @@ type ThunkFunctionWithOptionalPayload<Param = void, S = any, A = any> = (
 export type LoosePartial<T> = {
   [P in keyof T]?: T[P] | undefined;
 };
+
+export type DataComponent<T extends object> = {
+  data: T[];
+};
+
+export type DataConfigComponent<
+  T extends object,
+  C extends object = {},
+> = DataComponent<T> & {
+  config: C[];
+};
+
+export type Ensure<T, K extends keyof T> = T & PickEnsure<T, K>;
+
+export type Falsely = null | undefined | false | typeof NaN | 0 | bigint | '';
+
+export type LayoutProps = {
+  Footer?: ComponentType;
+  Header?: ComponentType;
+  children: ReactNode;
+};
+
+export type Nullable<T> = T | null;
+
+export type NumberBoolean = 0 | 1;
+
+export type PickEnsure<T, K extends keyof T> = Required<
+  RequiredNotNull<Pick<T, K>>
+>;
+
+export type PickPartial<T, K extends keyof T> = Partial<Pick<T, K>>;
+
+export type RequiredNotNull<T> = {
+  [P in keyof T]: NonNullable<T[P]>;
+};
+
+export type Subset<T, K extends keyof T> = Pick<T, K>;
+
+export type Truthy<T> = T extends Falsely ? never : T;
+
+export type ValueComponent<T = any> = {
+  value: T;
+};
+
+export type Writeable<T> = { -readonly [P in keyof T]: T[P] };

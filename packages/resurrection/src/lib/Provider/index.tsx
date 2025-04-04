@@ -21,6 +21,10 @@ const Provider = <S extends object, A extends object = S>({
     derivedStateFromProps,
   );
 
+  if (!StateContext) {
+    return isFunction(children) ? children(state) : children;
+  }
+
   const StateContextProvider = (
     <StateContext.Provider value={state}>
       {isFunction(children) ? children(state) : children}
