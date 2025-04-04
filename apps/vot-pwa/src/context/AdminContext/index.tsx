@@ -1,6 +1,6 @@
 'use client';
 
-import { FC, Reducer } from 'react';
+import { FC } from 'react';
 import {
   createContextWithName,
   Provider,
