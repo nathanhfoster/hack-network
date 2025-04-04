@@ -37,6 +37,7 @@ export default defineConfig(() => ({
     outDir: 'dist',
     emptyOutDir: true,
     reportCompressedSize: true,
+    sourcemap: true,
     commonjsOptions: {
       transformMixedEsModules: true,
     },
@@ -63,12 +64,6 @@ export default defineConfig(() => ({
         sourcemap: true,
         // Add chunk size warnings
         chunkFileNames: '[name]-[hash].js',
-        // Enable tree-shaking
-        treeshake: {
-          moduleSideEffects: false,
-          propertyReadSideEffects: false,
-          tryCatchDeoptimization: false,
-        },
       },
     },
     // Enable minification
