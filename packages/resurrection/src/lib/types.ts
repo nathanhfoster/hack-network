@@ -1,6 +1,5 @@
 import { Dispatch, RefObject } from 'react';
 
-import { ProviderProps } from './Provider/types';
 import {
   IfMaybeUndefined,
   IfVoid,
@@ -89,18 +88,13 @@ export interface BaseActionCreator<P, T extends string, M = never, E = never> {
   ) => action is PayloadAction<T, P, M, E>;
 }
 
-export type ContextProviderProps<S, A extends ActionCreatorType = any> = Pick<
-  ProviderProps<S, A>,
-  'initialState' | 'derivedStateFromProps' | 'children'
->;
-
 export type ContextStore<S> = S & { error?: ContextStoreError };
 
 export type ContextStoreActionCallback<S> = (state: S) => S;
 
 export type ContextStoreError = unknown | string;
 
-export type ContextStoreInitializer<A = any, S = A> = (
+export type ContextStoreInitializer<S = any, A = any> = (
   arg?: A,
   edit?: boolean,
 ) => S;
@@ -108,15 +102,6 @@ export type ContextStoreInitializer<A = any, S = A> = (
 export type ActionCreatorType = {
   [key: string]: (...args: any[]) => any;
 };
-
-export type ActionCreatorDispatch<A extends ActionCreatorType> = Dispatch<
-  ReturnType<A[keyof A]> | Partial<A>
->;
-
-export type ContextStoreInitializerWithActions<
-  A extends ActionCreatorType,
-  S = any,
-> = (arg?: A, edit?: boolean) => S;
 
 export type DispatchMaybeWithAction<A = any> = (value?: A) => void;
 

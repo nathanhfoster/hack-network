@@ -1,5 +1,5 @@
+import { Dispatch } from 'react';
 import { useContext, Context } from 'use-context-selector';
-import type { ActionCreatorType, ActionCreatorDispatch } from '../types';
 
 /**
  * Creates a custom hook for accessing the dispatch function from a given context.
@@ -34,8 +34,8 @@ import type { ActionCreatorType, ActionCreatorDispatch } from '../types';
  * };
  * ```
  */
-const createUseDispatchHook = <A extends ActionCreatorType>(
-  DispatchContext: Context<ActionCreatorDispatch<A>>,
+const createUseDispatchHook = <A extends object = any>(
+  DispatchContext: Context<Dispatch<A>>,
 ) => {
   const useDispatch = () => {
     const dispatch = useContext(DispatchContext);

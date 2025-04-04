@@ -8,7 +8,7 @@ import getDerivedStateFromProps from '../utils/getDerivedStateFromProps';
 import useSetStateReducer from './useSetStateReducer';
 import useEffectAfterMount from './useEffectAfterMount';
 
-import type { ActionCreatorType } from '../types';
+import type { ContextStoreInitializer } from '../types';
 
 /**
  * Augments React's useReducer() hook
@@ -16,14 +16,11 @@ import type { ActionCreatorType } from '../types';
  */
 export default function useReducerWithThunk<
   S extends object,
-  A extends ActionCreatorType,
+  A extends object = S,
 >(
-  reducer: (
-    state: S,
-    action: ReturnType<A[keyof A]> | { type: string; payload: any },
-  ) => S,
+  reducer: (state: S, action: any) => S,
   initialState: S,
-  initializer?: (arg?: A, edit?: boolean) => S,
+  initializer?: ContextStoreInitializer<S, A>,
   derivedStateFromProps?: S,
 ): [S, Dispatch<SetStateAction<A>>] {
   // Only keep the props that changed to override the state
@@ -77,17 +74,13 @@ export default function useReducerWithThunk<
 
   // Reducer
   const reduce = useCallback(
-    (action: ReturnType<A[keyof A]> | { type: string; payload: any }) =>
-      reducer(getState(), action),
+    (action: any) => reducer(getState(), action),
     [reducer, getState],
   );
 
   // Augmented dispatcher
   const dispatch = useCallback(
-    (
-      action: ReturnType<A[keyof A]> | { type: string; payload: any },
-      callback?: (_state?: unknown) => void,
-    ) => {
+    (action: any, callback?: (_state?: unknown) => void) => {
       if (isFunction(action)) {
         return action(dispatch, getState);
       }

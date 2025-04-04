@@ -1,14 +1,13 @@
 'use client';
 
+import { Dispatch } from 'react';
 import { createContext } from 'use-context-selector';
 
 import { DEFAULT_DISPATCH_CONTEXT } from '../constants';
 import createUseDispatchHook from '../hooks/useDispatch';
 import createUseSelectorHook from '../hooks/useSelector';
 
-import { ActionCreatorType, ActionCreatorDispatch } from '../types';
-
-const createContextWithName = <S, A extends ActionCreatorType>(
+const createContextWithName = <S extends object, A extends object = S>(
   displayName: string,
   initialState: S,
   initialDispatch = DEFAULT_DISPATCH_CONTEXT,
@@ -18,8 +17,8 @@ const createContextWithName = <S, A extends ActionCreatorType>(
   StateContext.displayName = `${displayName}StateContext`;
   const useSelector = createUseSelectorHook(StateContext);
 
-  const DispatchContext = createContext<ActionCreatorDispatch<A>>(
-    initialDispatch as unknown as ActionCreatorDispatch<A>,
+  const DispatchContext = createContext<Dispatch<A>>(
+    initialDispatch as unknown as Dispatch<A>,
   );
 
   DispatchContext.displayName = `${displayName}DispatchContext`;

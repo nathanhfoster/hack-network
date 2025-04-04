@@ -2,6 +2,7 @@
 export type { Draft } from 'immer';
 export type * from './types';
 export type * from './utils/createReducer.types';
+export type * from './Provider/types';
 
 // Connect Types
 export type * from './connect/types';
