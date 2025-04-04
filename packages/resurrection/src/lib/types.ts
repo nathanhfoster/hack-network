@@ -1,12 +1,12 @@
 import { Dispatch, MutableRefObject } from 'react';
 
-import { ProviderProps } from './Provider/types.js';
+import { ProviderProps } from './Provider/types';
 import {
   IfMaybeUndefined,
   IfVoid,
   IsAny,
   IsUnknownOrNonInferrable,
-} from './utils/tsHelpers.js';
+} from './utils/tsHelpers';
 
 /**
  * Represent a generic function.

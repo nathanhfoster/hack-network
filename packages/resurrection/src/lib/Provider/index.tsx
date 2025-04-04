@@ -1,4 +1,3 @@
-import { Reducer } from 'react';
 import { isFunction } from '../utils';
 import useReducerWithThunk from '../hooks/useReducerWithThunk';
 import setStateReducer from '../reducers/setStateReducer';
@@ -7,7 +6,7 @@ import type { ProviderProps } from './types';
 
 const Provider = <S extends object, A = any>({
   StateContext,
-  reducer = setStateReducer as Reducer<S, A>,
+  reducer = setStateReducer,
   derivedStateFromProps,
   //@ts-expect-error - _currentValue is an internal property of Context
   initialState = derivedStateFromProps ?? StateContext?._currentValue,
@@ -33,7 +32,7 @@ const Provider = <S extends object, A = any>({
   }
 
   return (
-    <DispatchContext.Provider value={dispatch as A}>
+    <DispatchContext.Provider value={dispatch}>
       {StateContextProvider}
     </DispatchContext.Provider>
   );

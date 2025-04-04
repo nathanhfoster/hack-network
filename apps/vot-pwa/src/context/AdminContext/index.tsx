@@ -37,14 +37,9 @@ export const AdminContextProvider: FC<AdminContextProviderProps> = ({
     <Provider
       {...restOfProps}
       StateContext={AdminStateContext}
-      reducer={
-        adminSlice.reducer as unknown as Reducer<
-          AdminContextState,
-          AdminActions
-        >
-      }
+      reducer={adminSlice.reducer}
       initializer={getAdminInitialState}
-      DispatchContext={AdminDispatchContext as any}
+      DispatchContext={AdminDispatchContext}
     >
       {children}
     </Provider>
