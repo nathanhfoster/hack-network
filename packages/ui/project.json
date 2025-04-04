@@ -15,7 +15,7 @@
       "outputs": ["{options.outputPath}"],
       "defaultConfiguration": "production",
       "options": {
-        "outputPath": "dist/packages/ui"
+        "outputPath": "packages/ui/dist"
       }
     },
     "storybook": {

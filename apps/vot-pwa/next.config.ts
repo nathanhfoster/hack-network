@@ -55,6 +55,10 @@ const nextConfig: NextConfig = {
     // See: https://github.com/gregberge/svgr
     svgr: false,
   },
+  transpilePackages: ['@hack-network/ui', 'resurrection'],
+  experimental: {
+    externalDir: true,
+  },
   output: 'export',
   trailingSlash: true,
   reactStrictMode: true,
