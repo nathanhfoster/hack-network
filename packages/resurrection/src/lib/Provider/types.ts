@@ -1,13 +1,20 @@
-import { ReactNode, Reducer, Dispatch } from 'react';
+import { ReactNode } from 'react';
 import { Context } from 'use-context-selector';
-import { ContextStoreInitializer } from '../types';
+import {
+  ActionCreatorType,
+  ActionCreatorDispatch,
+  ContextStoreInitializerWithActions,
+} from '../types';
 
-export type ProviderProps<S = any, A = any> = {
+export type ProviderProps<S = any, A extends ActionCreatorType = any> = {
   StateContext: Context<S>;
-  reducer?: Reducer<S, A>;
+  reducer?: (
+    state: S,
+    action: ReturnType<A[keyof A]> | { type: string; payload: any },
+  ) => S;
   initialState?: S;
-  initializer?: ContextStoreInitializer<A, S>;
+  initializer?: ContextStoreInitializerWithActions<A, S>;
   derivedStateFromProps?: S;
-  DispatchContext?: Context<Dispatch<A>>;
+  DispatchContext?: Context<ActionCreatorDispatch<A>>;
   children: ReactNode | ((...args: any[]) => any);
 };

@@ -1,7 +1,5 @@
-import { Dispatch } from 'react';
-import { Context, useContext } from 'use-context-selector';
-
-import { SetStateAction } from './useSetStateReducer';
+import { useContext, Context } from 'use-context-selector';
+import type { ActionCreatorType, ActionCreatorDispatch } from '../types';
 
 /**
  * Creates a custom hook for accessing the dispatch function from a given context.
@@ -9,7 +7,7 @@ import { SetStateAction } from './useSetStateReducer';
  * This utility is useful for managing state updates in a React application
  * by providing a strongly-typed dispatch function derived from a context.
  *
- * @template T - The type of the state managed by the dispatch function. Defaults to `any`.
+ * @template A - The type of the action creator.
  * @param DispatchContext - The React context that provides the dispatch function.
  *                          This context should be created using `React.createContext`.
  * @returns A custom hook that retrieves the dispatch function from the provided context.
@@ -36,16 +34,11 @@ import { SetStateAction } from './useSetStateReducer';
  * };
  * ```
  */
-const createUseDispatchHook = <T = any>(
-  DispatchContext: Context<Dispatch<SetStateAction<T>>>,
-): (() => Dispatch<SetStateAction<T>>) => {
+const createUseDispatchHook = <A extends ActionCreatorType>(
+  DispatchContext: Context<ActionCreatorDispatch<A>>,
+) => {
   const useDispatch = () => {
     const dispatch = useContext(DispatchContext);
-
-    if (!dispatch) {
-      throw new Error('useDispatch must be used within a DispatchContext');
-    }
-
     return dispatch;
   };
 

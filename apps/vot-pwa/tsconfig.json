@@ -17,8 +17,7 @@
       }
     ],
     "paths": {
-      "@/*": ["./src/*"],
-      "resurrection": ["../../packages/resurrection/src"]
+      "@/*": ["./src/*"]
     },
     "types": ["jest", "node"],
     "outDir": "dist",

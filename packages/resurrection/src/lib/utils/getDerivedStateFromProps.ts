@@ -6,7 +6,7 @@ import { isArray, isObject } from '../utils';
 
 const getDerivedStateFromProps = <S extends object>(
   state: S,
-  props: Pick<S, any>
+  props: Pick<S, any>,
 ): S => {
   if (
     !isObject(state) ||
