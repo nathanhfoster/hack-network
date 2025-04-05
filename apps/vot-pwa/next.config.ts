@@ -6,7 +6,8 @@ import withBundleAnalyzer from '@next/bundle-analyzer';
 import { composePlugins, withNx } from '@nx/next';
 
 const ENABLE_BUNDLE_ANALYZER = false;
-const DISABLE_PWA_CONFIG = false;
+
+const DISABLE_PWA_CONFIG = process.env.NODE_ENV === 'development';
 
 const bundleAnalyzer = withBundleAnalyzer({
   enabled: ENABLE_BUNDLE_ANALYZER,
@@ -18,6 +19,7 @@ const pwaConfig: PWAConfig = {
   skipWaiting: true,
   clientsClaim: true,
   disable: DISABLE_PWA_CONFIG,
+  // buildExcludes: [/app-build-manifest.json$/],
   runtimeCaching: [
     {
       urlPattern: /^\/_next\/static\/.*/i,
@@ -45,9 +47,7 @@ const pwaConfig: PWAConfig = {
   ],
 };
 
-const withPWAConfigured = DISABLE_PWA_CONFIG
-  ? (config: NextConfig) => config
-  : withPWA(pwaConfig);
+const withPWAConfigured = withPWA(pwaConfig);
 
 const nextConfig: NextConfig = {
   nx: {

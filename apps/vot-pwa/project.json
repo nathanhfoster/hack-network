@@ -1,0 +1,48 @@
+{
+  "name": "vot-pwa",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/vot-pwa",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nx/next:build",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "outputPath": "dist/apps/vot-pwa"
+      },
+      "configurations": {
+        "development": {
+          "outputPath": "apps/vot-pwa"
+        },
+        "production": {}
+      }
+    },
+    "serve": {
+      "executor": "@nx/next:server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "vot-pwa:build",
+        "dev": false
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "vot-pwa:build:development",
+          "dev": true
+        },
+        "production": {
+          "buildTarget": "vot-pwa:build:production",
+          "dev": false
+        }
+      }
+    },
+    "dev": {
+      "executor": "@nx/next:server",
+      "options": {
+        "buildTarget": "vot-pwa:build:development",
+        "dev": true
+      }
+    }
+  },
+  "tags": []
+}

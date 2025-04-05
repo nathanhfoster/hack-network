@@ -1,5 +1,5 @@
 import './global.css';
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import MANIFEST from '../../public/manifest.json';
 import { AdminContextProvider } from '../context/AdminContext';
 import { cache } from 'react';
@@ -32,13 +32,19 @@ const getAdminData = cache(async (): Promise<AdminServerProps> => {
   };
 });
 
+export const viewport: Viewport = {
+  themeColor: MANIFEST.theme_color,
+  colorScheme: 'normal',
+  width: 'device-width',
+  initialScale: 1,
+};
+
 export const metadata: Metadata = {
   title: MANIFEST.name,
   description: MANIFEST.description,
   applicationName: MANIFEST.name,
   generator: 'nextjs',
-  themeColor: '#000000',
-  colorScheme: 'normal',
+
   manifest: '/manifest.json',
   icons: MANIFEST.icons.map((i) => ({ rel: 'icon', url: i.src })),
   openGraph: {
