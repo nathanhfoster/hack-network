@@ -142,6 +142,7 @@ export type PayloadAction<
 export type PayloadActionCreator<P = void, T extends string = string> = {
   payload: P;
   type: T;
+  (payload: P): { type: T; payload: P };
 };
 
 export type PrepareAction<P> =

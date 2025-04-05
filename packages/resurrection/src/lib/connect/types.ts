@@ -6,7 +6,11 @@ import {
 } from 'react';
 import type { Context } from 'use-context-selector';
 
-import { LoosePartial, ActionCreatorWithPayload } from '../types';
+import {
+  LoosePartial,
+  ActionCreatorWithPayload,
+  PayloadActionCreator,
+} from '../types';
 
 export type ComponentPropsType<T extends object = object> = T;
 
@@ -81,7 +85,9 @@ export type MapDispatchToPropsArrayItem<
     | LoosePartial<
         Record<
           keyof MDTP,
-          ActionCreatorWithPayload<any> | ((...args: any[]) => any)
+          | ActionCreatorWithPayload<any, string>
+          | PayloadActionCreator<any, string>
+          | ((...args: any[]) => any)
         >
       >
     | ((
