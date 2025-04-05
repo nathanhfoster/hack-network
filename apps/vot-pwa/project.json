@@ -23,7 +23,7 @@
       "defaultConfiguration": "development",
       "options": {
         "buildTarget": "vot-pwa:build",
-        "dev": false
+        "dev": true
       },
       "configurations": {
         "development": {

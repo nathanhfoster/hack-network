@@ -21,9 +21,8 @@ import { Button } from '@hack-network/ui';
 import { ActionCreatorWithPayload } from 'resurrection';
 
 const HomeView: FC<HomeViewConnectedProps> = ({ theme, UpdateSettings }) => {
-  console.log('theme', theme);
   const handleUpdateSettings = () => {
-    UpdateSettings({ language: 'spanish' });
+    UpdateSettings({ language: 'spanish', theme: 'dark' });
   };
 
   return (
