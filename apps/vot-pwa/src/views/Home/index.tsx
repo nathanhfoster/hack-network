@@ -1,7 +1,7 @@
 'use client';
 
 import { FC } from 'react';
-import { connect, MapDispatchToPropsArrayItem } from 'resurrection';
+import { connect } from 'resurrection';
 import {
   AdminDispatchContext,
   AdminStateContext,
