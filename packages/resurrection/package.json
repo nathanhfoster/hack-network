@@ -1,6 +1,6 @@
 {
   "name": "resurrection",
-  "version": "1.6.19",
+  "version": "1.6.20",
   "type": "module",
   "main": "./dist/index.mjs",
   "module": "./dist/index.mjs",
