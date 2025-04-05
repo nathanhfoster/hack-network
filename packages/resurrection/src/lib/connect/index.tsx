@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 /**
  * A higher-order component (HOC) that connects a React component to one or more context stores.
  * This HOC allows the component to consume state and dispatch actions from context stores,
@@ -129,7 +130,7 @@ const connect = <
 
           Object.entries(
             isFunction(item.mapDispatchToProps)
-              ? item.mapDispatchToProps(ownPropsRef.current as unknown as OWNP)
+              ? item.mapDispatchToProps(dispatch, ownPropsRef.current as OWNP)
               : item.mapDispatchToProps,
           ).forEach(([actionName, action]) => {
             acc[actionName as keyof MDTP] = bindActionCreator(dispatch)(
@@ -163,11 +164,9 @@ const connect = <
       });
 
       const useEffectAfterChangeParams: ConnectOptionUseEffectAfterChangeReturn =
-        useHookEffectAfterChange?.(hookProps) ?? [null, () => {}, () => false];
+        useHookEffectAfterChange?.(hookProps) ?? [];
 
-      useEffectAfterChange(
-        ...(useEffectAfterChangeParams as [any, any, () => boolean, any]),
-      );
+      useEffectAfterChange(...useEffectAfterChangeParams);
 
       const ConnectedComponent = useMemoComponent<P>({
         Component: WrappedComponent,

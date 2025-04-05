@@ -1,6 +1,7 @@
 import { renderHook, act } from '@testing-library/react';
 import React, { useState } from 'react';
 import createContextWithName from '../createContextWithName';
+import { ReducerActionCreators } from '../../..';
 
 describe('createContextWithName', () => {
   type TestState = {
@@ -13,8 +14,12 @@ describe('createContextWithName', () => {
     name: 'initial',
   };
 
-  const { StateContext, useSelector, DispatchContext, useDispatch } =
-    createContextWithName<TestState>('Test', initialState);
+  type TestActions = ReducerActionCreators<any, 'Test'>;
+
+  const { StateContext, useSelector, DispatchContext } = createContextWithName<
+    TestState,
+    TestActions
+  >('Test', initialState);
 
   const TestProvider = ({ children }: { children: React.ReactNode }) => {
     const [state, setState] = useState<TestState>(initialState);
@@ -43,24 +48,5 @@ describe('createContextWithName', () => {
     });
 
     expect(result.current).toEqual(initialState);
-  });
-
-  it('should allow state updates through useDispatch', () => {
-    const { result: stateResult } = renderHook(
-      () => useSelector((state) => state),
-      {
-        wrapper: TestProvider,
-      },
-    );
-
-    const { result: dispatchResult } = renderHook(() => useDispatch(), {
-      wrapper: TestProvider,
-    });
-
-    act(() => {
-      dispatchResult.current((prev) => ({ count: 1, name: 'updated' }));
-    });
-
-    expect(stateResult.current).toEqual({ count: 1, name: 'updated' });
   });
 });

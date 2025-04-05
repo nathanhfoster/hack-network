@@ -11,7 +11,7 @@ type Condition<T> = (previousValue?: T, value?: T) => boolean;
 
 const useEffectAfterChange = <T = any>(
   value: T,
-  callback: Callback<T>,
+  callback: Callback<T> = () => undefined,
   condition: Condition<T> = (prev, curr) => isNotNotTrue(prev) && !curr,
   debounce = 0,
 ) => {

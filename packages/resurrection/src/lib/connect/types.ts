@@ -6,9 +6,9 @@ import {
 } from 'react';
 import type { Context } from 'use-context-selector';
 
-import { LoosePartial } from '../types';
+import { LoosePartial, ActionCreatorWithPayload } from '../types';
 
-export type ComponentPropsType<T extends object = {}> = T;
+export type ComponentPropsType<T extends object = object> = T;
 
 export type ConnectedComponent<P extends ComponentPropsType> =
   | ForwardRefExoticComponent<RefAttributes<unknown>>
@@ -78,8 +78,14 @@ export type MapDispatchToPropsArrayItem<
 > = {
   context: Context<React.Dispatch<T>>;
   mapDispatchToProps:
-    | LoosePartial<Record<keyof MDTP, (...args: any[]) => any>>
+    | LoosePartial<
+        Record<
+          keyof MDTP,
+          ActionCreatorWithPayload<any> | ((...args: any[]) => any)
+        >
+      >
     | ((
+        dispatch: React.Dispatch<T>,
         ownProps: P,
       ) => LoosePartial<Record<keyof MDTP, (...args: any[]) => any>>);
 };

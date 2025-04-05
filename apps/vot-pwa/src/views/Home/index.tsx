@@ -56,10 +56,7 @@ export default connect<
     {
       context: AdminDispatchContext,
       mapDispatchToProps: {
-        UpdateSettings:
-          adminContextActions.UpdateSettings as unknown as ActionCreatorWithPayload<
-            Partial<AdminSettings>
-          >,
+        UpdateSettings: adminContextActions.UpdateSettings,
       },
     },
   ],

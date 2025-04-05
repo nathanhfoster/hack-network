@@ -1,15 +1,13 @@
+import { adminContextActions } from '../../context/AdminContext';
 import { AdminSettings } from '../../context/AdminContext/types';
-import {
-  ConnectedComponentProps,
-  ActionCreatorWithPayload,
-} from 'resurrection';
+import { ConnectedComponentProps } from 'resurrection';
 
 export interface HomeViewMapStateToProps {
   theme: AdminSettings['theme'];
 }
 
 export type HomeViewMapDispatchToProps = {
-  UpdateSettings: ActionCreatorWithPayload<Partial<AdminSettings>>;
+  UpdateSettings: typeof adminContextActions.UpdateSettings;
 };
 
 export type HomeViewOwnProps = object;
