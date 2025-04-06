@@ -23,6 +23,12 @@ importers:
       date-fns-tz:
         specifier: ^3.2.0
         version: 3.2.0(date-fns@4.1.0)
+      immer:
+        specifier: ^10.1.1
+        version: 10.1.1
+      lodash-es:
+        specifier: ^4.17.21
+        version: 4.17.21
       next:
         specifier: 15.2.4
         version: 15.2.4(@babel/core@7.26.10)(@playwright/test@1.51.1)(babel-plugin-macros@3.1.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.86.0)
@@ -41,6 +47,9 @@ importers:
       tailwindcss:
         specifier: ^4.0.17
         version: 4.0.17
+      use-context-selector:
+        specifier: ^2.0.0
+        version: 2.0.0(react@19.0.0)(scheduler@0.25.0)
     devDependencies:
       '@babel/core':
         specifier: ^7.14.5
@@ -119,7 +128,7 @@ importers:
         version: 8.6.11(@storybook/test@8.6.11(storybook@8.6.11(prettier@3.5.3)))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(storybook@8.6.11(prettier@3.5.3))(typescript@5.7.3)
       '@storybook/react-vite':
         specifier: ^8.6.11
-        version: 8.6.11(@storybook/test@8.6.11(storybook@8.6.11(prettier@3.5.3)))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(rollup@2.79.2)(storybook@8.6.11(prettier@3.5.3))(typescript@5.7.3)(vite@6.2.3(@types/node@20.17.28)(jiti@2.4.2)(less@4.1.3)(lightningcss@1.29.2)(sass-embedded@1.86.0)(sass@1.86.0)(stylus@0.64.0)(terser@5.39.0)(yaml@2.7.1))
+        version: 8.6.11(@storybook/test@8.6.11(storybook@8.6.11(prettier@3.5.3)))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(rollup@4.38.0)(storybook@8.6.11(prettier@3.5.3))(typescript@5.7.3)(vite@6.2.3(@types/node@20.17.28)(jiti@2.4.2)(less@4.1.3)(lightningcss@1.29.2)(sass-embedded@1.86.0)(sass@1.86.0)(stylus@0.64.0)(terser@5.39.0)(yaml@2.7.1))
       '@swc-node/register':
         specifier: ~1.9.1
         version: 1.9.2(@swc/core@1.5.29(@swc/helpers@0.5.15))(@swc/types@0.1.20)(typescript@5.7.3)
@@ -147,6 +156,9 @@ importers:
       '@types/jest':
         specifier: ^29.5.12
         version: 29.5.14
+      '@types/lodash-es':
+        specifier: ^4.17.12
+        version: 4.17.12
       '@types/node':
         specifier: ^20.0.0
         version: 20.17.28
@@ -216,6 +228,9 @@ importers:
       prettier:
         specifier: ^3.5.3
         version: 3.5.3
+      sharp:
+        specifier: 0.33.5
+        version: 0.33.5
       storybook:
         specifier: ^8.6.11
         version: 8.6.11(prettier@3.5.3)
@@ -229,7 +244,7 @@ importers:
         specifier: ^2.8.1
         version: 2.8.1
       typescript:
-        specifier: ~5.7.2
+        specifier: ~5.7.3
         version: 5.7.3
       typescript-eslint:
         specifier: ^8.28.0
@@ -242,7 +257,7 @@ importers:
         version: 6.2.3(@types/node@20.17.28)(jiti@2.4.2)(less@4.1.3)(lightningcss@1.29.2)(sass-embedded@1.86.0)(sass@1.86.0)(stylus@0.64.0)(terser@5.39.0)(yaml@2.7.1)
       vite-plugin-dts:
         specifier: ^4.5.3
-        version: 4.5.3(@types/node@20.17.28)(rollup@2.79.2)(typescript@5.7.3)(vite@6.2.3(@types/node@20.17.28)(jiti@2.4.2)(less@4.1.3)(lightningcss@1.29.2)(sass-embedded@1.86.0)(sass@1.86.0)(stylus@0.64.0)(terser@5.39.0)(yaml@2.7.1))
+        version: 4.5.3(@types/node@20.17.28)(rollup@4.38.0)(typescript@5.7.3)(vite@6.2.3(@types/node@20.17.28)(jiti@2.4.2)(less@4.1.3)(lightningcss@1.29.2)(sass-embedded@1.86.0)(sass@1.86.0)(stylus@0.64.0)(terser@5.39.0)(yaml@2.7.1))
       vitest:
         specifier: ^3.0.9
         version: 3.0.9(@types/node@20.17.28)(@vitest/ui@3.0.9)(jiti@2.4.2)(jsdom@22.1.0)(less@4.1.3)(lightningcss@1.29.2)(sass-embedded@1.86.0)(sass@1.86.0)(stylus@0.64.0)(terser@5.39.0)(yaml@2.7.1)
@@ -252,42 +267,56 @@ importers:
       '@hack-network/ui':
         specifier: workspace:*
         version: link:../../packages/ui
+      '@tailwindcss/vite':
+        specifier: 4.1.3
+        version: 4.1.3(vite@6.2.3(@types/node@20.17.28)(jiti@2.4.2)(less@4.1.3)(lightningcss@1.29.2)(sass-embedded@1.86.0)(sass@1.86.0)(stylus@0.64.0)(terser@5.39.0)(yaml@2.7.1))
+      date-fns:
+        specifier: 4.1.0
+        version: 4.1.0
+      date-fns-tz:
+        specifier: 3.2.0
+        version: 3.2.0(date-fns@4.1.0)
+      immer:
+        specifier: 10.1.1
+        version: 10.1.1
+      lodash-es:
+        specifier: 4.17.21
+        version: 4.17.21
+      next:
+        specifier: 15.2.4
+        version: 15.2.4(@babel/core@7.26.10)(@playwright/test@1.51.1)(babel-plugin-macros@3.1.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.86.0)
+      next-pwa:
+        specifier: 5.6.0
+        version: 5.6.0(@babel/core@7.26.10)(@swc/core@1.5.29(@swc/helpers@0.5.15))(@types/babel__core@7.20.5)(esbuild@0.25.1)(next@15.2.4(@babel/core@7.26.10)(@playwright/test@1.51.1)(babel-plugin-macros@3.1.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.86.0))(webpack@5.98.0(@swc/core@1.5.29(@swc/helpers@0.5.15))(esbuild@0.25.1))
+      react:
+        specifier: 19.0.0
+        version: 19.0.0
+      react-dom:
+        specifier: 19.0.0
+        version: 19.0.0(react@19.0.0)
       resurrection:
         specifier: workspace:*
         version: link:../../packages/resurrection
+      sharp:
+        specifier: 0.33.5
+        version: 0.33.5
+      typescript:
+        specifier: 5.7.3
+        version: 5.7.3
+      use-context-selector:
+        specifier: 2.0.0
+        version: 2.0.0(react@19.0.0)(scheduler@0.25.0)
 
   apps/vot-pwa-e2e: {}
 
   packages/resurrection:
     dependencies:
-      immer:
-        specifier: ^10.1.1
-        version: 10.1.1
-      lodash-es:
-        specifier: ^4.17.21
-        version: 4.17.21
       react:
         specifier: ^19.0.0
         version: 19.0.0
       react-dom:
         specifier: ^19.0.0
         version: 19.0.0(react@19.0.0)
-      use-context-selector:
-        specifier: ^2.0.0
-        version: 2.0.0(react@19.0.0)(scheduler@0.25.0)
-    devDependencies:
-      '@types/lodash-es':
-        specifier: ^4.17.12
-        version: 4.17.12
-      '@types/react':
-        specifier: ^19.0.0
-        version: 19.0.0
-      '@types/react-dom':
-        specifier: ^19.0.0
-        version: 19.0.0
-      next:
-        specifier: 15.2.4
-        version: 15.2.4(@babel/core@7.26.10)(@playwright/test@1.51.1)(babel-plugin-macros@3.1.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.86.0)
 
   packages/ui: {}
 
@@ -3737,6 +3766,13 @@ packages:
 
   autoprefixer@10.4.13:
     resolution: {integrity: sha512-49vKpMqcZYsJjwotvt4+h/BCjJVnhGwcLpDt5xkcaOG3eLrG/HUYLagrihYsQ+qrIBgIzX1Rw7a6L8I/ZA1Atg==}
+    engines: {node: ^10 || ^12 || >=14}
+    hasBin: true
+    peerDependencies:
+      postcss: ^8.1.0
+
+  autoprefixer@10.4.21:
+    resolution: {integrity: sha512-O+A6LWV5LDHSJD3LjHYoNi4VLsj/Whi7k6zG12xTYaU4cQ8oxQGckXNX8cRHK5yOZ/ppVHe0ZBXGzSV9jXdVbQ==}
     engines: {node: ^10 || ^12 || >=14}
     hasBin: true
     peerDependencies:
@@ -11311,7 +11347,7 @@ snapshots:
       '@nx/js': 20.6.4(@babel/traverse@7.27.0)(@swc-node/register@1.9.2(@swc/core@1.5.29(@swc/helpers@0.5.15))(@swc/types@0.1.20)(typescript@5.7.3))(@swc/core@1.5.29(@swc/helpers@0.5.15))(nx@20.6.4(@swc-node/register@1.9.2(@swc/core@1.5.29(@swc/helpers@0.5.15))(@swc/types@0.1.20)(typescript@5.7.3))(@swc/core@1.5.29(@swc/helpers@0.5.15)))(verdaccio@6.1.0(encoding@0.1.13)(typanion@3.14.0))
       '@phenomnomnominal/tsquery': 5.0.1(typescript@5.7.3)
       ajv: 8.17.1
-      autoprefixer: 10.4.13(postcss@8.5.3)
+      autoprefixer: 10.4.21(postcss@8.5.3)
       babel-loader: 9.2.1(@babel/core@7.26.10)(webpack@5.98.0(@swc/core@1.5.29(@swc/helpers@0.5.15))(esbuild@0.25.1))
       browserslist: 4.24.4
       copy-webpack-plugin: 10.2.4(webpack@5.98.0(@swc/core@1.5.29(@swc/helpers@0.5.15))(esbuild@0.25.1))
@@ -11507,13 +11543,13 @@ snapshots:
       picomatch: 2.3.1
       rollup: 2.79.2
 
-  '@rollup/pluginutils@5.1.4(rollup@2.79.2)':
+  '@rollup/pluginutils@5.1.4(rollup@4.38.0)':
     dependencies:
       '@types/estree': 1.0.7
       estree-walker: 2.0.2
       picomatch: 4.0.2
     optionalDependencies:
-      rollup: 2.79.2
+      rollup: 4.38.0
 
   '@rollup/rollup-android-arm-eabi@4.38.0':
     optional: true
@@ -11846,10 +11882,10 @@ snapshots:
       react-dom: 19.0.0(react@19.0.0)
       storybook: 8.6.11(prettier@3.5.3)
 
-  '@storybook/react-vite@8.6.11(@storybook/test@8.6.11(storybook@8.6.11(prettier@3.5.3)))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(rollup@2.79.2)(storybook@8.6.11(prettier@3.5.3))(typescript@5.7.3)(vite@6.2.3(@types/node@20.17.28)(jiti@2.4.2)(less@4.1.3)(lightningcss@1.29.2)(sass-embedded@1.86.0)(sass@1.86.0)(stylus@0.64.0)(terser@5.39.0)(yaml@2.7.1))':
+  '@storybook/react-vite@8.6.11(@storybook/test@8.6.11(storybook@8.6.11(prettier@3.5.3)))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(rollup@4.38.0)(storybook@8.6.11(prettier@3.5.3))(typescript@5.7.3)(vite@6.2.3(@types/node@20.17.28)(jiti@2.4.2)(less@4.1.3)(lightningcss@1.29.2)(sass-embedded@1.86.0)(sass@1.86.0)(stylus@0.64.0)(terser@5.39.0)(yaml@2.7.1))':
     dependencies:
       '@joshwooding/vite-plugin-react-docgen-typescript': 0.5.0(typescript@5.7.3)(vite@6.2.3(@types/node@20.17.28)(jiti@2.4.2)(less@4.1.3)(lightningcss@1.29.2)(sass-embedded@1.86.0)(sass@1.86.0)(stylus@0.64.0)(terser@5.39.0)(yaml@2.7.1))
-      '@rollup/pluginutils': 5.1.4(rollup@2.79.2)
+      '@rollup/pluginutils': 5.1.4(rollup@4.38.0)
       '@storybook/builder-vite': 8.6.11(storybook@8.6.11(prettier@3.5.3))(vite@6.2.3(@types/node@20.17.28)(jiti@2.4.2)(less@4.1.3)(lightningcss@1.29.2)(sass-embedded@1.86.0)(sass@1.86.0)(stylus@0.64.0)(terser@5.39.0)(yaml@2.7.1))
       '@storybook/react': 8.6.11(@storybook/test@8.6.11(storybook@8.6.11(prettier@3.5.3)))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(storybook@8.6.11(prettier@3.5.3))(typescript@5.7.3)
       find-up: 5.0.0
@@ -13188,6 +13224,16 @@ snapshots:
       postcss: 8.5.3
       postcss-value-parser: 4.2.0
 
+  autoprefixer@10.4.21(postcss@8.5.3):
+    dependencies:
+      browserslist: 4.24.4
+      caniuse-lite: 1.0.30001707
+      fraction.js: 4.3.7
+      normalize-range: 0.1.2
+      picocolors: 1.1.1
+      postcss: 8.5.3
+      postcss-value-parser: 4.2.0
+
   available-typed-arrays@1.0.7:
     dependencies:
       possible-typed-array-names: 1.1.0
@@ -13578,13 +13624,11 @@ snapshots:
     dependencies:
       color-name: 1.1.4
       simple-swizzle: 0.2.2
-    optional: true
 
   color@4.2.3:
     dependencies:
       color-convert: 2.0.1
       color-string: 1.9.1
-    optional: true
 
   colord@2.9.3: {}
 
@@ -15246,8 +15290,7 @@ snapshots:
 
   is-arrayish@0.2.1: {}
 
-  is-arrayish@0.3.2:
-    optional: true
+  is-arrayish@0.3.2: {}
 
   is-async-function@2.1.1:
     dependencies:
@@ -17773,7 +17816,6 @@ snapshots:
       '@img/sharp-wasm32': 0.33.5
       '@img/sharp-win32-ia32': 0.33.5
       '@img/sharp-win32-x64': 0.33.5
-    optional: true
 
   shebang-command@2.0.0:
     dependencies:
@@ -17820,7 +17862,6 @@ snapshots:
   simple-swizzle@0.2.2:
     dependencies:
       is-arrayish: 0.3.2
-    optional: true
 
   sirv@2.0.4:
     dependencies:
@@ -18677,10 +18718,10 @@ snapshots:
       - tsx
       - yaml
 
-  vite-plugin-dts@4.5.3(@types/node@20.17.28)(rollup@2.79.2)(typescript@5.7.3)(vite@6.2.3(@types/node@20.17.28)(jiti@2.4.2)(less@4.1.3)(lightningcss@1.29.2)(sass-embedded@1.86.0)(sass@1.86.0)(stylus@0.64.0)(terser@5.39.0)(yaml@2.7.1)):
+  vite-plugin-dts@4.5.3(@types/node@20.17.28)(rollup@4.38.0)(typescript@5.7.3)(vite@6.2.3(@types/node@20.17.28)(jiti@2.4.2)(less@4.1.3)(lightningcss@1.29.2)(sass-embedded@1.86.0)(sass@1.86.0)(stylus@0.64.0)(terser@5.39.0)(yaml@2.7.1)):
     dependencies:
       '@microsoft/api-extractor': 7.52.2(@types/node@20.17.28)
-      '@rollup/pluginutils': 5.1.4(rollup@2.79.2)
+      '@rollup/pluginutils': 5.1.4(rollup@4.38.0)
       '@volar/typescript': 2.4.12
       '@vue/language-core': 2.2.0(typescript@5.7.3)
       compare-versions: 6.1.1

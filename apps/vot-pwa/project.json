@@ -9,13 +9,16 @@
       "outputs": ["{options.outputPath}"],
       "defaultConfiguration": "production",
       "options": {
-        "outputPath": "dist/apps/vot-pwa"
+        "outputPath": "apps/vot-pwa",
+        "buildLibsFromSource": true
       },
       "configurations": {
         "development": {
           "outputPath": "apps/vot-pwa"
         },
-        "production": {}
+        "production": {
+          "outputPath": "apps/vot-pwa"
+        }
       }
     },
     "serve": {

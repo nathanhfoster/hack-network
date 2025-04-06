@@ -3,8 +3,7 @@ import type { Config } from 'tailwindcss';
 export default {
   content: [
     './apps/**/*.{ts,tsx,js,jsx,html,mdx}',
-    './packages/ui/src/**/*.{ts,tsx,js,jsx,html,mdx}',
-    './node_modules/@hack-network/ui/**/*.{ts,tsx,js,jsx,html,mdx}',
+    './packages/ui/**/*.{ts,tsx,js,jsx,html,mdx}',
   ],
   theme: {
     extend: {

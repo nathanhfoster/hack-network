@@ -48,14 +48,14 @@ export default defineConfig(() => ({
       fileName: 'index',
       // Change this to the formats you want to support.
       // Don't forget to update your package.json as well.
-      formats: ['es'],
+      formats: ['es' as const],
     },
     rollupOptions: {
       // External packages that should not be bundled into your library.
       external: ['react', 'react-dom', 'react/jsx-runtime'],
       output: {
         // Enable tree-shaking
-        exports: 'named',
+        exports: 'named' as const,
         // Minify the output
         minifyInternalExports: true,
         // Optimize chunk size
@@ -65,7 +65,7 @@ export default defineConfig(() => ({
       },
     },
     // Enable minification
-    minify: 'terser',
+    minify: 'terser' as const,
     // Enable compression
     terserOptions: {
       compress: {

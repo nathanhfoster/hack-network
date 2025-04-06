@@ -4,6 +4,7 @@ import type { NextConfig } from 'next';
 import withPWA, { PWAConfig } from 'next-pwa';
 import withBundleAnalyzer from '@next/bundle-analyzer';
 import { composePlugins, withNx } from '@nx/next';
+import path from 'path';
 
 const ENABLE_BUNDLE_ANALYZER = false;
 
@@ -19,7 +20,6 @@ const pwaConfig: PWAConfig = {
   skipWaiting: true,
   clientsClaim: true,
   disable: DISABLE_PWA_CONFIG,
-  // buildExcludes: [/app-build-manifest.json$/],
   runtimeCaching: [
     {
       urlPattern: /^\/_next\/static\/.*/i,
@@ -59,27 +59,37 @@ const nextConfig: NextConfig = {
   experimental: {
     externalDir: true,
   },
-  output: 'export',
   trailingSlash: true,
   reactStrictMode: true,
   headers: async () => [
     {
       source: '/(.*)',
       headers: [
-        { key: 'Cache-Control', value: 'no-cache, no-store, must-revalidate' },
+        {
+          key: 'Cache-Control',
+          value: 'public, max-age=0, must-revalidate',
+        },
+        {
+          key: 'Service-Worker-Allowed',
+          value: '/',
+        },
       ],
     },
   ],
   images: {
     unoptimized: true,
   },
+  webpack: (config, { isServer }) => {
+    // Add workspace packages to module resolution
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      resurrection: path.resolve(__dirname, '../../packages/resurrection'),
+      '@hack-network/ui': path.resolve(__dirname, '../../packages/ui'),
+    };
+    return config;
+  },
 };
 
-const plugins = [
-  // Add more Next.js plugins to this list if needed.
-  withNx,
-  bundleAnalyzer,
-  withPWAConfigured,
-];
+const plugins = [withNx, bundleAnalyzer, withPWAConfigured];
 
 export default composePlugins(...plugins)(nextConfig);
