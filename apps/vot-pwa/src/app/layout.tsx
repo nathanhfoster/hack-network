@@ -23,12 +23,6 @@ const getAdminData = cache(async (): Promise<AdminServerProps> => {
         updatedAt: new Date().toISOString(),
       },
     ],
-    settings: {
-      theme: 'light' as const,
-      language: 'en',
-      notifications: true,
-      sidebarCollapsed: false,
-    },
   };
 });
 

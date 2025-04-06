@@ -15,7 +15,7 @@ export type ProviderProps<
 > = {
   StateContext?: Context<S>;
   reducer?: (state: S, action: ReturnType<A[keyof A]>) => S;
-  initialState?: S;
+  initialState?: I extends S ? S : I;
   initializer?: ContextStoreInitializer<S, I>;
   derivedStateFromProps?: Partial<S>;
   DispatchContext?: Context<

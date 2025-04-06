@@ -19,10 +19,14 @@ import type {
  * Augments React's useReducer() hook
  * so that the action dispatcher supports thunks.
  */
-const useReducerWithThunk = <S extends object, A extends object = S>(
+const useReducerWithThunk = <
+  S extends object,
+  I extends object = S,
+  A extends object = ActionCreatorWithPayload<any, string>,
+>(
   reducer: (state: S, action: A) => S,
-  initialState: S,
-  initializer?: ContextStoreInitializer<S, A>,
+  initialState: I extends S ? S : I,
+  initializer?: ContextStoreInitializer<S, I>,
   derivedStateFromProps?: Partial<S>,
 ): [
   S,

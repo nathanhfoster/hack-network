@@ -26,14 +26,16 @@ export interface AdminSettings {
   sidebarCollapsed: boolean;
 }
 
-export type AdminServerProps = {
+export type AdminState = {
   users: AdminUser[];
   settings: AdminSettings;
 };
 
+export type AdminServerProps = Pick<AdminState, 'users'>;
+
 export type AdminContextProviderProps = Ensure<
-  ProviderProps<AdminServerProps, AdminServerProps>,
+  ProviderProps<AdminState, AdminServerProps>,
   'initialState'
 >;
 
-export type AdminContextState = ContextStore<AdminServerProps>;
+export type AdminContextState = ContextStore<AdminState>;

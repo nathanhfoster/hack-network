@@ -18,8 +18,8 @@ export const adminInitialState: AdminContextState = {
 };
 
 export const getAdminInitialState: ContextStoreInitializer<
-  AdminServerProps,
-  AdminContextState
+  AdminContextState,
+  AdminServerProps
 > = (initialState) => {
   if (!initialState) {
     return adminInitialState;

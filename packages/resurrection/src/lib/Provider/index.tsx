@@ -4,7 +4,7 @@ import setStateReducer from '../reducers/setStateReducer';
 import defaultInitializer from '../utils/defaultInitializer';
 import type { ProviderProps } from './types';
 
-const Provider = <S extends object, A extends object = S>({
+const Provider = <S extends object, I extends object = S>({
   StateContext,
   reducer = setStateReducer,
   derivedStateFromProps,
@@ -13,8 +13,8 @@ const Provider = <S extends object, A extends object = S>({
   initializer = defaultInitializer,
   DispatchContext,
   children,
-}: ProviderProps<S, A>) => {
-  const [state, dispatch] = useReducerWithThunk(
+}: ProviderProps<S, I>) => {
+  const [state, dispatch] = useReducerWithThunk<S, I>(
     reducer,
     initialState,
     initializer,
