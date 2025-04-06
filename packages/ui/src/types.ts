@@ -12,7 +12,7 @@ export type DataComponent<T extends object> = {
 
 export type DataConfigComponent<
   T extends object,
-  C extends object = {},
+  C extends object = object,
 > = DataComponent<T> & {
   config: C[];
 };
