@@ -52,6 +52,7 @@ import {
   ConnectOptionUseEffectAfterChangeReturn,
   MergePropsReturnType,
   MergePropsType,
+  DispatchType,
 } from './types';
 import { LoosePartial } from '../types';
 import {
@@ -68,6 +69,8 @@ const connect = <
   MSTP extends ComponentPropsType = ComponentPropsType,
   MDTP extends ComponentPropsType = ComponentPropsType,
   OWNP extends ComponentPropsType = ComponentPropsType,
+  S extends ComponentPropsType[] = [],
+  A extends DispatchType<any>[] = [],
 >({
   mapStateToPropsOptions = [],
   mapDispatchToPropsOptions = [],
@@ -78,7 +81,7 @@ const connect = <
   areMergedPropsEqual = shallowEquals,
   useHookDataFetchingOnce,
   useHookEffectAfterChange,
-}: ConnectOptions<MSTP, MDTP, OWNP>) => {
+}: ConnectOptions<MSTP, MDTP, OWNP, S, A>) => {
   const wrapWithConnect = <P extends ComponentPropsType>(
     WrappedComponent: ComponentType<P>,
   ): ComponentType<Omit<P, keyof MSTP | keyof MDTP>> => {
@@ -94,13 +97,13 @@ const connect = <
       const ownPropsRef = useRef(restOfProps);
       const mapStateToPropsContexts = mapStateToPropsOptions.map((item) => {
         const useSelector = createUseSelectorHook(item.context);
-        const contextState = useSelector(
-          ((state: any, props?: OWNP) =>
+        const contextState = useSelector<S[number], OWNP>(
+          ((state: S[number], props?: OWNP) =>
             item.mapStateToProps(state, props ?? ({} as OWNP))) as (
-            state: any,
+            state: S[number],
             props?: OWNP,
           ) => LoosePartial<MSTP>,
-          restOfProps as unknown as OWNP,
+          restOfProps as OWNP,
         );
 
         return contextState;
@@ -117,7 +120,7 @@ const connect = <
 
       const mapDispatchToPropsContexts = mapDispatchToPropsOptions.map(
         (item) => {
-          const useDispatch = createUseDispatchHook(item.context);
+          const useDispatch = createUseDispatchHook<A[number]>(item.context);
           const dispatch = useDispatch();
 
           return dispatch;

@@ -10,7 +10,10 @@ import {
   LoosePartial,
   ActionCreatorWithPayload,
   PayloadActionCreator,
+  ContextStore,
+  Thunk,
 } from '../types';
+import { ReducerActionCreators } from '../utils/createReducer/types';
 
 export type ComponentPropsType<T extends object = object> = T;
 
@@ -48,9 +51,20 @@ export type ConnectOptions<
   MSTP extends ComponentPropsType,
   MDTP extends ComponentPropsType,
   OWNP extends ComponentPropsType,
+  S extends ContextStore<any>[] = [],
+  A extends (
+    | Thunk<any, any>
+    | ActionCreatorWithPayload<any, string>
+    | PayloadActionCreator<any, string>
+    | ReducerActionCreators<any, string>
+  )[] = [],
 > = {
-  mapStateToPropsOptions?: MapStateToPropsItem<MSTP, any, OWNP>[];
-  mapDispatchToPropsOptions?: MapDispatchToPropsArrayItem<MDTP, any, OWNP>[];
+  mapStateToPropsOptions?: MapStateToPropsItem<MSTP, S[number], OWNP>[];
+  mapDispatchToPropsOptions?: MapDispatchToPropsArrayItem<
+    MDTP,
+    A[number],
+    OWNP
+  >[];
   pure?: boolean;
   forwardRef?: boolean;
   mergeProps?: MergePropsType<MSTP, MDTP, OWNP>;
@@ -75,6 +89,11 @@ export type EqualityFunctionType<
   P extends ComponentPropsType = ComponentPropsType,
 > = (prevPropsOrState: P, nextPropsOrState: P) => boolean;
 
+export type DispatchType<T> =
+  | Thunk<T, any>
+  | ActionCreatorWithPayload<any, string>
+  | PayloadActionCreator<any, string>;
+
 export type MapDispatchToPropsArrayItem<
   MDTP extends ComponentPropsType,
   T extends ComponentPropsType,
@@ -91,7 +110,7 @@ export type MapDispatchToPropsArrayItem<
         >
       >
     | ((
-        dispatch: React.Dispatch<T>,
+        dispatch: React.Dispatch<DispatchType<T>>,
         ownProps: P,
       ) => LoosePartial<Record<keyof MDTP, (...args: any[]) => any>>);
 };

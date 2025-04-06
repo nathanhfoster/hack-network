@@ -11,9 +11,6 @@
     },
     {
       "path": "./packages/ui"
-    },
-    {
-      "path": "./packages/utils"
     }
   ]
 }

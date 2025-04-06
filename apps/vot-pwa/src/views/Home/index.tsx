@@ -1,8 +1,9 @@
 'use client';
 
 import { FC } from 'react';
-import { connect } from 'resurrection';
+import { connect, DispatchType } from 'resurrection';
 import {
+  AdminActions,
   AdminDispatchContext,
   AdminStateContext,
   adminContextActions,
@@ -13,7 +14,7 @@ import {
   HomeViewMapStateToProps,
   HomeViewOwnProps,
 } from './types';
-import { AdminServerProps } from '../../context/AdminContext/types';
+import { AdminContextState } from '../../context/AdminContext/types';
 import { Button } from '@hack-network/ui';
 
 const HomeView: FC<HomeViewConnectedProps> = ({ theme, UpdateSettings }) => {
@@ -38,12 +39,14 @@ const HomeView: FC<HomeViewConnectedProps> = ({ theme, UpdateSettings }) => {
 export default connect<
   HomeViewMapStateToProps,
   HomeViewMapDispatchToProps,
-  HomeViewOwnProps
+  HomeViewOwnProps,
+  [AdminContextState],
+  [DispatchType<AdminActions>]
 >({
   mapStateToPropsOptions: [
     {
       context: AdminStateContext,
-      mapStateToProps: (state: AdminServerProps) => ({
+      mapStateToProps: (state) => ({
         theme: state.settings.theme,
       }),
     },
