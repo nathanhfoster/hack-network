@@ -13,7 +13,7 @@ import {
   ContextStore,
   Thunk,
 } from '../types';
-import { ReducerActionCreators } from '../utils/createReducer/types';
+import { ReducerActionCreators } from '../utils/createSlice/types';
 
 export type ComponentPropsType<T extends object = object> = T;
 

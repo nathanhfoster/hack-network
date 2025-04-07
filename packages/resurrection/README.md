@@ -23,10 +23,10 @@ yarn add resurrection
 
 ### 1. Define Types and Create Reducer
 
-First, define your state types and create a reducer using `createReducer`:
+First, define your state types and create a reducer using `createSlice`:
 
 ```typescript
-import { createReducer, Draft, ContextStoreInitializer } from 'resurrection';
+import { createSlice, Draft, ContextStoreInitializer } from 'resurrection';
 
 interface AppState {
   users: User[];
@@ -84,7 +84,7 @@ const UpdateSettings = (state: Draft<AppState>, settings: Partial<Settings>) => 
 };
 
 // Create the reducer
-export const appSlice = createReducer({
+export const appSlice = createSlice({
   name: 'App',
   initialState,
   actions: {
@@ -189,12 +189,12 @@ const UserList = () => {
 
 ## API Reference
 
-### createReducer
+### createSlice
 
 Creates a reducer with typed actions:
 
 ```typescript
-createReducer({
+createSlice({
   name: string;
   initialState: State;
   actions: {

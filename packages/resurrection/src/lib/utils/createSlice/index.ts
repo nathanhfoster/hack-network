@@ -3,8 +3,8 @@ import { produce, setAutoFreeze, Draft } from 'immer';
 import { PayloadAction } from '../../types';
 
 import {
-  CreateReducerActions,
-  CreateReducerProps,
+  CreateSliceActions,
+  CreateSliceProps,
   InitialReducerState,
   ReducerActionCreators,
   ThunkActions,
@@ -13,15 +13,15 @@ import {
 setAutoFreeze(false);
 // enableMapSet(); use this if you need to use Map and Set in immer
 
-const createReducer = <
+const createSlice = <
   MS extends InitialReducerState,
-  MA extends CreateReducerActions<MS>,
+  MA extends CreateSliceActions<MS>,
   MT extends ThunkActions<MS, ReducerActionCreators<MA, string>>,
   N extends string,
   S extends InitialReducerState,
-  A extends CreateReducerActions<S & MS>,
+  A extends CreateSliceActions<S & MS>,
 >(
-  props: CreateReducerProps<MS, MA, MT, N, S, A>,
+  props: CreateSliceProps<MS, MA, MT, N, S, A>,
 ) => {
   const actions = Object.keys({
     ...props.actions,
@@ -97,4 +97,4 @@ const createReducer = <
   };
 };
 
-export default createReducer;
+export default createSlice;

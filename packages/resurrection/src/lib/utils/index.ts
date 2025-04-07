@@ -1,6 +1,6 @@
 // Types
 export type { RunTests, TestToRun } from './types';
-export type * from './createReducer/types';
+export type * from './createSlice/types';
 
 // Date Utilities
 export { default as addDays } from './addDays';
@@ -81,7 +81,7 @@ export { default as getCsvDataUrl } from './getCsvDataUrl';
 // Action and Reducer Utilities
 export { default as actionTypes } from './actionTypes';
 export { default as bindActionCreator } from './bindActionCreator';
-export { default as createReducer } from './createReducer';
+export { default as createSlice } from './createSlice';
 export { default as getReducerDefaultState } from './getReducerDefaultState';
 
 // Other Utilities

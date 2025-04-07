@@ -6,7 +6,7 @@ import {
   ActionCreatorWithPayload,
   PayloadActionCreator,
 } from '../types';
-import { ReducerActionCreators } from '../utils/createReducer/types';
+import { ReducerActionCreators } from '../utils/createSlice/types';
 
 export type ProviderProps<
   S extends object,

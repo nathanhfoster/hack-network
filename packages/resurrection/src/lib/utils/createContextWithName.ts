@@ -5,7 +5,7 @@ import { createContext } from 'use-context-selector';
 
 import createUseDispatchHook from '../hooks/useDispatch';
 import createUseSelectorHook from '../hooks/useSelector';
-import { ReducerActionCreators } from './createReducer/types';
+import { ReducerActionCreators } from './createSlice/types';
 import {
   Thunk,
   ActionCreatorWithPayload,

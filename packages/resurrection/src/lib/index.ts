@@ -1,7 +1,7 @@
 // Core Types
 export type { Draft } from 'immer';
 export type * from './types';
-export type * from './utils/createReducer/types';
+export type * from './utils/createSlice/types';
 export type * from './Provider/types';
 
 // Connect Types
@@ -30,7 +30,7 @@ export type { Thunk, ThunkAction, ThunkFunction } from './types';
 export { default as connect } from './connect';
 export { default as Provider } from './Provider/index';
 export { default as createContextWithName } from './utils/createContextWithName';
-export { default as createReducer } from './utils/createReducer';
+export { default as createSlice } from './utils/createSlice';
 export { default as setStateReducer } from './reducers/setStateReducer';
 
 // Hook Exports

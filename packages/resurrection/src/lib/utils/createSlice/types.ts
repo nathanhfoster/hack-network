@@ -24,17 +24,17 @@ type SliceReducer<S = any, P = any> = (
   payload?: P,
 ) => NoInfer<S> | void | Draft<NoInfer<S>>;
 
-export type CreateReducerActions<S extends InitialReducerState> = {
+export type CreateSliceActions<S extends InitialReducerState> = {
   [K: string]: SliceReducer<S, any>;
 };
 
-export interface CreateReducerProps<
+export interface CreateSliceProps<
   MS extends InitialReducerState,
-  MA extends CreateReducerActions<MS>,
+  MA extends CreateSliceActions<MS>,
   MT extends ThunkActions<MS, ReducerActionCreators<MA, string>>,
   N extends string,
   S extends InitialReducerState,
-  A extends CreateReducerActions<S & MS>,
+  A extends CreateSliceActions<S & MS>,
 > {
   name: N;
   initialState: S;

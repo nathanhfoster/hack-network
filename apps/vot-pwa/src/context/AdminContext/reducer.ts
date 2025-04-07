@@ -1,4 +1,4 @@
-import { createReducer, Draft, ContextStoreInitializer } from 'resurrection';
+import { createSlice, Draft, ContextStoreInitializer } from 'resurrection';
 
 import {
   AdminContextState,
@@ -52,7 +52,7 @@ const UpdateSettings = (
   };
 };
 
-export const adminSlice = createReducer({
+export const adminSlice = createSlice({
   name: 'Admin',
   initialState: adminInitialState,
   actions: {
