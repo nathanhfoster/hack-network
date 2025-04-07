@@ -30,7 +30,7 @@ export const viewport: Viewport = {
   themeColor: MANIFEST.theme_color,
   colorScheme: 'normal',
   width: 'device-width',
-  initialScale: 1,
+  initialScale: 1
 };
 
 export const metadata: Metadata = {
@@ -56,7 +56,7 @@ export const metadata: Metadata = {
       },
     ],
   },
-  verification:{},
+  verification: {},
   appleWebApp: {
     capable: true,
     title: MANIFEST.name,
