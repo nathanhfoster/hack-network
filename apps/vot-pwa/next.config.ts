@@ -8,7 +8,7 @@ import path from 'path';
 
 const ENABLE_BUNDLE_ANALYZER = false;
 
-const DISABLE_PWA_CONFIG = process.env.NODE_ENV === 'development';
+const DISABLE_PWA_CONFIG = false; // Always enable PWA for testing
 
 const bundleAnalyzer = withBundleAnalyzer({
   enabled: ENABLE_BUNDLE_ANALYZER,
@@ -20,6 +20,8 @@ const pwaConfig: PWAConfig = {
   skipWaiting: true,
   clientsClaim: true,
   disable: DISABLE_PWA_CONFIG,
+  sw: 'sw.js',
+  scope: '/',
   runtimeCaching: [
     {
       urlPattern: /^\/_next\/static\/.*/i,
