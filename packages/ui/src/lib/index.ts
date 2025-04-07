@@ -1,5 +1,5 @@
-export type * from './molecules';
-export type * from './organisms';
-export type * from './templates';
-export type * from './views';
+export * from './molecules';
+export * from './organisms';
+export * from './templates';
+export * from './views';
 export * from './atoms';

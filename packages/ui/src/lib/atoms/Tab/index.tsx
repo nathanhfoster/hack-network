@@ -1,6 +1,6 @@
-import type { TabProps } from './types';
-import { combineClassNames } from '../../../utils';
-import { getTabStyles } from './constants';
+import type { TabProps } from './types'
+import { combineClassNames } from '../../../utils'
+import { getTabStyles } from './constants'
 
 const Tab: React.FC<TabProps> = ({
   id,
@@ -11,7 +11,7 @@ const Tab: React.FC<TabProps> = ({
   onClick,
   variant = 'default',
   fullWidth = false,
-  className = '',
+  className = ''
 }) => {
   return (
     <button
@@ -21,9 +21,9 @@ const Tab: React.FC<TabProps> = ({
           isActive,
           isDisabled,
           variant,
-          fullWidth,
+          fullWidth
         }),
-        className,
+        className
       )}
       disabled={isDisabled}
       type="button"
@@ -34,7 +34,7 @@ const Tab: React.FC<TabProps> = ({
       {icon && <span className="mr-2">{icon}</span>}
       {label}
     </button>
-  );
-};
+  )
+}
 
-export default Tab;
+export default Tab

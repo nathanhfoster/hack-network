@@ -19,5 +19,8 @@
     "./dist/index.css": "./dist/index.css"
   },
   "peerDependencies": {},
-  "devDependencies": {}
+  "devDependencies": {},
+  "dependencies": {
+    "resurrection": "workspace:*"
+  }
 }

@@ -2,17 +2,18 @@
 
 import { useState } from 'react';
 import type { TabsProps } from './types';
-import Tab from '@atoms/Tab';
+import Tab from '../../atoms/Tab';
+import { isNotNotTrue } from 'resurrection';
 
 const Tabs: React.FC<TabsProps> = ({
-  items,
+  data,
   activeTab: initialActiveTab,
   onTabChange,
   className = '',
   variant = 'default',
   fullWidth = false,
 }) => {
-  const [activeTab, setActiveTab] = useState(initialActiveTab || items[0]?.id);
+  const [activeTab, setActiveTab] = useState(initialActiveTab || data[0]?.id);
 
   const handleTabClick = (tabId: string) => {
     setActiveTab(tabId);
@@ -22,17 +23,15 @@ const Tabs: React.FC<TabsProps> = ({
   return (
     <div className={className}>
       <ul
-        className={`flex flex-wrap text-sm font-medium text-center text-gray-500 border-b border-gray-200 dark:border-gray-700 dark:text-gray-400 ${
-          fullWidth ? 'w-full' : ''
-        }`}
+        className={`flex flex-wrap text-sm font-medium text-center text-gray-500 border-b border-gray-200 dark:border-gray-700 dark:text-gray-400 ${fullWidth ? 'w-full' : ''}`}
       >
-        {items.map((item) => (
+        {data.map((item) => (
           <li key={item.id} className={fullWidth ? 'flex-1' : 'me-2'}>
             <Tab
               id={item.id}
               label={item.label}
               isActive={activeTab === item.id}
-              isDisabled={!!item.disabled}
+              isDisabled={isNotNotTrue(item.disabled)}
               icon={item.icon}
               onClick={handleTabClick}
               variant={variant}
@@ -42,7 +41,7 @@ const Tabs: React.FC<TabsProps> = ({
         ))}
       </ul>
       <div className="mt-4">
-        {items.map((item) => (
+        {data.map((item) => (
           <div
             key={item.id}
             className={activeTab === item.id ? 'block' : 'hidden'}

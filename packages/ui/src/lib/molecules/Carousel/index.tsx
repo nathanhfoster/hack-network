@@ -1,7 +1,7 @@
-'use client';
+'use client'
 
-import { useEffect, useState } from 'react';
-import type { CarouselProps } from './types';
+import { useEffect, useState } from 'react'
+import type { CarouselProps } from './types'
 
 const Carousel: React.FC<CarouselProps> = ({
   data,
@@ -9,33 +9,33 @@ const Carousel: React.FC<CarouselProps> = ({
   showControls = true,
   showIndicators = true,
   className = '',
-  onSlideChange,
+  onSlideChange
 }) => {
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(0)
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setCurrentIndex((prevIndex) => (prevIndex + 1) % data.length);
-    }, interval);
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % data.length)
+    }, interval)
 
-    return () => clearInterval(timer);
-  }, [interval, data.length]);
+    return () => clearInterval(timer)
+  }, [interval, data.length])
 
   const handlePrevious = () => {
-    setCurrentIndex((prevIndex) => (prevIndex - 1 + data.length) % data.length);
-  };
+    setCurrentIndex((prevIndex) => (prevIndex - 1 + data.length) % data.length)
+  }
 
   const handleNext = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % data.length);
-  };
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % data.length)
+  }
 
   const handleIndicatorClick = (index: number) => {
-    setCurrentIndex(index);
-  };
+    setCurrentIndex(index)
+  }
 
   useEffect(() => {
-    onSlideChange?.(currentIndex);
-  }, [currentIndex, onSlideChange]);
+    onSlideChange?.(currentIndex)
+  }, [currentIndex, onSlideChange])
 
   return (
     <div className={`relative w-full ${className}`} data-carousel="slide">
@@ -43,7 +43,7 @@ const Carousel: React.FC<CarouselProps> = ({
       <div className="relative h-56 overflow-hidden rounded-lg md:h-96">
         {data.map((item, index) => (
           <div
-            key={item.id}
+            key={`carousel-item-${item.id}-${index}`}
             className={`absolute block w-full h-full transition-opacity duration-700 ease-in-out ${
               index === currentIndex ? 'opacity-100' : 'opacity-0'
             }`}
@@ -81,9 +81,9 @@ const Carousel: React.FC<CarouselProps> = ({
             className="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
             onClick={handlePrevious}
           >
-            <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
+            <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-black group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
               <svg
-                className="w-4 h-4 text-white dark:text-black rtl:rotate-180"
+                className="w-4 h-4 text-white rtl:rotate-180"
                 aria-hidden="true"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -105,9 +105,9 @@ const Carousel: React.FC<CarouselProps> = ({
             className="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
             onClick={handleNext}
           >
-            <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
+            <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-black group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
               <svg
-                className="w-4 h-4 text-white dark:text-black rtl:rotate-180"
+                className="w-4 h-4 text-white rtl:rotate-180"
                 aria-hidden="true"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -127,7 +127,7 @@ const Carousel: React.FC<CarouselProps> = ({
         </>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default Carousel;
+export default Carousel

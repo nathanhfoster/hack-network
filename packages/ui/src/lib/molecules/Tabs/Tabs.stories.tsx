@@ -1,17 +1,17 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import Tabs from '.';
+import type { Meta, StoryObj } from '@storybook/react'
+import Tabs from '.'
 
 const meta = {
   title: 'Molecules/Tabs',
   component: Tabs,
   parameters: {
-    layout: 'centered',
+    layout: 'centered'
   },
-  tags: ['autodocs'],
-} satisfies Meta<typeof Tabs>;
+  tags: ['autodocs']
+} satisfies Meta<typeof Tabs>
 
-export default meta;
-type Story = StoryObj<typeof meta>;
+export default meta
+type Story = StoryObj<typeof meta>
 
 const defaultItems = [
   {
@@ -26,7 +26,7 @@ const defaultItems = [
           This is the profile tab content. You can put any content here.
         </p>
       </div>
-    ),
+    )
   },
   {
     id: 'dashboard',
@@ -40,7 +40,7 @@ const defaultItems = [
           This is the dashboard tab content. You can put any content here.
         </p>
       </div>
-    ),
+    )
   },
   {
     id: 'settings',
@@ -54,19 +54,19 @@ const defaultItems = [
           This is the settings tab content. You can put any content here.
         </p>
       </div>
-    ),
-  },
-];
+    )
+  }
+]
 
 export const Default: Story = {
   args: {
-    items: defaultItems,
-  },
-};
+    data: defaultItems
+  }
+}
 
 export const WithIcons: Story = {
   args: {
-    items: defaultItems.map((item, index) => ({
+    data: defaultItems.map((item, index) => ({
       ...item,
       icon: (
         <svg
@@ -84,47 +84,47 @@ export const WithIcons: Story = {
             d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
           />
         </svg>
-      ),
-    })),
-  },
-};
+      )
+    }))
+  }
+}
 
 export const WithDisabledTab: Story = {
   args: {
-    items: [
+    data: [
       ...defaultItems.slice(0, 2),
       {
         ...defaultItems[2],
-        disabled: true,
-      },
-    ],
-  },
-};
+        disabled: true
+      }
+    ]
+  }
+}
 
 export const UnderlineVariant: Story = {
   args: {
-    items: defaultItems,
-    variant: 'underline',
-  },
-};
+    data: defaultItems,
+    variant: 'underline'
+  }
+}
 
 export const PillsVariant: Story = {
   args: {
-    items: defaultItems,
-    variant: 'pills',
-  },
-};
+    data: defaultItems,
+    variant: 'pills'
+  }
+}
 
 export const FullWidth: Story = {
   args: {
-    items: defaultItems,
-    fullWidth: true,
-  },
-};
+    data: defaultItems,
+    fullWidth: true
+  }
+}
 
 export const WithActiveTab: Story = {
   args: {
-    items: defaultItems,
-    activeTab: 'dashboard',
-  },
-};
+    data: defaultItems,
+    activeTab: 'dashboard'
+  }
+}
