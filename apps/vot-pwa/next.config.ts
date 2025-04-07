@@ -16,15 +16,15 @@ const bundleAnalyzer = withBundleAnalyzer({
 });
 
 const pwaConfig: PWAConfig = {
-  dest: 'public',
-  register: true,
-  skipWaiting: true,
-  clientsClaim: true,
-  disable: DISABLE_PWA_CONFIG,
+  dest: 'public', // The output folder for PWA assets
+  register: true, // Automatically registers the service worker
+  skipWaiting: true, // Prompts users to reload when a new service worker is available
+  clientsClaim: true, // Ensures new service worker takes control of pages right away
+  disable: DISABLE_PWA_CONFIG, // Disable PWA locally
   runtimeCaching: [
     {
       urlPattern: /^\/_next\/static\/.*/i,
-      handler: 'StaleWhileRevalidate',
+      handler: 'StaleWhileRevalidate', // Less aggressive caching
       options: {
         cacheName: 'static-assets',
         expiration: {
@@ -35,7 +35,7 @@ const pwaConfig: PWAConfig = {
     },
     {
       urlPattern: /.*/i,
-      handler: 'NetworkFirst',
+      handler: 'NetworkFirst', // Ensure fresh content for all other requests
       options: {
         cacheName: 'general-cache',
         networkTimeoutSeconds: 10,
