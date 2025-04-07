@@ -5,8 +5,9 @@ import withPWA, { PWAConfig } from 'next-pwa';
 import withBundleAnalyzer from '@next/bundle-analyzer';
 import { composePlugins, withNx } from '@nx/next';
 import path from 'path';
+import { version } from './package.json';
 
-const ENABLE_BUNDLE_ANALYZER = false;
+const ENABLE_BUNDLE_ANALYZER = process.env.NODE_ENV === 'development';
 
 const DISABLE_PWA_CONFIG = false; // Always enable PWA for testing
 
@@ -20,8 +21,6 @@ const pwaConfig: PWAConfig = {
   skipWaiting: true,
   clientsClaim: true,
   disable: DISABLE_PWA_CONFIG,
-  sw: 'sw.js',
-  scope: '/',
   runtimeCaching: [
     {
       urlPattern: /^\/_next\/static\/.*/i,
@@ -89,6 +88,9 @@ const nextConfig: NextConfig = {
       '@hack-network/ui': path.resolve(__dirname, '../../packages/ui'),
     };
     return config;
+  },
+  publicRuntimeConfig: {
+    version,
   },
 };
 
