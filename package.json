@@ -5,7 +5,7 @@
   "scripts": {
     "storybook": "nx run ui:storybook",
     "build:all": "pnpm nx run-many --target=build --all",
-    "build:vot-pwa": "pnpm nx run-many --target=build --projects=packages/apollo,packages/ui,packages/utils,packages/resurrection && pnpm nx build vot-pwa --configuration=production",
+    "build:vot-pwa": "pnpm nx run-many --target=build --projects=packages/resurrection && pnpm nx run-many --target=build --projects=packages/apollo,packages/ui,packages/utils && pnpm nx build vot-pwa --configuration=production",
     "clean": "find . -type d -name '.next' -exec rm -rf {} + && find . -type d -name 'node_modules' -exec rm -rf {} + && find . -type d -name 'dist' -exec rm -rf {} +",
     "build:vot-pwa:test": "pnpm clean && pnpm install && pnpm build:vot-pwa",
     "build-storybook": "nx run ui:build-storybook",
