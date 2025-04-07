@@ -38,12 +38,12 @@ export const metadata: Metadata = {
   description: MANIFEST.description,
   applicationName: MANIFEST.name,
   generator: 'nextjs',
-
   manifest: '/manifest.json',
+  keywords: MANIFEST.categories,
   icons: MANIFEST.icons.map((i) => ({ rel: 'icon', url: i.src })),
   openGraph: {
     type: 'website',
-    url: 'https://vot-pwa.example.com',
+    url: 'https://vot-sigma.vercel.app',
     title: MANIFEST.name,
     description: MANIFEST.description,
     siteName: MANIFEST.name,
@@ -56,12 +56,14 @@ export const metadata: Metadata = {
       },
     ],
   },
+  verification:{},
   appleWebApp: {
     capable: true,
     title: MANIFEST.name,
     statusBarStyle: 'black-translucent',
   },
-  metadataBase: new URL('https://vot-pwa.example.com'),
+  category: MANIFEST.categories[0],
+  metadataBase: new URL('https://vot-sigma.vercel.app'),
 };
 
 export default async function RootLayout({
