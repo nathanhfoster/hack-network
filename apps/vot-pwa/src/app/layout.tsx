@@ -5,6 +5,8 @@ import { AdminContextProvider } from '../context/AdminContext';
 import { cache } from 'react';
 import { AdminServerProps } from '../context/AdminContext/types';
 import { AdminRole } from '../context/AdminContext/types';
+import Background from '../views/Background';
+import { RouteProvider } from '../context/RouteContext';
 
 const getAdminData = cache(async (): Promise<AdminServerProps> => {
   // Simulate API delay with timeout
@@ -66,20 +68,24 @@ export const metadata: Metadata = {
   metadataBase: new URL('https://vot-sigma.vercel.app'),
 };
 
-export default async function RootLayout({
-  children,
-}: {
+type LayoutProps = {
   children: React.ReactNode;
-}) {
+};
+
+export default async function RootLayout({ children }: LayoutProps) {
   const initialState = await getAdminData();
+
   return (
-    <AdminContextProvider initialState={initialState}>
-      <html lang="en" className="overflow-x-hidden">
-        <head></head>
-        <body className="overflow-x-hidden flex flex-col min-h-screen bg-background-light text-foreground-light dark:bg-background-dark dark:text-foreground-dark">
-          {children}
-        </body>
-      </html>
-    </AdminContextProvider>
+    <RouteProvider>
+      <AdminContextProvider initialState={initialState}>
+        <html lang="en" className="overflow-x-hidden">
+          <head></head>
+          <body className="overflow-x-hidden flex flex-col min-h-screen bg-background-light text-foreground-light dark:bg-background-dark dark:text-foreground-dark">
+            <Background />
+            {children}
+          </body>
+        </html>
+      </AdminContextProvider>
+    </RouteProvider>
   );
 }

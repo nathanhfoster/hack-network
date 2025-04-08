@@ -7,11 +7,9 @@ import { composePlugins, withNx } from '@nx/next';
 import path from 'path';
 import { version } from './package.json';
 
-// const IS_DEV = process.env.NODE_ENV === 'development';
-// const IS_PROD = process.env.NODE_ENV === 'production';
+const IS_DEV = process.env.NODE_ENV === 'development';
+const IS_PROD = process.env.NODE_ENV === 'production';
 const ENABLE_BUNDLE_ANALYZER = false; // IS_DEV;
-
-const DISABLE_PWA_CONFIG = false; // Always enable PWA for testing
 
 const bundleAnalyzer = withBundleAnalyzer({
   enabled: ENABLE_BUNDLE_ANALYZER,
@@ -19,10 +17,10 @@ const bundleAnalyzer = withBundleAnalyzer({
 
 const pwaConfig: PWAConfig = {
   dest: 'public', // The output folder for PWA assets
-  register: true, // Automatically registers the service worker
+  register: IS_PROD, // Only register in production
   skipWaiting: true, // Prompts users to reload when a new service worker is available
   clientsClaim: true, // Ensures new service worker takes control of pages right away
-  disable: DISABLE_PWA_CONFIG, // Disable PWA locally
+  disable: IS_DEV, // Explicitly disable in development
   reloadOnOnline: true, // Reload when coming back online
   buildExcludes: [/app-build-manifest.json$/],
   runtimeCaching: [

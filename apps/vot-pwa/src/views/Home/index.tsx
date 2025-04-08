@@ -29,7 +29,7 @@ const HomeView: FC<HomeViewConnectedProps> = ({ theme, UpdateSettings }) => {
 
   return (
     <InstallPromptProvider>
-      <div>
+      <main>
         <h1>Home</h1>
         <DownloadAppButton />
         <Button onClick={handleUpdateSettings}>Update Settings</Button>
@@ -39,7 +39,7 @@ const HomeView: FC<HomeViewConnectedProps> = ({ theme, UpdateSettings }) => {
             <li>Theme: {theme}</li>
           </ul>
         </div>
-      </div>
+      </main>
     </InstallPromptProvider>
   );
 };
