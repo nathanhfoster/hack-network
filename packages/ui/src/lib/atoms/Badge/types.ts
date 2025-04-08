@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react'
+import type { ReactNode } from 'react';
 
 export type BadgeColor =
   | 'default'
@@ -8,18 +8,18 @@ export type BadgeColor =
   | 'yellow'
   | 'indigo'
   | 'purple'
-  | 'pink'
-export type BadgeSize = 'xs' | 'sm'
-export type BadgeVariant = 'default' | 'bordered' | 'pill'
+  | 'pink';
+export type BadgeSize = 'xs' | 'sm';
+export type BadgeVariant = 'default' | 'bordered' | 'pill';
 
 export interface BadgeProps {
-  children?: ReactNode
-  color?: BadgeColor
-  size?: BadgeSize
-  variant?: BadgeVariant
-  dismissible?: boolean
-  onDismiss?: () => void
-  className?: string
-  icon?: ReactNode
-  iconOnly?: boolean
+  children?: ReactNode;
+  color?: BadgeColor;
+  size?: BadgeSize;
+  variant?: BadgeVariant;
+  dismissible?: boolean;
+  onDismiss?: () => void;
+  className?: string;
+  icon?: ReactNode;
+  iconOnly?: boolean;
 }

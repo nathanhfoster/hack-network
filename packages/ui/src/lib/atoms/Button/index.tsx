@@ -1,12 +1,12 @@
-import { combineClassNames } from '../../../utils'
-import type { ButtonProps } from './types'
-import type { FC } from 'react'
+import { combineClassNames } from '../../../utils';
+import type { ButtonProps } from './types';
+import type { FC } from 'react';
 import {
   BUTTON_VARIANTS,
   BUTTON_SIZES,
   BUTTON_BASE_CLASSES,
-  BUTTON_LOADING_SPINNER
-} from './constants'
+  BUTTON_LOADING_SPINNER,
+} from './constants';
 
 const Button: FC<ButtonProps> = ({
   children,
@@ -37,24 +37,24 @@ const Button: FC<ButtonProps> = ({
 }) => {
   const getGradientClasses = () => {
     if (variant === 'gradient' && gradientFrom && gradientTo) {
-      return `bg-gradient-to-r from-${gradientFrom} to-${gradientTo} hover:from-${gradientHoverFrom || gradientFrom} hover:to-${gradientHoverTo || gradientTo}`
+      return `bg-gradient-to-r from-${gradientFrom} to-${gradientTo} hover:from-${gradientHoverFrom || gradientFrom} hover:to-${gradientHoverTo || gradientTo}`;
     }
     if (
       variant === 'gradientDuotone' &&
       gradientDuotoneFrom &&
       gradientDuotoneTo
     ) {
-      return `bg-gradient-to-r from-${gradientDuotoneFrom} to-${gradientDuotoneTo} hover:from-${gradientDuotoneHoverFrom || gradientDuotoneFrom} hover:to-${gradientDuotoneHoverTo || gradientDuotoneTo}`
+      return `bg-gradient-to-r from-${gradientDuotoneFrom} to-${gradientDuotoneTo} hover:from-${gradientDuotoneHoverFrom || gradientDuotoneFrom} hover:to-${gradientDuotoneHoverTo || gradientDuotoneTo}`;
     }
     if (
       variant === 'gradientOutline' &&
       gradientOutlineFrom &&
       gradientOutlineTo
     ) {
-      return `border border-${gradientOutlineFrom} hover:bg-gradient-to-r hover:from-${gradientOutlineHoverFrom || gradientOutlineFrom} hover:to-${gradientOutlineHoverTo || gradientOutlineTo}`
+      return `border border-${gradientOutlineFrom} hover:bg-gradient-to-r hover:from-${gradientOutlineHoverFrom || gradientOutlineFrom} hover:to-${gradientOutlineHoverTo || gradientOutlineTo}`;
     }
-    return ''
-  }
+    return '';
+  };
 
   return (
     <button
@@ -66,7 +66,7 @@ const Button: FC<ButtonProps> = ({
         pill && 'rounded-full',
         getGradientClasses(),
         disabled && 'opacity-50 cursor-not-allowed',
-        className
+        className,
       )}
       disabled={disabled || isLoading}
       {...props}
@@ -76,7 +76,7 @@ const Button: FC<ButtonProps> = ({
       {children}
       {!isLoading && rightIcon && <span className="ml-2">{rightIcon}</span>}
     </button>
-  )
-}
+  );
+};
 
-export default Button
+export default Button;

@@ -1,8 +1,8 @@
-'use client'
+'use client';
 
-import { useEffect } from 'react'
-import { combineClassNames } from '../../../utils'
-import type { ModalProps } from './types'
+import { useEffect } from 'react';
+import { combineClassNames } from '../../../utils';
+import type { ModalProps } from './types';
 import {
   MODAL_SIZES,
   MODAL_COLORS,
@@ -12,8 +12,8 @@ import {
   MODAL_HEADER_CLASSES,
   MODAL_BODY_CLASSES,
   MODAL_FOOTER_CLASSES,
-  MODAL_CLOSE_BUTTON_CLASSES
-} from './constants'
+  MODAL_CLOSE_BUTTON_CLASSES,
+} from './constants';
 
 const Modal: React.FC<ModalProps> = ({
   show,
@@ -31,36 +31,36 @@ const Modal: React.FC<ModalProps> = ({
   footerClassName,
   onShow,
   onHide,
-  onToggle
+  onToggle,
 }) => {
   useEffect(() => {
     if (show) {
-      onShow?.()
+      onShow?.();
     } else {
-      onHide?.()
+      onHide?.();
     }
-  }, [show, onShow, onHide])
+  }, [show, onShow, onHide]);
 
   useEffect(() => {
     const handleEscape = (event: KeyboardEvent) => {
       if (event.key === 'Escape' && dismissible) {
-        onClose()
-        onToggle?.()
+        onClose();
+        onToggle?.();
       }
-    }
+    };
 
     if (show) {
-      document.addEventListener('keydown', handleEscape)
-      document.body.style.overflow = 'hidden'
+      document.addEventListener('keydown', handleEscape);
+      document.body.style.overflow = 'hidden';
     }
 
     return () => {
-      document.removeEventListener('keydown', handleEscape)
-      document.body.style.overflow = 'unset'
-    }
-  }, [show, dismissible, onClose, onToggle])
+      document.removeEventListener('keydown', handleEscape);
+      document.body.style.overflow = 'unset';
+    };
+  }, [show, dismissible, onClose, onToggle]);
 
-  if (!show) return null
+  if (!show) return null;
 
   return (
     <div
@@ -72,7 +72,7 @@ const Modal: React.FC<ModalProps> = ({
         className={combineClassNames(
           MODAL_CONTENT_CLASSES,
           MODAL_SIZES[size],
-          contentClassName
+          contentClassName,
         )}
         onClick={(e) => e.stopPropagation()}
       >
@@ -83,7 +83,7 @@ const Modal: React.FC<ModalProps> = ({
             <h3
               className={combineClassNames(
                 'text-xl font-semibold',
-                MODAL_COLORS[color]
+                MODAL_COLORS[color],
               )}
             >
               {title}
@@ -126,7 +126,7 @@ const Modal: React.FC<ModalProps> = ({
         )}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Modal
+export default Modal;

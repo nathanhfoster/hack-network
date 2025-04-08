@@ -1,4 +1,4 @@
-import type { JSX } from 'react'
+import type { JSX } from 'react';
 
 export type TypographyVariant =
   | 'h1'
@@ -10,7 +10,7 @@ export type TypographyVariant =
   | 'body1'
   | 'body2'
   | 'caption'
-  | 'overline'
+  | 'overline';
 
 export type TypographyColor =
   | 'primary'
@@ -19,7 +19,7 @@ export type TypographyColor =
   | 'warning'
   | 'info'
   | 'success'
-  | 'inherit'
+  | 'inherit';
 
 export const TYPOGRAPHY_VARIANTS: Record<TypographyVariant, TypographyVariant> =
   {
@@ -32,8 +32,8 @@ export const TYPOGRAPHY_VARIANTS: Record<TypographyVariant, TypographyVariant> =
     body1: 'body1',
     body2: 'body2',
     caption: 'caption',
-    overline: 'overline'
-  }
+    overline: 'overline',
+  };
 
 export const TYPOGRAPHY_COLORS: Record<TypographyColor, TypographyColor> = {
   primary: 'primary',
@@ -42,8 +42,8 @@ export const TYPOGRAPHY_COLORS: Record<TypographyColor, TypographyColor> = {
   warning: 'warning',
   info: 'info',
   success: 'success',
-  inherit: 'inherit'
-}
+  inherit: 'inherit',
+};
 
 export const TYPOGRAPHY_VARIANT_MAPPING: Record<
   TypographyVariant,
@@ -58,8 +58,8 @@ export const TYPOGRAPHY_VARIANT_MAPPING: Record<
   body1: 'p',
   body2: 'p',
   caption: 'span',
-  overline: 'span'
-}
+  overline: 'span',
+};
 
 export const TYPOGRAPHY_VARIANT_STYLES: Record<TypographyVariant, string> = {
   h1: 'text-4xl font-bold',
@@ -71,8 +71,8 @@ export const TYPOGRAPHY_VARIANT_STYLES: Record<TypographyVariant, string> = {
   body1: 'text-base',
   body2: 'text-sm',
   caption: 'text-xs',
-  overline: 'text-xs uppercase tracking-wider'
-}
+  overline: 'text-xs uppercase tracking-wider',
+};
 
 export const TYPOGRAPHY_COLOR_STYLES: Record<TypographyColor, string> = {
   primary: 'text-blue-600 dark:text-blue-500',
@@ -81,5 +81,5 @@ export const TYPOGRAPHY_COLOR_STYLES: Record<TypographyColor, string> = {
   warning: 'text-yellow-600 dark:text-yellow-500',
   info: 'text-blue-600 dark:text-blue-500',
   success: 'text-green-600 dark:text-green-500',
-  inherit: 'text-inherit'
-}
+  inherit: 'text-inherit',
+};

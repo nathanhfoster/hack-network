@@ -1,15 +1,15 @@
-'use client'
+'use client';
 
-import { FC } from 'react'
-import { combineClassNames } from '../../../utils'
-import type { FilterChipProps } from './types'
+import { FC } from 'react';
+import { combineClassNames } from '../../../utils';
+import type { FilterChipProps } from './types';
 
 const FilterChip: FC<FilterChipProps> = ({ label, onRemove, className }) => {
   return (
     <span
       className={combineClassNames(
         'inline-flex items-center gap-x-1.5 rounded-full bg-gray-100 px-3 py-1 text-sm font-medium text-gray-900 dark:bg-gray-800 dark:text-gray-100',
-        className
+        className,
       )}
     >
       {label}
@@ -36,7 +36,7 @@ const FilterChip: FC<FilterChipProps> = ({ label, onRemove, className }) => {
         </svg>
       </button>
     </span>
-  )
-}
+  );
+};
 
-export default FilterChip
+export default FilterChip;

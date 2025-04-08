@@ -1,30 +1,30 @@
-import type { ReactNode } from 'react'
-import { TYPOGRAPHY_VARIANTS } from '../../atoms/Typography/constants'
-import type { DataComponent } from '../../../types'
+import type { ReactNode } from 'react';
+import { TYPOGRAPHY_VARIANTS } from '../../atoms/Typography/constants';
+import type { DataComponent } from '../../../types';
 
 export type TimelineConnectorColor =
   | 'default'
   | 'primary'
   | 'secondary'
-  | 'accent'
+  | 'accent';
 
 export type TimelineVariant =
-  (typeof TYPOGRAPHY_VARIANTS)[keyof typeof TYPOGRAPHY_VARIANTS]
+  (typeof TYPOGRAPHY_VARIANTS)[keyof typeof TYPOGRAPHY_VARIANTS];
 
 export interface TimelineItem {
-  date: string
-  title: string
-  description?: string
-  icon?: ReactNode
+  date: string;
+  title: string;
+  description?: string;
+  icon?: ReactNode;
   cta?: {
-    label: string
-    href: string
-  }
+    label: string;
+    href: string;
+  };
 }
 
 export interface TimelineProps extends DataComponent<TimelineItem> {
-  variant?: TimelineVariant
-  className?: string
-  showConnector?: boolean
-  connectorColor?: TimelineConnectorColor
+  variant?: TimelineVariant;
+  className?: string;
+  showConnector?: boolean;
+  connectorColor?: TimelineConnectorColor;
 }

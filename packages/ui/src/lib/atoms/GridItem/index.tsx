@@ -1,8 +1,8 @@
-'use client'
+'use client';
 
-import { FC } from 'react'
-import { combineClassNames } from '../../../utils'
-import { GridItemProps } from './types'
+import { FC } from 'react';
+import { combineClassNames } from '../../../utils';
+import { GridItemProps } from './types';
 import {
   GRID_ITEM_BASE_CLASSES,
   GRID_ITEM_SPAN_CLASSES,
@@ -19,8 +19,8 @@ import {
   GRID_ITEM_LG_START_CLASSES,
   GRID_ITEM_LG_END_CLASSES,
   GRID_ITEM_XL_START_CLASSES,
-  GRID_ITEM_XL_END_CLASSES
-} from './constants'
+  GRID_ITEM_XL_END_CLASSES,
+} from './constants';
 
 export const GridItem: FC<GridItemProps> = ({
   children,
@@ -39,7 +39,7 @@ export const GridItem: FC<GridItemProps> = ({
   lgStart,
   lgEnd,
   xlStart,
-  xlEnd
+  xlEnd,
 }) => {
   const classes = [
     GRID_ITEM_BASE_CLASSES,
@@ -58,10 +58,10 @@ export const GridItem: FC<GridItemProps> = ({
     lgEnd && GRID_ITEM_LG_END_CLASSES[lgEnd],
     xlStart && GRID_ITEM_XL_START_CLASSES[xlStart],
     xlEnd && GRID_ITEM_XL_END_CLASSES[xlEnd],
-    className
-  ]
+    className,
+  ];
 
-  return <div className={combineClassNames(...classes)}>{children}</div>
-}
+  return <div className={combineClassNames(...classes)}>{children}</div>;
+};
 
-export default GridItem
+export default GridItem;

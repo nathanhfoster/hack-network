@@ -1,14 +1,14 @@
-import { combineClassNames } from '../../../utils'
-import type { ProgressProps } from './types'
-import type { FC } from 'react'
+import { combineClassNames } from '../../../utils';
+import type { ProgressProps } from './types';
+import type { FC } from 'react';
 import {
   PROGRESS_COLORS,
   PROGRESS_COLOR_STYLES,
   PROGRESS_LABEL_COLOR_STYLES,
   PROGRESS_LABEL_POSITIONS,
   PROGRESS_SIZES,
-  PROGRESS_SIZE_STYLES
-} from './constants'
+  PROGRESS_SIZE_STYLES,
+} from './constants';
 
 const Progress: FC<ProgressProps> = ({
   value,
@@ -18,37 +18,37 @@ const Progress: FC<ProgressProps> = ({
   labelPosition = PROGRESS_LABEL_POSITIONS.none,
   label,
   showValue = true,
-  className
+  className,
 }) => {
-  const percentage = Math.min(100, Math.max(0, (value / max) * 100))
-  const displayValue = `${Math.round(percentage)}%`
+  const percentage = Math.min(100, Math.max(0, (value / max) * 100));
+  const displayValue = `${Math.round(percentage)}%`;
 
   const renderLabel = () => {
-    if (labelPosition === PROGRESS_LABEL_POSITIONS.none) return null
+    if (labelPosition === PROGRESS_LABEL_POSITIONS.none) return null;
 
     const labelContent = (
       <span
         className={combineClassNames(
           'text-sm font-medium',
-          PROGRESS_LABEL_COLOR_STYLES[color]
+          PROGRESS_LABEL_COLOR_STYLES[color],
         )}
       >
         {label || displayValue}
       </span>
-    )
+    );
 
     if (labelPosition === PROGRESS_LABEL_POSITIONS.inside) {
       return (
         <div
           className={combineClassNames(
             'text-xs font-medium text-center p-0.5 leading-none rounded-full',
-            'text-blue-100 bg-blue-600'
+            'text-blue-100 bg-blue-600',
           )}
           style={{ width: `${percentage}%` }}
         >
           {showValue && displayValue}
         </div>
-      )
+      );
     }
 
     return (
@@ -58,15 +58,15 @@ const Progress: FC<ProgressProps> = ({
           <span
             className={combineClassNames(
               'text-sm font-medium',
-              PROGRESS_LABEL_COLOR_STYLES[color]
+              PROGRESS_LABEL_COLOR_STYLES[color],
             )}
           >
             {displayValue}
           </span>
         )}
       </div>
-    )
-  }
+    );
+  };
 
   return (
     <div className={className}>
@@ -76,7 +76,7 @@ const Progress: FC<ProgressProps> = ({
           className={combineClassNames(
             'rounded-full',
             PROGRESS_SIZE_STYLES[size],
-            PROGRESS_COLOR_STYLES[color]
+            PROGRESS_COLOR_STYLES[color],
           )}
           style={{ width: `${percentage}%` }}
         >
@@ -84,7 +84,7 @@ const Progress: FC<ProgressProps> = ({
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Progress
+export default Progress;

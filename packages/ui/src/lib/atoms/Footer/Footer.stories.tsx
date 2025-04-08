@@ -1,61 +1,61 @@
-import type { Meta, StoryObj } from '@storybook/react'
-import Footer from '.'
+import type { Meta, StoryObj } from '@storybook/react';
+import Footer from '.';
 
 const meta: Meta<typeof Footer> = {
   title: 'Atoms/Footer',
   component: Footer,
-  tags: ['autodocs']
-}
+  tags: ['autodocs'],
+};
 
-export default meta
-type Story = StoryObj<typeof Footer>
+export default meta;
+type Story = StoryObj<typeof Footer>;
 
 export const Default: Story = {
   args: {
     copyright: {
       text: 'Flowbite™',
-      href: 'https://flowbite.com/'
+      href: 'https://flowbite.com/',
     },
     links: [
       { label: 'About', href: '#' },
       { label: 'Privacy Policy', href: '#' },
       { label: 'Licensing', href: '#' },
-      { label: 'Contact', href: '#' }
-    ]
-  }
-}
+      { label: 'Contact', href: '#' },
+    ],
+  },
+};
 
 export const WithLogo: Story = {
   args: {
     logo: {
       src: 'https://flowbite.com/docs/images/logo.svg',
       alt: 'Flowbite Logo',
-      text: 'Flowbite'
+      text: 'Flowbite',
     },
     copyright: {
       text: 'Flowbite™',
-      href: 'https://flowbite.com/'
+      href: 'https://flowbite.com/',
     },
     links: [
       { label: 'About', href: '#' },
       { label: 'Privacy Policy', href: '#' },
       { label: 'Licensing', href: '#' },
-      { label: 'Contact', href: '#' }
-    ]
-  }
-}
+      { label: 'Contact', href: '#' },
+    ],
+  },
+};
 
 export const WithSocialLinks: Story = {
   args: {
     copyright: {
       text: 'Flowbite™',
-      href: 'https://flowbite.com/'
+      href: 'https://flowbite.com/',
     },
     links: [
       { label: 'About', href: '#' },
       { label: 'Privacy Policy', href: '#' },
       { label: 'Licensing', href: '#' },
-      { label: 'Contact', href: '#' }
+      { label: 'Contact', href: '#' },
     ],
     socialLinks: [
       {
@@ -75,7 +75,7 @@ export const WithSocialLinks: Story = {
           </svg>
         ),
         href: '#',
-        label: 'Twitter page'
+        label: 'Twitter page',
       },
       {
         icon: (
@@ -94,24 +94,24 @@ export const WithSocialLinks: Story = {
           </svg>
         ),
         href: '#',
-        label: 'GitHub account'
-      }
-    ]
-  }
-}
+        label: 'GitHub account',
+      },
+    ],
+  },
+};
 
 export const Sticky: Story = {
   args: {
     sticky: true,
     copyright: {
       text: 'Flowbite™',
-      href: 'https://flowbite.com/'
+      href: 'https://flowbite.com/',
     },
     links: [
       { label: 'About', href: '#' },
       { label: 'Privacy Policy', href: '#' },
       { label: 'Licensing', href: '#' },
-      { label: 'Contact', href: '#' }
-    ]
-  }
-}
+      { label: 'Contact', href: '#' },
+    ],
+  },
+};

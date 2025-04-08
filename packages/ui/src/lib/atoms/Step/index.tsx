@@ -1,11 +1,11 @@
-import { combineClassNames } from '../../../utils'
-import type { FC } from 'react'
+import { combineClassNames } from '../../../utils';
+import type { FC } from 'react';
 import {
   STEPPER_BASE_CLASSES,
   STEPPER_STATUS_CLASSES,
-  STEPPER_VARIANTS
-} from './constants'
-import type { StepProps } from './types'
+  STEPPER_VARIANTS,
+} from './constants';
+import type { StepProps } from './types';
 
 const Step: FC<StepProps> = ({
   step,
@@ -13,17 +13,17 @@ const Step: FC<StepProps> = ({
   currentStep,
   variant,
   className,
-  onStepClick
+  onStepClick,
 }) => {
-  const isComplete = index < currentStep
-  const isCurrent = index === currentStep
+  const isComplete = index < currentStep;
+  const isCurrent = index === currentStep;
 
   return (
     <div
       className={combineClassNames(
         'flex items-center',
         variant === STEPPER_VARIANTS.vertical ? 'flex-col' : 'flex-row',
-        className
+        className,
       )}
     >
       <div
@@ -31,7 +31,7 @@ const Step: FC<StepProps> = ({
           STEPPER_BASE_CLASSES,
           STEPPER_STATUS_CLASSES[
             isComplete ? 'complete' : isCurrent ? 'current' : 'upcoming'
-          ]
+          ],
         )}
         onClick={() => onStepClick?.(index)}
       >
@@ -52,7 +52,7 @@ const Step: FC<StepProps> = ({
         )}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Step
+export default Step;

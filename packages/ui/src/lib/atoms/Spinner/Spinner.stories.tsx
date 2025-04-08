@@ -1,20 +1,20 @@
-import type { Meta, StoryObj } from '@storybook/react'
-import Spinner from '.'
+import type { Meta, StoryObj } from '@storybook/react';
+import Spinner from '.';
 
 const meta: Meta<typeof Spinner> = {
   title: 'Atoms/Spinner',
   component: Spinner,
-  tags: ['autodocs']
-}
+  tags: ['autodocs'],
+};
 
-export default meta
-type Story = StoryObj<typeof Spinner>
+export default meta;
+type Story = StoryObj<typeof Spinner>;
 
 export const Default: Story = {
   args: {
-    children: 'Loading...'
-  }
-}
+    children: 'Loading...',
+  },
+};
 
 export const Sizes: Story = {
   render: () => (
@@ -25,8 +25,8 @@ export const Sizes: Story = {
       <Spinner size="lg" />
       <Spinner size="xl" />
     </div>
-  )
-}
+  ),
+};
 
 export const Colors: Story = {
   render: () => (
@@ -38,8 +38,8 @@ export const Colors: Story = {
       <Spinner color="purple" />
       <Spinner color="gray" />
     </div>
-  )
-}
+  ),
+};
 
 export const InButton: Story = {
   render: () => (
@@ -51,5 +51,5 @@ export const InButton: Story = {
       <Spinner size="sm" className="mr-2" />
       Loading...
     </button>
-  )
-}
+  ),
+};

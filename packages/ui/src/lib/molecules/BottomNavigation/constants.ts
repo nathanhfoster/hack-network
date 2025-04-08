@@ -1,4 +1,4 @@
-import type { BottomNavigationVariant } from './types'
+import type { BottomNavigationVariant } from './types';
 
 export const BOTTOM_NAVIGATION_VARIANTS: Record<
   BottomNavigationVariant,
@@ -17,8 +17,8 @@ export const BOTTOM_NAVIGATION_VARIANTS: Record<
   meeting:
     'bg-white border-t border-gray-200 dark:bg-gray-700 dark:border-gray-600',
   video:
-    'bg-white border-t border-gray-200 dark:bg-gray-700 dark:border-gray-600'
-}
+    'bg-white border-t border-gray-200 dark:bg-gray-700 dark:border-gray-600',
+};
 
 export const BOTTOM_NAVIGATION_ITEM_STYLES: Record<
   BottomNavigationVariant,
@@ -38,8 +38,8 @@ export const BOTTOM_NAVIGATION_ITEM_STYLES: Record<
   meeting:
     'inline-flex flex-col items-center justify-center px-5 hover:bg-gray-50 dark:hover:bg-gray-800 group',
   video:
-    'inline-flex flex-col items-center justify-center px-5 hover:bg-gray-50 dark:hover:bg-gray-800 group'
-}
+    'inline-flex flex-col items-center justify-center px-5 hover:bg-gray-50 dark:hover:bg-gray-800 group',
+};
 
 export const BOTTOM_NAVIGATION_ICON_STYLES: Record<
   BottomNavigationVariant,
@@ -59,8 +59,8 @@ export const BOTTOM_NAVIGATION_ICON_STYLES: Record<
   meeting:
     'w-5 h-5 mb-2 text-gray-500 dark:text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-500',
   video:
-    'w-5 h-5 mb-2 text-gray-500 dark:text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-500'
-}
+    'w-5 h-5 mb-2 text-gray-500 dark:text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-500',
+};
 
 export const BOTTOM_NAVIGATION_LABEL_STYLES: Record<
   BottomNavigationVariant,
@@ -80,8 +80,8 @@ export const BOTTOM_NAVIGATION_LABEL_STYLES: Record<
   meeting:
     'text-sm text-gray-500 dark:text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-500',
   video:
-    'text-sm text-gray-500 dark:text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-500'
-}
+    'text-sm text-gray-500 dark:text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-500',
+};
 
 export const BOTTOM_NAVIGATION_ACTIVE_STYLES: Record<
   BottomNavigationVariant,
@@ -94,8 +94,8 @@ export const BOTTOM_NAVIGATION_ACTIVE_STYLES: Record<
   'button-group': 'text-blue-600 dark:text-blue-500',
   card: 'text-blue-600 dark:text-blue-500',
   meeting: 'text-blue-600 dark:text-blue-500',
-  video: 'text-blue-600 dark:text-blue-500'
-}
+  video: 'text-blue-600 dark:text-blue-500',
+};
 
 export const BOTTOM_NAVIGATION_DISABLED_STYLES: Record<
   BottomNavigationVariant,
@@ -108,5 +108,5 @@ export const BOTTOM_NAVIGATION_DISABLED_STYLES: Record<
   'button-group': 'opacity-50 cursor-not-allowed',
   card: 'opacity-50 cursor-not-allowed',
   meeting: 'opacity-50 cursor-not-allowed',
-  video: 'opacity-50 cursor-not-allowed'
-}
+  video: 'opacity-50 cursor-not-allowed',
+};

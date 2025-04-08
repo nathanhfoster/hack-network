@@ -1,6 +1,6 @@
-import type { Meta, StoryObj } from '@storybook/react'
-import Badge from '.'
-import { BADGE_COLORS, BADGE_SIZES, BADGE_VARIANTS } from './constants'
+import type { Meta, StoryObj } from '@storybook/react';
+import Badge from '.';
+import { BADGE_COLORS, BADGE_SIZES, BADGE_VARIANTS } from './constants';
 
 const meta: Meta<typeof Badge> = {
   title: 'Atoms/Badge',
@@ -9,27 +9,27 @@ const meta: Meta<typeof Badge> = {
   argTypes: {
     color: {
       control: 'select',
-      options: Object.keys(BADGE_COLORS)
+      options: Object.keys(BADGE_COLORS),
     },
     size: {
       control: 'select',
-      options: Object.keys(BADGE_SIZES)
+      options: Object.keys(BADGE_SIZES),
     },
     variant: {
       control: 'select',
-      options: Object.keys(BADGE_VARIANTS)
-    }
-  }
-}
+      options: Object.keys(BADGE_VARIANTS),
+    },
+  },
+};
 
-export default meta
-type Story = StoryObj<typeof Badge>
+export default meta;
+type Story = StoryObj<typeof Badge>;
 
 export const Default: Story = {
   args: {
-    children: 'Default'
-  }
-}
+    children: 'Default',
+  },
+};
 
 export const Colors: Story = {
   render: () => (
@@ -43,8 +43,8 @@ export const Colors: Story = {
       <Badge color="purple">Purple</Badge>
       <Badge color="pink">Pink</Badge>
     </div>
-  )
-}
+  ),
+};
 
 export const Sizes: Story = {
   render: () => (
@@ -52,8 +52,8 @@ export const Sizes: Story = {
       <Badge size="xs">Extra small</Badge>
       <Badge size="sm">Small</Badge>
     </div>
-  )
-}
+  ),
+};
 
 export const Variants: Story = {
   render: () => (
@@ -62,8 +62,8 @@ export const Variants: Story = {
       <Badge variant="bordered">Bordered</Badge>
       <Badge variant="pill">Pill</Badge>
     </div>
-  )
-}
+  ),
+};
 
 export const Dismissible: Story = {
   render: () => (
@@ -86,8 +86,8 @@ export const Dismissible: Story = {
         Red
       </Badge>
     </div>
-  )
-}
+  ),
+};
 
 export const WithIcon: Story = {
   render: () => (
@@ -124,8 +124,8 @@ export const WithIcon: Story = {
         With icon
       </Badge>
     </div>
-  )
-}
+  ),
+};
 
 export const IconOnly: Story = {
   render: () => (
@@ -160,5 +160,5 @@ export const IconOnly: Story = {
         iconOnly
       />
     </div>
-  )
-}
+  ),
+};

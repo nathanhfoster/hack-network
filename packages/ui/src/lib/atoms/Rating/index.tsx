@@ -1,16 +1,16 @@
-'use client'
+'use client';
 
-import { useState } from 'react'
-import { combineClassNames } from '../../../utils'
-import type { RatingProps } from './types'
+import { useState } from 'react';
+import { combineClassNames } from '../../../utils';
+import type { RatingProps } from './types';
 import {
   RATING_SIZES,
   RATING_COLORS,
   RATING_BASE_CLASSES,
   RATING_STAR_BASE_CLASSES,
   RATING_STAR_DISABLED_CLASSES,
-  RATING_LABEL_BASE_CLASSES
-} from './constants'
+  RATING_LABEL_BASE_CLASSES,
+} from './constants';
 
 const Rating: React.FC<RatingProps> = ({
   value,
@@ -24,34 +24,34 @@ const Rating: React.FC<RatingProps> = ({
   disabled = false,
   readonly = false,
   onHover,
-  onLeave
+  onLeave,
 }) => {
-  const [hoverValue, setHoverValue] = useState<number | null>(null)
-  const stars = [1, 2, 3, 4, 5]
+  const [hoverValue, setHoverValue] = useState<number | null>(null);
+  const stars = [1, 2, 3, 4, 5];
 
   const handleClick = (starValue: number) => {
-    if (disabled || readonly) return
-    onChange?.(starValue)
-  }
+    if (disabled || readonly) return;
+    onChange?.(starValue);
+  };
 
   const handleMouseEnter = (starValue: number) => {
-    if (disabled || readonly) return
-    setHoverValue(starValue)
-    onHover?.(starValue)
-  }
+    if (disabled || readonly) return;
+    setHoverValue(starValue);
+    onHover?.(starValue);
+  };
 
   const handleMouseLeave = () => {
-    if (disabled || readonly) return
-    setHoverValue(null)
-    onLeave?.()
-  }
+    if (disabled || readonly) return;
+    setHoverValue(null);
+    onLeave?.();
+  };
 
   const getStarColor = (starValue: number) => {
     if (hoverValue !== null) {
-      return starValue <= hoverValue ? RATING_COLORS[color] : 'text-gray-300'
+      return starValue <= hoverValue ? RATING_COLORS[color] : 'text-gray-300';
     }
-    return starValue <= value ? RATING_COLORS[color] : 'text-gray-300'
-  }
+    return starValue <= value ? RATING_COLORS[color] : 'text-gray-300';
+  };
 
   return (
     <div
@@ -67,7 +67,7 @@ const Rating: React.FC<RatingProps> = ({
             RATING_SIZES[size],
             getStarColor(star),
             disabled && RATING_STAR_DISABLED_CLASSES,
-            starClassName
+            starClassName,
           )}
           onClick={() => handleClick(star)}
           onMouseEnter={() => handleMouseEnter(star)}
@@ -89,14 +89,14 @@ const Rating: React.FC<RatingProps> = ({
         <span
           className={combineClassNames(
             RATING_LABEL_BASE_CLASSES,
-            labelClassName
+            labelClassName,
           )}
         >
           {label}
         </span>
       )}
     </div>
-  )
-}
+  );
+};
 
-export default Rating
+export default Rating;

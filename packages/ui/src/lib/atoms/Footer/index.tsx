@@ -1,6 +1,6 @@
-import { combineClassNames } from '../../../utils'
-import type { FooterProps } from './types'
-import type { FC } from 'react'
+import { combineClassNames } from '../../../utils';
+import type { FooterProps } from './types';
+import type { FC } from 'react';
 import {
   FOOTER_BASE_CLASSES,
   FOOTER_STICKY_CLASSES,
@@ -10,8 +10,8 @@ import {
   FOOTER_LINK_CLASSES,
   FOOTER_LOGO_CONTAINER_CLASSES,
   FOOTER_LOGO_TEXT_CLASSES,
-  FOOTER_SOCIAL_LINK_CLASSES
-} from './constants'
+  FOOTER_SOCIAL_LINK_CLASSES,
+} from './constants';
 
 const Footer: FC<FooterProps> = ({
   children,
@@ -20,14 +20,14 @@ const Footer: FC<FooterProps> = ({
   links,
   socialLinks,
   logo,
-  sticky = false
+  sticky = false,
 }) => {
   return (
     <footer
       className={combineClassNames(
         FOOTER_BASE_CLASSES,
         sticky && FOOTER_STICKY_CLASSES,
-        className
+        className,
       )}
     >
       <div className={FOOTER_CONTAINER_CLASSES}>
@@ -82,7 +82,7 @@ const Footer: FC<FooterProps> = ({
         </div>
       </div>
     </footer>
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;

@@ -1,4 +1,4 @@
-import { type FC } from 'react'
+import { type FC } from 'react';
 import {
   BREADCRUMB_BASE_CLASSES,
   BREADCRUMB_CURRENT_ITEM_CLASSES,
@@ -7,15 +7,15 @@ import {
   BREADCRUMB_LIST_CLASSES,
   BREADCRUMB_VARIANTS,
   DEFAULT_HOME_ICON,
-  DEFAULT_SEPARATOR
-} from './constants'
-import type { BreadcrumbProps } from './types'
+  DEFAULT_SEPARATOR,
+} from './constants';
+import type { BreadcrumbProps } from './types';
 
 const Breadcrumb: FC<BreadcrumbProps> = ({
   data,
   className = '',
   variant = 'default',
-  separator = DEFAULT_SEPARATOR
+  separator = DEFAULT_SEPARATOR,
 }) => {
   return (
     <nav
@@ -42,7 +42,7 @@ const Breadcrumb: FC<BreadcrumbProps> = ({
         ))}
       </ol>
     </nav>
-  )
-}
+  );
+};
 
-export default Breadcrumb
+export default Breadcrumb;

@@ -1,24 +1,24 @@
-import type { Meta, StoryObj } from '@storybook/react'
-import ChatBubble from '.'
+import type { Meta, StoryObj } from '@storybook/react';
+import ChatBubble from '.';
 
 const meta: Meta<typeof ChatBubble> = {
   title: 'Atoms/ChatBubble',
   component: ChatBubble,
   parameters: {
-    layout: 'centered'
+    layout: 'centered',
   },
-  tags: ['autodocs']
-}
+  tags: ['autodocs'],
+};
 
-export default meta
-type Story = StoryObj<typeof ChatBubble>
+export default meta;
+type Story = StoryObj<typeof ChatBubble>;
 
 export const Default: Story = {
   render: () => (
     <ChatBubble
       avatar={{
         src: 'https://flowbite.com/docs/images/people/profile-picture-3.jpg',
-        alt: 'Jese image'
+        alt: 'Jese image',
       }}
       sender="Bonnie Green"
       timestamp="11:46"
@@ -26,8 +26,8 @@ export const Default: Story = {
     >
       That's awesome. I think our users will really appreciate the improvements.
     </ChatBubble>
-  )
-}
+  ),
+};
 
 export const Outline: Story = {
   render: () => (
@@ -35,7 +35,7 @@ export const Outline: Story = {
       variant="outline"
       avatar={{
         src: 'https://flowbite.com/docs/images/people/profile-picture-3.jpg',
-        alt: 'Jese image'
+        alt: 'Jese image',
       }}
       sender="Bonnie Green"
       timestamp="11:46"
@@ -43,8 +43,8 @@ export const Outline: Story = {
     >
       That's awesome. I think our users will really appreciate the improvements.
     </ChatBubble>
-  )
-}
+  ),
+};
 
 export const Clean: Story = {
   render: () => (
@@ -52,7 +52,7 @@ export const Clean: Story = {
       variant="clean"
       avatar={{
         src: 'https://flowbite.com/docs/images/people/profile-picture-3.jpg',
-        alt: 'Jese image'
+        alt: 'Jese image',
       }}
       sender="Bonnie Green"
       timestamp="11:46"
@@ -60,8 +60,8 @@ export const Clean: Story = {
     >
       That's awesome. I think our users will really appreciate the improvements.
     </ChatBubble>
-  )
-}
+  ),
+};
 
 export const Sender: Story = {
   render: () => (
@@ -69,7 +69,7 @@ export const Sender: Story = {
       isSender
       avatar={{
         src: 'https://flowbite.com/docs/images/people/profile-picture-3.jpg',
-        alt: 'Jese image'
+        alt: 'Jese image',
       }}
       sender="Bonnie Green"
       timestamp="11:46"
@@ -77,5 +77,5 @@ export const Sender: Story = {
     >
       That's awesome. I think our users will really appreciate the improvements.
     </ChatBubble>
-  )
-}
+  ),
+};

@@ -1,8 +1,8 @@
-import type { ButtonGroupItemProps } from './types'
+import type { ButtonGroupItemProps } from './types';
 
-export const BUTTON_GROUP_BASE_CLASSES = 'inline-flex rounded-md shadow-xs'
+export const BUTTON_GROUP_BASE_CLASSES = 'inline-flex rounded-md shadow-xs';
 
-export const BUTTON_GROUP_ITEM_BASE_CLASSES = 'px-4 py-2 text-sm font-medium'
+export const BUTTON_GROUP_ITEM_BASE_CLASSES = 'px-4 py-2 text-sm font-medium';
 
 export const BUTTON_GROUP_ITEM_STYLES: Record<
   NonNullable<ButtonGroupItemProps['variant']>,
@@ -33,18 +33,18 @@ export const BUTTON_GROUP_ITEM_STYLES: Record<
   gradientDuotone:
     'text-white bg-gradient-to-r from-purple-500 to-pink-500 hover:bg-gradient-to-br focus:ring-2 focus:ring-purple-500 focus:text-white dark:focus:ring-purple-500 dark:focus:text-white',
   gradientOutline:
-    'text-blue-700 hover:text-white border border-blue-700 hover:bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 focus:ring-2 focus:ring-blue-500 focus:text-white dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-gradient-to-r dark:from-blue-500 dark:via-blue-600 dark:to-blue-700 dark:focus:ring-blue-500 dark:focus:text-white'
-}
+    'text-blue-700 hover:text-white border border-blue-700 hover:bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 focus:ring-2 focus:ring-blue-500 focus:text-white dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-gradient-to-r dark:from-blue-500 dark:via-blue-600 dark:to-blue-700 dark:focus:ring-blue-500 dark:focus:text-white',
+};
 
 export const BUTTON_GROUP_ITEM_POSITION_CLASSES = {
   first: 'rounded-s-lg',
   middle: 'border-t border-b',
-  last: 'rounded-e-lg'
-}
+  last: 'rounded-e-lg',
+};
 
 export const BUTTON_GROUP_OUTLINE_STYLES = {
   default:
     'text-gray-900 bg-transparent border border-gray-900 hover:bg-gray-900 hover:text-white focus:ring-2 focus:ring-gray-500 focus:bg-gray-900 focus:text-white dark:border-white dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:bg-gray-700',
   active:
-    'text-white bg-gray-900 hover:bg-gray-800 focus:ring-2 focus:ring-gray-500 focus:text-white dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-500 dark:focus:text-white'
-}
+    'text-white bg-gray-900 hover:bg-gray-800 focus:ring-2 focus:ring-gray-500 focus:text-white dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-500 dark:focus:text-white',
+};

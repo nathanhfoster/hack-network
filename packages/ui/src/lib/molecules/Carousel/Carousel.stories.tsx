@@ -1,17 +1,17 @@
-import type { Meta, StoryObj } from '@storybook/react'
-import Carousel from '.'
+import type { Meta, StoryObj } from '@storybook/react';
+import Carousel from '.';
 
 const meta: Meta<typeof Carousel> = {
   title: 'Molecules/Carousel',
   component: Carousel,
   parameters: {
-    layout: 'centered'
+    layout: 'centered',
   },
-  tags: ['autodocs']
-}
+  tags: ['autodocs'],
+};
 
-export default meta
-type Story = StoryObj<typeof Carousel>
+export default meta;
+type Story = StoryObj<typeof Carousel>;
 
 const data = [
   {
@@ -22,7 +22,7 @@ const data = [
         className="absolute block w-full h-full object-cover"
         alt="Slide 1"
       />
-    )
+    ),
   },
   {
     id: '2',
@@ -32,7 +32,7 @@ const data = [
         className="absolute block w-full h-full object-cover"
         alt="Slide 2"
       />
-    )
+    ),
   },
   {
     id: '3',
@@ -42,36 +42,36 @@ const data = [
         className="absolute block w-full h-full object-cover"
         alt="Slide 3"
       />
-    )
-  }
-]
+    ),
+  },
+];
 
 export const Default: Story = {
   args: {
-    data
-  }
-}
+    data,
+  },
+};
 
 export const WithoutControls: Story = {
   args: {
     data,
-    showControls: false
-  }
-}
+    showControls: false,
+  },
+};
 
 export const WithoutIndicators: Story = {
   args: {
     data,
-    showIndicators: false
-  }
-}
+    showIndicators: false,
+  },
+};
 
 export const CustomInterval: Story = {
   args: {
     data,
-    interval: 5000
-  }
-}
+    interval: 5000,
+  },
+};
 
 export const WithCustomContent: Story = {
   args: {
@@ -82,7 +82,7 @@ export const WithCustomContent: Story = {
           <div className="absolute block w-full h-full bg-blue-500 flex items-center justify-center text-white text-4xl">
             Slide 1
           </div>
-        )
+        ),
       },
       {
         id: '2',
@@ -90,7 +90,7 @@ export const WithCustomContent: Story = {
           <div className="absolute block w-full h-full bg-green-500 flex items-center justify-center text-white text-4xl">
             Slide 2
           </div>
-        )
+        ),
       },
       {
         id: '3',
@@ -98,8 +98,8 @@ export const WithCustomContent: Story = {
           <div className="absolute block w-full h-full bg-purple-500 flex items-center justify-center text-white text-4xl">
             Slide 3
           </div>
-        )
-      }
-    ]
-  }
-}
+        ),
+      },
+    ],
+  },
+};

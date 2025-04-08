@@ -1,4 +1,4 @@
-export type ProgressSize = 'sm' | 'md' | 'lg' | 'xl'
+export type ProgressSize = 'sm' | 'md' | 'lg' | 'xl';
 
 export type ProgressColor =
   | 'default'
@@ -8,17 +8,17 @@ export type ProgressColor =
   | 'danger'
   | 'warning'
   | 'info'
-  | 'dark'
+  | 'dark';
 
-export type ProgressLabelPosition = 'inside' | 'outside' | 'none'
+export type ProgressLabelPosition = 'inside' | 'outside' | 'none';
 
 export interface ProgressProps {
-  value: number
-  max?: number
-  size?: ProgressSize
-  color?: ProgressColor
-  labelPosition?: ProgressLabelPosition
-  label?: string
-  showValue?: boolean
-  className?: string
+  value: number;
+  max?: number;
+  size?: ProgressSize;
+  color?: ProgressColor;
+  labelPosition?: ProgressLabelPosition;
+  label?: string;
+  showValue?: boolean;
+  className?: string;
 }

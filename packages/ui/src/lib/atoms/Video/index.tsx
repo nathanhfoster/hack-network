@@ -1,8 +1,8 @@
-'use client'
+'use client';
 
-import { combineClassNames } from '../../../utils'
-import type { VideoProps } from './types'
-import { VIDEO_BASE_CLASSES } from './constants'
+import { combineClassNames } from '../../../utils';
+import type { VideoProps } from './types';
+import { VIDEO_BASE_CLASSES } from './constants';
 
 const Video: React.FC<VideoProps> = ({
   sources,
@@ -13,7 +13,7 @@ const Video: React.FC<VideoProps> = ({
   width,
   height,
   className,
-  fallback = 'Your browser does not support the video tag.'
+  fallback = 'Your browser does not support the video tag.',
 }) => {
   return (
     <video
@@ -30,7 +30,7 @@ const Video: React.FC<VideoProps> = ({
       ))}
       {fallback}
     </video>
-  )
-}
+  );
+};
 
-export default Video
+export default Video;

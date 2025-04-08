@@ -1,10 +1,10 @@
-import type { Meta, StoryObj } from '@storybook/react'
-import Progress from '.'
+import type { Meta, StoryObj } from '@storybook/react';
+import Progress from '.';
 import {
   PROGRESS_COLORS,
   PROGRESS_LABEL_POSITIONS,
-  PROGRESS_SIZES
-} from './constants'
+  PROGRESS_SIZES,
+} from './constants';
 
 const meta: Meta<typeof Progress> = {
   title: 'Atoms/Progress',
@@ -13,109 +13,109 @@ const meta: Meta<typeof Progress> = {
   argTypes: {
     size: {
       control: 'select',
-      options: Object.values(PROGRESS_SIZES)
+      options: Object.values(PROGRESS_SIZES),
     },
     color: {
       control: 'select',
-      options: Object.values(PROGRESS_COLORS)
+      options: Object.values(PROGRESS_COLORS),
     },
     labelPosition: {
       control: 'select',
-      options: Object.values(PROGRESS_LABEL_POSITIONS)
-    }
-  }
-}
+      options: Object.values(PROGRESS_LABEL_POSITIONS),
+    },
+  },
+};
 
-export default meta
-type Story = StoryObj<typeof Progress>
+export default meta;
+type Story = StoryObj<typeof Progress>;
 
 export const Default: Story = {
   args: {
-    value: 45
-  }
-}
+    value: 45,
+  },
+};
 
 export const WithLabel: Story = {
   args: {
     value: 45,
     label: 'Flowbite',
-    labelPosition: PROGRESS_LABEL_POSITIONS.outside
-  }
-}
+    labelPosition: PROGRESS_LABEL_POSITIONS.outside,
+  },
+};
 
 export const WithLabelInside: Story = {
   args: {
     value: 45,
-    labelPosition: PROGRESS_LABEL_POSITIONS.inside
-  }
-}
+    labelPosition: PROGRESS_LABEL_POSITIONS.inside,
+  },
+};
 
 export const Small: Story = {
   args: {
     value: 45,
-    size: PROGRESS_SIZES.sm
-  }
-}
+    size: PROGRESS_SIZES.sm,
+  },
+};
 
 export const Large: Story = {
   args: {
     value: 45,
-    size: PROGRESS_SIZES.lg
-  }
-}
+    size: PROGRESS_SIZES.lg,
+  },
+};
 
 export const ExtraLarge: Story = {
   args: {
     value: 45,
-    size: PROGRESS_SIZES.xl
-  }
-}
+    size: PROGRESS_SIZES.xl,
+  },
+};
 
 export const Success: Story = {
   args: {
     value: 45,
-    color: PROGRESS_COLORS.success
-  }
-}
+    color: PROGRESS_COLORS.success,
+  },
+};
 
 export const Danger: Story = {
   args: {
     value: 45,
-    color: PROGRESS_COLORS.danger
-  }
-}
+    color: PROGRESS_COLORS.danger,
+  },
+};
 
 export const Warning: Story = {
   args: {
     value: 45,
-    color: PROGRESS_COLORS.warning
-  }
-}
+    color: PROGRESS_COLORS.warning,
+  },
+};
 
 export const Info: Story = {
   args: {
     value: 45,
-    color: PROGRESS_COLORS.info
-  }
-}
+    color: PROGRESS_COLORS.info,
+  },
+};
 
 export const Dark: Story = {
   args: {
     value: 45,
-    color: PROGRESS_COLORS.dark
-  }
-}
+    color: PROGRESS_COLORS.dark,
+  },
+};
 
 export const CustomMax: Story = {
   args: {
     value: 45,
-    max: 200
-  }
-}
+    max: 200,
+  },
+};
 
 export const WithoutValue: Story = {
   args: {
     value: 45,
-    showValue: false
-  }
-}
+    showValue: false,
+  },
+};

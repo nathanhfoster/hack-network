@@ -1,4 +1,4 @@
-export const GRID_ITEM_BASE_CLASSES = 'col-span-1'
+export const GRID_ITEM_BASE_CLASSES = 'col-span-1';
 
 export const GRID_ITEM_SPAN_CLASSES = {
   1: 'col-span-1',
@@ -12,8 +12,8 @@ export const GRID_ITEM_SPAN_CLASSES = {
   9: 'col-span-9',
   10: 'col-span-10',
   11: 'col-span-11',
-  12: 'col-span-12'
-}
+  12: 'col-span-12',
+};
 
 export const GRID_ITEM_SM_SPAN_CLASSES = {
   1: 'sm:col-span-1',
@@ -27,8 +27,8 @@ export const GRID_ITEM_SM_SPAN_CLASSES = {
   9: 'sm:col-span-9',
   10: 'sm:col-span-10',
   11: 'sm:col-span-11',
-  12: 'sm:col-span-12'
-}
+  12: 'sm:col-span-12',
+};
 
 export const GRID_ITEM_MD_SPAN_CLASSES = {
   1: 'md:col-span-1',
@@ -42,8 +42,8 @@ export const GRID_ITEM_MD_SPAN_CLASSES = {
   9: 'md:col-span-9',
   10: 'md:col-span-10',
   11: 'md:col-span-11',
-  12: 'md:col-span-12'
-}
+  12: 'md:col-span-12',
+};
 
 export const GRID_ITEM_LG_SPAN_CLASSES = {
   1: 'lg:col-span-1',
@@ -57,8 +57,8 @@ export const GRID_ITEM_LG_SPAN_CLASSES = {
   9: 'lg:col-span-9',
   10: 'lg:col-span-10',
   11: 'lg:col-span-11',
-  12: 'lg:col-span-12'
-}
+  12: 'lg:col-span-12',
+};
 
 export const GRID_ITEM_XL_SPAN_CLASSES = {
   1: 'xl:col-span-1',
@@ -72,8 +72,8 @@ export const GRID_ITEM_XL_SPAN_CLASSES = {
   9: 'xl:col-span-9',
   10: 'xl:col-span-10',
   11: 'xl:col-span-11',
-  12: 'xl:col-span-12'
-}
+  12: 'xl:col-span-12',
+};
 
 export const GRID_ITEM_START_CLASSES = {
   1: 'col-start-1',
@@ -87,8 +87,8 @@ export const GRID_ITEM_START_CLASSES = {
   9: 'col-start-9',
   10: 'col-start-10',
   11: 'col-start-11',
-  12: 'col-start-12'
-}
+  12: 'col-start-12',
+};
 
 export const GRID_ITEM_END_CLASSES = {
   1: 'col-end-1',
@@ -102,8 +102,8 @@ export const GRID_ITEM_END_CLASSES = {
   9: 'col-end-9',
   10: 'col-end-10',
   11: 'col-end-11',
-  12: 'col-end-12'
-}
+  12: 'col-end-12',
+};
 
 export const GRID_ITEM_SM_START_CLASSES = {
   1: 'sm:col-start-1',
@@ -117,8 +117,8 @@ export const GRID_ITEM_SM_START_CLASSES = {
   9: 'sm:col-start-9',
   10: 'sm:col-start-10',
   11: 'sm:col-start-11',
-  12: 'sm:col-start-12'
-}
+  12: 'sm:col-start-12',
+};
 
 export const GRID_ITEM_SM_END_CLASSES = {
   1: 'sm:col-end-1',
@@ -132,8 +132,8 @@ export const GRID_ITEM_SM_END_CLASSES = {
   9: 'sm:col-end-9',
   10: 'sm:col-end-10',
   11: 'sm:col-end-11',
-  12: 'sm:col-end-12'
-}
+  12: 'sm:col-end-12',
+};
 
 export const GRID_ITEM_MD_START_CLASSES = {
   1: 'md:col-start-1',
@@ -147,8 +147,8 @@ export const GRID_ITEM_MD_START_CLASSES = {
   9: 'md:col-start-9',
   10: 'md:col-start-10',
   11: 'md:col-start-11',
-  12: 'md:col-start-12'
-}
+  12: 'md:col-start-12',
+};
 
 export const GRID_ITEM_MD_END_CLASSES = {
   1: 'md:col-end-1',
@@ -162,8 +162,8 @@ export const GRID_ITEM_MD_END_CLASSES = {
   9: 'md:col-end-9',
   10: 'md:col-end-10',
   11: 'md:col-end-11',
-  12: 'md:col-end-12'
-}
+  12: 'md:col-end-12',
+};
 
 export const GRID_ITEM_LG_START_CLASSES = {
   1: 'lg:col-start-1',
@@ -177,8 +177,8 @@ export const GRID_ITEM_LG_START_CLASSES = {
   9: 'lg:col-start-9',
   10: 'lg:col-start-10',
   11: 'lg:col-start-11',
-  12: 'lg:col-start-12'
-}
+  12: 'lg:col-start-12',
+};
 
 export const GRID_ITEM_LG_END_CLASSES = {
   1: 'lg:col-start-1',
@@ -192,8 +192,8 @@ export const GRID_ITEM_LG_END_CLASSES = {
   9: 'lg:col-start-9',
   10: 'lg:col-start-10',
   11: 'lg:col-start-11',
-  12: 'lg:col-start-12'
-}
+  12: 'lg:col-start-12',
+};
 
 export const GRID_ITEM_XL_START_CLASSES = {
   1: 'xl:col-start-1',
@@ -207,8 +207,8 @@ export const GRID_ITEM_XL_START_CLASSES = {
   9: 'xl:col-start-9',
   10: 'xl:col-start-10',
   11: 'xl:col-start-11',
-  12: 'xl:col-start-12'
-}
+  12: 'xl:col-start-12',
+};
 
 export const GRID_ITEM_XL_END_CLASSES = {
   1: 'xl:col-end-1',
@@ -222,5 +222,5 @@ export const GRID_ITEM_XL_END_CLASSES = {
   9: 'xl:col-end-9',
   10: 'xl:col-end-10',
   11: 'xl:col-end-11',
-  12: 'xl:col-end-12'
-}
+  12: 'xl:col-end-12',
+};

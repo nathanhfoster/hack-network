@@ -1,15 +1,15 @@
-'use client'
+'use client';
 
-import { FC } from 'react'
-import Button from '../Button'
-import { combineClassNames } from '../../../utils'
-import type { DropdownProps } from './types'
+import { FC } from 'react';
+import Button from '../Button';
+import { combineClassNames } from '../../../utils';
+import type { DropdownProps } from './types';
 import {
   DROPDOWN_BASE_CLASSES,
   DROPDOWN_TRIGGER_CLASSES,
   DROPDOWN_MENU_CLASSES,
-  DROPDOWN_ITEM_CLASSES
-} from './constants'
+  DROPDOWN_ITEM_CLASSES,
+} from './constants';
 
 const Dropdown: FC<DropdownProps> = ({
   label,
@@ -17,7 +17,7 @@ const Dropdown: FC<DropdownProps> = ({
   trigger,
   className,
   isOpen,
-  onToggle
+  onToggle,
 }) => {
   return (
     <div className={combineClassNames(DROPDOWN_BASE_CLASSES, className)}>
@@ -64,7 +64,7 @@ const Dropdown: FC<DropdownProps> = ({
         </div>
       )}
     </div>
-  )
-}
+  );
+};
 
-export default Dropdown
+export default Dropdown;

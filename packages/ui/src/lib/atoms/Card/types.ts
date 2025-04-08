@@ -1,5 +1,5 @@
-import type { HTMLAttributes } from 'react'
+import type { HTMLAttributes } from 'react';
 
 export interface CardProps extends HTMLAttributes<HTMLDivElement> {
-  className?: string
+  className?: string;
 }

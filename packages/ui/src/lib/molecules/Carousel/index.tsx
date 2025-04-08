@@ -1,7 +1,7 @@
-'use client'
+'use client';
 
-import { useEffect, useState } from 'react'
-import type { CarouselProps } from './types'
+import { useEffect, useState } from 'react';
+import type { CarouselProps } from './types';
 
 const Carousel: React.FC<CarouselProps> = ({
   data,
@@ -9,33 +9,33 @@ const Carousel: React.FC<CarouselProps> = ({
   showControls = true,
   showIndicators = true,
   className = '',
-  onSlideChange
+  onSlideChange,
 }) => {
-  const [currentIndex, setCurrentIndex] = useState(0)
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setCurrentIndex((prevIndex) => (prevIndex + 1) % data.length)
-    }, interval)
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % data.length);
+    }, interval);
 
-    return () => clearInterval(timer)
-  }, [interval, data.length])
+    return () => clearInterval(timer);
+  }, [interval, data.length]);
 
   const handlePrevious = () => {
-    setCurrentIndex((prevIndex) => (prevIndex - 1 + data.length) % data.length)
-  }
+    setCurrentIndex((prevIndex) => (prevIndex - 1 + data.length) % data.length);
+  };
 
   const handleNext = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % data.length)
-  }
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % data.length);
+  };
 
   const handleIndicatorClick = (index: number) => {
-    setCurrentIndex(index)
-  }
+    setCurrentIndex(index);
+  };
 
   useEffect(() => {
-    onSlideChange?.(currentIndex)
-  }, [currentIndex, onSlideChange])
+    onSlideChange?.(currentIndex);
+  }, [currentIndex, onSlideChange]);
 
   return (
     <div className={`relative w-full ${className}`} data-carousel="slide">
@@ -127,7 +127,7 @@ const Carousel: React.FC<CarouselProps> = ({
         </>
       )}
     </div>
-  )
-}
+  );
+};
 
-export default Carousel
+export default Carousel;

@@ -1,4 +1,3 @@
-
 const isClientSide = (checkServiceWorker = false) => {
   const isBrowser = typeof window !== 'undefined';
 

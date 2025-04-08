@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react'
+import type { ReactNode } from 'react';
 
 export type VideoSize =
   | 'sm'
@@ -10,21 +10,21 @@ export type VideoSize =
   | '4xl'
   | '5xl'
   | '6xl'
-  | '7xl'
+  | '7xl';
 
 export interface VideoSource {
-  src: string
-  type: string
+  src: string;
+  type: string;
 }
 
 export interface VideoProps {
-  sources: VideoSource[]
-  controls?: boolean
-  autoplay?: boolean
-  muted?: boolean
-  loop?: boolean
-  width?: string | number
-  height?: string | number
-  className?: string
-  fallback?: ReactNode
+  sources: VideoSource[];
+  controls?: boolean;
+  autoplay?: boolean;
+  muted?: boolean;
+  loop?: boolean;
+  width?: string | number;
+  height?: string | number;
+  className?: string;
+  fallback?: ReactNode;
 }

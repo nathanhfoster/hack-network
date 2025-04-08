@@ -1,6 +1,6 @@
-import { combineClassNames } from '../../../utils'
-import type { ChatBubbleProps } from './types'
-import type { FC } from 'react'
+import { combineClassNames } from '../../../utils';
+import type { ChatBubbleProps } from './types';
+import type { FC } from 'react';
 import {
   CHAT_BUBBLE_BASE_CLASSES,
   CHAT_BUBBLE_AVATAR_CLASSES,
@@ -8,11 +8,11 @@ import {
   CHAT_BUBBLE_VARIANT_STYLES,
   CHAT_BUBBLE_SENDER_STYLES,
   CHAT_BUBBLE_SENDER_CLASSES,
-  CHAT_BUBBLE_TIMESTAMP_CLASSES
-} from './constants'
-import ChatBubbleContent from './ChatBubbleContent'
-import ChatBubbleHeader from './ChatBubbleHeader'
-import ChatBubbleFooter from './ChatBubbleFooter'
+  CHAT_BUBBLE_TIMESTAMP_CLASSES,
+} from './constants';
+import ChatBubbleContent from './ChatBubbleContent';
+import ChatBubbleHeader from './ChatBubbleHeader';
+import ChatBubbleFooter from './ChatBubbleFooter';
 
 const ChatBubble: FC<ChatBubbleProps> = ({
   children,
@@ -22,14 +22,14 @@ const ChatBubble: FC<ChatBubbleProps> = ({
   timestamp,
   status,
   variant = 'default',
-  isSender = false
+  isSender = false,
 }) => {
   const getContentClasses = () => {
-    const baseClasses = CHAT_BUBBLE_CONTENT_BASE_CLASSES
-    const variantClasses = CHAT_BUBBLE_VARIANT_STYLES[variant]
-    const senderClasses = isSender ? CHAT_BUBBLE_SENDER_STYLES[variant] : ''
-    return combineClassNames(baseClasses, variantClasses, senderClasses)
-  }
+    const baseClasses = CHAT_BUBBLE_CONTENT_BASE_CLASSES;
+    const variantClasses = CHAT_BUBBLE_VARIANT_STYLES[variant];
+    const senderClasses = isSender ? CHAT_BUBBLE_SENDER_STYLES[variant] : '';
+    return combineClassNames(baseClasses, variantClasses, senderClasses);
+  };
 
   return (
     <div className={combineClassNames(CHAT_BUBBLE_BASE_CLASSES, className)}>
@@ -55,7 +55,7 @@ const ChatBubble: FC<ChatBubbleProps> = ({
         {status && <ChatBubbleFooter>{status}</ChatBubbleFooter>}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default ChatBubble
+export default ChatBubble;

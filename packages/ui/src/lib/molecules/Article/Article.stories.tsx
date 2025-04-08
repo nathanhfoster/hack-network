@@ -1,6 +1,6 @@
-import type { Meta, StoryObj } from '@storybook/react'
-import Article from '.'
-import { TYPOGRAPHY_VARIANTS } from '../../atoms/Typography/constants'
+import type { Meta, StoryObj } from '@storybook/react';
+import Article from '.';
+import { TYPOGRAPHY_VARIANTS } from '../../atoms/Typography/constants';
 
 const meta: Meta<typeof Article> = {
   title: 'Molecules/Article',
@@ -9,22 +9,22 @@ const meta: Meta<typeof Article> = {
   argTypes: {
     variant: {
       control: 'select',
-      options: Object.values(TYPOGRAPHY_VARIANTS)
-    }
-  }
-}
+      options: Object.values(TYPOGRAPHY_VARIANTS),
+    },
+  },
+};
 
-export default meta
-type Story = StoryObj<typeof Article>
+export default meta;
+type Story = StoryObj<typeof Article>;
 
 export const Default: Story = {
   args: {
     title: 'Article Title',
     content:
       'This is the main content of the article. It can contain multiple paragraphs and rich text content.',
-    variant: TYPOGRAPHY_VARIANTS.body1
-  }
-}
+    variant: TYPOGRAPHY_VARIANTS.body1,
+  },
+};
 
 export const WithSubtitle: Story = {
   args: {
@@ -33,9 +33,9 @@ export const WithSubtitle: Story = {
       'A descriptive subtitle that provides more context about the article',
     content:
       'This is the main content of the article. It can contain multiple paragraphs and rich text content.',
-    variant: TYPOGRAPHY_VARIANTS.body1
-  }
-}
+    variant: TYPOGRAPHY_VARIANTS.body1,
+  },
+};
 
 export const WithMetadata: Story = {
   args: {
@@ -45,9 +45,9 @@ export const WithMetadata: Story = {
     date: 'April 2, 2024',
     content:
       'This is the main content of the article. It can contain multiple paragraphs and rich text content.',
-    variant: TYPOGRAPHY_VARIANTS.body1
-  }
-}
+    variant: TYPOGRAPHY_VARIANTS.body1,
+  },
+};
 
 export const WithImage: Story = {
   args: {
@@ -59,9 +59,9 @@ export const WithImage: Story = {
     imageAlt: 'Article featured image',
     content:
       'This is the main content of the article. It can contain multiple paragraphs and rich text content.',
-    variant: TYPOGRAPHY_VARIANTS.body1
-  }
-}
+    variant: TYPOGRAPHY_VARIANTS.body1,
+  },
+};
 
 export const WithTags: Story = {
   args: {
@@ -74,6 +74,6 @@ export const WithTags: Story = {
     content:
       'This is the main content of the article. It can contain multiple paragraphs and rich text content.',
     variant: TYPOGRAPHY_VARIANTS.body1,
-    tags: ['Technology', 'Web Development', 'React']
-  }
-}
+    tags: ['Technology', 'Web Development', 'React'],
+  },
+};

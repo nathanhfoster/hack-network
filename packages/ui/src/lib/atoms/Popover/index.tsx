@@ -1,13 +1,13 @@
-'use client'
+'use client';
 
-import { useEffect, useRef, useState } from 'react'
-import { combineClassNames } from '../../../utils'
-import type { PopoverProps } from './types'
+import { useEffect, useRef, useState } from 'react';
+import { combineClassNames } from '../../../utils';
+import type { PopoverProps } from './types';
 import {
   POPOVER_BASE_CLASSES,
   POPOVER_ARROW_CLASSES,
-  POPOVER_PLACEMENTS
-} from './constants'
+  POPOVER_PLACEMENTS,
+} from './constants';
 
 export function Popover({
   children,
@@ -18,11 +18,11 @@ export function Popover({
   className,
   onShow,
   onHide,
-  onToggle
+  onToggle,
 }: PopoverProps) {
-  const [isOpen, setIsOpen] = useState(false)
-  const triggerRef = useRef<HTMLDivElement>(null)
-  const contentRef = useRef<HTMLDivElement>(null)
+  const [isOpen, setIsOpen] = useState(false);
+  const triggerRef = useRef<HTMLDivElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -32,35 +32,35 @@ export function Popover({
         !contentRef.current.contains(event.target as Node) &&
         !triggerRef.current?.contains(event.target as Node)
       ) {
-        setIsOpen(false)
-        onHide?.()
+        setIsOpen(false);
+        onHide?.();
       }
-    }
+    };
 
-    document.addEventListener('mousedown', handleClickOutside)
-    return () => document.removeEventListener('mousedown', handleClickOutside)
-  }, [triggerType, onHide])
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [triggerType, onHide]);
 
   const handleMouseEnter = () => {
     if (triggerType === 'hover') {
-      setIsOpen(true)
-      onShow?.()
+      setIsOpen(true);
+      onShow?.();
     }
-  }
+  };
 
   const handleMouseLeave = () => {
     if (triggerType === 'hover') {
-      setIsOpen(false)
-      onHide?.()
+      setIsOpen(false);
+      onHide?.();
     }
-  }
+  };
 
   const handleClick = () => {
     if (triggerType === 'click') {
-      setIsOpen(!isOpen)
-      onToggle?.()
+      setIsOpen(!isOpen);
+      onToggle?.();
     }
-  }
+  };
 
   return (
     <div
@@ -76,7 +76,7 @@ export function Popover({
           POPOVER_BASE_CLASSES,
           POPOVER_PLACEMENTS[placement],
           isOpen ? 'opacity-100 visible' : '',
-          className
+          className,
         )}
         style={{ marginTop: offset }}
         role="tooltip"
@@ -85,5 +85,5 @@ export function Popover({
         <div className={POPOVER_ARROW_CLASSES} />
       </div>
     </div>
-  )
+  );
 }

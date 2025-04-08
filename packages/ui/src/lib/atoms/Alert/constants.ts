@@ -1,4 +1,4 @@
-import type { AlertColor, AlertVariant } from './types'
+import type { AlertColor, AlertVariant } from './types';
 
 export const ALERT_COLORS: Record<AlertColor, AlertColor> = {
   default: 'default',
@@ -8,14 +8,14 @@ export const ALERT_COLORS: Record<AlertColor, AlertColor> = {
   danger: 'danger',
   warning: 'warning',
   info: 'info',
-  dark: 'dark'
-}
+  dark: 'dark',
+};
 
 export const ALERT_VARIANTS: Record<AlertVariant, AlertVariant> = {
   default: 'default',
   bordered: 'bordered',
-  'with-list': 'with-list'
-}
+  'with-list': 'with-list',
+};
 
 export const ALERT_COLOR_STYLES: Record<AlertColor, string> = {
   default: 'text-gray-800 bg-gray-50 dark:bg-gray-800 dark:text-gray-300',
@@ -25,8 +25,8 @@ export const ALERT_COLOR_STYLES: Record<AlertColor, string> = {
   danger: 'text-red-800 bg-red-50 dark:bg-gray-800 dark:text-red-400',
   warning: 'text-yellow-800 bg-yellow-50 dark:bg-gray-800 dark:text-yellow-300',
   info: 'text-blue-800 bg-blue-50 dark:bg-gray-800 dark:text-blue-400',
-  dark: 'text-gray-800 bg-gray-50 dark:bg-gray-800 dark:text-gray-300'
-}
+  dark: 'text-gray-800 bg-gray-50 dark:bg-gray-800 dark:text-gray-300',
+};
 
 export const ALERT_BORDER_COLOR_STYLES: Record<AlertColor, string> = {
   default: 'border-gray-200 dark:border-gray-700',
@@ -36,8 +36,8 @@ export const ALERT_BORDER_COLOR_STYLES: Record<AlertColor, string> = {
   danger: 'border-red-200 dark:border-red-800',
   warning: 'border-yellow-200 dark:border-yellow-800',
   info: 'border-blue-200 dark:border-blue-800',
-  dark: 'border-gray-200 dark:border-gray-700'
-}
+  dark: 'border-gray-200 dark:border-gray-700',
+};
 
 export const ALERT_ICON_COLOR_STYLES: Record<AlertColor, string> = {
   default: 'text-gray-400 dark:text-gray-300',
@@ -47,8 +47,8 @@ export const ALERT_ICON_COLOR_STYLES: Record<AlertColor, string> = {
   danger: 'text-red-400 dark:text-red-300',
   warning: 'text-yellow-400 dark:text-yellow-300',
   info: 'text-blue-400 dark:text-blue-300',
-  dark: 'text-gray-400 dark:text-gray-300'
-}
+  dark: 'text-gray-400 dark:text-gray-300',
+};
 
 export const ALERT_DISMISS_COLOR_STYLES: Record<AlertColor, string> = {
   default:
@@ -64,5 +64,5 @@ export const ALERT_DISMISS_COLOR_STYLES: Record<AlertColor, string> = {
   warning:
     'text-yellow-400 hover:bg-yellow-200 hover:text-yellow-900 dark:hover:bg-yellow-800 dark:hover:text-yellow-300',
   info: 'text-blue-400 hover:bg-blue-200 hover:text-blue-900 dark:hover:bg-blue-800 dark:hover:text-blue-300',
-  dark: 'text-gray-400 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-gray-300'
-}
+  dark: 'text-gray-400 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-gray-300',
+};

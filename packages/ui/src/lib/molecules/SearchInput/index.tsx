@@ -1,6 +1,6 @@
-import type { SearchInputProps } from './types'
-import type { FC } from 'react'
-import { Input } from '../../atoms'
+import type { SearchInputProps } from './types';
+import type { FC } from 'react';
+import { Input } from '../../atoms';
 
 const SearchInput: FC<SearchInputProps> = ({
   onSearch,
@@ -8,11 +8,11 @@ const SearchInput: FC<SearchInputProps> = ({
   ...props
 }) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    onChange?.(e)
-    onSearch?.(e.target.value)
-  }
+    onChange?.(e);
+    onSearch?.(e.target.value);
+  };
 
-  return <Input onChange={handleChange} {...props} />
-}
+  return <Input onChange={handleChange} {...props} />;
+};
 
-export default SearchInput
+export default SearchInput;

@@ -1,14 +1,14 @@
-import { combineClassNames } from '../../../utils'
-import type { AsideProps } from './types'
-import type { FC } from 'react'
-import Typography from '../../atoms/Typography'
-import { TYPOGRAPHY_VARIANTS } from '../../atoms/Typography/constants'
+import { combineClassNames } from '../../../utils';
+import type { AsideProps } from './types';
+import type { FC } from 'react';
+import Typography from '../../atoms/Typography';
+import { TYPOGRAPHY_VARIANTS } from '../../atoms/Typography/constants';
 import {
   ASIDE_POSITIONS,
   ASIDE_BACKGROUND_COLORS,
   ASIDE_POSITION_STYLES,
-  ASIDE_BACKGROUND_STYLES
-} from './constants'
+  ASIDE_BACKGROUND_STYLES,
+} from './constants';
 
 const Aside: FC<AsideProps> = ({
   title,
@@ -18,7 +18,7 @@ const Aside: FC<AsideProps> = ({
   className,
   icon,
   isSticky = false,
-  backgroundColor = ASIDE_BACKGROUND_COLORS.default as keyof typeof ASIDE_BACKGROUND_STYLES
+  backgroundColor = ASIDE_BACKGROUND_COLORS.default as keyof typeof ASIDE_BACKGROUND_STYLES,
 }) => {
   return (
     <aside
@@ -27,7 +27,7 @@ const Aside: FC<AsideProps> = ({
         ASIDE_POSITION_STYLES[position],
         ASIDE_BACKGROUND_STYLES[backgroundColor],
         isSticky && 'sticky top-4',
-        className
+        className,
       )}
     >
       {(title || icon) && (
@@ -40,7 +40,7 @@ const Aside: FC<AsideProps> = ({
       )}
       <Typography variant={variant}>{content}</Typography>
     </aside>
-  )
-}
+  );
+};
 
-export default Aside
+export default Aside;

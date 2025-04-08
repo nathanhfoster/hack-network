@@ -1,17 +1,17 @@
-import type { ReactNode } from 'react'
+import type { ReactNode } from 'react';
 
-export type SpinnerSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl'
+export type SpinnerSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 export type SpinnerColor =
   | 'blue'
   | 'green'
   | 'red'
   | 'yellow'
   | 'purple'
-  | 'gray'
+  | 'gray';
 
 export interface SpinnerProps {
-  size?: SpinnerSize
-  color?: SpinnerColor
-  className?: string
-  children?: ReactNode
+  size?: SpinnerSize;
+  color?: SpinnerColor;
+  className?: string;
+  children?: ReactNode;
 }

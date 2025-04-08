@@ -1,8 +1,8 @@
-'use client'
+'use client';
 
-import { FC } from 'react'
-import { combineClassNames } from '../../../utils'
-import type { FilterGroupProps } from './types'
+import { FC } from 'react';
+import { combineClassNames } from '../../../utils';
+import type { FilterGroupProps } from './types';
 import {
   FILTER_GROUP_BASE_CLASSES,
   FILTER_GROUP_LABEL_CLASSES,
@@ -10,8 +10,8 @@ import {
   FILTER_GROUP_OPTION_CLASSES,
   FILTER_GROUP_CHECKBOX_CLASSES,
   FILTER_GROUP_LABEL_TEXT_CLASSES,
-  FILTER_GROUP_COUNT_CLASSES
-} from './constants'
+  FILTER_GROUP_COUNT_CLASSES,
+} from './constants';
 
 const FilterGroup: FC<FilterGroupProps> = ({
   label,
@@ -19,14 +19,14 @@ const FilterGroup: FC<FilterGroupProps> = ({
   selectedValues,
   onChange,
   className,
-  children
+  children,
 }) => {
   const handleChange = (value: string) => {
     const newValues = selectedValues.includes(value)
       ? selectedValues.filter((v) => v !== value)
-      : [...selectedValues, value]
-    onChange(newValues)
-  }
+      : [...selectedValues, value];
+    onChange(newValues);
+  };
 
   return (
     <div className={combineClassNames(FILTER_GROUP_BASE_CLASSES, className)}>
@@ -53,7 +53,7 @@ const FilterGroup: FC<FilterGroupProps> = ({
         {children}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default FilterGroup
+export default FilterGroup;

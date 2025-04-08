@@ -1,5 +1,5 @@
-import type { Meta, StoryObj } from '@storybook/react'
-import Typography from '.'
+import type { Meta, StoryObj } from '@storybook/react';
+import Typography from '.';
 
 const meta: Meta<typeof Typography> = {
   title: 'Atoms/Typography',
@@ -18,8 +18,8 @@ const meta: Meta<typeof Typography> = {
         'body1',
         'body2',
         'caption',
-        'overline'
-      ]
+        'overline',
+      ],
     },
     color: {
       control: 'select',
@@ -30,20 +30,20 @@ const meta: Meta<typeof Typography> = {
         'warning',
         'info',
         'success',
-        'inherit'
-      ]
-    }
-  }
-}
+        'inherit',
+      ],
+    },
+  },
+};
 
-export default meta
-type Story = StoryObj<typeof Typography>
+export default meta;
+type Story = StoryObj<typeof Typography>;
 
 export const Default: Story = {
   args: {
-    children: 'Typography Text'
-  }
-}
+    children: 'Typography Text',
+  },
+};
 
 export const AllVariants: Story = {
   render: () => (
@@ -59,8 +59,8 @@ export const AllVariants: Story = {
       <Typography variant="caption">Caption Text</Typography>
       <Typography variant="overline">Overline Text</Typography>
     </div>
-  )
-}
+  ),
+};
 
 export const AllColors: Story = {
   render: () => (
@@ -73,5 +73,5 @@ export const AllColors: Story = {
       <Typography color="success">Success Text</Typography>
       <Typography color="inherit">Inherit Text</Typography>
     </div>
-  )
-}
+  ),
+};

@@ -1,6 +1,6 @@
-import type { Meta, StoryObj } from '@storybook/react'
-import Avatar from '.'
-import { AVATAR_SHAPES, AVATAR_SIZES } from './constants'
+import type { Meta, StoryObj } from '@storybook/react';
+import Avatar from '.';
+import { AVATAR_SHAPES, AVATAR_SIZES } from './constants';
 
 const meta: Meta<typeof Avatar> = {
   title: 'Atoms/Avatar',
@@ -9,35 +9,35 @@ const meta: Meta<typeof Avatar> = {
   argTypes: {
     size: {
       control: 'select',
-      options: Object.keys(AVATAR_SIZES)
+      options: Object.keys(AVATAR_SIZES),
     },
     shape: {
       control: 'select',
-      options: Object.keys(AVATAR_SHAPES)
+      options: Object.keys(AVATAR_SHAPES),
     },
     status: {
       control: 'select',
-      options: ['online', 'offline', 'away', 'busy']
+      options: ['online', 'offline', 'away', 'busy'],
     },
     statusPosition: {
       control: 'select',
-      options: ['top-left', 'top-right', 'bottom-left', 'bottom-right']
-    }
-  }
-}
+      options: ['top-left', 'top-right', 'bottom-left', 'bottom-right'],
+    },
+  },
+};
 
-export default meta
-type Story = StoryObj<typeof Avatar>
+export default meta;
+type Story = StoryObj<typeof Avatar>;
 
 const defaultImage =
-  'https://flowbite.com/docs/images/people/profile-picture-5.jpg'
+  'https://flowbite.com/docs/images/people/profile-picture-5.jpg';
 
 export const Default: Story = {
   args: {
     src: defaultImage,
-    alt: 'User avatar'
-  }
-}
+    alt: 'User avatar',
+  },
+};
 
 export const Sizes: Story = {
   render: () => (
@@ -48,8 +48,8 @@ export const Sizes: Story = {
       <Avatar size="lg" src={defaultImage} alt="Large avatar" />
       <Avatar size="xl" src={defaultImage} alt="Extra large avatar" />
     </div>
-  )
-}
+  ),
+};
 
 export const Shapes: Story = {
   render: () => (
@@ -66,8 +66,8 @@ export const Shapes: Story = {
         alt="Rounded small avatar"
       />
     </div>
-  )
-}
+  ),
+};
 
 export const Status: Story = {
   render: () => (
@@ -77,8 +77,8 @@ export const Status: Story = {
       <Avatar src={defaultImage} status="away" alt="Away user" />
       <Avatar src={defaultImage} status="busy" alt="Busy user" />
     </div>
-  )
-}
+  ),
+};
 
 export const StatusPositions: Story = {
   render: () => (
@@ -108,8 +108,8 @@ export const StatusPositions: Story = {
         alt="Bottom right status"
       />
     </div>
-  )
-}
+  ),
+};
 
 export const Bordered: Story = {
   render: () => (
@@ -117,14 +117,14 @@ export const Bordered: Story = {
       <Avatar src={defaultImage} bordered alt="Bordered avatar" />
       <Avatar src={defaultImage} bordered alt="Bordered avatar" />
     </div>
-  )
-}
+  ),
+};
 
 export const DefaultAvatar: Story = {
   args: {
-    alt: 'Default avatar'
-  }
-}
+    alt: 'Default avatar',
+  },
+};
 
 export const WithInitials: Story = {
   args: {
@@ -132,6 +132,6 @@ export const WithInitials: Story = {
       <div className="relative inline-flex items-center justify-center w-10 h-10 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
         <span className="font-medium text-gray-600 dark:text-gray-300">JL</span>
       </div>
-    )
-  }
-}
+    ),
+  },
+};

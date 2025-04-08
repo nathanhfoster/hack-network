@@ -1,20 +1,20 @@
-import type { Meta, StoryObj } from '@storybook/react'
-import { useState } from 'react'
-import Modal from '.'
-import Button from '../Button'
-import { useBooleanToggler } from 'resurrection'
+import type { Meta, StoryObj } from '@storybook/react';
+import { useState } from 'react';
+import Modal from '.';
+import Button from '../Button';
+import { useBooleanToggler } from 'resurrection';
 
 const meta: Meta<typeof Modal> = {
   title: 'Atoms/Modal',
   component: Modal,
-  tags: ['autodocs']
-}
+  tags: ['autodocs'],
+};
 
-export default meta
-type Story = StoryObj<typeof Modal>
+export default meta;
+type Story = StoryObj<typeof Modal>;
 
 const ModalDemo = ({ args }: { args: any }) => {
-  const [show, toggleShow] = useBooleanToggler(false)
+  const [show, toggleShow] = useBooleanToggler(false);
 
   return (
     <>
@@ -36,27 +36,27 @@ const ModalDemo = ({ args }: { args: any }) => {
         </div>
       </Modal>
     </>
-  )
-}
+  );
+};
 
 export const Default: Story = {
-  render: (args) => <ModalDemo args={args} />
-}
+  render: (args) => <ModalDemo args={args} />,
+};
 
 export const WithTitle: Story = {
   render: (args) => (
     <ModalDemo
       args={{
         ...args,
-        title: 'Terms of Service'
+        title: 'Terms of Service',
       }}
     />
-  )
-}
+  ),
+};
 
 export const WithFooter: Story = {
   render: (args) => {
-    const [_show, setShow] = useState(false)
+    const [_show, setShow] = useState(false);
     return (
       <ModalDemo
         args={{
@@ -69,12 +69,12 @@ export const WithFooter: Story = {
               </Button>
               <Button onClick={() => setShow(false)}>I accept</Button>
             </div>
-          )
+          ),
         }}
       />
-    )
-  }
-}
+    );
+  },
+};
 
 export const Sizes: Story = {
   render: () => (
@@ -84,8 +84,8 @@ export const Sizes: Story = {
       <ModalDemo args={{ size: 'lg' }} />
       <ModalDemo args={{ size: 'xl' }} />
     </div>
-  )
-}
+  ),
+};
 
 export const Colors: Story = {
   render: () => (
@@ -97,16 +97,16 @@ export const Colors: Story = {
       <ModalDemo args={{ color: 'purple' }} />
       <ModalDemo args={{ color: 'gray' }} />
     </div>
-  )
-}
+  ),
+};
 
 export const NonDismissible: Story = {
   render: (args) => (
     <ModalDemo
       args={{
         ...args,
-        dismissible: false
+        dismissible: false,
       }}
     />
-  )
-}
+  ),
+};

@@ -1,79 +1,79 @@
-import type { Meta, StoryObj } from '@storybook/react'
-import Video from '.'
+import type { Meta, StoryObj } from '@storybook/react';
+import Video from '.';
 
 const meta: Meta<typeof Video> = {
   title: 'Atoms/Video',
   component: Video,
-  tags: ['autodocs']
-}
+  tags: ['autodocs'],
+};
 
-export default meta
-type Story = StoryObj<typeof Video>
+export default meta;
+type Story = StoryObj<typeof Video>;
 
 const defaultSources = [
   {
     src: 'https://flowbite.com/docs/videos/flowbite.mp4',
-    type: 'video/mp4'
-  }
-]
+    type: 'video/mp4',
+  },
+];
 
 export const Default: Story = {
   args: {
-    sources: defaultSources
-  }
-}
+    sources: defaultSources,
+  },
+};
 
 export const Autoplay: Story = {
   args: {
     sources: defaultSources,
-    autoplay: true
-  }
-}
+    autoplay: true,
+  },
+};
 
 export const Muted: Story = {
   args: {
     sources: defaultSources,
     autoplay: true,
-    muted: true
-  }
-}
+    muted: true,
+  },
+};
 
 export const CustomSize: Story = {
   args: {
     sources: defaultSources,
     width: '384', // w-96
-    height: '216' // 16:9 aspect ratio
-  }
-}
+    height: '216', // 16:9 aspect ratio
+  },
+};
 
 export const Responsive: Story = {
   args: {
     sources: defaultSources,
-    className: 'w-full h-auto max-w-full'
-  }
-}
+    className: 'w-full h-auto max-w-full',
+  },
+};
 
 export const CustomStyles: Story = {
   args: {
     sources: defaultSources,
     className:
-      'w-full h-auto max-w-full border border-gray-200 rounded-lg dark:border-gray-700'
-  }
-}
+      'w-full h-auto max-w-full border border-gray-200 rounded-lg dark:border-gray-700',
+  },
+};
 
 export const WithoutControls: Story = {
   args: {
     sources: defaultSources,
-    controls: false
-  }
-}
+    controls: false,
+  },
+};
 
 export const Loop: Story = {
   args: {
     sources: defaultSources,
-    loop: true
-  }
-}
+    loop: true,
+  },
+};
 
 export const CustomFallback: Story = {
   args: {
@@ -85,6 +85,6 @@ export const CustomFallback: Story = {
           to watch it.
         </p>
       </div>
-    )
-  }
-}
+    ),
+  },
+};

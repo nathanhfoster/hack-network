@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react'
+import type { ReactNode } from 'react';
 
 export type AlertColor =
   | 'default'
@@ -8,17 +8,17 @@ export type AlertColor =
   | 'danger'
   | 'warning'
   | 'info'
-  | 'dark'
+  | 'dark';
 
-export type AlertVariant = 'default' | 'bordered' | 'with-list'
+export type AlertVariant = 'default' | 'bordered' | 'with-list';
 
 export interface AlertProps {
-  title?: string
-  children: ReactNode
-  color?: AlertColor
-  variant?: AlertVariant
-  icon?: ReactNode
-  dismissible?: boolean
-  onDismiss?: () => void
-  className?: string
+  title?: string;
+  children: ReactNode;
+  color?: AlertColor;
+  variant?: AlertVariant;
+  icon?: ReactNode;
+  dismissible?: boolean;
+  onDismiss?: () => void;
+  className?: string;
 }

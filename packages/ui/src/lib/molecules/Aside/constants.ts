@@ -1,9 +1,9 @@
-import type { AsidePosition, AsideBackgroundColor } from './types'
+import type { AsidePosition, AsideBackgroundColor } from './types';
 
 export const ASIDE_POSITIONS: Record<AsidePosition, AsidePosition> = {
   left: 'left',
-  right: 'right'
-}
+  right: 'right',
+};
 
 export const ASIDE_BACKGROUND_COLORS: Record<AsideBackgroundColor, string> = {
   default: 'bg-gray-50 dark:bg-gray-800',
@@ -12,13 +12,13 @@ export const ASIDE_BACKGROUND_COLORS: Record<AsideBackgroundColor, string> = {
   dark: 'bg-gray-900 dark:bg-gray-900',
   primary: 'bg-blue-50 dark:bg-blue-900/20',
   secondary: 'bg-gray-100 dark:bg-gray-700',
-  accent: 'bg-purple-50 dark:bg-purple-900/20'
-}
+  accent: 'bg-purple-50 dark:bg-purple-900/20',
+};
 
 export const ASIDE_POSITION_STYLES: Record<AsidePosition, string> = {
   left: 'border-l-4',
-  right: 'border-r-4'
-}
+  right: 'border-r-4',
+};
 
 export const ASIDE_BACKGROUND_STYLES: Record<AsideBackgroundColor, string> = {
   default: 'bg-gray-50 dark:bg-gray-800 border-gray-200 dark:border-gray-700',
@@ -30,5 +30,5 @@ export const ASIDE_BACKGROUND_STYLES: Record<AsideBackgroundColor, string> = {
   secondary:
     'bg-gray-100 dark:bg-gray-700 border-gray-300 dark:border-gray-600',
   accent:
-    'bg-purple-50 dark:bg-purple-900/20 border-purple-200 dark:border-purple-800'
-}
+    'bg-purple-50 dark:bg-purple-900/20 border-purple-200 dark:border-purple-800',
+};

@@ -1,4 +1,3 @@
-import { Box, Container, Typography } from '@mui/material';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -8,15 +7,13 @@ export const metadata: Metadata = {
 
 export default function PodcastsPage() {
   return (
-    <Container maxWidth="lg">
-      <Box sx={{ py: 4 }}>
-        <Typography variant="h2" component="h1" gutterBottom>
-          Podcasts
-        </Typography>
-        <Typography variant="body1" paragraph>
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="py-8">
+        <h1 className="text-4xl font-bold mb-4">Podcasts</h1>
+        <p className="text-lg mb-4">
           Listen to our collection of podcasts and audio content.
-        </Typography>
-      </Box>
-    </Container>
+        </p>
+      </div>
+    </div>
   );
 }

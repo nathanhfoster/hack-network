@@ -1,4 +1,4 @@
-export const GRID_BASE_CLASSES = 'grid'
+export const GRID_BASE_CLASSES = 'grid';
 export const GRID_GAP_CLASSES = {
   0: 'gap-0',
   1: 'gap-1',
@@ -9,15 +9,15 @@ export const GRID_GAP_CLASSES = {
   6: 'gap-6',
   8: 'gap-8',
   10: 'gap-10',
-  12: 'gap-12'
-}
+  12: 'gap-12',
+};
 
 export const GRID_AUTO_FLOW_CLASSES = {
   row: 'auto-flow-row',
   column: 'auto-flow-col',
   'row-dense': 'auto-flow-row-dense',
-  'column-dense': 'auto-flow-col-dense'
-}
+  'column-dense': 'auto-flow-col-dense',
+};
 
 export const GRID_COLS_CLASSES = {
   1: 'grid-cols-1',
@@ -31,8 +31,8 @@ export const GRID_COLS_CLASSES = {
   9: 'grid-cols-9',
   10: 'grid-cols-10',
   11: 'grid-cols-11',
-  12: 'grid-cols-12'
-}
+  12: 'grid-cols-12',
+};
 
 export const GRID_SM_COLS_CLASSES = {
   1: 'sm:grid-cols-1',
@@ -46,8 +46,8 @@ export const GRID_SM_COLS_CLASSES = {
   9: 'sm:grid-cols-9',
   10: 'sm:grid-cols-10',
   11: 'sm:grid-cols-11',
-  12: 'sm:grid-cols-12'
-}
+  12: 'sm:grid-cols-12',
+};
 
 export const GRID_MD_COLS_CLASSES = {
   1: 'md:grid-cols-1',
@@ -61,8 +61,8 @@ export const GRID_MD_COLS_CLASSES = {
   9: 'md:grid-cols-9',
   10: 'md:grid-cols-10',
   11: 'md:grid-cols-11',
-  12: 'md:grid-cols-12'
-}
+  12: 'md:grid-cols-12',
+};
 
 export const GRID_LG_COLS_CLASSES = {
   1: 'lg:grid-cols-1',
@@ -76,8 +76,8 @@ export const GRID_LG_COLS_CLASSES = {
   9: 'lg:grid-cols-9',
   10: 'lg:grid-cols-10',
   11: 'lg:grid-cols-11',
-  12: 'lg:grid-cols-12'
-}
+  12: 'lg:grid-cols-12',
+};
 
 export const GRID_XL_COLS_CLASSES = {
   1: 'xl:grid-cols-1',
@@ -91,5 +91,5 @@ export const GRID_XL_COLS_CLASSES = {
   9: 'xl:grid-cols-9',
   10: 'xl:grid-cols-10',
   11: 'xl:grid-cols-11',
-  12: 'xl:grid-cols-12'
-}
+  12: 'xl:grid-cols-12',
+};

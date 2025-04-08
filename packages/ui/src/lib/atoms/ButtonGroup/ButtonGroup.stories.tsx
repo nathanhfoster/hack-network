@@ -1,18 +1,18 @@
-import type { Meta, StoryObj } from '@storybook/react'
-import ButtonGroup from '.'
-import ButtonGroupItem from './ButtonGroupItem'
+import type { Meta, StoryObj } from '@storybook/react';
+import ButtonGroup from '.';
+import ButtonGroupItem from './ButtonGroupItem';
 
 const meta: Meta<typeof ButtonGroup> = {
   title: 'Atoms/ButtonGroup',
   component: ButtonGroup,
   parameters: {
-    layout: 'centered'
+    layout: 'centered',
   },
-  tags: ['autodocs']
-}
+  tags: ['autodocs'],
+};
 
-export default meta
-type Story = StoryObj<typeof ButtonGroup>
+export default meta;
+type Story = StoryObj<typeof ButtonGroup>;
 
 export const Default: Story = {
   render: () => (
@@ -21,8 +21,8 @@ export const Default: Story = {
       <ButtonGroupItem>Settings</ButtonGroupItem>
       <ButtonGroupItem>Messages</ButtonGroupItem>
     </ButtonGroup>
-  )
-}
+  ),
+};
 
 export const Outline: Story = {
   render: () => (
@@ -31,8 +31,8 @@ export const Outline: Story = {
       <ButtonGroupItem>Settings</ButtonGroupItem>
       <ButtonGroupItem>Messages</ButtonGroupItem>
     </ButtonGroup>
-  )
-}
+  ),
+};
 
 export const WithActiveState: Story = {
   render: () => (
@@ -41,8 +41,8 @@ export const WithActiveState: Story = {
       <ButtonGroupItem>Settings</ButtonGroupItem>
       <ButtonGroupItem>Messages</ButtonGroupItem>
     </ButtonGroup>
-  )
-}
+  ),
+};
 
 export const DifferentVariants: Story = {
   render: () => (
@@ -63,8 +63,8 @@ export const DifferentVariants: Story = {
         <ButtonGroupItem>Messages</ButtonGroupItem>
       </ButtonGroup>
     </div>
-  )
-}
+  ),
+};
 
 export const DifferentSizes: Story = {
   render: () => (
@@ -85,5 +85,5 @@ export const DifferentSizes: Story = {
         <ButtonGroupItem>Large</ButtonGroupItem>
       </ButtonGroup>
     </div>
-  )
-}
+  ),
+};

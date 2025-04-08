@@ -1,12 +1,12 @@
-'use client'
+'use client';
 
-import { combineClassNames } from '../../../utils'
-import type { SkeletonProps } from './types'
+import { combineClassNames } from '../../../utils';
+import type { SkeletonProps } from './types';
 import {
   SKELETON_VARIANTS,
   SKELETON_ANIMATIONS,
-  SKELETON_BASE_CLASSES
-} from './constants'
+  SKELETON_BASE_CLASSES,
+} from './constants';
 
 const Skeleton: React.FC<SkeletonProps> = ({
   variant = 'text',
@@ -14,12 +14,12 @@ const Skeleton: React.FC<SkeletonProps> = ({
   width,
   height,
   className,
-  children
+  children,
 }) => {
   const style = {
     width: typeof width === 'number' ? `${width}px` : width,
-    height: typeof height === 'number' ? `${height}px` : height
-  }
+    height: typeof height === 'number' ? `${height}px` : height,
+  };
 
   return (
     <div
@@ -28,13 +28,13 @@ const Skeleton: React.FC<SkeletonProps> = ({
         SKELETON_BASE_CLASSES,
         SKELETON_VARIANTS[variant],
         SKELETON_ANIMATIONS[animation],
-        className
+        className,
       )}
       style={style}
     >
       {children && <span className="sr-only">{children}</span>}
     </div>
-  )
-}
+  );
+};
 
-export default Skeleton
+export default Skeleton;

@@ -1,6 +1,6 @@
-import { combineClassNames } from '../../../utils'
-import type { AvatarProps } from './types'
-import type { FC } from 'react'
+import { combineClassNames } from '../../../utils';
+import type { AvatarProps } from './types';
+import type { FC } from 'react';
 import {
   AVATAR_BORDER_STYLES,
   AVATAR_SHAPES,
@@ -8,8 +8,8 @@ import {
   AVATAR_STATUS_POSITIONS,
   AVATAR_STATUS_STYLES,
   AVATAR_STACKED_STYLES,
-  DEFAULT_AVATAR
-} from './constants'
+  DEFAULT_AVATAR,
+} from './constants';
 
 const Avatar: FC<AvatarProps> = ({
   src,
@@ -21,7 +21,7 @@ const Avatar: FC<AvatarProps> = ({
   bordered = false,
   stacked = false,
   className,
-  children
+  children,
 }) => {
   return (
     <div
@@ -31,7 +31,7 @@ const Avatar: FC<AvatarProps> = ({
         AVATAR_SHAPES[shape],
         bordered && AVATAR_BORDER_STYLES.default,
         stacked && AVATAR_STACKED_STYLES.default,
-        className
+        className,
       )}
     >
       {src ? (
@@ -40,7 +40,7 @@ const Avatar: FC<AvatarProps> = ({
           alt={alt}
           className={combineClassNames(
             'w-full h-full object-cover',
-            AVATAR_SHAPES[shape]
+            AVATAR_SHAPES[shape],
           )}
         />
       ) : (
@@ -51,12 +51,12 @@ const Avatar: FC<AvatarProps> = ({
           className={combineClassNames(
             'absolute w-3.5 h-3.5',
             AVATAR_STATUS_STYLES[status],
-            AVATAR_STATUS_POSITIONS[statusPosition]
+            AVATAR_STATUS_POSITIONS[statusPosition],
           )}
         />
       )}
     </div>
-  )
-}
+  );
+};
 
-export default Avatar
+export default Avatar;

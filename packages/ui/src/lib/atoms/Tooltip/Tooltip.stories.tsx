@@ -1,14 +1,14 @@
-import type { Meta, StoryObj } from '@storybook/react'
-import Tooltip from '.'
+import type { Meta, StoryObj } from '@storybook/react';
+import Tooltip from '.';
 
 const meta: Meta<typeof Tooltip> = {
   title: 'Atoms/Tooltip',
   component: Tooltip,
-  tags: ['autodocs']
-}
+  tags: ['autodocs'],
+};
 
-export default meta
-type Story = StoryObj<typeof Tooltip>
+export default meta;
+type Story = StoryObj<typeof Tooltip>;
 
 export const Default: Story = {
   args: {
@@ -17,9 +17,9 @@ export const Default: Story = {
       <button className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
         Default tooltip
       </button>
-    )
-  }
-}
+    ),
+  },
+};
 
 export const LightStyle: Story = {
   args: {
@@ -29,9 +29,9 @@ export const LightStyle: Story = {
       <button className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
         Light tooltip
       </button>
-    )
-  }
-}
+    ),
+  },
+};
 
 export const ClickTrigger: Story = {
   args: {
@@ -41,9 +41,9 @@ export const ClickTrigger: Story = {
       <button className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
         Click tooltip
       </button>
-    )
-  }
-}
+    ),
+  },
+};
 
 export const TopPlacement: Story = {
   args: {
@@ -53,9 +53,9 @@ export const TopPlacement: Story = {
       <button className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
         Top tooltip
       </button>
-    )
-  }
-}
+    ),
+  },
+};
 
 export const RightPlacement: Story = {
   args: {
@@ -65,9 +65,9 @@ export const RightPlacement: Story = {
       <button className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
         Right tooltip
       </button>
-    )
-  }
-}
+    ),
+  },
+};
 
 export const LeftPlacement: Story = {
   args: {
@@ -77,9 +77,9 @@ export const LeftPlacement: Story = {
       <button className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
         Left tooltip
       </button>
-    )
-  }
-}
+    ),
+  },
+};
 
 export const WithCallbacks: Story = {
   args: {
@@ -91,6 +91,6 @@ export const WithCallbacks: Story = {
       <button className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
         Callback tooltip
       </button>
-    )
-  }
-}
+    ),
+  },
+};

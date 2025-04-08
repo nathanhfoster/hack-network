@@ -1,20 +1,20 @@
-import type { Meta, StoryObj } from '@storybook/react'
-import Skeleton from '.'
+import type { Meta, StoryObj } from '@storybook/react';
+import Skeleton from '.';
 
 const meta: Meta<typeof Skeleton> = {
   title: 'Atoms/Skeleton',
   component: Skeleton,
-  tags: ['autodocs']
-}
+  tags: ['autodocs'],
+};
 
-export default meta
-type Story = StoryObj<typeof Skeleton>
+export default meta;
+type Story = StoryObj<typeof Skeleton>;
 
 export const Default: Story = {
   args: {
-    children: 'Loading...'
-  }
-}
+    children: 'Loading...',
+  },
+};
 
 export const Text: Story = {
   render: () => (
@@ -25,8 +25,8 @@ export const Text: Story = {
       <Skeleton variant="text" width="300" />
       <Skeleton variant="text" width="360" />
     </div>
-  )
-}
+  ),
+};
 
 export const Circular: Story = {
   render: () => (
@@ -35,8 +35,8 @@ export const Circular: Story = {
       <Skeleton variant="circular" width={60} height={60} />
       <Skeleton variant="circular" width={80} height={80} />
     </div>
-  )
-}
+  ),
+};
 
 export const Rectangular: Story = {
   render: () => (
@@ -45,8 +45,8 @@ export const Rectangular: Story = {
       <Skeleton variant="rectangular" width={300} height={150} />
       <Skeleton variant="rectangular" width={400} height={200} />
     </div>
-  )
-}
+  ),
+};
 
 export const Animations: Story = {
   render: () => (
@@ -55,8 +55,8 @@ export const Animations: Story = {
       <Skeleton animation="wave" width={200} height={100} />
       <Skeleton animation="none" width={200} height={100} />
     </div>
-  )
-}
+  ),
+};
 
 export const CardPlaceholder: Story = {
   render: () => (
@@ -74,5 +74,5 @@ export const CardPlaceholder: Story = {
         <Skeleton variant="text" width="360" />
       </div>
     </div>
-  )
-}
+  ),
+};

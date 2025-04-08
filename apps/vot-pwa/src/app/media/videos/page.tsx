@@ -1,4 +1,3 @@
-import { Box, Container, Typography } from '@mui/material';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -8,15 +7,11 @@ export const metadata: Metadata = {
 
 export default function VideosPage() {
   return (
-    <Container maxWidth="lg">
-      <Box sx={{ py: 4 }}>
-        <Typography variant="h2" component="h1" gutterBottom>
-          Videos
-        </Typography>
-        <Typography variant="body1" paragraph>
-          Browse through our collection of videos.
-        </Typography>
-      </Box>
-    </Container>
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="py-8">
+        <h1 className="text-4xl font-bold mb-4">Videos</h1>
+        <p className="text-lg mb-4">Browse through our collection of videos.</p>
+      </div>
+    </div>
   );
 }

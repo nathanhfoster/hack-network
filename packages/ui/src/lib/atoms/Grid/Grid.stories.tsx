@@ -1,17 +1,17 @@
-import type { Meta, StoryObj } from '@storybook/react'
-import Grid from './index'
+import type { Meta, StoryObj } from '@storybook/react';
+import Grid from './index';
 
 const meta = {
   title: 'Atoms/Grid',
   component: Grid,
   parameters: {
-    layout: 'centered'
+    layout: 'centered',
   },
-  tags: ['autodocs']
-} satisfies Meta<typeof Grid>
+  tags: ['autodocs'],
+} satisfies Meta<typeof Grid>;
 
-export default meta
-type Story = StoryObj<typeof meta>
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
@@ -21,9 +21,9 @@ export const Default: Story = {
         <div className="bg-blue-100 p-4">Item 2</div>
         <div className="bg-blue-100 p-4">Item 3</div>
       </>
-    )
-  }
-}
+    ),
+  },
+};
 
 export const WithGap: Story = {
   args: {
@@ -34,9 +34,9 @@ export const WithGap: Story = {
         <div className="bg-blue-100 p-4">Item 2</div>
         <div className="bg-blue-100 p-4">Item 3</div>
       </>
-    )
-  }
-}
+    ),
+  },
+};
 
 export const Responsive: Story = {
   args: {
@@ -51,9 +51,9 @@ export const Responsive: Story = {
         <div className="bg-blue-100 p-4">Item 3</div>
         <div className="bg-blue-100 p-4">Item 4</div>
       </>
-    )
-  }
-}
+    ),
+  },
+};
 
 export const AutoFlow: Story = {
   args: {
@@ -66,6 +66,6 @@ export const AutoFlow: Story = {
         <div className="bg-blue-100 p-4">Item 3</div>
         <div className="bg-blue-100 p-4">Item 4</div>
       </>
-    )
-  }
-}
+    ),
+  },
+};

@@ -1,150 +1,150 @@
-import type { Meta, StoryObj } from '@storybook/react'
-import Button from '.'
+import type { Meta, StoryObj } from '@storybook/react';
+import Button from '.';
 
 const meta = {
   title: 'Atoms/Button',
   component: Button,
   parameters: {
-    layout: 'centered'
+    layout: 'centered',
   },
-  tags: ['autodocs']
-} satisfies Meta<typeof Button>
+  tags: ['autodocs'],
+} satisfies Meta<typeof Button>;
 
-export default meta
-type Story = StoryObj<typeof meta>
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    children: 'Default'
-  }
-}
+    children: 'Default',
+  },
+};
 
 export const Primary: Story = {
   args: {
     variant: 'primary',
-    children: 'Primary'
-  }
-}
+    children: 'Primary',
+  },
+};
 
 export const Secondary: Story = {
   args: {
     variant: 'secondary',
-    children: 'Secondary'
-  }
-}
+    children: 'Secondary',
+  },
+};
 
 export const Alternative: Story = {
   args: {
     variant: 'alternative',
-    children: 'Alternative'
-  }
-}
+    children: 'Alternative',
+  },
+};
 
 export const Dark: Story = {
   args: {
     variant: 'dark',
-    children: 'Dark'
-  }
-}
+    children: 'Dark',
+  },
+};
 
 export const Light: Story = {
   args: {
     variant: 'light',
-    children: 'Light'
-  }
-}
+    children: 'Light',
+  },
+};
 
 export const Green: Story = {
   args: {
     variant: 'green',
-    children: 'Green'
-  }
-}
+    children: 'Green',
+  },
+};
 
 export const Red: Story = {
   args: {
     variant: 'red',
-    children: 'Red'
-  }
-}
+    children: 'Red',
+  },
+};
 
 export const Yellow: Story = {
   args: {
     variant: 'yellow',
-    children: 'Yellow'
-  }
-}
+    children: 'Yellow',
+  },
+};
 
 export const Purple: Story = {
   args: {
     variant: 'purple',
-    children: 'Purple'
-  }
-}
+    children: 'Purple',
+  },
+};
 
 export const Outline: Story = {
   args: {
     variant: 'outline',
-    children: 'Outline'
-  }
-}
+    children: 'Outline',
+  },
+};
 
 export const Gradient: Story = {
   args: {
     variant: 'gradient',
-    children: 'Gradient'
-  }
-}
+    children: 'Gradient',
+  },
+};
 
 export const GradientDuotone: Story = {
   args: {
     variant: 'gradientDuotone',
-    children: 'Gradient Duotone'
-  }
-}
+    children: 'Gradient Duotone',
+  },
+};
 
 export const GradientOutline: Story = {
   args: {
     variant: 'gradientOutline',
-    children: 'Gradient Outline'
-  }
-}
+    children: 'Gradient Outline',
+  },
+};
 
 export const WithIcons: Story = {
   args: {
     children: 'With Icons',
     leftIcon: '←',
-    rightIcon: '→'
-  }
-}
+    rightIcon: '→',
+  },
+};
 
 export const Loading: Story = {
   args: {
     children: 'Loading',
-    isLoading: true
-  }
-}
+    isLoading: true,
+  },
+};
 
 export const Disabled: Story = {
   args: {
     children: 'Disabled',
-    disabled: true
-  }
-}
+    disabled: true,
+  },
+};
 
 export const Pill: Story = {
   args: {
     children: 'Pill',
-    pill: true
-  }
-}
+    pill: true,
+  },
+};
 
 export const FullWidth: Story = {
   args: {
     children: 'Full Width',
-    fullWidth: true
-  }
-}
+    fullWidth: true,
+  },
+};
 
 export const Sizes: Story = {
   render: () => (
@@ -156,5 +156,5 @@ export const Sizes: Story = {
       <Button size="xl">Extra Large</Button>
       <Button size="2xl">2XL</Button>
     </div>
-  )
-}
+  ),
+};

@@ -1,13 +1,13 @@
-import { combineClassNames } from '../../../utils'
-import type { BadgeProps } from './types'
-import type { FC } from 'react'
+import { combineClassNames } from '../../../utils';
+import type { BadgeProps } from './types';
+import type { FC } from 'react';
 import {
   BADGE_BORDER_COLORS,
   BADGE_COLORS,
   BADGE_DISMISS_COLORS,
   BADGE_SIZES,
-  BADGE_VARIANTS
-} from './constants'
+  BADGE_VARIANTS,
+} from './constants';
 
 const Badge: FC<BadgeProps> = ({
   children,
@@ -18,7 +18,7 @@ const Badge: FC<BadgeProps> = ({
   onDismiss,
   className,
   icon,
-  iconOnly = false
+  iconOnly = false,
 }) => {
   return (
     <span
@@ -28,7 +28,7 @@ const Badge: FC<BadgeProps> = ({
         BADGE_SIZES[size],
         BADGE_VARIANTS[variant],
         variant === 'bordered' && BADGE_BORDER_COLORS[color],
-        className
+        className,
       )}
     >
       {icon && !iconOnly && <span className="mr-1">{icon}</span>}
@@ -39,7 +39,7 @@ const Badge: FC<BadgeProps> = ({
           type="button"
           className={combineClassNames(
             'inline-flex items-center p-1 ms-2 text-sm bg-transparent rounded-xs',
-            BADGE_DISMISS_COLORS[color]
+            BADGE_DISMISS_COLORS[color],
           )}
           onClick={onDismiss}
           aria-label="Remove badge"
@@ -63,7 +63,7 @@ const Badge: FC<BadgeProps> = ({
         </button>
       )}
     </span>
-  )
-}
+  );
+};
 
-export default Badge
+export default Badge;

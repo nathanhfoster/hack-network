@@ -1,25 +1,25 @@
-import type { Meta, StoryObj } from '@storybook/react'
-import FilterDrawer from './index'
-import { useState } from 'react'
+import type { Meta, StoryObj } from '@storybook/react';
+import FilterDrawer from './index';
+import { useState } from 'react';
 
 const meta = {
   title: 'Atoms/FilterDrawer',
   component: FilterDrawer,
   parameters: {
-    layout: 'centered'
+    layout: 'centered',
   },
-  tags: ['autodocs']
-} satisfies Meta<typeof FilterDrawer>
+  tags: ['autodocs'],
+} satisfies Meta<typeof FilterDrawer>;
 
-export default meta
-type Story = StoryObj<typeof meta>
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 const FilterDrawerDemo = ({
   isOpen,
-  onClose
+  onClose,
 }: {
-  isOpen: boolean
-  onClose: () => void
+  isOpen: boolean;
+  onClose: () => void;
 }) => {
   return (
     <FilterDrawer isOpen={isOpen} onClose={onClose} title="Filters">
@@ -68,21 +68,23 @@ const FilterDrawerDemo = ({
         </div>
       </div>
     </FilterDrawer>
-  )
-}
+  );
+};
 
 export const Default: Story = {
   args: {
     isOpen: true,
     onClose: () => {},
     title: 'Filters',
-    children: null
+    children: null,
   },
   render: () => {
-    const [isOpen, setIsOpen] = useState(true)
-    return <FilterDrawerDemo isOpen={isOpen} onClose={() => setIsOpen(false)} />
-  }
-}
+    const [isOpen, setIsOpen] = useState(true);
+    return (
+      <FilterDrawerDemo isOpen={isOpen} onClose={() => setIsOpen(false)} />
+    );
+  },
+};
 
 export const WithCustomClass: Story = {
   args: {
@@ -90,10 +92,10 @@ export const WithCustomClass: Story = {
     onClose: () => {},
     title: 'Custom Filters',
     children: null,
-    className: 'bg-gray-50'
+    className: 'bg-gray-50',
   },
   render: () => {
-    const [isOpen, setIsOpen] = useState(true)
+    const [isOpen, setIsOpen] = useState(true);
     return (
       <FilterDrawer
         isOpen={isOpen}
@@ -105,6 +107,6 @@ export const WithCustomClass: Story = {
           <p>Custom styled filter drawer content</p>
         </div>
       </FilterDrawer>
-    )
-  }
-}
+    );
+  },
+};

@@ -1,8 +1,8 @@
-'use client'
+'use client';
 
-import { FC } from 'react'
-import { combineClassNames } from '../../../utils'
-import type { GridProps } from './types'
+import { FC } from 'react';
+import { combineClassNames } from '../../../utils';
+import type { GridProps } from './types';
 import {
   GRID_BASE_CLASSES,
   GRID_GAP_CLASSES,
@@ -11,8 +11,8 @@ import {
   GRID_MD_COLS_CLASSES,
   GRID_LG_COLS_CLASSES,
   GRID_XL_COLS_CLASSES,
-  GRID_AUTO_FLOW_CLASSES
-} from './constants'
+  GRID_AUTO_FLOW_CLASSES,
+} from './constants';
 
 const Grid: FC<GridProps> = ({
   children,
@@ -24,7 +24,7 @@ const Grid: FC<GridProps> = ({
   lg,
   xl,
   autoCols = false,
-  autoFlow = 'row'
+  autoFlow = 'row',
 }) => {
   const classes = [
     GRID_BASE_CLASSES,
@@ -35,10 +35,10 @@ const Grid: FC<GridProps> = ({
     lg && (autoCols ? 'lg:auto-cols-auto' : GRID_LG_COLS_CLASSES[lg]),
     xl && (autoCols ? 'xl:auto-cols-auto' : GRID_XL_COLS_CLASSES[xl]),
     GRID_AUTO_FLOW_CLASSES[autoFlow],
-    className
-  ].filter(Boolean)
+    className,
+  ].filter(Boolean);
 
-  return <div className={combineClassNames(...classes)}>{children}</div>
-}
+  return <div className={combineClassNames(...classes)}>{children}</div>;
+};
 
-export default Grid
+export default Grid;

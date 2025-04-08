@@ -1,24 +1,24 @@
-import type { Meta, StoryObj } from '@storybook/react'
-import FilterGroup from '.'
-import FilterChip from '../FilterChip'
+import type { Meta, StoryObj } from '@storybook/react';
+import FilterGroup from '.';
+import FilterChip from '../FilterChip';
 
 const meta = {
   title: 'Atoms/FilterGroup',
   component: FilterGroup,
   parameters: {
-    layout: 'centered'
+    layout: 'centered',
   },
-  tags: ['autodocs']
-} satisfies Meta<typeof FilterGroup>
+  tags: ['autodocs'],
+} satisfies Meta<typeof FilterGroup>;
 
-export default meta
-type Story = StoryObj<typeof meta>
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 const defaultOptions = [
   { value: '1', label: 'Option 1' },
   { value: '2', label: 'Option 2' },
-  { value: '3', label: 'Option 3' }
-]
+  { value: '3', label: 'Option 3' },
+];
 
 export const Default: Story = {
   args: {
@@ -41,9 +41,9 @@ export const Default: Story = {
           onRemove={() => console.log('Remove 3')}
         />
       </>
-    )
-  }
-}
+    ),
+  },
+};
 
 export const WithCustomClass: Story = {
   args: {
@@ -67,6 +67,6 @@ export const WithCustomClass: Story = {
           onRemove={() => console.log('Remove 3')}
         />
       </>
-    )
-  }
-}
+    ),
+  },
+};

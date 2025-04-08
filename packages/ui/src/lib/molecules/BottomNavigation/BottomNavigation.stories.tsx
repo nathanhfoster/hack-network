@@ -1,6 +1,6 @@
-import type { Meta, StoryObj } from '@storybook/react'
-import BottomNavigation from '.'
-import { BOTTOM_NAVIGATION_VARIANTS } from './constants'
+import type { Meta, StoryObj } from '@storybook/react';
+import BottomNavigation from '.';
+import { BOTTOM_NAVIGATION_VARIANTS } from './constants';
 
 const meta: Meta<typeof BottomNavigation> = {
   title: 'Molecules/BottomNavigation',
@@ -9,13 +9,13 @@ const meta: Meta<typeof BottomNavigation> = {
   argTypes: {
     variant: {
       control: 'select',
-      options: Object.keys(BOTTOM_NAVIGATION_VARIANTS)
-    }
-  }
-}
+      options: Object.keys(BOTTOM_NAVIGATION_VARIANTS),
+    },
+  },
+};
 
-export default meta
-type Story = StoryObj<typeof BottomNavigation>
+export default meta;
+type Story = StoryObj<typeof BottomNavigation>;
 
 export const Default: Story = {
   args: {
@@ -32,7 +32,7 @@ export const Default: Story = {
             <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
           </svg>
         ),
-        active: true
+        active: true,
       },
       {
         label: 'Search',
@@ -49,7 +49,7 @@ export const Default: Story = {
               clipRule="evenodd"
             />
           </svg>
-        )
+        ),
       },
       {
         label: 'Settings',
@@ -66,7 +66,7 @@ export const Default: Story = {
               clipRule="evenodd"
             />
           </svg>
-        )
+        ),
       },
       {
         label: 'Profile',
@@ -83,11 +83,11 @@ export const Default: Story = {
               clipRule="evenodd"
             />
           </svg>
-        )
-      }
-    ]
-  }
-}
+        ),
+      },
+    ],
+  },
+};
 
 export const WithLinks: Story = {
   args: {
@@ -105,7 +105,7 @@ export const WithLinks: Story = {
           </svg>
         ),
         href: '#',
-        active: true
+        active: true,
       },
       {
         label: 'Search',
@@ -123,7 +123,7 @@ export const WithLinks: Story = {
             />
           </svg>
         ),
-        href: '#'
+        href: '#',
       },
       {
         label: 'Settings',
@@ -141,7 +141,7 @@ export const WithLinks: Story = {
             />
           </svg>
         ),
-        href: '#'
+        href: '#',
       },
       {
         label: 'Profile',
@@ -159,11 +159,11 @@ export const WithLinks: Story = {
             />
           </svg>
         ),
-        href: '#'
-      }
-    ]
-  }
-}
+        href: '#',
+      },
+    ],
+  },
+};
 
 export const WithDisabledItems: Story = {
   args: {
@@ -180,7 +180,7 @@ export const WithDisabledItems: Story = {
             <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
           </svg>
         ),
-        active: true
+        active: true,
       },
       {
         label: 'Search',
@@ -198,7 +198,7 @@ export const WithDisabledItems: Story = {
             />
           </svg>
         ),
-        disabled: true
+        disabled: true,
       },
       {
         label: 'Settings',
@@ -215,7 +215,7 @@ export const WithDisabledItems: Story = {
               clipRule="evenodd"
             />
           </svg>
-        )
+        ),
       },
       {
         label: 'Profile',
@@ -232,11 +232,11 @@ export const WithDisabledItems: Story = {
               clipRule="evenodd"
             />
           </svg>
-        )
-      }
-    ]
-  }
-}
+        ),
+      },
+    ],
+  },
+};
 
 export const WithCustomVariant: Story = {
   args: {
@@ -254,7 +254,7 @@ export const WithCustomVariant: Story = {
             <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
           </svg>
         ),
-        active: true
+        active: true,
       },
       {
         label: 'Search',
@@ -271,7 +271,7 @@ export const WithCustomVariant: Story = {
               clipRule="evenodd"
             />
           </svg>
-        )
+        ),
       },
       {
         label: 'Settings',
@@ -288,7 +288,7 @@ export const WithCustomVariant: Story = {
               clipRule="evenodd"
             />
           </svg>
-        )
+        ),
       },
       {
         label: 'Profile',
@@ -305,8 +305,8 @@ export const WithCustomVariant: Story = {
               clipRule="evenodd"
             />
           </svg>
-        )
-      }
-    ]
-  }
-}
+        ),
+      },
+    ],
+  },
+};

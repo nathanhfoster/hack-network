@@ -1,6 +1,6 @@
-import type { Meta, StoryObj } from '@storybook/react'
-import { Popover } from './index'
-import type { PopoverProps } from './types'
+import type { Meta, StoryObj } from '@storybook/react';
+import { Popover } from './index';
+import type { PopoverProps } from './types';
 
 const meta: Meta<PopoverProps> = {
   title: 'Atoms/Popover',
@@ -9,17 +9,17 @@ const meta: Meta<PopoverProps> = {
   argTypes: {
     placement: {
       control: 'select',
-      options: ['top', 'right', 'bottom', 'left']
+      options: ['top', 'right', 'bottom', 'left'],
     },
     triggerType: {
       control: 'select',
-      options: ['hover', 'click', 'none']
-    }
-  }
-}
+      options: ['hover', 'click', 'none'],
+    },
+  },
+};
 
-export default meta
-type Story = StoryObj<PopoverProps>
+export default meta;
+type Story = StoryObj<PopoverProps>;
 
 const defaultTrigger = (
   <button
@@ -28,7 +28,7 @@ const defaultTrigger = (
   >
     Default popover
   </button>
-)
+);
 
 const defaultContent = (
   <>
@@ -41,14 +41,14 @@ const defaultContent = (
       <p>And here's some amazing content. It's very engaging. Right?</p>
     </div>
   </>
-)
+);
 
 export const Default: Story = {
   args: {
     children: defaultTrigger,
-    content: defaultContent
-  }
-}
+    content: defaultContent,
+  },
+};
 
 export const UserProfile: Story = {
   args: {
@@ -109,25 +109,25 @@ export const UserProfile: Story = {
           </li>
         </ul>
       </div>
-    )
-  }
-}
+    ),
+  },
+};
 
 export const ClickTrigger: Story = {
   args: {
     children: defaultTrigger,
     content: defaultContent,
-    triggerType: 'click'
-  }
-}
+    triggerType: 'click',
+  },
+};
 
 export const CustomOffset: Story = {
   args: {
     children: defaultTrigger,
     content: defaultContent,
-    offset: 20
-  }
-}
+    offset: 20,
+  },
+};
 
 export const WithEventHandlers: Story = {
   args: {
@@ -135,6 +135,6 @@ export const WithEventHandlers: Story = {
     content: defaultContent,
     onShow: () => console.log('Popover shown'),
     onHide: () => console.log('Popover hidden'),
-    onToggle: () => console.log('Popover toggled')
-  }
-}
+    onToggle: () => console.log('Popover toggled'),
+  },
+};

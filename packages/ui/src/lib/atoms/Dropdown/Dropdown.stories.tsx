@@ -1,30 +1,30 @@
-import type { Meta, StoryObj } from '@storybook/react'
-import { useState } from 'react'
-import Dropdown from '.'
-import type { DropdownProps } from './types'
+import type { Meta, StoryObj } from '@storybook/react';
+import { useState } from 'react';
+import Dropdown from '.';
+import type { DropdownProps } from './types';
 
 const meta: Meta<DropdownProps> = {
   title: 'Atoms/Dropdown',
   component: Dropdown,
-  tags: ['autodocs']
-}
+  tags: ['autodocs'],
+};
 
-export default meta
-type Story = StoryObj<DropdownProps>
+export default meta;
+type Story = StoryObj<DropdownProps>;
 
 const defaultItems = [
   { href: '#', label: 'Dashboard' },
   { href: '#', label: 'Settings' },
   { href: '#', label: 'Earnings' },
-  { href: '#', label: 'Sign out' }
-]
+  { href: '#', label: 'Sign out' },
+];
 
 const DropdownWithState = ({
   label,
   items,
-  trigger
+  trigger,
 }: Omit<DropdownProps, 'isOpen' | 'onToggle'>) => {
-  const [isOpen, setIsOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState(false);
   return (
     <Dropdown
       label={label}
@@ -33,12 +33,12 @@ const DropdownWithState = ({
       isOpen={isOpen}
       onToggle={() => setIsOpen(!isOpen)}
     />
-  )
-}
+  );
+};
 
 export const Default: Story = {
-  render: () => <DropdownWithState label="Dropdown" items={defaultItems} />
-}
+  render: () => <DropdownWithState label="Dropdown" items={defaultItems} />,
+};
 
 export const WithCustomTrigger: Story = {
   render: () => (
@@ -66,5 +66,5 @@ export const WithCustomTrigger: Story = {
         </div>
       }
     />
-  )
-}
+  ),
+};

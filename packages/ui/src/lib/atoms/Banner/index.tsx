@@ -1,6 +1,6 @@
-import { combineClassNames } from '../../../utils'
-import type { BannerProps } from './types'
-import type { FC } from 'react'
+import { combineClassNames } from '../../../utils';
+import type { BannerProps } from './types';
+import type { FC } from 'react';
 import {
   BANNER_BORDER_COLORS,
   BANNER_BUTTON_COLORS,
@@ -10,8 +10,8 @@ import {
   BANNER_POSITIONS,
   BANNER_SECONDARY_BUTTON_COLORS,
   BANNER_TEXT_COLORS,
-  BANNER_VARIANTS
-} from './constants'
+  BANNER_VARIANTS,
+} from './constants';
 
 const Banner: FC<BannerProps> = ({
   children,
@@ -24,7 +24,7 @@ const Banner: FC<BannerProps> = ({
   title,
   cta,
   secondaryCta,
-  form
+  form,
 }) => {
   return (
     <div
@@ -35,7 +35,7 @@ const Banner: FC<BannerProps> = ({
         BANNER_POSITIONS[position],
         BANNER_VARIANTS[variant],
         BANNER_BORDER_COLORS[variant],
-        className
+        className,
       )}
     >
       <div className="flex items-center mx-auto">
@@ -43,7 +43,7 @@ const Banner: FC<BannerProps> = ({
           <span
             className={combineClassNames(
               'inline-flex p-1 me-3 rounded-full w-6 h-6 items-center justify-center shrink-0',
-              BANNER_ICON_BG_COLORS[variant]
+              BANNER_ICON_BG_COLORS[variant],
             )}
           >
             <span className={BANNER_ICON_COLORS[variant]}>{icon}</span>
@@ -52,7 +52,7 @@ const Banner: FC<BannerProps> = ({
         <p
           className={combineClassNames(
             'flex items-center text-sm font-normal',
-            BANNER_TEXT_COLORS[variant]
+            BANNER_TEXT_COLORS[variant],
           )}
         >
           {title && <span className="font-semibold me-2">{title}</span>}
@@ -79,7 +79,7 @@ const Banner: FC<BannerProps> = ({
               type="submit"
               className={combineClassNames(
                 'font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center',
-                BANNER_BUTTON_COLORS[variant]
+                BANNER_BUTTON_COLORS[variant],
               )}
             >
               {form.buttonLabel}
@@ -93,7 +93,7 @@ const Banner: FC<BannerProps> = ({
                 href={secondaryCta.href}
                 className={combineClassNames(
                   'inline-flex items-center justify-center px-3 py-2 me-3 text-xs font-medium rounded-lg focus:outline-none focus:ring-4',
-                  BANNER_SECONDARY_BUTTON_COLORS[variant]
+                  BANNER_SECONDARY_BUTTON_COLORS[variant],
                 )}
               >
                 {secondaryCta.icon && (
@@ -107,7 +107,7 @@ const Banner: FC<BannerProps> = ({
                 href={cta.href}
                 className={combineClassNames(
                   'inline-flex items-center justify-center px-3 py-2 me-2 text-xs font-medium rounded-lg focus:outline-none focus:ring-4',
-                  BANNER_BUTTON_COLORS[variant]
+                  BANNER_BUTTON_COLORS[variant],
                 )}
               >
                 {cta.label}
@@ -124,7 +124,7 @@ const Banner: FC<BannerProps> = ({
             type="button"
             className={combineClassNames(
               'shrink-0 inline-flex justify-center w-7 h-7 items-center rounded-lg text-sm p-1.5',
-              BANNER_DISMISS_COLORS[variant]
+              BANNER_DISMISS_COLORS[variant],
             )}
             onClick={onDismiss}
             aria-label="Close banner"
@@ -149,7 +149,7 @@ const Banner: FC<BannerProps> = ({
         )}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Banner
+export default Banner;

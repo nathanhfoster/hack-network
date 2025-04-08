@@ -15,7 +15,7 @@ export default async function GuildCalendar({
 }: {
   params: Promise<PageParams>;
 }) {
-  const { url , ...rest} = await params;
+  const { url, ...rest } = await params;
   console.log('URL:', rest);
   return (
     <main>

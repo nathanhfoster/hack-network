@@ -1,19 +1,19 @@
-'use client'
+'use client';
 
-import { combineClassNames } from '../../../utils'
-import type { SpinnerProps } from './types'
+import { combineClassNames } from '../../../utils';
+import type { SpinnerProps } from './types';
 import {
   SPINNER_SIZES,
   SPINNER_COLORS,
   SPINNER_BASE_CLASSES,
-  SPINNER_BG_CLASSES
-} from './constants'
+  SPINNER_BG_CLASSES,
+} from './constants';
 
 const Spinner: React.FC<SpinnerProps> = ({
   size = 'md',
   color = 'blue',
   className,
-  children
+  children,
 }) => {
   return (
     <div role="status" className={className}>
@@ -23,7 +23,7 @@ const Spinner: React.FC<SpinnerProps> = ({
           SPINNER_SIZES[size],
           SPINNER_BG_CLASSES,
           SPINNER_COLORS[color],
-          SPINNER_BASE_CLASSES
+          SPINNER_BASE_CLASSES,
         )}
         viewBox="0 0 100 101"
         fill="none"
@@ -40,7 +40,7 @@ const Spinner: React.FC<SpinnerProps> = ({
       </svg>
       {children && <span className="sr-only">{children}</span>}
     </div>
-  )
-}
+  );
+};
 
-export default Spinner
+export default Spinner;

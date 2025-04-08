@@ -1,9 +1,9 @@
-import type { ReactNode } from 'react'
+import type { ReactNode } from 'react';
 
-export type AvatarGroupDirection = 'default' | 'rtl'
+export type AvatarGroupDirection = 'default' | 'rtl';
 
 export interface AvatarGroupProps {
-  children: ReactNode
-  stacked?: boolean
-  className?: string
+  children: ReactNode;
+  stacked?: boolean;
+  className?: string;
 }

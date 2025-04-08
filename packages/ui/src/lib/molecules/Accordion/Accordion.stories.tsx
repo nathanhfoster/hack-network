@@ -1,6 +1,6 @@
-import type { Meta, StoryObj } from '@storybook/react'
-import Accordion from '.'
-import { ACCORDION_COLORS, ACCORDION_VARIANTS } from './constants'
+import type { Meta, StoryObj } from '@storybook/react';
+import Accordion from '.';
+import { ACCORDION_COLORS, ACCORDION_VARIANTS } from './constants';
 
 const meta: Meta<typeof Accordion> = {
   title: 'Molecules/Accordion',
@@ -9,17 +9,17 @@ const meta: Meta<typeof Accordion> = {
   argTypes: {
     variant: {
       control: 'select',
-      options: Object.values(ACCORDION_VARIANTS)
+      options: Object.values(ACCORDION_VARIANTS),
     },
     color: {
       control: 'select',
-      options: Object.values(ACCORDION_COLORS)
-    }
-  }
-}
+      options: Object.values(ACCORDION_COLORS),
+    },
+  },
+};
 
-export default meta
-type Story = StoryObj<typeof Accordion>
+export default meta;
+type Story = StoryObj<typeof Accordion>;
 
 const defaultItems = [
   {
@@ -30,7 +30,7 @@ const defaultItems = [
         top of Tailwind CSS including buttons, dropdowns, modals, navbars, and
         more.
       </p>
-    )
+    ),
   },
   {
     title: 'Is there a Figma file available?',
@@ -40,7 +40,7 @@ const defaultItems = [
         so everything you see in the library has a design equivalent in our
         Figma file.
       </p>
-    )
+    ),
   },
   {
     title: 'What are the differences between Flowbite and Tailwind UI?',
@@ -49,71 +49,71 @@ const defaultItems = [
         The main difference is that the core components from Flowbite are open
         source under the MIT license, whereas Tailwind UI is a paid product.
       </p>
-    )
-  }
-]
+    ),
+  },
+];
 
 export const Default: Story = {
   args: {
-    data: defaultItems
-  }
-}
+    data: defaultItems,
+  },
+};
 
 export const AlwaysOpen: Story = {
   args: {
     data: defaultItems,
-    alwaysOpen: true
-  }
-}
+    alwaysOpen: true,
+  },
+};
 
 export const Flush: Story = {
   args: {
     data: defaultItems,
-    variant: ACCORDION_VARIANTS.flush
-  }
-}
+    variant: ACCORDION_VARIANTS.flush,
+  },
+};
 
 export const Bordered: Story = {
   args: {
     data: defaultItems,
-    variant: ACCORDION_VARIANTS.bordered
-  }
-}
+    variant: ACCORDION_VARIANTS.bordered,
+  },
+};
 
 export const Primary: Story = {
   args: {
     data: defaultItems,
-    color: ACCORDION_COLORS.primary
-  }
-}
+    color: ACCORDION_COLORS.primary,
+  },
+};
 
 export const Success: Story = {
   args: {
     data: defaultItems,
-    color: ACCORDION_COLORS.success
-  }
-}
+    color: ACCORDION_COLORS.success,
+  },
+};
 
 export const Danger: Story = {
   args: {
     data: defaultItems,
-    color: ACCORDION_COLORS.danger
-  }
-}
+    color: ACCORDION_COLORS.danger,
+  },
+};
 
 export const Warning: Story = {
   args: {
     data: defaultItems,
-    color: ACCORDION_COLORS.warning
-  }
-}
+    color: ACCORDION_COLORS.warning,
+  },
+};
 
 export const Info: Story = {
   args: {
     data: defaultItems,
-    color: ACCORDION_COLORS.info
-  }
-}
+    color: ACCORDION_COLORS.info,
+  },
+};
 
 export const WithIcons: Story = {
   args: {
@@ -132,10 +132,10 @@ export const WithIcons: Story = {
             clipRule="evenodd"
           />
         </svg>
-      )
-    }))
-  }
-}
+      ),
+    })),
+  },
+};
 
 export const WithCustomContent: Story = {
   args: {
@@ -156,8 +156,8 @@ export const WithCustomContent: Story = {
               Learn more
             </button>
           </div>
-        )
-      }
-    ]
-  }
-}
+        ),
+      },
+    ],
+  },
+};

@@ -1,13 +1,13 @@
-import { combineClassNames } from '../../../utils'
-import type { AlertProps } from './types'
-import type { FC } from 'react'
+import { combineClassNames } from '../../../utils';
+import type { AlertProps } from './types';
+import type { FC } from 'react';
 import {
   ALERT_BORDER_COLOR_STYLES,
   ALERT_COLORS,
   ALERT_COLOR_STYLES,
   ALERT_DISMISS_COLOR_STYLES,
-  ALERT_VARIANTS
-} from './constants'
+  ALERT_VARIANTS,
+} from './constants';
 
 const Alert: FC<AlertProps> = ({
   title,
@@ -17,7 +17,7 @@ const Alert: FC<AlertProps> = ({
   icon,
   dismissible,
   onDismiss,
-  className
+  className,
 }) => {
   const defaultIcon = (
     <svg
@@ -29,7 +29,7 @@ const Alert: FC<AlertProps> = ({
     >
       <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
     </svg>
-  )
+  );
 
   return (
     <div
@@ -39,7 +39,7 @@ const Alert: FC<AlertProps> = ({
         variant === ALERT_VARIANTS.bordered && 'border',
         ALERT_COLOR_STYLES[color],
         variant === ALERT_VARIANTS.bordered && ALERT_BORDER_COLOR_STYLES[color],
-        className
+        className,
       )}
     >
       <div className="flex items-center">
@@ -53,7 +53,7 @@ const Alert: FC<AlertProps> = ({
             type="button"
             className={combineClassNames(
               'ml-auto -mx-1.5 -my-1.5 rounded-lg p-1.5 inline-flex items-center justify-center h-8 w-8',
-              ALERT_DISMISS_COLOR_STYLES[color]
+              ALERT_DISMISS_COLOR_STYLES[color],
             )}
             onClick={onDismiss}
             aria-label="Close"
@@ -78,7 +78,7 @@ const Alert: FC<AlertProps> = ({
         )}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Alert
+export default Alert;

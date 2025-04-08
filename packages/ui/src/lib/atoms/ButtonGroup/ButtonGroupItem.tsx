@@ -1,12 +1,12 @@
-import { combineClassNames } from '../../../utils'
-import type { ButtonGroupItemProps } from './types'
-import type { FC } from 'react'
+import { combineClassNames } from '../../../utils';
+import type { ButtonGroupItemProps } from './types';
+import type { FC } from 'react';
 import {
   BUTTON_GROUP_ITEM_BASE_CLASSES,
   BUTTON_GROUP_ITEM_STYLES,
   BUTTON_GROUP_ITEM_POSITION_CLASSES,
-  BUTTON_GROUP_OUTLINE_STYLES
-} from './constants'
+  BUTTON_GROUP_OUTLINE_STYLES,
+} from './constants';
 
 const ButtonGroupItem: FC<ButtonGroupItemProps> = ({
   children,
@@ -19,19 +19,19 @@ const ButtonGroupItem: FC<ButtonGroupItemProps> = ({
   ...props
 }) => {
   const getPositionClasses = () => {
-    if (isFirst) return BUTTON_GROUP_ITEM_POSITION_CLASSES.first
-    if (isLast) return BUTTON_GROUP_ITEM_POSITION_CLASSES.last
-    return BUTTON_GROUP_ITEM_POSITION_CLASSES.middle
-  }
+    if (isFirst) return BUTTON_GROUP_ITEM_POSITION_CLASSES.first;
+    if (isLast) return BUTTON_GROUP_ITEM_POSITION_CLASSES.last;
+    return BUTTON_GROUP_ITEM_POSITION_CLASSES.middle;
+  };
 
   const getStyles = () => {
     if (outline) {
       return isActive
         ? BUTTON_GROUP_OUTLINE_STYLES.active
-        : BUTTON_GROUP_OUTLINE_STYLES.default
+        : BUTTON_GROUP_OUTLINE_STYLES.default;
     }
-    return BUTTON_GROUP_ITEM_STYLES[variant]
-  }
+    return BUTTON_GROUP_ITEM_STYLES[variant];
+  };
 
   return (
     <button
@@ -39,13 +39,13 @@ const ButtonGroupItem: FC<ButtonGroupItemProps> = ({
         BUTTON_GROUP_ITEM_BASE_CLASSES,
         getPositionClasses(),
         getStyles(),
-        className
+        className,
       )}
       {...props}
     >
       {children}
     </button>
-  )
-}
+  );
+};
 
-export default ButtonGroupItem
+export default ButtonGroupItem;
