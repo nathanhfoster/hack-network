@@ -1,6 +1,6 @@
 'use client';
 
-import { useGenerateLink } from '../../hooks';
+import { useInstallPromptHandler } from '../../hooks';
 import { DownloadAppButtonProps } from './types';
 
 const DownloadAppButton: React.FC<DownloadAppButtonProps> = ({
@@ -8,9 +8,9 @@ const DownloadAppButton: React.FC<DownloadAppButtonProps> = ({
   label = 'Download',
   children,
 }) => {
-  const { isMobile, deferredPrompt, generateLink } = useGenerateLink();
+  const { deferredPrompt, handleInstallClick } = useInstallPromptHandler();
 
-  if (isMobile && !deferredPrompt) {
+  if (!deferredPrompt) {
     return null;
   }
 
@@ -23,7 +23,7 @@ const DownloadAppButton: React.FC<DownloadAppButtonProps> = ({
       {children}
       <Component
         className={Component === 'button' ? buttonStyles : spanStyles}
-        onClick={generateLink}
+        onClick={handleInstallClick}
       >
         {label}
       </Component>
