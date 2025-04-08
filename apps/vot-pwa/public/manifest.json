@@ -527,21 +527,39 @@
   "screenshots": [
     {
       "src": "/screenshots/home.png",
-      "sizes": "1080x1920",
+      "sizes": "400x822",
       "type": "image/png",
       "form_factor": "narrow"
     },
     {
-      "src": "/screenshots/episodes.png",
-      "sizes": "1080x1920",
+      "src": "/screenshots/home.png",
+      "sizes": "400x822",
       "type": "image/png",
       "form_factor": "narrow"
     },
     {
-      "src": "/screenshots/qa.png",
-      "sizes": "1080x1920",
+      "src": "/screenshots/home.png",
+      "sizes": "400x822",
       "type": "image/png",
       "form_factor": "narrow"
+    },
+    {
+      "src": "/screenshots/home.png",
+      "sizes": "2400x1260",
+      "type": "image/png",
+      "form_factor": "wide"
+    },
+    {
+      "src": "/screenshots/home.png",
+      "sizes": "1366x1160",
+      "type": "image/png",
+      "form_factor": "wide"
+    },
+    {
+      "src": "/screenshots/home.png",
+      "sizes": "2732x1536",
+      "type": "image/png",
+      "form_factor": "wide"
     }
   ],
   "shortcuts": [
