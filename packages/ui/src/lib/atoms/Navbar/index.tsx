@@ -1,10 +1,10 @@
-'use client'
+'use client';
 
-import { useState } from 'react'
-import Button from '../Button'
-import Dropdown from '../Dropdown'
-import { combineClassNames } from '../../../utils'
-import type { NavbarProps } from './types'
+import { FC, useState } from 'react';
+import Button from '../Button';
+import Dropdown from '../Dropdown';
+import { combineClassNames } from '../../../utils';
+import type { NavbarProps } from './types';
 import {
   NAVBAR_BASE_CLASSES,
   NAVBAR_CONTAINER_CLASSES,
@@ -20,22 +20,22 @@ import {
   NAVBAR_USER_MENU_BUTTON_CLASSES,
   NAVBAR_USER_MENU_AVATAR_CLASSES,
   NAVBAR_USER_MENU_DROPDOWN_CLASSES,
-  NAVBAR_USER_MENU_DROPDOWN_ITEM_CLASSES
-} from './constants'
-import { useBooleanToggler } from 'resurrection'
+  NAVBAR_USER_MENU_DROPDOWN_ITEM_CLASSES,
+} from './constants';
+import { useBooleanToggler } from 'resurrection';
 
-export function Navbar({
+const Navbar: FC<NavbarProps> = ({
   brand,
   links,
   dropdowns,
   userMenu,
   cta,
   search,
-  className
-}: NavbarProps) {
-  const [isMenuOpen, toggleIsMenuOpen] = useBooleanToggler(false)
-  const [isUserMenuOpen, toggleIsUserMenuOpen] = useBooleanToggler(false)
-  const [openDropdown, setOpenDropdown] = useState<string | null>(null)
+  className,
+}) => {
+  const [isMenuOpen, toggleIsMenuOpen] = useBooleanToggler(false);
+  const [isUserMenuOpen, toggleIsUserMenuOpen] = useBooleanToggler(false);
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
 
   return (
     <nav className={combineClassNames(NAVBAR_BASE_CLASSES, className)}>
@@ -82,7 +82,7 @@ export function Navbar({
         <div
           className={combineClassNames(
             NAVBAR_MENU_CLASSES,
-            isMenuOpen ? 'block' : 'hidden'
+            isMenuOpen ? 'block' : 'hidden',
           )}
           id="navbar-default"
         >
@@ -94,7 +94,7 @@ export function Navbar({
                   className={combineClassNames(
                     link.isActive
                       ? NAVBAR_ACTIVE_LINK_CLASSES
-                      : NAVBAR_LINK_CLASSES
+                      : NAVBAR_LINK_CLASSES,
                   )}
                 >
                   {link.label}
@@ -109,7 +109,7 @@ export function Navbar({
                   isOpen={openDropdown === dropdown.label}
                   onToggle={() =>
                     setOpenDropdown(
-                      openDropdown === dropdown.label ? null : dropdown.label
+                      openDropdown === dropdown.label ? null : dropdown.label,
                     )
                   }
                 />
@@ -196,5 +196,7 @@ export function Navbar({
         )}
       </div>
     </nav>
-  )
-}
+  );
+};
+
+export default Navbar;

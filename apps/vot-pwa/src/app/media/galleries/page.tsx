@@ -1,4 +1,3 @@
-import { Box, Container, Typography } from '@mui/material';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -8,15 +7,13 @@ export const metadata: Metadata = {
 
 export default function GalleriesPage() {
   return (
-    <Container maxWidth="lg">
-      <Box sx={{ py: 4 }}>
-        <Typography variant="h2" component="h1" gutterBottom>
-          Galleries
-        </Typography>
-        <Typography variant="body1" paragraph>
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="py-16">
+        <h1 className="text-4xl font-bold text-gray-900 mb-4">Galleries</h1>
+        <p className="text-lg text-gray-600 mb-6">
           Explore our collection of photo galleries and visual content.
-        </Typography>
-      </Box>
-    </Container>
+        </p>
+      </div>
+    </div>
   );
 }
