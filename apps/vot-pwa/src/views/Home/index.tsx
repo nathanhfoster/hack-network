@@ -1,7 +1,12 @@
 'use client';
 
 import { FC } from 'react';
-import { connect, DispatchType } from 'resurrection';
+import {
+  connect,
+  DispatchType,
+  InstallPromptProvider,
+  DownloadAppButton,
+} from 'resurrection';
 import {
   AdminActions,
   AdminDispatchContext,
@@ -23,16 +28,19 @@ const HomeView: FC<HomeViewConnectedProps> = ({ theme, UpdateSettings }) => {
   };
 
   return (
-    <div>
-      <h1>Home</h1>
-      <Button onClick={handleUpdateSettings}>Update Settings</Button>
+    <InstallPromptProvider>
       <div>
-        <h2>Settings</h2>
-        <ul>
-          <li>Theme: {theme}</li>
-        </ul>
+        <h1>Home</h1>
+        <DownloadAppButton />
+        <Button onClick={handleUpdateSettings}>Update Settings</Button>
+        <div>
+          <h2>Settings</h2>
+          <ul>
+            <li>Theme: {theme}</li>
+          </ul>
+        </div>
       </div>
-    </div>
+    </InstallPromptProvider>
   );
 };
 

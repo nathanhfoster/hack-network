@@ -22,4 +22,5 @@ export { default as useTriggerRerender } from './useTriggerRerender';
 export { default as useWillUnmount } from './useWillUnmount';
 export { default as useWindowSize } from './useWindowSize';
 export { default as useDispatch } from './useDispatch';
+export { default as useNavigator } from './useNavigator';
 export * from './reducers';

@@ -1,4 +1,10 @@
-import { ComponentType, Dispatch, ReactNode, RefObject } from 'react';
+import {
+  ComponentType,
+  CSSProperties,
+  Dispatch,
+  ReactNode,
+  RefObject,
+} from 'react';
 
 import {
   IfMaybeUndefined,
@@ -248,3 +254,21 @@ export type ValueComponent<T = any> = {
 };
 
 export type Writeable<T> = { -readonly [P in keyof T]: T[P] };
+
+export interface ClickableComponent {
+  onClick?: React.MouseEventHandler<HTMLElement>;
+  //   onClick?: (...args: unknown[]) => void;
+}
+
+export interface ExtendableComponent extends ClickableComponent {
+  className?: string;
+  style?: CSSProperties;
+  children?: React.ReactNode;
+}
+
+export interface PolyMorphicComponent<
+  T extends React.ElementType = 'button' | 'span',
+> extends ExtendableComponent {
+  component?: T;
+  props?: React.ComponentProps<T>;
+}

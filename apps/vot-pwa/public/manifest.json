@@ -22,11 +22,11 @@
   "related_applications": [
     {
       "platform": "webapp",
-      "url": "https://www.cree8.io//manifest.json"
+      "url": "https://vot-sigma.vercel.app/manifest.json"
     },
     {
       "platform": "webapp",
-      "url": "https://www.dev.cree8.io//manifest.json"
+      "url": "https://vot-sigma.vercel.app/manifest.json"
     }
   ],
   "icons": [
