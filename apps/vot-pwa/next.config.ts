@@ -7,10 +7,11 @@ import { composePlugins, withNx } from '@nx/next';
 import path from 'path';
 import { version } from './package.json';
 
-const ENABLE_BUNDLE_ANALYZER = false;
-// const ENABLE_BUNDLE_ANALYZER = process.env.NODE_ENV === 'development';
+// const IS_DEV = process.env.NODE_ENV === 'development';
+// const IS_PROD = process.env.NODE_ENV === 'production';
+const ENABLE_BUNDLE_ANALYZER = false; // IS_DEV;
 
-const DISABLE_PWA_CONFIG = true; // Always enable PWA for testing
+const DISABLE_PWA_CONFIG = false; // Always enable PWA for testing
 
 const bundleAnalyzer = withBundleAnalyzer({
   enabled: ENABLE_BUNDLE_ANALYZER,
