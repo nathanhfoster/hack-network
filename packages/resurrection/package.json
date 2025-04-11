@@ -27,7 +27,10 @@
     "preversion": "pnpm run build",
     "postversion": "git push && git push --tags"
   },
-  "dependencies": {},
+  "dependencies": {
+    "immer": "^10.1.1",
+    "use-context-selector": "^2.0.0"
+  },
   "peerDependencies": {
     "react": "^19.0.0",
     "react-dom": "^19.0.0"

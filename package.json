@@ -46,9 +46,7 @@
     "react": "19.0.0",
     "react-dom": "19.0.0",
     "tailwindcss": "^4.0.17",
-    "lodash-es": "^4.17.21",
-    "immer": "^10.1.1",
-    "use-context-selector": "^2.0.0"
+    "lodash-es": "^4.17.21"
   },
   "devDependencies": {
     "@babel/core": "^7.14.5",
