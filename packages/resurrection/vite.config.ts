@@ -51,9 +51,9 @@ export default defineConfig(() => ({
         'react',
         'react-dom',
         'react/jsx-runtime',
-        // 'immer',
-        // 'scheduler',
-        // 'use-context-selector',
+        'immer',
+        'scheduler',
+        'use-context-selector',
       ],
       output: {
         // Enable tree-shaking

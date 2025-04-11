@@ -47,13 +47,12 @@
     "preversion": "pnpm run build",
     "postversion": "git push && git push --tags"
   },
-  "dependencies": {
-    "scheduler": "^0.26.0",
-    "use-context-selector": "^2.0.0",
-    "immer": "^10.1.1"
-  },
+  "dependencies": {},
   "peerDependencies": {
-    "react": "^18.2.25"
+    "react": "^18.2.25",
+    "immer": "^10.1.1",
+    "scheduler": "^0.23.0",
+    "use-context-selector": "^2.0.0"
   },
   "peerDependenciesMeta": {
     "@types/react": {
