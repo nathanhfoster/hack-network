@@ -53,6 +53,7 @@ export default defineConfig(() => ({
         'react/jsx-runtime',
         'use-context-selector',
         'immer',
+        'scheduler',
       ],
       output: {
         // Enable tree-shaking
@@ -66,6 +67,8 @@ export default defineConfig(() => ({
         // Ensure proper handling of React context
         preserveModules: true,
         preserveModulesRoot: 'src',
+        // Support module resolution
+        interop: 'auto' as const,
       },
     },
     // Enable minification
