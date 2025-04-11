@@ -10,12 +10,7 @@ export default defineConfig(() => ({
   root: __dirname,
   cacheDir: '../../node_modules/.vite/packages/resurrection',
   resolve: {
-    alias: {
-      '@atoms': path.resolve(__dirname, './src/lib/atoms'),
-      '@molecules': path.resolve(__dirname, './src/lib/molecules'),
-      '@contexts': path.resolve(__dirname, './src/contexts'),
-      '@utils': path.resolve(__dirname, './src/utils'),
-    },
+    alias: {},
   },
   plugins: [
     react(),
@@ -52,7 +47,13 @@ export default defineConfig(() => ({
     },
     rollupOptions: {
       // External packages that should not be bundled into your library.
-      external: ['react', 'react-dom', 'react/jsx-runtime'],
+      external: [
+        'react',
+        'react-dom',
+        'react/jsx-runtime',
+        'use-context-selector',
+        'immer',
+      ],
       output: {
         // Enable tree-shaking
         exports: 'named' as const,
@@ -62,6 +63,9 @@ export default defineConfig(() => ({
         manualChunks: undefined,
         // Add chunk size warnings
         chunkFileNames: '[name]-[hash].js',
+        // Ensure proper handling of React context
+        preserveModules: true,
+        preserveModulesRoot: 'src',
       },
     },
     // Enable minification

@@ -6,13 +6,7 @@
     "allowSyntheticDefaultImports": true,
     "strict": true,
     "types": ["vite/client", "vitest"],
-    "baseUrl": ".",
-    "paths": {
-      "@atoms/*": ["src/lib/atoms/*"],
-      "@molecules/*": ["src/lib/molecules/*"],
-      "@contexts/*": ["src/contexts/*"],
-      "@utils/*": ["src/utils/*"]
-    }
+    "baseUrl": "."
   },
   "files": [],
   "include": [],

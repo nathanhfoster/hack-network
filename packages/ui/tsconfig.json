@@ -26,12 +26,6 @@
     "allowJs": false,
     "resolveJsonModule": true,
     "types": ["node", "jest"],
-    "baseUrl": ".",
-    "paths": {
-      "@atoms/*": ["src/lib/atoms/*"],
-      "@molecules/*": ["src/lib/molecules/*"],
-      "@organisms/*": ["src/lib/organisms/*"],
-      "@templates/*": ["src/lib/templates/*"]
-    }
+    "baseUrl": "."
   }
 }

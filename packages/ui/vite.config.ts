@@ -8,15 +8,7 @@ import tailwindcss from '@tailwindcss/vite';
 export default defineConfig(() => ({
   root: __dirname,
   cacheDir: '../../node_modules/.vite/packages/ui',
-  resolve: {
-    alias: {
-      '@': path.resolve(__dirname, './src'),
-      '@atoms': path.resolve(__dirname, './src/lib/atoms'),
-      '@molecules': path.resolve(__dirname, './src/lib/molecules'),
-      '@organisms': path.resolve(__dirname, './src/lib/organisms'),
-      '@templates': path.resolve(__dirname, './src/lib/templates'),
-    },
-  },
+  resolve: {},
   plugins: [
     tailwindcss(),
     react(),
