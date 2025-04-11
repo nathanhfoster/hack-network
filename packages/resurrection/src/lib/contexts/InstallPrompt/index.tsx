@@ -20,5 +20,3 @@ export const InstallPromptProvider: React.FC<InstallPromptProviderProps> = ({
     </InstallPromptContext.Provider>
   );
 };
-
-export default InstallPromptProvider;
