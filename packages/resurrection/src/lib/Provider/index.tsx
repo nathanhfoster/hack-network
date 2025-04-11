@@ -3,6 +3,7 @@ import useReducerWithThunk from '../hooks/useReducerWithThunk';
 import setStateReducer from '../reducers/setStateReducer';
 import defaultInitializer from '../utils/defaultInitializer';
 import type { ProviderProps } from './types';
+import { useMemo } from 'react';
 
 const Provider = <S extends object, I extends object = S>({
   StateContext,
@@ -21,13 +22,21 @@ const Provider = <S extends object, I extends object = S>({
     derivedStateFromProps,
   );
 
+  const renderChildren = useMemo(() => {
+    if (isFunction(children)) {
+      return children({ state, dispatch });
+    }
+
+    return children;
+  }, [children, state, dispatch]);
+
   if (!StateContext) {
-    return isFunction(children) ? children(state) : children;
+    return renderChildren;
   }
 
   const StateContextProvider = (
     <StateContext.Provider value={state}>
-      {isFunction(children) ? children(state) : children}
+      {renderChildren}
     </StateContext.Provider>
   );
 

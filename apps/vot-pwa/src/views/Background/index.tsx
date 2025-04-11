@@ -12,6 +12,7 @@ import { getBackgroundImage } from './utils';
 import { connect } from 'resurrection';
 import { RouteState } from '../../context/RouteContext/types';
 import { RouteContext } from '../../context/RouteContext';
+
 const Background: FC<BackgroundViewConnectedProps> = ({ pathname }) => {
   const backgroundImage = useMemo(
     () => getBackgroundImage(pathname),

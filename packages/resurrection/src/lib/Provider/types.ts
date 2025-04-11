@@ -25,5 +25,7 @@ export type ProviderProps<
       | PayloadActionCreator<any, string>
     >
   >;
-  children: ReactNode | ((state: S) => ReactNode);
+  children:
+    | ReactNode
+    | ((state: { state: S; dispatch: Dispatch<A> }) => ReactNode);
 };
