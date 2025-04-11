@@ -62,12 +62,6 @@ export default defineConfig(() => ({
         preserveModulesRoot: 'src',
         // Support module resolution
         interop: 'auto' as const,
-        // Ensure proper handling of context selector
-        hoistTransitiveImports: false,
-        // Prevent context selector from being tree-shaken
-        treeshake: {
-          moduleSideEffects: true,
-        },
       },
     },
     // Enable minification

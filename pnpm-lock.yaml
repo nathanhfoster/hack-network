@@ -302,15 +302,15 @@ importers:
 
   packages/resurrection:
     dependencies:
+      '@types/react':
+        specifier: ^18.2.25 || ^19.0.0
+        version: 19.0.0
       immer:
         specifier: ^10.1.1
         version: 10.1.1
       react:
-        specifier: ^19.0.0
+        specifier: ^18.0.0 || ^19.0.0
         version: 19.0.0
-      react-dom:
-        specifier: ^19.0.0
-        version: 19.0.0(react@19.0.0)
       scheduler:
         specifier: ^0.26.0
         version: 0.26.0

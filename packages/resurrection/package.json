@@ -14,6 +14,26 @@
   "files": [
     "dist"
   ],
+  "keywords": [
+    "react",
+    "context",
+    "context api",
+    "context selector",
+    "use context selector",
+    "redux",
+    "redux toolkit",
+    "redux state management",
+    "redux state",
+    "redux store",
+    "redux provider",
+    "redux connect",
+    "redux thunk",
+    "redux middleware",
+    "redux reducer",
+    "redux action",
+    "redux slice",
+    "redux toolkit slice"
+  ],
   "scripts": {
     "build": "vite build",
     "prepublishOnly": "pnpm build",
@@ -27,13 +47,17 @@
     "preversion": "pnpm run build",
     "postversion": "git push && git push --tags"
   },
-  "dependencies": {
-    "immer": "^10.1.1",
-    "scheduler": "^0.26.0",
-    "use-context-selector": "^2.0.0"
-  },
+  "dependencies": {},
   "peerDependencies": {
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "@types/react": "^18.2.25 || ^19.0.0",
+    "react": "^18.0.0 || ^19.0.0",
+    "scheduler": "^0.26.0",
+    "use-context-selector": "^2.0.0",
+    "immer": "^10.1.1"
+  },
+  "peerDependenciesMeta": {
+    "@types/react": {
+      "optional": true
+    }
   }
 }
