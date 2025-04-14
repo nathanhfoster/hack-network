@@ -21,13 +21,15 @@ const useIntervalIndex = (params: UseIntervalParams) => {
           setIndex(index + 1);
         }
       },
-      isArray(params?.interval) ? getRandomNumber(...params.interval) : params.interval,
+      isArray(params?.interval)
+        ? getRandomNumber(...params.interval)
+        : params.interval,
     );
 
     return () => clearInterval(intervalId);
   }, [index, params.maxIndex, params?.interval, params.repeat]);
 
-  return index;
+  return { index, setIndex };
 };
 
 export default useIntervalIndex;
