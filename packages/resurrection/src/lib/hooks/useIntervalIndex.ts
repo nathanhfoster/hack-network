@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 
 export interface UseIntervalParams {
   maxIndex: number;
-  ms: number | [number, number];
+  interval: number | [number, number];
   repeat?: boolean;
 }
 
@@ -21,11 +21,11 @@ const useIntervalIndex = (params: UseIntervalParams) => {
           setIndex(index + 1);
         }
       },
-      isArray(params?.ms) ? getRandomNumber(...params.ms) : params.ms,
+      isArray(params?.interval) ? getRandomNumber(...params.interval) : params.interval,
     );
 
     return () => clearInterval(intervalId);
-  }, [index, params.maxIndex, params?.ms, params.repeat]);
+  }, [index, params.maxIndex, params?.interval, params.repeat]);
 
   return index;
 };
