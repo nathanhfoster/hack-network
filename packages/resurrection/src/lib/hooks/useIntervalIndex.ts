@@ -4,8 +4,8 @@ import { getRandomNumber, isArray } from '../utils';
 import { useEffect, useState } from 'react';
 
 export interface UseIntervalParams {
+  interval: number | [number, number] | false;
   maxIndex: number;
-  interval: number | [number, number];
   repeat?: boolean;
 }
 
@@ -13,6 +13,10 @@ const useIntervalIndex = (params: UseIntervalParams) => {
   const [index, setIndex] = useState(0);
 
   useEffect(() => {
+    if (params.interval === false) {
+      return;
+    }
+
     const timer = setInterval(
       () => {
         setIndex((prevIndex) => {
