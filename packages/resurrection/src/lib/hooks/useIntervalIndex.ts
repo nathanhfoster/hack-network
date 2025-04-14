@@ -13,21 +13,23 @@ const useIntervalIndex = (params: UseIntervalParams) => {
   const [index, setIndex] = useState(0);
 
   useEffect(() => {
-    const intervalId = setInterval(
+    const timer = setInterval(
       () => {
-        if (index === params.maxIndex && params.repeat !== false) {
-          setIndex(0);
-        } else {
-          setIndex(index + 1);
-        }
+        setIndex((prevIndex) => {
+          if (prevIndex === params.maxIndex - 1) {
+            return params.repeat !== false ? 0 : prevIndex;
+          }
+
+          return prevIndex + 1;
+        });
       },
       isArray(params?.interval)
         ? getRandomNumber(...params.interval)
         : params.interval,
     );
 
-    return () => clearInterval(intervalId);
-  }, [index, params.maxIndex, params?.interval, params.repeat]);
+    return () => clearInterval(timer);
+  }, [params.maxIndex, params?.interval, params.repeat]);
 
   return { index, setIndex };
 };
