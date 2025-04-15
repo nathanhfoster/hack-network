@@ -145,3 +145,5 @@ export type MergePropsType<
   dispatchToProps: MDTP,
   ownProps: OWNP,
 ) => MergePropsReturnType<MSTP, MDTP, OWNP>;
+
+export type InferStateFromContext<C> = C extends Context<infer S> ? S : never;
