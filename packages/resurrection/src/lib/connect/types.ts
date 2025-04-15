@@ -3,6 +3,7 @@ import {
   ForwardRefExoticComponent,
   NamedExoticComponent,
   RefAttributes,
+  Dispatch,
 } from 'react';
 import type { Context } from 'use-context-selector';
 
@@ -10,10 +11,8 @@ import {
   LoosePartial,
   ActionCreatorWithPayload,
   PayloadActionCreator,
-  ContextStore,
   Thunk,
 } from '../types';
-import { ReducerActionCreators } from '../utils/createSlice/types';
 
 export type ComponentPropsType<T extends object = object> = T;
 
@@ -51,23 +50,37 @@ export type ConnectOptions<
   MSTP extends ComponentPropsType,
   MDTP extends ComponentPropsType,
   OWNP extends ComponentPropsType,
-  S extends ContextStore<any>[] = [],
-  A extends (
-    | Thunk<any, any>
-    | ActionCreatorWithPayload<any, string>
-    | PayloadActionCreator<any, string>
-    | ReducerActionCreators<any, string>
-  )[] = [],
 > = {
-  mapStateToPropsOptions?: MapStateToPropsItem<MSTP, S[number], OWNP>[];
-  mapDispatchToPropsOptions?: MapDispatchToPropsArrayItem<
-    MDTP,
-    A[number],
-    OWNP
-  >[];
+  mapStateToPropsOptions?: {
+    context: Context<any>;
+    mapStateToProps: <C extends Context<any>>(
+      state: InferStateFromContext<C>,
+      ownProps: OWNP,
+    ) => LoosePartial<MSTP>;
+  }[];
+  mapDispatchToPropsOptions?: Array<{
+    context: Context<Dispatch<any>>;
+    mapDispatchToProps:
+      | LoosePartial<
+          Record<
+            keyof MDTP,
+            | ActionCreatorWithPayload<any, string>
+            | PayloadActionCreator<any, string>
+            | ((...args: any[]) => any)
+          >
+        >
+      | ((
+          dispatch: Dispatch<any>,
+          ownProps: OWNP,
+        ) => LoosePartial<Record<keyof MDTP, (...args: any[]) => any>>);
+  }>;
   pure?: boolean;
   forwardRef?: boolean;
-  mergeProps?: MergePropsType<MSTP, MDTP, OWNP>;
+  mergeProps?: (
+    stateToProps: ComponentPropsType,
+    dispatchToProps: MDTP,
+    ownProps: OWNP,
+  ) => MergePropsReturnType<MSTP, MDTP, OWNP>;
   areOwnPropsEqual?: EqualityFunctionType;
   areMergedPropsEqual?: EqualityFunctionType;
   useHookDataFetchingOnce?: (
@@ -94,56 +107,10 @@ export type DispatchType<T> =
   | ActionCreatorWithPayload<any, string>
   | PayloadActionCreator<any, string>;
 
-export type MapDispatchToPropsArrayItem<
-  MDTP extends ComponentPropsType,
-  T extends ComponentPropsType,
-  P extends ComponentPropsType,
-> = {
-  context: Context<React.Dispatch<T>>;
-  mapDispatchToProps:
-    | LoosePartial<
-        Record<
-          keyof MDTP,
-          | ActionCreatorWithPayload<any, string>
-          | PayloadActionCreator<any, string>
-          | ((...args: any[]) => any)
-        >
-      >
-    | ((
-        dispatch: React.Dispatch<DispatchType<T>>,
-        ownProps: P,
-      ) => LoosePartial<Record<keyof MDTP, (...args: any[]) => any>>);
-};
-
-export type MapStateToPropsCallback<
-  MSTP extends ComponentPropsType,
-  S extends ComponentPropsType,
-  OWNP extends ComponentPropsType,
-> = (state: S, ownProps: OWNP) => LoosePartial<MSTP>;
-
-export type MapStateToPropsItem<
-  MSTP extends ComponentPropsType,
-  S extends ComponentPropsType,
-  OWNP extends ComponentPropsType,
-> = {
-  context: Context<S>;
-  mapStateToProps: MapStateToPropsCallback<MSTP, S, OWNP>;
-};
-
 export type MergePropsReturnType<
   MSTP extends ComponentPropsType,
   MDTP extends ComponentPropsType,
   OWNP extends ComponentPropsType,
 > = Partial<MSTP> & Partial<MDTP> & Partial<OWNP>;
-
-export type MergePropsType<
-  MSTP extends ComponentPropsType,
-  MDTP extends ComponentPropsType,
-  OWNP extends ComponentPropsType,
-> = (
-  stateToProps: ComponentPropsType,
-  dispatchToProps: MDTP,
-  ownProps: OWNP,
-) => MergePropsReturnType<MSTP, MDTP, OWNP>;
 
 export type InferStateFromContext<C> = C extends Context<infer S> ? S : never;

@@ -9,8 +9,7 @@ import {
   BackgroundViewOwnProps,
 } from './types';
 import { getBackgroundImage } from './utils';
-import { connect } from 'resurrection';
-import { RouteState } from '../../context/RouteContext/types';
+import { connect, InferStateFromContext } from 'resurrection';
 import { RouteContext } from '../../context/RouteContext';
 
 const Background: FC<BackgroundViewConnectedProps> = ({ pathname }) => {
@@ -34,13 +33,14 @@ const Background: FC<BackgroundViewConnectedProps> = ({ pathname }) => {
 export default connect<
   BackgroundViewMapStateToProps,
   BackgroundViewMapDispatchToProps,
-  BackgroundViewOwnProps,
-  [RouteState]
+  BackgroundViewOwnProps
 >({
   mapStateToPropsOptions: [
     {
       context: RouteContext,
-      mapStateToProps: (state) => ({ pathname: state.pathname }),
+      mapStateToProps: (state: InferStateFromContext<typeof RouteContext>) => ({
+        pathname: state.pathname,
+      }),
     },
   ],
 })(Background);

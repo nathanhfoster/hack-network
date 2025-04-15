@@ -38,7 +38,7 @@ const createUseDispatchHook = <A extends object = any>(
   DispatchContext: Context<Dispatch<A>>,
 ) => {
   const useDispatch = () => {
-    const dispatch = useContext(DispatchContext);
+    const dispatch = useContext<Dispatch<A>>(DispatchContext);
     return dispatch;
   };
 

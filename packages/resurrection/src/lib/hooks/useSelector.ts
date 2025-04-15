@@ -1,7 +1,10 @@
 import { Context, useContextSelector } from 'use-context-selector';
-import type { ComponentPropsType } from '../connect/types';
+import type {
+  ComponentPropsType,
+  InferStateFromContext,
+} from '../connect/types';
 
-const createUseSelectorHook = <State = unknown>(context: Context<State>) => {
+const createUseSelectorHook = <C extends Context<any>>(context: C) => {
   /**
    * This hook simulates Redux's useSelector hook
    * Only updates when the selected state changes, not when the whole state changes
@@ -10,10 +13,16 @@ const createUseSelectorHook = <State = unknown>(context: Context<State>) => {
     SelectedState = unknown,
     Props extends ComponentPropsType = object,
   >(
-    mapStateToSelector: (state: State, props?: Props) => SelectedState,
+    mapStateToSelector: (
+      state: InferStateFromContext<C>,
+      props?: Props,
+    ) => SelectedState,
     props?: Props,
   ) => {
-    const selectedState = useContextSelector(context, (state) => {
+    const selectedState = useContextSelector<
+      InferStateFromContext<C>,
+      SelectedState
+    >(context, (state) => {
       const result = mapStateToSelector(state, props);
       return result;
     });

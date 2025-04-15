@@ -15,7 +15,6 @@
  * Each object should include a `context` and a `mapDispatchToProps` function or object.
  * @param {boolean} [options.pure=true] - Whether the component should implement `React.memo` for performance optimization.
  * @param {boolean} [options.forwardRef=false] - Whether to forward refs to the wrapped component.
- * @param {MergePropsType<MSTP, MDTP, OWNP>} [options.mergeProps=defaultMergeProps] - A function to merge state, dispatch, and own props into a single props object.
  * @param {Function} [options.areOwnPropsEqual=shallowEquals] - A function to compare own props for equality.
  * @param {Function} [options.areMergedPropsEqual=shallowEquals] - A function to compare merged props for equality.
  * @param {Function} [options.useHookDataFetchingOnce] - A hook function to perform data fetching logic once when the component mounts.
@@ -51,10 +50,8 @@ import {
   ConnectOptions,
   ConnectOptionUseEffectAfterChangeReturn,
   MergePropsReturnType,
-  MergePropsType,
-  DispatchType,
+  InferStateFromContext,
 } from './types';
-import { LoosePartial } from '../types';
 import {
   useEffectAfterChange,
   useEffectOnce,
@@ -64,24 +61,23 @@ import defaultMergeProps from '../utils/defaultMergeProps';
 import createUseSelectorHook from '../hooks/useSelector';
 import createUseDispatchHook from '../hooks/useDispatch';
 import bindActionCreator from '../utils/bindActionCreator';
+import type { LoosePartial } from '../types';
 
 const connect = <
   MSTP extends ComponentPropsType = ComponentPropsType,
   MDTP extends ComponentPropsType = ComponentPropsType,
   OWNP extends ComponentPropsType = ComponentPropsType,
-  S extends ComponentPropsType[] = [],
-  A extends DispatchType<any>[] = [],
 >({
   mapStateToPropsOptions = [],
   mapDispatchToPropsOptions = [],
   pure = true,
   forwardRef = false,
-  mergeProps = defaultMergeProps as MergePropsType<MSTP, MDTP, OWNP>,
+  mergeProps = defaultMergeProps,
   areOwnPropsEqual = shallowEquals,
   areMergedPropsEqual = shallowEquals,
   useHookDataFetchingOnce,
   useHookEffectAfterChange,
-}: ConnectOptions<MSTP, MDTP, OWNP, S, A>) => {
+}: ConnectOptions<MSTP, MDTP, OWNP>) => {
   const wrapWithConnect = <P extends ComponentPropsType>(
     WrappedComponent: ComponentType<P>,
   ): ComponentType<Omit<P, keyof MSTP | keyof MDTP>> => {
@@ -95,14 +91,13 @@ const connect = <
       ...restOfProps
     }) => {
       const ownPropsRef = useRef(restOfProps);
+
       const mapStateToPropsContexts = mapStateToPropsOptions.map((item) => {
         const useSelector = createUseSelectorHook(item.context);
-        const contextState = useSelector<S[number], OWNP>(
-          ((state: S[number], props?: OWNP) =>
-            item.mapStateToProps(state, props ?? ({} as OWNP))) as (
-            state: S[number],
-            props?: OWNP,
-          ) => LoosePartial<MSTP>,
+
+        const contextState = useSelector<LoosePartial<MSTP>, OWNP>(
+          (state: InferStateFromContext<typeof item.context>, props?: OWNP) =>
+            item.mapStateToProps(state, props ?? ({} as OWNP)),
           restOfProps as OWNP,
         );
 
@@ -112,15 +107,13 @@ const connect = <
       const stateToProps = useMemo<MSTP>(() => {
         return mapStateToPropsOptions.reduce((acc, _item, index) => {
           const contextState = mapStateToPropsContexts[index];
-          const newProps = { ...acc, ...contextState };
-
-          return newProps;
+          return { ...acc, ...contextState } as MSTP;
         }, {} as MSTP);
       }, [restOfProps]);
 
       const mapDispatchToPropsContexts = mapDispatchToPropsOptions.map(
         (item) => {
-          const useDispatch = createUseDispatchHook<A[number]>(item.context);
+          const useDispatch = createUseDispatchHook(item.context);
           const dispatch = useDispatch();
 
           return dispatch;
