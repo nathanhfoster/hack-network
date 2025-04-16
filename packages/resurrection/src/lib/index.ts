@@ -23,9 +23,6 @@ export type {
   ActionFromMatcher,
 } from './utils/tsHelpers';
 
-// Thunk Types
-export type { Thunk, ThunkAction, ThunkFunction } from './types';
-
 // Core Components and Hooks
 export { default as connect } from './connect';
 export { default as Provider } from './Provider/index';

@@ -5,7 +5,10 @@ import defaultInitializer from '../utils/defaultInitializer';
 import type { ProviderProps } from './types';
 import { useMemo } from 'react';
 
-const Provider = <S extends object, I extends object = S>({
+const Provider = <
+  S extends Record<string, unknown>,
+  I extends Record<string, unknown> = S,
+>({
   StateContext,
   reducer = setStateReducer,
   derivedStateFromProps,
@@ -17,9 +20,9 @@ const Provider = <S extends object, I extends object = S>({
 }: ProviderProps<S, I>) => {
   const [state, dispatch] = useReducerWithThunk<S, I>(
     reducer,
-    initialState,
+    initialState as I extends S ? S : I,
     initializer,
-    derivedStateFromProps,
+    derivedStateFromProps as Partial<S>,
   );
 
   const renderChildren = useMemo(() => {

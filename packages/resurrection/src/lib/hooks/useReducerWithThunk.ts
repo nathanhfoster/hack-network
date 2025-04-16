@@ -20,8 +20,8 @@ import type {
  * so that the action dispatcher supports thunks.
  */
 const useReducerWithThunk = <
-  S extends object,
-  I extends object = S,
+  S extends Record<string, unknown>,
+  I extends Record<string, unknown> = S,
   A extends object = ActionCreatorWithPayload<any, string>,
 >(
   reducer: (state: S, action: A) => S,
@@ -46,8 +46,8 @@ const useReducerWithThunk = <
     useCallback(
       () =>
         getDerivedStateFromProps(
-          initialState,
-          derivedStateFromPropsThatChanged,
+          initialState as S,
+          derivedStateFromPropsThatChanged as Partial<S>,
         ),
       // eslint-disable-next-line react-hooks/exhaustive-deps
       [],

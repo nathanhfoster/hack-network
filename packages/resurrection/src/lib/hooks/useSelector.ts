@@ -11,7 +11,7 @@ const createUseSelectorHook = <C extends Context<any>>(context: C) => {
    */
   const useSelector = <
     SelectedState = unknown,
-    Props extends ComponentPropsType = object,
+    Props extends ComponentPropsType = Record<string, unknown>,
   >(
     mapStateToSelector: (
       state: InferStateFromContext<C>,

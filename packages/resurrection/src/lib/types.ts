@@ -172,11 +172,6 @@ export type Thunk<A, S, P = void> = (
   getState: () => RefObject<S>['current'],
 ) => PayloadActionCreator | Promise<P> | Promise<void> | P;
 
-export type ThunkAction<S = any, A = any> = (
-  dispatch: Dispatch<A>,
-  getState: () => S,
-) => void | Promise<void>;
-
 export type ThunkFunction<P = void, S = any, A = any> = IsAny<
   P,
   ThunkFunctionWithParam<any, S, A>,
@@ -272,3 +267,9 @@ export interface PolyMorphicComponent<
   component?: T;
   props?: React.ComponentProps<T>;
 }
+
+export type Reducer<S, A> = (state: S, action: A) => S;
+
+export type Action =
+  | ActionCreatorWithPayload<any, string>
+  | PayloadActionCreator<any, string>;

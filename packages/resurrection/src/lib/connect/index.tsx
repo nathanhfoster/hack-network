@@ -7,8 +7,11 @@
  * @template MSTP - The type of the mapped state props.
  * @template MDTP - The type of the mapped dispatch props.
  * @template OWNP - The type of the component's own props.
+ * @template State - The type of the state in the context stores.
+ * @template Payload - The type of the payload in the actions.
+ * @template ActionType - The type of the action in the actions.
  *
- * @param {ConnectOptions<MSTP, MDTP, OWNP>} options - Configuration options for the `connect` HOC.
+ * @param {ConnectOptions<MSTP, MDTP, OWNP, State, Payload, ActionType>} options - Configuration options for the `connect` HOC.
  * @param {Array} options.mapStateToPropsOptions - An array of objects specifying how to map state from context stores to props.
  * Each object should include a `context` and a `mapStateToProps` function.
  * @param {Array} options.mapDispatchToPropsOptions - An array of objects specifying how to map dispatch actions from context stores to props.
@@ -86,10 +89,9 @@ const connect = <
 
     const displayName = `Connect(${wrappedComponentName})`;
 
-    const ConnectFunction: FC<P & { forwardedRef?: React.Ref<any> }> = ({
-      forwardedRef,
-      ...restOfProps
-    }) => {
+    const ConnectFunction: FC<
+      P & { forwardedRef?: React.Ref<HTMLElement> }
+    > = ({ forwardedRef, ...restOfProps }) => {
       const ownPropsRef = useRef(restOfProps);
 
       const mapStateToPropsContexts = mapStateToPropsOptions.map((item) => {

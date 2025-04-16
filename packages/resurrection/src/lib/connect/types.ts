@@ -14,18 +14,20 @@ import {
   Thunk,
 } from '../types';
 
-export type ComponentPropsType<T extends object = object> = T;
+export type ComponentPropsType<
+  T extends Record<string, unknown> = Record<string, unknown>,
+> = T;
 
 export type ConnectedComponent<P extends ComponentPropsType> =
-  | ForwardRefExoticComponent<RefAttributes<unknown>>
+  | ForwardRefExoticComponent<RefAttributes<HTMLElement>>
   | FC<
       P & {
-        forwardedRef?: any;
+        forwardedRef?: React.Ref<HTMLElement>;
       }
     >
   | NamedExoticComponent<
       P & {
-        forwardedRef?: any;
+        forwardedRef?: React.Ref<HTMLElement>;
       }
     >;
 
@@ -66,34 +68,38 @@ export type ConnectOptions<
             keyof MDTP,
             | ActionCreatorWithPayload<any, string>
             | PayloadActionCreator<any, string>
-            | ((...args: any[]) => any)
+            | ((...args: unknown[]) => unknown)
           >
         >
       | ((
           dispatch: Dispatch<any>,
           ownProps: OWNP,
-        ) => LoosePartial<Record<keyof MDTP, (...args: any[]) => any>>);
+        ) => LoosePartial<Record<keyof MDTP, (...args: unknown[]) => unknown>>);
   }>;
   pure?: boolean;
   forwardRef?: boolean;
-  mergeProps?: (
-    stateToProps: ComponentPropsType,
+  mergeProps?: <
+    MSTP extends ComponentPropsType,
+    MDTP extends ComponentPropsType,
+    OWNP extends ComponentPropsType,
+  >(
+    stateToProps: MSTP,
     dispatchToProps: MDTP,
     ownProps: OWNP,
   ) => MergePropsReturnType<MSTP, MDTP, OWNP>;
   areOwnPropsEqual?: EqualityFunctionType;
   areMergedPropsEqual?: EqualityFunctionType;
-  useHookDataFetchingOnce?: (
-    props: ConnectHookProps<MSTP, MDTP, OWNP>,
+  useHookDataFetchingOnce?: <T extends ConnectHookProps<MSTP, MDTP, OWNP>>(
+    props: T,
   ) => Promise<void> | void;
-  useHookEffectAfterChange?: <T = any>(
+  useHookEffectAfterChange?: <T = unknown>(
     props: ConnectHookProps<MSTP, MDTP, OWNP>,
   ) => ConnectOptionUseEffectAfterChangeReturn<T>;
 };
 
-export type ConnectOptionUseEffectAfterChangeReturn<T = any> = [
+export type ConnectOptionUseEffectAfterChangeReturn<T = unknown> = [
   value?: T,
-  callback?: (previousValue: T, value: T) => any,
+  callback?: (previousValue: T, value: T) => unknown,
   condition?: (previousValue: T, value: T) => boolean,
   throttle?: number,
 ];
@@ -103,9 +109,9 @@ export type EqualityFunctionType<
 > = (prevPropsOrState: P, nextPropsOrState: P) => boolean;
 
 export type DispatchType<T> =
-  | Thunk<T, any>
-  | ActionCreatorWithPayload<any, string>
-  | PayloadActionCreator<any, string>;
+  | Thunk<T, unknown>
+  | ActionCreatorWithPayload<unknown, string>
+  | PayloadActionCreator<unknown, string>;
 
 export type MergePropsReturnType<
   MSTP extends ComponentPropsType,
