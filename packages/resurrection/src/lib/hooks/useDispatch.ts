@@ -1,5 +1,6 @@
 import { Dispatch } from 'react';
 import { useContext, Context } from 'use-context-selector';
+import type { InferStateFromContext } from '../connect/types';
 
 /**
  * Creates a custom hook for accessing the dispatch function from a given context.
@@ -7,7 +8,7 @@ import { useContext, Context } from 'use-context-selector';
  * This utility is useful for managing state updates in a React application
  * by providing a strongly-typed dispatch function derived from a context.
  *
- * @template A - The type of the action creator.
+ * @template C - The type of the context.
  * @param DispatchContext - The React context that provides the dispatch function.
  *                          This context should be created using `React.createContext`.
  * @returns A custom hook that retrieves the dispatch function from the provided context.
@@ -20,7 +21,7 @@ import { useContext, Context } from 'use-context-selector';
  * const MyDispatchContext = createContext<Dispatch<SetStateAction<MyState>>>(() => {});
  *
  * // Create a custom hook for accessing the dispatch function
- * const useMyDispatch = createUseDispatchHook<MyState>(MyDispatchContext);
+ * const useMyDispatch = createUseDispatchHook(MyDispatchContext);
  *
  * // Use the custom hook in a component
  * const MyComponent: React.FC = () => {
@@ -34,11 +35,10 @@ import { useContext, Context } from 'use-context-selector';
  * };
  * ```
  */
-const createUseDispatchHook = <A extends object = any>(
-  DispatchContext: Context<Dispatch<A>>,
-) => {
+const createUseDispatchHook = <C extends Context<any>>(DispatchContext: C) => {
   const useDispatch = () => {
-    const dispatch = useContext<Dispatch<A>>(DispatchContext);
+    const dispatch =
+      useContext<Dispatch<InferStateFromContext<C>>>(DispatchContext);
     return dispatch;
   };
 

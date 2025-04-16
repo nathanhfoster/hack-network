@@ -35,11 +35,7 @@ const createContextWithName = <
   });
 
   DispatchContext.displayName = `${displayName}DispatchContext`;
-  const useDispatch = createUseDispatchHook<
-    | Thunk<A, S>
-    | ActionCreatorWithPayload<any, string>
-    | PayloadActionCreator<any, string>
-  >(DispatchContext);
+  const useDispatch = createUseDispatchHook(DispatchContext);
 
   return {
     StateContext,
