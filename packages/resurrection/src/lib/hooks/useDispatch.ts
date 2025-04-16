@@ -1,4 +1,3 @@
-import { Dispatch } from 'react';
 import { useContext, Context } from 'use-context-selector';
 import type { InferStateFromContext } from '../connect/types';
 
@@ -37,8 +36,7 @@ import type { InferStateFromContext } from '../connect/types';
  */
 const createUseDispatchHook = <C extends Context<any>>(DispatchContext: C) => {
   const useDispatch = () => {
-    const dispatch =
-      useContext<Dispatch<InferStateFromContext<C>>>(DispatchContext);
+    const dispatch = useContext<InferStateFromContext<C>>(DispatchContext);
     return dispatch;
   };
 
