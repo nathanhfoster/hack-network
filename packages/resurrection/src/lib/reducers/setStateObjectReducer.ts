@@ -7,13 +7,13 @@ import setStateReducer from './setStateReducer';
  * a setState API that is similar to a class component's this.setState
  */
 const setObjectStateReducer = <S extends Record<string, unknown>>(
-  state: S,
+  prevState: S,
   action: any,
 ) => {
-  const nextStateToOverwrite = setStateReducer<S>(state, action);
+  const nextStateToOverwrite = setStateReducer<S>(prevState, action);
 
   const nextState = getDerivedStateFromProps(
-    state,
+    prevState,
     nextStateToOverwrite as Partial<S>,
   );
 
