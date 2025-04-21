@@ -15,7 +15,7 @@ import {
 } from '../types';
 
 export type ComponentPropsType<
-  T extends Record<string, unknown> = Record<string, unknown>,
+  T extends Record<string, any> = Record<string, any>,
 > = T;
 
 export type ConnectedComponent<P extends ComponentPropsType> =
