@@ -1,3 +1,4 @@
+import { SetStateAction } from 'react';
 import { isFunction } from '../utils';
 
 export type SetStateUpdater<S> = (prevState: S) => S;
@@ -9,9 +10,7 @@ export type SetStateUpdater<S> = (prevState: S) => S;
  * @param {ReducerAction | GetStateCallback} options
  * @returns
  */
-const setStateReducer = <S extends object>(
-  prevState: S,
-  action: S | SetStateUpdater<S>,
-) => (isFunction(action) ? action(prevState) : action) as S;
+const setStateReducer = <S>(prevState: S, action: SetStateAction<S>) =>
+  (isFunction(action) ? action(prevState) : action) as S;
 
 export default setStateReducer;

@@ -4,10 +4,7 @@
 
 import { isArray, isObject } from '../utils';
 
-const getDerivedStateFromProps = <S extends Record<string, unknown>>(
-  state: S,
-  props: Partial<S>,
-): S => {
+const getDerivedStateFromProps = <S>(state: S, props: Partial<S>): S => {
   if (
     !isObject(state) ||
     !isObject(props) ||
