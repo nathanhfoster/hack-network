@@ -5,7 +5,7 @@ import { useCallback, useRef, Dispatch } from 'react';
 import usePropsThatChanged from './usePropsThatChanged';
 import useLazyMemo from './useLazyMemo';
 import getDerivedStateFromProps from '../utils/getDerivedStateFromProps';
-import useSetStateReducer from './useSetStateReducer';
+import useSetStateReducer, { StateCallback } from './useSetStateReducer';
 import useEffectAfterMount from './useEffectAfterMount';
 
 import type {
@@ -65,14 +65,13 @@ const useReducerWithThunk = <
   const getState = useCallback<() => S>(() => state.current, [state]);
 
   const setState = useCallback(
-    (newState: S, callback?: (state?: S) => void) => {
+    (prevState: S, callback?: StateCallback<S>) => {
       const derivedState = getDerivedStateFromProps<S>(
-        newState,
+        prevState,
         derivedStateFromPropsThatChanged,
       );
 
       state.current = derivedState;
-
       setHookState(derivedState, callback);
     },
     [derivedStateFromPropsThatChanged, setHookState],
@@ -99,12 +98,12 @@ const useReducerWithThunk = <
         | ActionCreatorWithPayload<any, string>
         | PayloadActionCreator<any, string>
         | A,
-      callback?: (state?: S) => void,
+      callback?: StateCallback<S>,
     ) => {
       if (isFunction(action)) {
         return action(dispatch, getState);
       }
-      const newState: S = reduce(action);
+      const newState = reduce(action);
 
       return setState(newState, callback);
     },

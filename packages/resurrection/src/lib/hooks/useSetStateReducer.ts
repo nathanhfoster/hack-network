@@ -1,12 +1,6 @@
 'use client';
 
-import {
-  useCallback,
-  useEffect,
-  useReducer,
-  useRef,
-  ActionDispatch,
-} from 'react';
+import { useCallback, useEffect, useReducer, useRef } from 'react';
 
 import setObjectStateReducer from '../reducers/setStateObjectReducer';
 import defaultInitializer from '../utils/defaultInitializer';
@@ -25,7 +19,7 @@ export type SetState<S> = (
 const useSetStateReducer = <S extends Record<string, unknown>>(
   initializerArg: S = {} as S,
   initializer = defaultInitializer,
-): [S, ActionDispatch<[S | SetStateUpdater<S>]>] => {
+): [S, SetState<S>] => {
   const callbackRef = useRef<StateCallback<S> | undefined>(undefined);
   const [state, dispatch] = useReducer(
     setObjectStateReducer<S>,
@@ -34,7 +28,7 @@ const useSetStateReducer = <S extends Record<string, unknown>>(
   );
 
   // Augments the dispatch to accept a callback as a second parameter
-  const setState = useCallback<ActionDispatch<[S | SetStateUpdater<S>]>>(
+  const setState = useCallback<SetState<S>>(
     (updater: S | SetStateUpdater<S>, callback?: StateCallback<S>) => {
       callbackRef.current = callback;
       dispatch(updater);
