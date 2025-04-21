@@ -3,9 +3,9 @@ import { RouteState } from '../../context/RouteContext/types';
 
 export type BackgroundViewMapStateToProps = Pick<RouteState, 'pathname'>;
 
-export type BackgroundViewMapDispatchToProps = object;
+export type BackgroundViewMapDispatchToProps = {};
 
-export type BackgroundViewOwnProps = object;
+export type BackgroundViewOwnProps = {};
 
 export type BackgroundViewConnectedProps = ConnectedComponentProps<
   BackgroundViewMapStateToProps,

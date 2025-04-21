@@ -4,9 +4,14 @@ import { useCallback, useEffect, useReducer, useRef } from 'react';
 
 import setObjectStateReducer from '../reducers/setStateObjectReducer';
 import defaultInitializer from '../utils/defaultInitializer';
+import type { SetStateUpdater } from '../reducers/setStateReducer';
 
 export type StateCallback<S> = (state: S) => void;
-export type SetState<S> = (updater: S, callback?: StateCallback<S>) => void;
+
+export type SetState<S> = (
+  updater: S | SetStateUpdater<S>,
+  callback?: StateCallback<S>,
+) => void;
 
 /**
  * Mimics React.Component this.state and this.setState
@@ -24,10 +29,13 @@ const useSetStateReducer = <S extends {}>(
   );
 
   // Augments the dispatch to accept a callback as a second parameter
-  const setState = useCallback((updater: S, callback?: StateCallback<S>) => {
-    callbackRef.current = callback;
-    dispatch(updater);
-  }, []);
+  const setState = useCallback(
+    (updater: S | SetStateUpdater<S>, callback?: StateCallback<S>) => {
+      callbackRef.current = callback;
+      dispatch(updater);
+    },
+    [],
+  );
 
   // Call the callback after every state change
   useEffect(() => {
