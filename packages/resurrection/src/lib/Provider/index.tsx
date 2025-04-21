@@ -20,7 +20,7 @@ const Provider = <
 }: ProviderProps<S, I>) => {
   const [state, dispatch] = useReducerWithThunk<S, I>(
     reducer,
-    initialState as I extends S ? S : I,
+    initialState,
     initializer,
     derivedStateFromProps as Partial<S>,
   );

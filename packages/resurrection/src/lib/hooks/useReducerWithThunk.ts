@@ -34,6 +34,7 @@ const useReducerWithThunk = <
     | Thunk<A, S>
     | ActionCreatorWithPayload<any, string>
     | PayloadActionCreator<any, string>
+    | A
     | SetStateAction<S>
     | Partial<S>
   >,
