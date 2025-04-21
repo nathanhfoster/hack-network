@@ -6,8 +6,8 @@ import type { ProviderProps } from './types';
 import { useMemo } from 'react';
 
 const Provider = <
-  S extends Record<string, unknown>,
-  I extends Record<string, unknown> = S,
+  S extends Record<string, any>,
+  I extends Record<string, any> = S,
 >({
   StateContext,
   reducer = setStateReducer,

@@ -9,10 +9,28 @@ import {
   BackgroundViewOwnProps,
 } from './types';
 import { getBackgroundImage } from './utils';
-import { connect, InferStateFromContext } from 'resurrection';
+import {
+  connect,
+  InferStateFromContext,
+  useSetStateReducer,
+} from 'resurrection';
 import { RouteContext } from '../../context/RouteContext';
 
 const Background: FC<BackgroundViewConnectedProps> = ({ pathname }) => {
+  const [state, setState] = useSetStateReducer<{
+    email: string;
+    error: boolean;
+  }>({
+    email: '',
+    error: false,
+  });
+
+  useEffect(() => {
+    setState({
+      email: 'test',
+    });
+  }, []);
+
   const backgroundImage = useMemo(
     () => getBackgroundImage(pathname),
     [pathname],

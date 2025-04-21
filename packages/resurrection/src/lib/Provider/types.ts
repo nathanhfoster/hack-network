@@ -1,4 +1,4 @@
-import { Dispatch, ReactNode } from 'react';
+import { Dispatch, ReactNode, SetStateAction } from 'react';
 import { Context } from 'use-context-selector';
 import {
   ContextStoreInitializer,
@@ -14,7 +14,16 @@ export type ProviderProps<
   A extends ReducerActionCreators<any, string> = any,
 > = {
   StateContext?: Context<S>;
-  reducer?: (state: S, action: ReturnType<A[keyof A]>) => S;
+  reducer?: (
+    state: S,
+    action:
+      | ReturnType<A[keyof A]>
+      | SetStateAction<S>
+      | Partial<S>
+      | Thunk<A, S>
+      | SetStateAction<S>
+      | Partial<S>,
+  ) => S;
   initialState?: I extends S ? S : I;
   initializer?: ContextStoreInitializer<S, I>;
   derivedStateFromProps?: Partial<S>;
@@ -23,6 +32,8 @@ export type ProviderProps<
       | Thunk<A, S>
       | ActionCreatorWithPayload<any, string>
       | PayloadActionCreator<any, string>
+      | SetStateAction<S>
+      | Partial<S>
     >
   >;
   children:

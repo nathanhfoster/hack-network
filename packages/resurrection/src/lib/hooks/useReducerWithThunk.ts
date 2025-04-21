@@ -1,7 +1,7 @@
 'use client';
 
 import { isFunction } from '../utils';
-import { useCallback, useRef, Dispatch } from 'react';
+import { useCallback, useRef, Dispatch, SetStateAction } from 'react';
 import usePropsThatChanged from './usePropsThatChanged';
 import useLazyMemo from './useLazyMemo';
 import getDerivedStateFromProps from '../utils/getDerivedStateFromProps';
@@ -20,11 +20,11 @@ import type {
  * so that the action dispatcher supports thunks.
  */
 const useReducerWithThunk = <
-  S extends Record<string, unknown>,
-  I extends Record<string, unknown> = S,
+  S extends Record<string, any>,
+  I extends Record<string, any> = S,
   A extends object = ActionCreatorWithPayload<any, string>,
 >(
-  reducer: (state: S, action: A) => S,
+  reducer: (state: S, action: A | Partial<S> | SetStateAction<S>) => S,
   initialState: I extends S ? S : I,
   initializer?: ContextStoreInitializer<S, I>,
   derivedStateFromProps?: Partial<S>,
@@ -34,6 +34,8 @@ const useReducerWithThunk = <
     | Thunk<A, S>
     | ActionCreatorWithPayload<any, string>
     | PayloadActionCreator<any, string>
+    | SetStateAction<S>
+    | Partial<S>
   >,
 ] => {
   // Only keep the props that changed to override the state
@@ -86,7 +88,7 @@ const useReducerWithThunk = <
 
   // Reducer
   const reduce = useCallback(
-    (action: A) => reducer(getState(), action),
+    (action: A | Partial<S> | SetStateAction<S>) => reducer(getState(), action),
     [reducer, getState],
   );
 
@@ -97,7 +99,9 @@ const useReducerWithThunk = <
         | Thunk<A, S>
         | ActionCreatorWithPayload<any, string>
         | PayloadActionCreator<any, string>
-        | A,
+        | A
+        | SetStateAction<S>
+        | Partial<S>,
       callback?: StateCallback<S>,
     ) => {
       if (isFunction(action)) {
