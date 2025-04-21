@@ -1,6 +1,6 @@
 'use client';
 
-import { Dispatch } from 'react';
+import type { Dispatch, SetStateAction } from 'react';
 import { createContext } from 'use-context-selector';
 
 import createUseDispatchHook from '../hooks/useDispatch';
@@ -26,9 +26,11 @@ const createContextWithName = <
 
   const DispatchContext = createContext<
     Dispatch<
-      | Thunk<A, S>
       | ActionCreatorWithPayload<any, string>
       | PayloadActionCreator<any, string>
+      | Thunk<A, S>
+      | SetStateAction<S>
+      | Partial<S>
     >
   >(() => {
     throw new Error('Dispatch function not initialized');

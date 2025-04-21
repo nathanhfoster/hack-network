@@ -18,8 +18,6 @@ export type ProviderProps<
     state: S,
     action:
       | ReturnType<A[keyof A]>
-      | SetStateAction<S>
-      | Partial<S>
       | Thunk<A, S>
       | SetStateAction<S>
       | Partial<S>,
