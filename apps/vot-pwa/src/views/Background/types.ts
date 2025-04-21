@@ -1,11 +1,15 @@
 import { ConnectedComponentProps } from 'resurrection';
 import { RouteState } from '../../context/RouteContext/types';
 
-export type BackgroundViewMapStateToProps = Pick<RouteState, 'pathname'>;
+export interface BackgroundViewMapStateToProps {
+  pathname: RouteState['pathname'];
+}
 
-export type BackgroundViewMapDispatchToProps = {};
+export interface BackgroundViewMapDispatchToProps {
+  setPathname: (pathname: RouteState['pathname']) => void;
+}
 
-export type BackgroundViewOwnProps = {};
+export interface BackgroundViewOwnProps {}
 
 export type BackgroundViewConnectedProps = ConnectedComponentProps<
   BackgroundViewMapStateToProps,
