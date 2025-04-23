@@ -1,4 +1,6 @@
 import { produce, setAutoFreeze, Draft } from 'immer';
+import { SetStateAction, Reducer } from 'react';
+import isFunction from '../isFunction';
 
 import { PayloadAction } from '../../types';
 
@@ -45,9 +47,25 @@ const createSlice = <
   const finalInitialState = {
     ...props.initialState,
     ...props.extends?.module.initialState,
-  };
+  } as S & MS;
 
-  const reducer = (state = finalInitialState, action: PayloadAction) => {
+  const reducer: Reducer<
+    S & MS,
+    | (ReturnType<A[keyof A]> & { type: string })
+    | SetStateAction<S & MS>
+    | Partial<S & MS>
+    | PayloadAction
+  > = (state = finalInitialState, action) => {
+    // Handle SetStateAction
+    if (isFunction(action)) {
+      return (action as (prevState: S & MS) => S & MS)(state);
+    }
+
+    // Handle Partial state updates
+    if (!('type' in action)) {
+      return { ...state, ...action };
+    }
+
     const [actionReducerName, actionType] = action.type.split('/');
 
     const reducerActionFunction =
@@ -55,7 +73,13 @@ const createSlice = <
 
     if (actionReducerName === props.name && reducerActionFunction) {
       return produce(state, (draft: Draft<S & MS>) => {
-        reducerActionFunction(draft, action.payload);
+        const result = reducerActionFunction(
+          draft,
+          'payload' in action ? action.payload : undefined,
+        );
+        if (result !== undefined) {
+          Object.assign(draft, result);
+        }
       });
     }
 
@@ -66,7 +90,7 @@ const createSlice = <
     getThunks: (thunksAction: ReducerActionCreators<A & MA, N>) => TA,
   ) => {
     return {
-      initialState: finalInitialState as S & MS,
+      initialState: finalInitialState,
       actions: {
         ...actions,
         ...getThunks(actions),
@@ -82,7 +106,7 @@ const createSlice = <
   };
 
   return {
-    initialState: finalInitialState as S & MS,
+    initialState: finalInitialState,
     actions: {
       ...actions,
       ...props.extends?.module.actions,
