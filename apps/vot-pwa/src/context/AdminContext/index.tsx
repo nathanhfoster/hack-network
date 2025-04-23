@@ -8,7 +8,7 @@ import {
 } from 'resurrection';
 
 import { getAdminInitialState, adminInitialState, adminSlice } from './reducer';
-import { AdminContextProviderProps, AdminContextState } from './types';
+import type { AdminContextProviderProps, AdminContextState } from './types';
 
 export const adminContextActions = adminSlice.actions;
 

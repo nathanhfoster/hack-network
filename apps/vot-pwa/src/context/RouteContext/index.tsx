@@ -11,7 +11,7 @@ export const RouteContext = createContext<RouteState>({
 
 export const RouteProvider = ({ children }: { children: React.ReactNode }) => {
   const pathname = usePathname();
-  console.log({ pathname });
+
   const segment = pathname.split('/')[1] || 'default';
 
   return (

@@ -146,8 +146,8 @@ export type PayloadAction<
         error: E;
       });
 export type PayloadActionCreator<P = void, T extends string = string> = {
-  payload: P;
   type: T;
+  payload: P;
   (payload: P): { type: T; payload: P };
 };
 

@@ -2,18 +2,19 @@
 
 import type { Dispatch, SetStateAction } from 'react';
 import { createContext } from 'use-context-selector';
-
 import createUseDispatchHook from '../hooks/useDispatch';
 import createUseSelectorHook from '../hooks/useSelector';
-import { ReducerActionCreators } from './createSlice/types';
-import {
+import type { ReducerActionCreators } from './createSlice/types';
+import type {
   Thunk,
   ActionCreatorWithPayload,
   PayloadActionCreator,
+  PayloadAction,
 } from '../types';
+import type { ComponentPropsType } from '../connect/types';
 
 const createContextWithName = <
-  S extends object,
+  S extends ComponentPropsType,
   A extends ReducerActionCreators<any, string>,
 >(
   displayName: string,
@@ -26,6 +27,7 @@ const createContextWithName = <
 
   const DispatchContext = createContext<
     Dispatch<
+      | PayloadAction<string, any>
       | ActionCreatorWithPayload<any, string>
       | PayloadActionCreator<any, string>
       | Thunk<A, S>

@@ -13,6 +13,7 @@ import type {
   Thunk,
   ActionCreatorWithPayload,
   PayloadActionCreator,
+  PayloadAction,
 } from '../types';
 
 /**
@@ -24,13 +25,17 @@ const useReducerWithThunk = <
   I extends Record<string, any> = S,
   A extends object = ActionCreatorWithPayload<any, string>,
 >(
-  reducer: (state: S, action: A | Partial<S> | SetStateAction<S>) => S,
+  reducer: (
+    state: S,
+    action: A | Partial<S> | SetStateAction<S> | PayloadAction<string, any>,
+  ) => S,
   initialState: I extends S ? S : I,
   initializer?: ContextStoreInitializer<S, I>,
   derivedStateFromProps?: Partial<S>,
 ): [
   S,
   Dispatch<
+    | PayloadAction<string, any>
     | Thunk<A, S>
     | ActionCreatorWithPayload<any, string>
     | PayloadActionCreator<any, string>
@@ -89,7 +94,8 @@ const useReducerWithThunk = <
 
   // Reducer
   const reduce = useCallback(
-    (action: A | Partial<S> | SetStateAction<S>) => reducer(getState(), action),
+    (action: A | Partial<S> | SetStateAction<S> | PayloadAction<string, any>) =>
+      reducer(getState(), action),
     [reducer, getState],
   );
 
@@ -97,6 +103,7 @@ const useReducerWithThunk = <
   const dispatch = useCallback(
     (
       action:
+        | PayloadAction<string, any>
         | Thunk<A, S>
         | ActionCreatorWithPayload<any, string>
         | PayloadActionCreator<any, string>

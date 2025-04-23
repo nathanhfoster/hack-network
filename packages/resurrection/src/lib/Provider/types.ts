@@ -1,12 +1,13 @@
-import { Dispatch, ReactNode, SetStateAction } from 'react';
-import { Context } from 'use-context-selector';
-import {
+import type { Dispatch, ReactNode, SetStateAction } from 'react';
+import type { Context } from 'use-context-selector';
+import type {
   ContextStoreInitializer,
   Thunk,
   ActionCreatorWithPayload,
   PayloadActionCreator,
+  PayloadAction,
 } from '../types';
-import { ReducerActionCreators } from '../utils/createSlice/types';
+import type { ReducerActionCreators } from '../utils/createSlice/types';
 
 export type ProviderProps<
   S extends object,
@@ -27,6 +28,7 @@ export type ProviderProps<
   derivedStateFromProps?: Partial<S>;
   DispatchContext?: Context<
     Dispatch<
+      | PayloadAction<string, any>
       | Thunk<A, S>
       | ActionCreatorWithPayload<any, string>
       | PayloadActionCreator<any, string>

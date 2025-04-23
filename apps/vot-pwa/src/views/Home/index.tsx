@@ -1,14 +1,8 @@
 'use client';
 
 import { FC } from 'react';
+import { connect, InferStateFromContext } from 'resurrection';
 import {
-  connect,
-  DispatchType,
-  InstallPromptProvider,
-  DownloadAppButton,
-} from 'resurrection';
-import {
-  AdminActions,
   AdminDispatchContext,
   AdminStateContext,
   adminContextActions,
@@ -19,7 +13,7 @@ import {
   HomeViewMapStateToProps,
   HomeViewOwnProps,
 } from './types';
-import { AdminContextState } from '../../context/AdminContext/types';
+
 import { Button } from '@hack-network/ui';
 
 const HomeView: FC<HomeViewConnectedProps> = ({ theme, UpdateSettings }) => {
@@ -28,33 +22,30 @@ const HomeView: FC<HomeViewConnectedProps> = ({ theme, UpdateSettings }) => {
   };
 
   return (
-    <InstallPromptProvider>
-      <main>
-        <h1>Home</h1>
-        <DownloadAppButton />
-        <Button onClick={handleUpdateSettings}>Update Settings</Button>
-        <div>
-          <h2>Settings</h2>
-          <ul>
-            <li>Theme: {theme}</li>
-          </ul>
-        </div>
-      </main>
-    </InstallPromptProvider>
+    <main>
+      <h1>Home</h1>
+      <Button onClick={handleUpdateSettings}>Update Settings</Button>
+      <div>
+        <h2>Settings</h2>
+        <ul>
+          <li>Theme: {theme}</li>
+        </ul>
+      </div>
+    </main>
   );
 };
 
 export default connect<
   HomeViewMapStateToProps,
   HomeViewMapDispatchToProps,
-  HomeViewOwnProps,
-  [AdminContextState],
-  [DispatchType<AdminActions>]
+  HomeViewOwnProps
 >({
   mapStateToPropsOptions: [
     {
       context: AdminStateContext,
-      mapStateToProps: (state) => ({
+      mapStateToProps: (
+        state: InferStateFromContext<typeof AdminStateContext>,
+      ) => ({
         theme: state.settings.theme,
       }),
     },
