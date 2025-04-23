@@ -13,6 +13,7 @@ import {
   IsUnknownOrNonInferrable,
   NoInfer,
 } from '../tsHelpers';
+import type { ComponentPropsType } from '../../connect/types';
 
 export type ActionTypeName<
   SliceName extends string,
@@ -24,16 +25,16 @@ type SliceReducer<S = any, P = any> = (
   payload?: P,
 ) => NoInfer<S> | void | Draft<NoInfer<S>>;
 
-export type CreateSliceActions<S extends InitialReducerState> = {
+export type CreateSliceActions<S extends ComponentPropsType> = {
   [K: string]: SliceReducer<S, any>;
 };
 
 export interface CreateSliceProps<
-  MS extends InitialReducerState,
+  MS extends ComponentPropsType,
   MA extends CreateSliceActions<MS>,
   MT extends ThunkActions<MS, ReducerActionCreators<MA, string>>,
   N extends string,
-  S extends InitialReducerState,
+  S extends ComponentPropsType,
   A extends CreateSliceActions<S & MS>,
 > {
   name: N;
@@ -47,8 +48,6 @@ export interface CreateSliceProps<
     };
   };
 }
-
-export type InitialReducerState = Record<string, unknown>;
 
 type ActionCreatorForReducer<
   ActionFunction,
@@ -76,12 +75,12 @@ export type SliceReducers<State> = {
 };
 
 export interface ThunkActions<
-  S extends InitialReducerState,
+  S extends ComponentPropsType,
   A extends ReducerActionCreators<any, any>,
 > {
   [key: string]: ThunkFunction<any, S, ActionsUnionType<A> | Thunk<any, S>>;
 }
 
-export interface ThunkActionsHelper<S extends InitialReducerState> {
+export interface ThunkActionsHelper<S extends ComponentPropsType> {
   [key: string]: ThunkFunction<any, S, Thunk<any, S>>;
 }

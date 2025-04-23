@@ -5,20 +5,20 @@ import { PayloadAction } from '../../types';
 import {
   CreateSliceActions,
   CreateSliceProps,
-  InitialReducerState,
   ReducerActionCreators,
   ThunkActions,
 } from './types';
+import type { ComponentPropsType } from '../../connect/types';
 
 setAutoFreeze(false);
 // enableMapSet(); use this if you need to use Map and Set in immer
 
 const createSlice = <
-  MS extends InitialReducerState,
+  MS extends ComponentPropsType,
   MA extends CreateSliceActions<MS>,
   MT extends ThunkActions<MS, ReducerActionCreators<MA, string>>,
   N extends string,
-  S extends InitialReducerState,
+  S extends ComponentPropsType,
   A extends CreateSliceActions<S & MS>,
 >(
   props: CreateSliceProps<MS, MA, MT, N, S, A>,
