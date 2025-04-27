@@ -13,7 +13,7 @@ const useEffectAfterChange = <T = any>(
   value: T,
   callback: Callback<T> = () => undefined,
   condition: Condition<T> = (prev, curr) => isNotNotTrue(prev) && !curr,
-  debounce = 0,
+  debounce = 400,
 ) => {
   const previousValue = usePreviousValue(value);
 
