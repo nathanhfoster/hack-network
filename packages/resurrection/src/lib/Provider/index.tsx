@@ -1,9 +1,9 @@
+import { useMemo } from 'react';
 import { isFunction } from '../utils';
 import useReducerWithThunk from '../hooks/useReducerWithThunk';
 import setStateReducer from '../reducers/setStateReducer';
 import defaultInitializer from '../utils/defaultInitializer';
 import type { ProviderProps } from './types';
-import { useMemo, ReactNode } from 'react';
 
 const Provider = <
   S extends Record<string, any>,
@@ -34,23 +34,25 @@ const Provider = <
   }, [children, state, dispatch]);
 
   if (!StateContext) {
-    return renderChildren as ReactNode;
+    return renderChildren;
   }
 
-  const StateContextProvider = (
-    <StateContext.Provider value={state}>
-      {renderChildren as ReactNode}
-    </StateContext.Provider>
+  const StateContextProvider = StateContext.Provider;
+
+  const stateProvider = (
+    <StateContextProvider value={state}>{renderChildren}</StateContextProvider>
   );
 
   if (!DispatchContext) {
-    return StateContextProvider;
+    return stateProvider;
   }
 
+  const DispatchContextProvider = DispatchContext.Provider;
+
   return (
-    <DispatchContext.Provider value={dispatch}>
-      {StateContextProvider}
-    </DispatchContext.Provider>
+    <DispatchContextProvider value={dispatch}>
+      {stateProvider}
+    </DispatchContextProvider>
   );
 };
 
