@@ -71,7 +71,7 @@ const deepEquals = <T = any>(a: T, b: T) => {
     // custom handling for React
     for (i = length; i-- !== 0; ) {
       key = keys[i];
-      //@ts-ignore-error
+      //@ts-expect-error React elements have $$typeof property that TypeScript doesn't know about
       if (key === '_owner' && a.$$typeof) {
         // React-specific: avoid traversing React elements' _owner.
         //  _owner contains circular references

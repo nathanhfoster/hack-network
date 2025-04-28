@@ -1,10 +1,11 @@
-import { isEqual, pickBy } from 'lodash-es';
+import deepEquals from './deepEquals';
+import pickBy from './pickBy';
 
 const getObjectDiffKeys = (
   originalObject: Record<string, any>,
   updatedObject: Record<string, any>,
 ): string[] => {
-  const diff = pickBy(updatedObject, (v, k) => !isEqual(originalObject[k], v));
+  const diff = pickBy(updatedObject, (v, k) => !deepEquals(originalObject[k], v));
 
   let keys = Object.keys(diff);
 

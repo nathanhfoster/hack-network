@@ -58,7 +58,6 @@ export { default as isAsyncFunction } from './isAsyncFunction';
 export { default as isPromise } from './isPromise';
 export { default as isNil } from './isNil';
 export { default as isNull } from './isNull';
-export { default as isEqual } from './isEqual';
 export { default as isEmpty } from './isEmpty';
 export { default as isNotNotTrue } from './isNotNotTrue';
 

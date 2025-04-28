@@ -1,6 +1,6 @@
 'use client';
 
-import throttle from 'lodash-es/throttle';
+import throttle from '../utils/throttle';
 import { type DependencyList, useCallback, useEffect, useRef } from 'react';
 
 import { GenericFunction } from '../types';
@@ -25,20 +25,24 @@ const defaultOptions: ThrottleOptions = {
 const useThrottledCallback = <TCallback extends GenericFunction>(
   fn: TCallback,
   dependencies: DependencyList = [],
-  wait = 300,
+  wait = 400,
   options: ThrottleOptions = defaultOptions,
 ): TCallback => {
-  const throttled = useRef(throttle<TCallback>(fn, wait, options));
+  const throttledFn = useRef<TCallback | null>(throttle<TCallback>(fn, wait, options));
 
   useEffect(() => {
-    throttled.current = throttle(fn, wait, options);
+    throttledFn.current = throttle(fn, wait, options);
   }, [fn, wait, options]);
 
   useWillUnmount(() => {
-    throttled.current?.cancel();
+    throttledFn.current = null;
   });
 
-  return useCallback(throttled.current as unknown as TCallback, dependencies);
+  return useCallback((...args: Parameters<TCallback>) => {
+    if (throttledFn.current) {
+      return throttledFn.current(...args);
+    }
+  }, dependencies) as TCallback;
 };
 
 export default useThrottledCallback;

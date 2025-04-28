@@ -1,4 +1,4 @@
-import { renderHook, act } from '@testing-library/react';
+import { renderHook } from '@testing-library/react';
 import React, { useState } from 'react';
 import createContextWithName from '../createContextWithName';
 import { ReducerActionCreators } from '../../..';
