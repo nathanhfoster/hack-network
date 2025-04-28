@@ -86,6 +86,7 @@ export { default as getReducerDefaultState } from './getReducerDefaultState';
 
 // Other Utilities
 export { default as copyToClipboard } from './copyToClipboard';
+export { default as debounce } from './debounce';
 export { default as getRandomString } from './getRandomString';
 export { default as getErrorMessage } from './getErrorMessage';
 export { default as getIsIframe } from './getIsIframe';
