@@ -1,3 +1,5 @@
+import isFunction from './isFunction';
+
 export interface DebounceOptions {
   leading?: boolean;
   trailing?: boolean;
@@ -37,7 +39,7 @@ export function debounce<T extends (...args: any[]) => any>(
   const maxWait =
     'maxWait' in options ? Math.max(+(options.maxWait ?? 0), wait) : undefined;
 
-  if (typeof func !== 'function') {
+  if (!isFunction(func)) {
     throw new TypeError('Expected a function');
   }
 
