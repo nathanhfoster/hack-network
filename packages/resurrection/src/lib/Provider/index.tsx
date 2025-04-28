@@ -3,7 +3,7 @@ import useReducerWithThunk from '../hooks/useReducerWithThunk';
 import setStateReducer from '../reducers/setStateReducer';
 import defaultInitializer from '../utils/defaultInitializer';
 import type { ProviderProps } from './types';
-import { useMemo, ReactNode, createContext } from 'react';
+import { useMemo, ReactNode } from 'react';
 
 const Provider = <
   S extends Record<string, any>,
@@ -34,12 +34,12 @@ const Provider = <
   }, [children, state, dispatch]);
 
   if (!StateContext) {
-    return renderChildren;
+    return renderChildren as ReactNode;
   }
 
   const StateContextProvider = (
     <StateContext.Provider value={state}>
-      {renderChildren}
+      {renderChildren as ReactNode}
     </StateContext.Provider>
   );
 

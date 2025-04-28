@@ -21,18 +21,18 @@ const defaultOptions: DebounceOptions = {
  * @param options - Configuration options
  * @returns A debounced version of the provided function
  */
-export function debounce<T extends (...args: any[]) => any>(
+export function debounce<T extends GenericFunction>(
   func: T,
   wait = 400,
   options: DebounceOptions = defaultOptions,
-): ((...args: Parameters<TCallback>) => void) & {
+): ((...args: Parameters<T>) => void) & {
   cancel: () => void;
-  flush: () => ReturnType<TCallback> | undefined;
+  flush: () => ReturnType<T> | undefined;
 } {
   let timeoutId: ReturnType<typeof setTimeout> | undefined;
-  let lastArgs: Parameters<TCallback> | undefined;
+  let lastArgs: Parameters<T> | undefined;
   let lastThis: any;
-  let result: ReturnType<TCallback> | undefined;
+  let result: ReturnType<T> | undefined;
   let lastCallTime: number | undefined;
   let lastInvokeTime = 0;
   let leading = false;
@@ -54,7 +54,7 @@ export function debounce<T extends (...args: any[]) => any>(
 
     lastArgs = lastThis = undefined;
     lastInvokeTime = time;
-    result = func.apply(thisArg, args as Parameters<TCallback>);
+    result = func.apply(thisArg, args as Parameters<T>);
     return result;
   }
 
@@ -116,7 +116,7 @@ export function debounce<T extends (...args: any[]) => any>(
     return timeoutId === undefined ? result : trailingEdge(Date.now());
   }
 
-  function debounced(this: any, ...args: Parameters<TCallback>) {
+  function debounced(this: any, ...args: Parameters<T>) {
     const time = Date.now();
     const isInvoking = shouldInvoke(time);
 
