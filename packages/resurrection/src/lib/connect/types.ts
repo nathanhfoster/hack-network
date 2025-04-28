@@ -97,10 +97,10 @@ export type ConnectOptions<
   ) => ConnectOptionUseEffectAfterChangeReturn<T>;
 };
 
-export type ConnectOptionUseEffectAfterChangeReturn<T = unknown> = [
+export type ConnectOptionUseEffectAfterChangeReturn<T> = [
   value?: T,
-  callback?: (previousValue: T, value: T) => unknown,
-  condition?: (previousValue: T, value: T) => boolean,
+  callback?: (previousValue: T | undefined, value: T) => any,
+  condition?: (previousValue: T | undefined, value: T) => boolean,
   throttle?: number,
 ];
 

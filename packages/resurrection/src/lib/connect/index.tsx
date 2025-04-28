@@ -161,7 +161,7 @@ const connect = <
         useHookDataFetchingOnce?.(hookProps);
       });
 
-      const useEffectAfterChangeParams: ConnectOptionUseEffectAfterChangeReturn =
+      const useEffectAfterChangeParams: ConnectOptionUseEffectAfterChangeReturn<any> =
         useHookEffectAfterChange?.(hookProps) ?? [];
 
       useEffectAfterChange(...useEffectAfterChangeParams);

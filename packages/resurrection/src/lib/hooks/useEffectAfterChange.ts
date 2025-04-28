@@ -6,10 +6,10 @@ import { useEffect } from 'react';
 import useDebouncedCallback from './useDebouncedCallback';
 import usePreviousValue from './usePreviousValue';
 
-type Callback<T> = (previousValue?: T, value?: T) => any;
-type Condition<T> = (previousValue?: T, value?: T) => boolean;
+type Callback<T> = (previousValue?: T | undefined, value?: T) => any;
+type Condition<T> = (previousValue?: T | undefined, value?: T) => boolean;
 
-const useEffectAfterChange = <T = any>(
+const useEffectAfterChange = <T>(
   value: T,
   callback: Callback<T> = () => undefined,
   condition: Condition<T> = (prev, curr) => isNotNotTrue(prev) && !curr,
