@@ -1,8 +1,8 @@
 import { renderHook } from '@testing-library/react';
 import { act } from 'react-dom/test-utils';
-import { createContext, useContext } from 'react';
 import * as React from 'react';
 import createUseSelectorHook from '../useSelector';
+import { createContext, useContext } from 'use-context-selector';
 
 interface TestState {
   count: number;

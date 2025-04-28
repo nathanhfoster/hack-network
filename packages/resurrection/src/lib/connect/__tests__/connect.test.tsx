@@ -252,11 +252,12 @@ describe('connect HOC', () => {
         },
       ],
       useHookEffectAfterChange: () => [
-        undefined,
+        (state) => state.count, // value to watch
         () => {
           effectSpy();
         },
-        () => true,
+        () => true, // condition
+        0, // no debounce
       ],
     })(TestComponent);
 
@@ -278,7 +279,7 @@ describe('connect HOC', () => {
 
     // Wait for the effect to run
     await act(async () => {
-      await new Promise((resolve) => setTimeout(resolve, 0));
+      await new Promise((resolve) => setTimeout(resolve, 100));
     });
 
     expect(effectSpy).toHaveBeenCalled();
