@@ -3,7 +3,7 @@ import useReducerWithThunk from '../hooks/useReducerWithThunk';
 import setStateReducer from '../reducers/setStateReducer';
 import defaultInitializer from '../utils/defaultInitializer';
 import type { ProviderProps } from './types';
-import { useMemo } from 'react';
+import { useMemo, ReactNode, createContext } from 'react';
 
 const Provider = <
   S extends Record<string, any>,
