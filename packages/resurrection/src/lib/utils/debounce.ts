@@ -22,7 +22,7 @@ const defaultOptions: DebounceOptions = {
  */
 export function debounce<T extends (...args: any[]) => any>(
   func: T,
-  wait = 300,
+  wait = 400,
   options: DebounceOptions = defaultOptions,
 ): ((...args: Parameters<T>) => void) & {
   cancel: () => void;
