@@ -1,7 +1,7 @@
 'use client';
 
 import { isNotNotTrue } from '../utils';
-import { useEffect } from 'react';
+import { useEffect, useCallback } from 'react';
 
 import useDebouncedCallback from './useDebouncedCallback';
 import usePreviousValue from './usePreviousValue';
@@ -17,17 +17,25 @@ const useEffectAfterChange = <T>(
 ) => {
   const previousValue = usePreviousValue(value);
 
+  // Memoize the condition check to prevent unnecessary recreations
+  const memoizedCallback = useCallback(
+    (prev: T | undefined, curr: T) => {
+      if (condition(prev, curr)) {
+        callback(prev, curr);
+      }
+    },
+    [callback, condition],
+  );
+
   const debouncedCallback = useDebouncedCallback(
-    callback,
-    [previousValue, value, callback],
+    memoizedCallback,
+    [], // Empty dependencies since we're using memoized callback
     debounce,
   );
 
   useEffect(() => {
-    if (condition(previousValue, value)) {
-      debouncedCallback(previousValue, value);
-    }
-  }, [debouncedCallback, condition, previousValue, value]);
+    debouncedCallback(previousValue, value);
+  }, [debouncedCallback, previousValue, value]);
 };
 
 export default useEffectAfterChange;
