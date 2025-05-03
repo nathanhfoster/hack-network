@@ -55,7 +55,6 @@ describe('useSelector', () => {
   it('should only update when selected state changes', () => {
     const { result, rerender } = renderHook(
       () => {
-        const { state } = useContext(TestContext);
         return useSelector((state) => state.state.count);
       },
       {
@@ -86,7 +85,6 @@ describe('useSelector', () => {
   it('should handle props correctly', () => {
     const { result } = renderHook(
       () => {
-        const { state } = useContext(TestContext);
         return useSelector((state) => state.state.text);
       },
       {
@@ -139,7 +137,6 @@ describe('useSelector', () => {
   it('should not re-render when non-selected state changes', () => {
     const { result, rerender } = renderHook(
       () => {
-        const { state } = useContext(TestContext);
         return useSelector((state) => state.state.count);
       },
       {

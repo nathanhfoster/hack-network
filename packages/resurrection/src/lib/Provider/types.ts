@@ -38,5 +38,9 @@ export type ProviderProps<
   >;
   children:
     | ReactNode
-    | ((state: { state: S; dispatch: Dispatch<A> }) => ReactNode);
+    | ((state: {
+        state: S;
+        dispatch: Dispatch<A>;
+        isPending: boolean;
+      }) => ReactNode);
 };

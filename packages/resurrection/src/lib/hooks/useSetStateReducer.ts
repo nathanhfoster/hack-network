@@ -6,6 +6,7 @@ import {
   useEffect,
   useReducer,
   useRef,
+  useTransition,
 } from 'react';
 
 import setObjectStateReducer from '../reducers/setStateObjectReducer';
@@ -20,11 +21,12 @@ export type SetState<S> = (
 
 /**
  * Mimics React.Component this.state and this.setState
+ * @returns [state, setState, isPending] - state object, setState function, and pending status
  */
 const useSetStateReducer = <S extends Record<string, any>>(
   initializerArg: S = {} as S,
   initializer = defaultInitializer,
-): [S, SetState<S>] => {
+): [S, SetState<S>, boolean] => {
   const callbackRef = useRef<StateCallback<S> | undefined>(undefined);
 
   const [state, dispatch] = useReducer(
@@ -33,10 +35,14 @@ const useSetStateReducer = <S extends Record<string, any>>(
     initializer,
   );
 
+  const [isPending, startTransition] = useTransition();
+
   // Augments the dispatch to accept a callback as a second parameter
   const setState = useCallback<SetState<S>>((updater, callback) => {
     callbackRef.current = callback;
-    dispatch(updater);
+    startTransition(() => {
+      dispatch(updater);
+    });
   }, []);
 
   // Call the callback after every state change
@@ -45,7 +51,7 @@ const useSetStateReducer = <S extends Record<string, any>>(
     callbackRef.current = undefined;
   }, [state]);
 
-  return [state, setState];
+  return [state, setState, isPending];
 };
 
 export default useSetStateReducer;

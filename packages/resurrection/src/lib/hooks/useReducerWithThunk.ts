@@ -43,6 +43,7 @@ const useReducerWithThunk = <
     | SetStateAction<S>
     | Partial<S>
   >,
+  boolean,
 ] => {
   // Only keep the props that changed to override the state
   const derivedStateFromPropsThatChanged = usePropsThatChanged<S>(
@@ -62,7 +63,7 @@ const useReducerWithThunk = <
     ),
   );
 
-  const [hookState, setHookState] = useSetStateReducer<S>(
+  const [hookState, setHookState, isHookStatePending] = useSetStateReducer<S>(
     initialHookState,
     initializer,
   );
@@ -122,7 +123,7 @@ const useReducerWithThunk = <
     [reduce, getState, setState],
   );
 
-  return [hookState, dispatch];
+  return [hookState, dispatch, isHookStatePending];
 };
 
 export default useReducerWithThunk;

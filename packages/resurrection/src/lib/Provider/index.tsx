@@ -18,7 +18,7 @@ const Provider = <
   DispatchContext,
   children,
 }: ProviderProps<S, I>) => {
-  const [state, dispatch] = useReducerWithThunk<S, I>(
+  const [state, dispatch, isPending] = useReducerWithThunk<S, I>(
     reducer,
     initialState,
     initializer,
@@ -27,11 +27,11 @@ const Provider = <
 
   const renderChildren = useMemo(() => {
     if (isFunction(children)) {
-      return children({ state, dispatch });
+      return children({ state, dispatch, isPending });
     }
 
     return children;
-  }, [children, state, dispatch]);
+  }, [children, state, dispatch, isPending]);
 
   if (!StateContext) {
     return renderChildren;
