@@ -68,6 +68,7 @@ export { default as isDomElement } from './isDomElement';
 export { default as isRef } from './isRef';
 export { default as isClientSide } from './isClientSide';
 export { default as isMobile } from './isMobile';
+export { default as isPwaInstalled } from './isPwaInstalled';
 export { default as screenMaxWidth } from './screenMaxWidth';
 
 // File and Data Utilities
