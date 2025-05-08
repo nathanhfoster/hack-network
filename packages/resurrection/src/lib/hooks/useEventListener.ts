@@ -10,10 +10,11 @@ type ElementOption = ElementOrWindow | undefined | null;
 
 const useEventListener = (
   eventName: string,
-  handler: (event: any) => any,
+  handler: (event: Event) => void,
+  options?: AddEventListenerOptions,
   element: ElementOption = isClientSide() ? window : undefined,
 ) => {
-  const savedHandler = useRef<Function>(handler);
+  const savedHandler = useRef<(event: Event) => void>(handler);
 
   useEffect(() => {
     savedHandler.current = handler;
@@ -26,14 +27,14 @@ const useEventListener = (
 
     if (!isSupported) return;
 
-    const eventListener = (event: any) => savedHandler.current(event);
+    const eventListener = (event: Event) => savedHandler.current(event);
 
-    element.addEventListener(eventName, eventListener);
+    element.addEventListener(eventName, eventListener, options);
 
     return () => {
-      element.removeEventListener(eventName, eventListener);
+      element.removeEventListener(eventName, eventListener, options);
     };
-  }, [eventName, element]);
+  }, [eventName, element, options]);
 };
 
 export default useEventListener;
