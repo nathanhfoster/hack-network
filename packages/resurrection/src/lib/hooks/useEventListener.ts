@@ -8,13 +8,13 @@ import { useEffect, useRef } from 'react';
 type ElementOrWindow = HTMLElement | (Window & typeof globalThis);
 type ElementOption = ElementOrWindow | undefined | null;
 
-const useEventListener = (
+const useEventListener = <T extends Event = Event>(
   eventName: string,
-  handler: (event: Event) => void,
+  handler: (event: T) => void,
   options?: AddEventListenerOptions,
   element: ElementOption = isClientSide() ? window : undefined,
 ) => {
-  const savedHandler = useRef<(event: Event) => void>(handler);
+  const savedHandler = useRef<(event: T) => void>(handler);
 
   useEffect(() => {
     savedHandler.current = handler;
@@ -27,7 +27,7 @@ const useEventListener = (
 
     if (!isSupported) return;
 
-    const eventListener = (event: Event) => savedHandler.current(event);
+    const eventListener = (event: Event) => savedHandler.current(event as T);
 
     element.addEventListener(eventName, eventListener, options);
 
