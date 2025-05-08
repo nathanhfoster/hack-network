@@ -15,6 +15,7 @@ import { createSlice } from '../../utils';
 
 // Test context and reducer
 type CounterState = { count: number };
+type UserState = { name: string };
 
 const counterSlice = createSlice({
   name: 'counter',
@@ -29,28 +30,45 @@ const counterSlice = createSlice({
   },
 });
 
-const counterActions = counterSlice.actions;
+const userSlice = createSlice({
+  name: 'user',
+  initialState: { name: 'John' },
+  actions: {
+    setName: (state, payload: string) => {
+      state.name = payload;
+    },
+  },
+});
 
-const { StateContext, DispatchContext } = createContextWithName<
-  CounterState,
-  any
->('Counter', { count: 0 });
+const counterActions = counterSlice.actions;
+const userActions = userSlice.actions;
+
+const {
+  StateContext: CounterStateContext,
+  DispatchContext: CounterDispatchContext,
+} = createContextWithName<CounterState, any>('Counter', { count: 0 });
+
+const { StateContext: UserStateContext, DispatchContext: UserDispatchContext } =
+  createContextWithName<UserState, any>('User', { name: 'John' });
 
 type CounterActions = typeof counterActions;
+type UserActions = typeof userActions;
 
 // Test component
 interface TestComponentProps {
   count?: number;
+  name?: string;
   increment?: () => void;
   decrement?: () => void;
   ownProp?: string;
 }
 
 const TestComponent = React.forwardRef<HTMLDivElement, TestComponentProps>(
-  ({ count, increment, decrement, ownProp }, ref) => {
+  ({ count, name, increment, decrement, ownProp }, ref) => {
     return (
       <div ref={ref}>
         <div data-testid="count">{count}</div>
+        <div data-testid="name">{name}</div>
         <div data-testid="own-prop">{ownProp}</div>
         <button onClick={increment}>Increment</button>
         <button onClick={decrement}>Decrement</button>
@@ -72,7 +90,7 @@ describe('connect HOC', () => {
     >({
       mapStateToPropsOptions: [
         {
-          context: StateContext,
+          context: CounterStateContext,
           mapStateToProps: (state) => ({ count: state.count }),
         },
       ],
@@ -80,8 +98,8 @@ describe('connect HOC', () => {
 
     render(
       <Provider
-        StateContext={StateContext}
-        DispatchContext={DispatchContext}
+        StateContext={CounterStateContext}
+        DispatchContext={CounterDispatchContext}
         reducer={counterSlice.reducer}
         initialState={{ count: 0 }}
       >
@@ -103,13 +121,13 @@ describe('connect HOC', () => {
     >({
       mapStateToPropsOptions: [
         {
-          context: StateContext,
+          context: CounterStateContext,
           mapStateToProps: (state) => ({ count: state.count }),
         },
       ],
       mapDispatchToPropsOptions: [
         {
-          context: DispatchContext,
+          context: CounterDispatchContext,
           mapDispatchToProps: {
             increment: counterActions.increment,
             decrement: counterActions.decrement,
@@ -120,8 +138,8 @@ describe('connect HOC', () => {
 
     render(
       <Provider
-        StateContext={StateContext}
-        DispatchContext={DispatchContext}
+        StateContext={CounterStateContext}
+        DispatchContext={CounterDispatchContext}
         reducer={counterSlice.reducer}
         initialState={{ count: 0 }}
       >
@@ -146,7 +164,7 @@ describe('connect HOC', () => {
     const ConnectedComponent = connect({
       mapStateToPropsOptions: [
         {
-          context: StateContext,
+          context: CounterStateContext,
           mapStateToProps: (state) => ({ count: state.count }),
         },
       ],
@@ -155,8 +173,8 @@ describe('connect HOC', () => {
 
     const { rerender } = render(
       <Provider
-        StateContext={StateContext}
-        DispatchContext={DispatchContext}
+        StateContext={CounterStateContext}
+        DispatchContext={CounterDispatchContext}
         reducer={counterSlice.reducer}
         initialState={{ count: 0 }}
       >
@@ -169,8 +187,8 @@ describe('connect HOC', () => {
     // Rerender with same props
     rerender(
       <Provider
-        StateContext={StateContext}
-        DispatchContext={DispatchContext}
+        StateContext={CounterStateContext}
+        DispatchContext={CounterDispatchContext}
         reducer={counterSlice.reducer}
         initialState={{ count: 0 }}
       >
@@ -191,7 +209,7 @@ describe('connect HOC', () => {
     >({
       mapStateToPropsOptions: [
         {
-          context: StateContext,
+          context: CounterStateContext,
           mapStateToProps: (state) => ({ count: state.count }),
         },
       ],
@@ -200,8 +218,8 @@ describe('connect HOC', () => {
 
     render(
       <Provider
-        StateContext={StateContext}
-        DispatchContext={DispatchContext}
+        StateContext={CounterStateContext}
+        DispatchContext={CounterDispatchContext}
         reducer={counterSlice.reducer}
         initialState={{ count: 0 }}
       >
@@ -216,13 +234,13 @@ describe('connect HOC', () => {
     const ConnectedComponent = connect({
       mapStateToPropsOptions: [
         {
-          context: StateContext,
+          context: CounterStateContext,
           mapStateToProps: (state) => ({ count: state.count }),
         },
       ],
       mapDispatchToPropsOptions: [
         {
-          context: DispatchContext,
+          context: CounterDispatchContext,
           mapDispatchToProps: {
             increment: counterActions.increment,
           },
@@ -249,8 +267,8 @@ describe('connect HOC', () => {
 
     render(
       <Provider
-        StateContext={StateContext}
-        DispatchContext={DispatchContext}
+        StateContext={CounterStateContext}
+        DispatchContext={CounterDispatchContext}
         reducer={counterSlice.reducer}
         initialState={{ count: 0 }}
       >
@@ -266,7 +284,7 @@ describe('connect HOC', () => {
     const ConnectedComponent = connect({
       mapStateToPropsOptions: [
         {
-          context: StateContext,
+          context: CounterStateContext,
           mapStateToProps: (state) => ({ count: state.count }),
         },
       ],
@@ -277,8 +295,8 @@ describe('connect HOC', () => {
 
     render(
       <Provider
-        StateContext={StateContext}
-        DispatchContext={DispatchContext}
+        StateContext={CounterStateContext}
+        DispatchContext={CounterDispatchContext}
         reducer={counterSlice.reducer}
         initialState={{ count: 0 }}
       >
@@ -298,13 +316,13 @@ describe('connect HOC', () => {
     const ConnectedComponent = connect({
       mapStateToPropsOptions: [
         {
-          context: StateContext,
+          context: CounterStateContext,
           mapStateToProps: (state) => ({ count: state.count }),
         },
       ],
       mapDispatchToPropsOptions: [
         {
-          context: DispatchContext,
+          context: CounterDispatchContext,
           mapDispatchToProps: {
             increment: counterActions.increment,
           },
@@ -324,8 +342,8 @@ describe('connect HOC', () => {
 
     const { rerender } = render(
       <Provider
-        StateContext={StateContext}
-        DispatchContext={DispatchContext}
+        StateContext={CounterStateContext}
+        DispatchContext={CounterDispatchContext}
         reducer={counterSlice.reducer}
         initialState={{ count: 0 }}
       >
@@ -339,8 +357,8 @@ describe('connect HOC', () => {
     // Rerender to ensure effect runs
     rerender(
       <Provider
-        StateContext={StateContext}
-        DispatchContext={DispatchContext}
+        StateContext={CounterStateContext}
+        DispatchContext={CounterDispatchContext}
         reducer={counterSlice.reducer}
         initialState={{ count: 0 }}
       >
@@ -354,5 +372,80 @@ describe('connect HOC', () => {
     });
 
     expect(effectSpy).toHaveBeenCalled();
+  });
+
+  it('should connect to multiple stores using mapStateToPropsOptions without infinite rerenders', () => {
+    const renderSpy = vi.fn();
+    const PureTestComponent: React.FC<TestComponentProps> = (props) => {
+      renderSpy();
+      return <TestComponent {...props} />;
+    };
+
+    const ConnectedComponent = connect<
+      Pick<CounterState, 'count'> & Pick<UserState, 'name'>,
+      {},
+      {
+        ownProp: string;
+      }
+    >({
+      mapStateToPropsOptions: [
+        {
+          context: CounterStateContext,
+          mapStateToProps: (state) => ({ count: state.count }),
+        },
+        {
+          context: UserStateContext,
+          mapStateToProps: (state) => ({ name: state.name }),
+        },
+      ],
+      pure: true,
+    })(PureTestComponent);
+
+    const { rerender } = render(
+      <Provider
+        StateContext={CounterStateContext}
+        DispatchContext={CounterDispatchContext}
+        reducer={counterSlice.reducer}
+        initialState={{ count: 0 }}
+      >
+        <Provider
+          StateContext={UserStateContext}
+          DispatchContext={UserDispatchContext}
+          reducer={userSlice.reducer}
+          initialState={{ name: 'John' }}
+        >
+          <ConnectedComponent ownProp="test" />
+        </Provider>
+      </Provider>,
+    );
+
+    const initialRenders = renderSpy.mock.calls.length;
+
+    // Rerender with same props
+    rerender(
+      <Provider
+        StateContext={CounterStateContext}
+        DispatchContext={CounterDispatchContext}
+        reducer={counterSlice.reducer}
+        initialState={{ count: 0 }}
+      >
+        <Provider
+          StateContext={UserStateContext}
+          DispatchContext={UserDispatchContext}
+          reducer={userSlice.reducer}
+          initialState={{ name: 'John' }}
+        >
+          <ConnectedComponent ownProp="test" />
+        </Provider>
+      </Provider>,
+    );
+
+    // Should not re-render due to pure optimization
+    expect(renderSpy.mock.calls.length).toBe(initialRenders);
+
+    // Verify the component still shows the correct state
+    expect(screen.getByTestId('count')).toHaveTextContent('0');
+    expect(screen.getByTestId('name')).toHaveTextContent('John');
+    expect(screen.getByTestId('own-prop')).toHaveTextContent('test');
   });
 });
