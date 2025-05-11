@@ -1,9 +1,8 @@
+'use client';
+
 import { useEffect, useRef, EffectCallback, DependencyList } from 'react';
 
-export default function useEffectAfterMount(
-  effect: EffectCallback,
-  deps?: DependencyList,
-) {
+export default function useEffectAfterMount(effect: EffectCallback, deps?: DependencyList) {
   const isFirstRender = useRef(true);
 
   useEffect(() => {

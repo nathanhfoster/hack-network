@@ -7,16 +7,9 @@ import {
 } from 'react';
 import type { Context } from 'use-context-selector';
 
-import {
-  LoosePartial,
-  ActionCreatorWithPayload,
-  PayloadActionCreator,
-  Thunk,
-} from '../types';
+import { LoosePartial, ActionCreatorWithPayload, PayloadActionCreator, Thunk } from '../types';
 
-export type ComponentPropsType<
-  T extends Record<string, any> = Record<string, any>,
-> = T;
+export type ComponentPropsType<T extends Record<string, any> = Record<string, any>> = T;
 
 export type ConnectedComponent<P extends ComponentPropsType> =
   | ForwardRefExoticComponent<RefAttributes<HTMLElement>>
@@ -57,7 +50,7 @@ export type ConnectOptions<
     context: Context<any>;
     mapStateToProps: <C extends Context<any>>(
       state: InferStateFromContext<C>,
-      ownProps: OWNP,
+      ownProps: OWNP
     ) => LoosePartial<MSTP>;
   }[];
   mapDispatchToPropsOptions?: Array<{
@@ -73,7 +66,7 @@ export type ConnectOptions<
         >
       | ((
           dispatch: Dispatch<any>,
-          ownProps: OWNP,
+          ownProps: OWNP
         ) => LoosePartial<Record<keyof MDTP, (...args: unknown[]) => unknown>>);
   }>;
   pure?: boolean;
@@ -85,15 +78,15 @@ export type ConnectOptions<
   >(
     stateToProps: MSTP,
     dispatchToProps: MDTP,
-    ownProps: OWNP,
+    ownProps: OWNP
   ) => MergePropsReturnType<MSTP, MDTP, OWNP>;
   areOwnPropsEqual?: EqualityFunctionType;
   areMergedPropsEqual?: EqualityFunctionType;
   useHookDataFetchingOnce?: <T extends ConnectHookProps<MSTP, MDTP, OWNP>>(
-    props: T,
+    props: T
   ) => Promise<void> | void;
   useHookEffectAfterChange?: <T = unknown>(
-    props: ConnectHookProps<MSTP, MDTP, OWNP>,
+    props: ConnectHookProps<MSTP, MDTP, OWNP>
   ) => ConnectOptionUseEffectAfterChangeReturn<T>;
 };
 
@@ -104,9 +97,10 @@ export type ConnectOptionUseEffectAfterChangeReturn<T> = [
   throttle?: number,
 ];
 
-export type EqualityFunctionType<
-  P extends ComponentPropsType = ComponentPropsType,
-> = (prevPropsOrState: P, nextPropsOrState: P) => boolean;
+export type EqualityFunctionType<P extends ComponentPropsType = ComponentPropsType> = (
+  prevPropsOrState: P,
+  nextPropsOrState: P
+) => boolean;
 
 export type DispatchType<T> =
   | Thunk<T, unknown>

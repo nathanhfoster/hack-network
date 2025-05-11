@@ -2,12 +2,6 @@
 export type { RunTests, TestToRun } from './types';
 export type * from './createSlice/types';
 
-// Date Utilities
-export { default as addDays } from './addDays';
-export { default as subtractDays } from './subtractDays';
-export { default as formatDate } from './formatDate';
-export { default as formatDateFn } from './formatDateFn';
-
 // Number Utilities
 export { default as formatNumber } from './formatNumber';
 export { default as formatMoney } from './formatMoney';

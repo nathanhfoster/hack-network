@@ -1,175 +1,134 @@
 'use client';
 
-import { isFunction, shallowEquals } from '../utils';
-import React, {
-  ComponentType,
-  FC,
-  forwardRef as reactForwardRef,
-  memo,
-  useRef,
-  RefObject,
-  useMemo,
-} from 'react';
+import React, { ComponentType, forwardRef as reactForwardRef, memo, useRef, useMemo } from 'react';
 
 import {
   ComponentPropsType,
   ConnectHookProps,
   ConnectOptions,
-  ConnectOptionUseEffectAfterChangeReturn,
   MergePropsReturnType,
   InferStateFromContext,
 } from './types';
-import {
-  useEffectAfterChange,
-  useEffectOnce,
-  useMemoComponent,
-} from '../hooks';
+import { useEffectAfterChange, useEffectOnce, useMemoComponent } from '../hooks';
 import defaultMergeProps from '../utils/defaultMergeProps';
-import createUseSelectorHook from '../hooks/useSelector';
-import createUseDispatchHook from '../hooks/useDispatch';
+import createUseSelectorHook from '../hooks/createUseSelectorHook';
+import createUseDispatchHook from '../hooks/createUseDispatchHook';
 import bindActionCreator from '../utils/bindActionCreator';
-import type { LoosePartial } from '../types';
+import { shallowEquals, isFunction } from '../utils';
 
+/**
+ * connect HOC that maps state and dispatch to props with optimized memoization.
+ * Prepares selector hooks outside render to avoid re-creating on each render.
+ */
 const connect = <
   MSTP extends ComponentPropsType = ComponentPropsType,
   MDTP extends ComponentPropsType = ComponentPropsType,
   OWNP extends ComponentPropsType = ComponentPropsType,
->({
-  mapStateToPropsOptions = [],
-  mapDispatchToPropsOptions = [],
-  pure = true,
-  forwardRef = false,
-  mergeProps = defaultMergeProps,
-  areOwnPropsEqual = shallowEquals,
-  areMergedPropsEqual = shallowEquals,
-  useHookDataFetchingOnce,
-  useHookEffectAfterChange,
-}: ConnectOptions<MSTP, MDTP, OWNP>) => {
-  const wrapWithConnect = <P extends ComponentPropsType>(
-    WrappedComponent: ComponentType<P>,
+>(
+  options: ConnectOptions<MSTP, MDTP, OWNP>
+) => {
+  const {
+    mapStateToPropsOptions = [],
+    mapDispatchToPropsOptions = [],
+    mergeProps = defaultMergeProps,
+    pure = true,
+    forwardRef = false,
+    areOwnPropsEqual = shallowEquals,
+    areMergedPropsEqual = shallowEquals,
+    useHookDataFetchingOnce,
+    useHookEffectAfterChange,
+  } = options;
+
+  // Prepare selector hooks and mappers once per connect invocation
+  const selectorInfos = mapStateToPropsOptions.map((option) => ({
+    useSelector: createUseSelectorHook(option.context),
+    mapFn: option.mapStateToProps,
+  }));
+
+  // Prepare dispatch hooks once
+  const dispatcherHooks = mapDispatchToPropsOptions.map((option) =>
+    createUseDispatchHook(option.context)
+  );
+
+  return <P extends ComponentPropsType>(
+    WrappedComponent: ComponentType<P>
   ): ComponentType<Omit<P, keyof MSTP | keyof MDTP>> => {
-    const wrappedComponentName =
-      WrappedComponent.displayName || WrappedComponent.name || 'Component';
+    const wrappedName = WrappedComponent.displayName || WrappedComponent.name || 'Component';
+    const displayName = `Connect(${wrappedName})`;
 
-    const displayName = `Connect(${wrappedComponentName})`;
+    const ConnectFunction: React.FC<P & { forwardedRef?: React.Ref<any> }> = ({
+      forwardedRef,
+      ...props
+    }) => {
+      const ownPropsRef = useRef<OWNP>(props as OWNP);
 
-    const ConnectFunction: FC<
-      P & { forwardedRef?: React.Ref<HTMLElement> }
-    > = ({ forwardedRef, ...restOfProps }) => {
-      const ownPropsRef = useRef(restOfProps);
+      // Map state using prepared selectors
+      const stateToProps = selectorInfos.reduce((acc, { useSelector, mapFn }) => {
+        const selected = useSelector<Partial<MSTP>, OWNP>(
+          (state: InferStateFromContext<any>, p) => mapFn(state, p!),
+          props as OWNP
+        );
+        return { ...acc, ...selected } as MSTP;
+      }, {} as MSTP);
 
-      // Always call hooks in the same order
-      const mapStateToPropsContexts = useMemo(
-        () =>
-          mapStateToPropsOptions.map((item) => {
-            const useSelector = createUseSelectorHook(item.context);
-            return useSelector<LoosePartial<MSTP>, OWNP>(
-              (
-                state: InferStateFromContext<typeof item.context>,
-                props?: OWNP,
-              ) => item.mapStateToProps(state, props ?? ({} as OWNP)),
-              restOfProps as OWNP,
-            );
-          }),
-        [restOfProps, mapStateToPropsOptions],
-      );
+      // Instantiate dispatch functions
+      const dispatchers = dispatcherHooks.map((hook) => hook());
 
-      const stateToProps = useMemo<MSTP>(() => {
-        return mapStateToPropsOptions.reduce((acc, _item, index) => {
-          const contextState = mapStateToPropsContexts[index];
-          return { ...acc, ...contextState } as MSTP;
-        }, {} as MSTP);
-      }, [restOfProps, mapStateToPropsContexts]);
-
-      const mapDispatchToPropsContexts = useMemo(
-        () =>
-          mapDispatchToPropsOptions.map((item) => {
-            const useDispatch = createUseDispatchHook(item.context);
-            return useDispatch();
-          }),
-        [restOfProps, mapDispatchToPropsOptions],
-      );
-
+      // Bind action creators once using useMemo
       const dispatchToProps = useMemo<MDTP>(() => {
-        return mapDispatchToPropsOptions.reduce((acc: MDTP, item, index) => {
-          const dispatch = mapDispatchToPropsContexts[index];
+        return mapDispatchToPropsOptions.reduce((acc, item, index) => {
+          const dispatch = dispatchers[index];
 
-          Object.entries(
-            isFunction(item.mapDispatchToProps)
-              ? item.mapDispatchToProps(dispatch, ownPropsRef.current as OWNP)
-              : item.mapDispatchToProps,
-          ).forEach(([actionName, action]) => {
-            acc[actionName as keyof MDTP] = bindActionCreator(dispatch)(action);
+          const creator = isFunction(item.mapDispatchToProps)
+            ? item.mapDispatchToProps(dispatch, ownPropsRef.current)
+            : item.mapDispatchToProps;
+          Object.entries(creator || {}).forEach(([key, action]) => {
+            (acc as any)[key] = bindActionCreator(dispatch)(action as any);
           });
-
           return acc;
         }, {} as MDTP);
-      }, [mapDispatchToPropsContexts]);
+      }, []);
 
+      // Merge props with useMemo
       const mergedProps = useMemo<MergePropsReturnType<MSTP, MDTP, OWNP>>(
-        () =>
-          mergeProps(
-            stateToProps,
-            dispatchToProps,
-            restOfProps as unknown as OWNP,
-          ),
-        [stateToProps, restOfProps, dispatchToProps],
+        () => mergeProps(stateToProps, dispatchToProps, props as OWNP),
+        [stateToProps, dispatchToProps, props]
       );
 
-      const hookProps = useMemo<ConnectHookProps<MSTP, MDTP, OWNP>>(
-        () => ({
-          stateToProps,
-          dispatchToProps,
-          ownProps: restOfProps as unknown as OWNP,
-          mergedProps,
-        }),
-        [stateToProps, mergedProps, restOfProps, dispatchToProps],
-      );
+      const hookArgs: ConnectHookProps<MSTP, MDTP, OWNP> = {
+        stateToProps,
+        dispatchToProps,
+        ownProps: props as OWNP,
+        mergedProps,
+      };
 
-      useEffectOnce(() => {
-        useHookDataFetchingOnce?.(hookProps);
-      });
+      useEffectOnce(() => useHookDataFetchingOnce?.(hookArgs));
 
-      const useEffectAfterChangeParams: ConnectOptionUseEffectAfterChangeReturn<any> =
-        useHookEffectAfterChange?.(hookProps) ?? [];
+      const effectParams = useHookEffectAfterChange?.(hookArgs) ?? [];
+      useEffectAfterChange(...effectParams);
 
-      useEffectAfterChange(...useEffectAfterChangeParams);
-
-      const ConnectedComponent = useMemoComponent<P>({
+      return useMemoComponent<P>({
         Component: WrappedComponent,
         props: mergedProps as P,
-        ref: (forwardedRef ? forwardedRef : undefined) as
-          | RefObject<P>
-          | undefined,
+        ref: forwardedRef,
         isEqual: pure ? areMergedPropsEqual : undefined,
       });
-
-      return ConnectedComponent;
     };
 
-    const Connect = pure
-      ? memo(ConnectFunction, areOwnPropsEqual)
-      : ConnectFunction;
-
-    Connect.displayName = ConnectFunction.displayName = displayName;
+    const Memoized = pure ? memo(ConnectFunction, areOwnPropsEqual) : ConnectFunction;
+    Memoized.displayName = ConnectFunction.displayName = displayName;
 
     if (forwardRef) {
-      const ForwaredComponent = reactForwardRef<any, P>((props, ref) => {
-        return <Connect {...(props as P)} forwardedRef={ref} />;
-      });
-
-      ForwaredComponent.displayName = displayName;
-      (ForwaredComponent as any).WrappedComponent = WrappedComponent;
-
-      return ForwaredComponent as unknown as ComponentType<
-        Omit<P, keyof MSTP | keyof MDTP>
-      >;
+      const Forwarded = reactForwardRef<any, P>((props, ref) => (
+        <Memoized {...(props as P)} forwardedRef={ref} />
+      ));
+      Forwarded.displayName = displayName;
+      (Forwarded as any).WrappedComponent = WrappedComponent;
+      return Forwarded as unknown as ComponentType<Omit<P, keyof MSTP | keyof MDTP>>;
     }
 
-    return Connect as any;
+    return Memoized as ComponentType<Omit<P, keyof MSTP | keyof MDTP>>;
   };
-
-  return wrapWithConnect;
 };
 
 export default connect;

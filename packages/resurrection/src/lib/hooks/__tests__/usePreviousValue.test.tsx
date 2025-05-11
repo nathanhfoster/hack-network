@@ -1,5 +1,4 @@
-import { renderHook } from '@testing-library/react';
-import { act } from '@testing-library/react';
+import { renderHook, act } from '@testing-library/react';
 import usePreviousValue from '../usePreviousValue';
 
 describe('usePreviousValue', () => {
@@ -9,12 +8,9 @@ describe('usePreviousValue', () => {
   });
 
   it('should return previous value after update', () => {
-    const { result, rerender } = renderHook(
-      ({ value }) => usePreviousValue(value),
-      {
-        initialProps: { value: 1 },
-      },
-    );
+    const { result, rerender } = renderHook(({ value }) => usePreviousValue(value), {
+      initialProps: { value: 1 },
+    });
 
     // First render should be undefined
     expect(result.current).toBeUndefined();
@@ -37,12 +33,9 @@ describe('usePreviousValue', () => {
   });
 
   it('should work with different types', () => {
-    const { result, rerender } = renderHook(
-      ({ value }) => usePreviousValue(value),
-      {
-        initialProps: { value: 'test' },
-      },
-    );
+    const { result, rerender } = renderHook(({ value }) => usePreviousValue(value), {
+      initialProps: { value: 'test' },
+    });
 
     expect(result.current).toBeUndefined();
 
@@ -57,12 +50,9 @@ describe('usePreviousValue', () => {
     const obj1 = { id: 1 };
     const obj2 = { id: 2 };
 
-    const { result, rerender } = renderHook(
-      ({ value }) => usePreviousValue(value),
-      {
-        initialProps: { value: obj1 },
-      },
-    );
+    const { result, rerender } = renderHook(({ value }) => usePreviousValue(value), {
+      initialProps: { value: obj1 },
+    });
 
     expect(result.current).toBeUndefined();
 

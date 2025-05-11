@@ -31,8 +31,8 @@ export { default as createSlice } from './utils/createSlice';
 export { default as setStateReducer } from './reducers/setStateReducer';
 
 // Hook Exports
-export { default as useDispatch } from './hooks/useDispatch';
-export { default as useSelector } from './hooks/useSelector';
+export { default as createUseDispatchHook } from './hooks/createUseDispatchHook';
+export { default as createUseSelectorHook } from './hooks/createUseSelectorHook';
 export { default as useSetStateReducer } from './hooks/useSetStateReducer';
 
 // Utility Functions

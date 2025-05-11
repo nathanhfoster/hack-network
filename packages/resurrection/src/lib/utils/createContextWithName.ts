@@ -2,8 +2,8 @@
 
 import type { Dispatch, SetStateAction } from 'react';
 import { createContext } from 'use-context-selector';
-import createUseDispatchHook from '../hooks/useDispatch';
-import createUseSelectorHook from '../hooks/useSelector';
+import createUseDispatchHook from '../hooks/createUseDispatchHook';
+import createUseSelectorHook from '../hooks/createUseSelectorHook';
 import type { ReducerActionCreators } from './createSlice/types';
 import type {
   Thunk,
@@ -18,7 +18,7 @@ const createContextWithName = <
   A extends ReducerActionCreators<any, string>,
 >(
   displayName: string,
-  initialState: S,
+  initialState: S
 ) => {
   const StateContext = createContext<S>(initialState);
 

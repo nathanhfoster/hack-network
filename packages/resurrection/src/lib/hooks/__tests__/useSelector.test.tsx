@@ -1,7 +1,7 @@
 import { renderHook } from '@testing-library/react';
 import { act } from 'react-dom/test-utils';
 import * as React from 'react';
-import createUseSelectorHook from '../useSelector';
+import createUseSelectorHook from '../createUseSelectorHook';
 import { createContext, useContext } from 'use-context-selector';
 
 interface TestState {
@@ -46,7 +46,7 @@ describe('useSelector', () => {
             {children}
           </TestContext.Provider>
         ),
-      },
+      }
     );
 
     expect(result.current).toBe(42);
@@ -70,7 +70,7 @@ describe('useSelector', () => {
             {children}
           </TestContext.Provider>
         ),
-      },
+      }
     );
 
     expect(result.current).toBe(42);
@@ -100,7 +100,7 @@ describe('useSelector', () => {
             {children}
           </TestContext.Provider>
         ),
-      },
+      }
     );
 
     expect(result.current).toBe('test');
@@ -128,7 +128,7 @@ describe('useSelector', () => {
             {children}
           </TestContext.Provider>
         ),
-      },
+      }
     );
 
     expect(result.current).toEqual({ count: 42, text: 'test' });
@@ -152,7 +152,7 @@ describe('useSelector', () => {
             {children}
           </TestContext.Provider>
         ),
-      },
+      }
     );
 
     expect(result.current).toBe(42);
