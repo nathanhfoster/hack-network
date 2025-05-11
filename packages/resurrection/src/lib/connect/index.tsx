@@ -1,39 +1,3 @@
-/* eslint-disable react-hooks/rules-of-hooks */
-/**
- * A higher-order component (HOC) that connects a React component to one or more context stores.
- * This HOC allows the component to consume state and dispatch actions from context stores,
- * and passes the mapped values as props to the wrapped component.
- *
- * @template MSTP - The type of the mapped state props.
- * @template MDTP - The type of the mapped dispatch props.
- * @template OWNP - The type of the component's own props.
- * @template State - The type of the state in the context stores.
- * @template Payload - The type of the payload in the actions.
- * @template ActionType - The type of the action in the actions.
- *
- * @param {ConnectOptions<MSTP, MDTP, OWNP, State, Payload, ActionType>} options - Configuration options for the `connect` HOC.
- * @param {Array} options.mapStateToPropsOptions - An array of objects specifying how to map state from context stores to props.
- * Each object should include a `context` and a `mapStateToProps` function.
- * @param {Array} options.mapDispatchToPropsOptions - An array of objects specifying how to map dispatch actions from context stores to props.
- * Each object should include a `context` and a `mapDispatchToProps` function or object.
- * @param {boolean} [options.pure=true] - Whether the component should implement `React.memo` for performance optimization.
- * @param {boolean} [options.forwardRef=false] - Whether to forward refs to the wrapped component.
- * @param {Function} [options.areOwnPropsEqual=shallowEquals] - A function to compare own props for equality.
- * @param {Function} [options.areMergedPropsEqual=shallowEquals] - A function to compare merged props for equality.
- * @param {Function} [options.useHookDataFetchingOnce] - A hook function to perform data fetching logic once when the component mounts.
- * @param {Function} [options.useHookEffectAfterChange] - A hook function to perform side effects after props or state change.
- *
- * @returns {Function} A function that wraps a React component and connects it to the specified context stores.
- *
- * @example
- * ```tsx
- *
- * const ConnectedComponent = connect({
- *   mapStateToPropsOptions: [{ context: CounterContext, mapStateToProps: (state) => ({ count: state.count }) }],
- *   mapDispatchToPropsOptions: [{ context: CounterContext, mapDispatchToProps: { someAction: SomeSlice.actions.someAction } }],
- * })(MyComponent);
- * ```
- */
 'use client';
 
 import { isFunction, shallowEquals } from '../utils';
@@ -94,18 +58,18 @@ const connect = <
     > = ({ forwardedRef, ...restOfProps }) => {
       const ownPropsRef = useRef(restOfProps);
 
+      // Always call hooks in the same order
       const mapStateToPropsContexts = useMemo(
         () =>
           mapStateToPropsOptions.map((item) => {
             const useSelector = createUseSelectorHook(item.context);
-            const contextState = useSelector<LoosePartial<MSTP>, OWNP>(
+            return useSelector<LoosePartial<MSTP>, OWNP>(
               (
                 state: InferStateFromContext<typeof item.context>,
                 props?: OWNP,
               ) => item.mapStateToProps(state, props ?? ({} as OWNP)),
               restOfProps as OWNP,
             );
-            return contextState;
           }),
         [restOfProps, mapStateToPropsOptions],
       );
@@ -115,15 +79,13 @@ const connect = <
           const contextState = mapStateToPropsContexts[index];
           return { ...acc, ...contextState } as MSTP;
         }, {} as MSTP);
-      }, [restOfProps]);
+      }, [restOfProps, mapStateToPropsContexts]);
 
       const mapDispatchToPropsContexts = useMemo(
         () =>
           mapDispatchToPropsOptions.map((item) => {
             const useDispatch = createUseDispatchHook(item.context);
-            const dispatch = useDispatch();
-
-            return dispatch;
+            return useDispatch();
           }),
         [restOfProps, mapDispatchToPropsOptions],
       );
@@ -137,14 +99,12 @@ const connect = <
               ? item.mapDispatchToProps(dispatch, ownPropsRef.current as OWNP)
               : item.mapDispatchToProps,
           ).forEach(([actionName, action]) => {
-            acc[actionName as keyof MDTP] = bindActionCreator(dispatch)(
-              action as any,
-            ) as MDTP[keyof MDTP];
+            acc[actionName as keyof MDTP] = bindActionCreator(dispatch)(action);
           });
 
           return acc;
         }, {} as MDTP);
-      }, []);
+      }, [mapDispatchToPropsContexts]);
 
       const mergedProps = useMemo<MergePropsReturnType<MSTP, MDTP, OWNP>>(
         () =>
