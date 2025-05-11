@@ -94,17 +94,21 @@ const connect = <
     > = ({ forwardedRef, ...restOfProps }) => {
       const ownPropsRef = useRef(restOfProps);
 
-      const mapStateToPropsContexts = mapStateToPropsOptions.map((item) => {
-        const useSelector = createUseSelectorHook(item.context);
-
-        const contextState = useSelector<LoosePartial<MSTP>, OWNP>(
-          (state: InferStateFromContext<typeof item.context>, props?: OWNP) =>
-            item.mapStateToProps(state, props ?? ({} as OWNP)),
-          restOfProps as OWNP,
-        );
-
-        return contextState;
-      });
+      const mapStateToPropsContexts = useMemo(
+        () =>
+          mapStateToPropsOptions.map((item) => {
+            const useSelector = createUseSelectorHook(item.context);
+            const contextState = useSelector<LoosePartial<MSTP>, OWNP>(
+              (
+                state: InferStateFromContext<typeof item.context>,
+                props?: OWNP,
+              ) => item.mapStateToProps(state, props ?? ({} as OWNP)),
+              restOfProps as OWNP,
+            );
+            return contextState;
+          }),
+        [restOfProps, mapStateToPropsOptions],
+      );
 
       const stateToProps = useMemo<MSTP>(() => {
         return mapStateToPropsOptions.reduce((acc, _item, index) => {
@@ -113,13 +117,15 @@ const connect = <
         }, {} as MSTP);
       }, [restOfProps]);
 
-      const mapDispatchToPropsContexts = mapDispatchToPropsOptions.map(
-        (item) => {
-          const useDispatch = createUseDispatchHook(item.context);
-          const dispatch = useDispatch();
+      const mapDispatchToPropsContexts = useMemo(
+        () =>
+          mapDispatchToPropsOptions.map((item) => {
+            const useDispatch = createUseDispatchHook(item.context);
+            const dispatch = useDispatch();
 
-          return dispatch;
-        },
+            return dispatch;
+          }),
+        [restOfProps, mapDispatchToPropsOptions],
       );
 
       const dispatchToProps = useMemo<MDTP>(() => {
@@ -140,22 +146,25 @@ const connect = <
         }, {} as MDTP);
       }, []);
 
-      const mergedProps: MergePropsReturnType<MSTP, MDTP, OWNP> = useMemo(
+      const mergedProps = useMemo<MergePropsReturnType<MSTP, MDTP, OWNP>>(
         () =>
           mergeProps(
             stateToProps,
             dispatchToProps,
             restOfProps as unknown as OWNP,
           ),
-        [dispatchToProps, restOfProps, stateToProps],
+        [stateToProps, restOfProps, dispatchToProps],
       );
 
-      const hookProps: ConnectHookProps<MSTP, MDTP, OWNP> = {
-        stateToProps,
-        dispatchToProps,
-        ownProps: restOfProps as unknown as OWNP,
-        mergedProps,
-      };
+      const hookProps = useMemo<ConnectHookProps<MSTP, MDTP, OWNP>>(
+        () => ({
+          stateToProps,
+          dispatchToProps,
+          ownProps: restOfProps as unknown as OWNP,
+          mergedProps,
+        }),
+        [stateToProps, mergedProps, restOfProps, dispatchToProps],
+      );
 
       useEffectOnce(() => {
         useHookDataFetchingOnce?.(hookProps);
