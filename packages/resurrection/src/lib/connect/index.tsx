@@ -1,6 +1,12 @@
 'use client';
 
-import React, { ComponentType, forwardRef as reactForwardRef, memo, useRef, useMemo } from 'react';
+import {
+  ComponentType,
+  forwardRef as reactForwardRef,
+  memo,
+  useRef,
+  useMemo,
+} from 'react';
 
 import {
   ComponentPropsType,
@@ -9,7 +15,11 @@ import {
   MergePropsReturnType,
   InferStateFromContext,
 } from './types';
-import { useEffectAfterChange, useEffectOnce, useMemoComponent } from '../hooks';
+import {
+  useEffectAfterChange,
+  useEffectOnce,
+  useMemoComponent,
+} from '../hooks';
 import defaultMergeProps from '../utils/defaultMergeProps';
 import createUseSelectorHook from '../hooks/createUseSelectorHook';
 import createUseDispatchHook from '../hooks/createUseDispatchHook';
@@ -25,7 +35,7 @@ const connect = <
   MDTP extends ComponentPropsType = ComponentPropsType,
   OWNP extends ComponentPropsType = ComponentPropsType,
 >(
-  options: ConnectOptions<MSTP, MDTP, OWNP>
+  options: ConnectOptions<MSTP, MDTP, OWNP>,
 ) => {
   const {
     mapStateToPropsOptions = [],
@@ -47,13 +57,14 @@ const connect = <
 
   // Prepare dispatch hooks once
   const dispatcherHooks = mapDispatchToPropsOptions.map((option) =>
-    createUseDispatchHook(option.context)
+    createUseDispatchHook(option.context),
   );
 
   return <P extends ComponentPropsType>(
-    WrappedComponent: ComponentType<P>
+    WrappedComponent: ComponentType<P>,
   ): ComponentType<Omit<P, keyof MSTP | keyof MDTP>> => {
-    const wrappedName = WrappedComponent.displayName || WrappedComponent.name || 'Component';
+    const wrappedName =
+      WrappedComponent.displayName || WrappedComponent.name || 'Component';
     const displayName = `Connect(${wrappedName})`;
 
     const ConnectFunction: React.FC<P & { forwardedRef?: React.Ref<any> }> = ({
@@ -63,13 +74,16 @@ const connect = <
       const ownPropsRef = useRef<OWNP>(props as OWNP);
 
       // Map state using prepared selectors
-      const stateToProps = selectorInfos.reduce((acc, { useSelector, mapFn }) => {
-        const selected = useSelector<Partial<MSTP>, OWNP>(
-          (state: InferStateFromContext<any>, p) => mapFn(state, p!),
-          props as OWNP
-        );
-        return { ...acc, ...selected } as MSTP;
-      }, {} as MSTP);
+      const stateToProps = selectorInfos.reduce(
+        (acc, { useSelector, mapFn }) => {
+          const selected = useSelector<Partial<MSTP>, OWNP>(
+            (state: InferStateFromContext<any>, p) => mapFn(state, p!),
+            props as OWNP,
+          );
+          return { ...acc, ...selected } as MSTP;
+        },
+        {} as MSTP,
+      );
 
       // Instantiate dispatch functions
       const dispatchers = dispatcherHooks.map((hook) => hook());
@@ -92,7 +106,7 @@ const connect = <
       // Merge props with useMemo
       const mergedProps = useMemo<MergePropsReturnType<MSTP, MDTP, OWNP>>(
         () => mergeProps(stateToProps, dispatchToProps, props as OWNP),
-        [stateToProps, dispatchToProps, props]
+        [stateToProps, dispatchToProps, props],
       );
 
       const hookArgs: ConnectHookProps<MSTP, MDTP, OWNP> = {
@@ -115,7 +129,9 @@ const connect = <
       });
     };
 
-    const Memoized = pure ? memo(ConnectFunction, areOwnPropsEqual) : ConnectFunction;
+    const Memoized = pure
+      ? memo(ConnectFunction, areOwnPropsEqual)
+      : ConnectFunction;
     Memoized.displayName = ConnectFunction.displayName = displayName;
 
     if (forwardRef) {
@@ -124,7 +140,9 @@ const connect = <
       ));
       Forwarded.displayName = displayName;
       (Forwarded as any).WrappedComponent = WrappedComponent;
-      return Forwarded as unknown as ComponentType<Omit<P, keyof MSTP | keyof MDTP>>;
+      return Forwarded as unknown as ComponentType<
+        Omit<P, keyof MSTP | keyof MDTP>
+      >;
     }
 
     return Memoized as ComponentType<Omit<P, keyof MSTP | keyof MDTP>>;

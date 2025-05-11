@@ -1,5 +1,5 @@
 import { renderHook, act } from '@testing-library/react';
-import React, { useRef, forwardRef, RefAttributes } from 'react';
+import { useRef, forwardRef, RefAttributes } from 'react';
 import useMemoComponent from '../useMemoComponent';
 import shallowEquals from '../../utils/shallowEquals';
 

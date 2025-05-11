@@ -1,6 +1,6 @@
 'use client';
 
-import React, { ComponentType, Ref, useMemo, useRef, JSX } from 'react';
+import { ComponentType, Ref, useMemo, useRef, JSX } from 'react';
 import { ComponentPropsType, EqualityFunctionType } from '../connect/types';
 import usePreviousValue from './usePreviousValue';
 
@@ -12,10 +12,15 @@ export interface useMemoComponentOptions<P extends ComponentPropsType> {
 }
 
 export type useMemoComponentType = <P extends ComponentPropsType>(
-  options: useMemoComponentOptions<P>
+  options: useMemoComponentOptions<P>,
 ) => JSX.Element | null;
 
-const useMemoComponent: useMemoComponentType = ({ Component, props, ref, isEqual }) => {
+const useMemoComponent: useMemoComponentType = ({
+  Component,
+  props,
+  ref,
+  isEqual,
+}) => {
   // Keep previous props via custom hook
   const previousProps = usePreviousValue(props);
 
